@@ -22,7 +22,6 @@ import mygame.state.Main;
  */
 public class Tree extends Prop{
     
-    private RigidBodyControl landscape;
     
     public Tree(Main main, Vector3f position, String name){
         super(main, position, name);
@@ -41,41 +40,28 @@ public class Tree extends Prop{
         
         Material mat = main.getAssetManager().loadMaterial("Materials/tree.j3m");
         
+        setModel(main.getAssetManager().loadModel("Models/tree/tree.j3o"));
         
-        model = main.getAssetManager().loadModel("Models/tree/tree.j3o");
+        getModel().setMaterial(mat);
         
-        model.setMaterial(mat);
-        
-        
-        model.setShadowMode(ShadowMode.Cast);
+        getModel().setShadowMode(ShadowMode.Cast);
         
         setPosition(); // set position needs to be before creating collision mesh for some reason
 
-        collisionMesh = CollisionShapeFactory.createMeshShape(model);
-        landscape = new RigidBodyControl(collisionMesh, 0);
-        model.addControl(landscape);
+        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
+        setPropCollision(new RigidBodyControl(getCollisionMesh(), 0));
+        getModel().addControl(getPropCollision());
         
+        main.getRootNode().attachChild(getModel());
         
-        
-        main.getRootNode().attachChild(model);
-        
-        
-        
-        initPhysics();
-        
-        
-        
+        initPhysics();      
         
     }
     
-    void initPhysics(){
-        main.gameState.bulletAppState.getPhysicsSpace().add(landscape);
-    }
-
 
     @Override
     void delete() {
-        main.getRootNode().detachChild(model);
+        main.getRootNode().detachChild(getModel());
     }
     
 }

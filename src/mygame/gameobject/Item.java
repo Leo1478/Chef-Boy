@@ -13,26 +13,66 @@ import mygame.state.Main;
  * @author leoze
  */
 public abstract class Item extends GameObject{
-    boolean playerPickUp;
     
-    float pickUpRadius;
+    private boolean playerPickUp;
+    private float pickUpRadius;
     
-    public Item(Main main, Vector3f position, String name, float pickUpRadius){
+    public Item(Main main, Vector3f position, String name){
         super(main, position, name);
-        this.pickUpRadius = pickUpRadius;
     }
-    void detection(Player player){
-         double distance;
+    
+    public void behaviour(Player player){
+        pickUp(player);
+    }
+    
+    /**
+     * if player is within pickUpRadius of item, it will be picked up
+     * @param player 
+     */
+    void pickUp(Player player){
         
-        double x = this.position.x;
-        double x1 = player.position.x;
-        double z = this.position.z;
-        double z1 = player.position.z;
+        double distance;
+        
+        double x = this.getPosition().x;
+        double x1 = player.getPosition().x;
+        double z = this.getPosition().z;
+        double z1 = player.getPosition().z;
         distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
         
-        if (pickUpRadius < distance){
-            playerPickUp = true; 
+        
+        if (getPickUpRadius() > distance){
+            setPlayerPickUp(true); 
+            System.out.println("picked up item");
+            main.getRootNode().detachChild(getModel()); // remove model 
         }
         
     } 
+
+    /**
+     * @return the playerPickUp
+     */
+    public boolean isPlayerPickUp() {
+        return playerPickUp;
+    }
+
+    /**
+     * @param playerPickUp the playerPickUp to set
+     */
+    public void setPlayerPickUp(boolean playerPickUp) {
+        this.playerPickUp = playerPickUp;
+    }
+
+    /**
+     * @return the pickUpRadius
+     */
+    public float getPickUpRadius() {
+        return pickUpRadius;
+    }
+
+    /**
+     * @param pickUpRadius the pickUpRadius to set
+     */
+    public void setPickUpRadius(float pickUpRadius) {
+        this.pickUpRadius = pickUpRadius;
+    }
 }

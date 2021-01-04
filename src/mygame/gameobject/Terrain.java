@@ -5,12 +5,10 @@
  */
 package mygame.gameobject;
 
-import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import mygame.state.Main;
 
@@ -37,17 +35,17 @@ public class Terrain extends Map{
         
         Material mat = main.getAssetManager().loadMaterial("Materials/terrainDots.j3m");
         
-        model = main.getAssetManager().loadModel("Models/terrain/terrain.j3o");
+        setModel(main.getAssetManager().loadModel("Models/terrain/terrain.j3o"));
         
-        model.setMaterial(mat);
+        getModel().setMaterial(mat);
         
-        model.setShadowMode(ShadowMode.Receive);
+        getModel().setShadowMode(ShadowMode.Receive);
 
-        collisionMesh = CollisionShapeFactory.createMeshShape(model);
-        landscape = new RigidBodyControl(collisionMesh, 0);
-        model.addControl(landscape);
+        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
+        landscape = new RigidBodyControl(getCollisionMesh(), 0);
+        getModel().addControl(landscape);
         
-        main.getRootNode().attachChild(model);
+        main.getRootNode().attachChild(getModel());
         setPosition();
         initPhysics();
     }
@@ -64,7 +62,7 @@ public class Terrain extends Map{
     
     @Override
     void delete() {
-        main.getRootNode().detachChild(model);
+        main.getRootNode().detachChild(getModel());
     }
     
 }

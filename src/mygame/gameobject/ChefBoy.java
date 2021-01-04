@@ -26,13 +26,13 @@ public class ChefBoy extends Character{
 
     @Override
     void init() {
+        
+    }
+
+    @Override
+    void delete() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-    
-    @Override
-    void delete() {
-        main.getRootNode().detachChild(model);
-    }   
+   
 }

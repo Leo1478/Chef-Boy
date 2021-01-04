@@ -5,6 +5,7 @@
  */
 package mygame.gameobject;
 
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
 
@@ -13,8 +14,28 @@ import mygame.state.Main;
  * @author leoze
  */
 public abstract class Prop extends Map{
+    
+    private RigidBodyControl propCollision;
 
     public Prop(Main main, Vector3f position, String name){
         super(main, position, name);
+    }
+    
+    void initPhysics(){
+        main.gameState.bulletAppState.getPhysicsSpace().add(getPropCollision());
+    }
+
+    /**
+     * @return the propCollision
+     */
+    public RigidBodyControl getPropCollision() {
+        return propCollision;
+    }
+
+    /**
+     * @param propCollision the propCollision to set
+     */
+    public void setPropCollision(RigidBodyControl propCollision) {
+        this.propCollision = propCollision;
     }
 }

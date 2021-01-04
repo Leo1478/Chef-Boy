@@ -17,6 +17,7 @@ import mygame.gameobject.Enemy;
 import mygame.gameobject.GameLight;
 import mygame.gameobject.GameObject;
 import mygame.gameobject.Ham;
+import mygame.gameobject.Inventory;
 import mygame.gameobject.Item;
 import mygame.gameobject.Pig;
 import mygame.gameobject.Player;
@@ -31,20 +32,22 @@ import mygame.gameobject.Volcano;
  */
 public class GameState extends AbstractAppState {
 
-    ArrayList inventory; // inventory of items 
-    Queue enemyQueue; // queue to spawn enemies 
-    ArrayList<Enemy> enemies = new ArrayList<>(); // list to store enemies 
-    ArrayList<GameObject> props = new ArrayList<>(); // list of all props 
-    GameLight gameLight; // lighting
+    private Inventory inventory; // inventory of items 
+    private Queue enemyQueue; // queue to spawn enemies 
+    private ArrayList<Item> items = new ArrayList<>(); // list to store all existing items
+    private ArrayList<Enemy> enemies = new ArrayList<>(); // list to store enemies 
+    private ArrayList<GameObject> props = new ArrayList<>(); // list of all props 
+    
+    
+    private GameLight gameLight; // lighting
 
-    Player player; // player object 
+    private Player player; // player object 
 
     public BulletAppState bulletAppState; // controls physics 
 
-    Main main; // main object, this is needed because Main extends SimpleApplication
+    private Main main; // main object, this is needed because Main extends SimpleApplication
                 // SimpleApplication contains things like rootNode, camera, assetManager, etc
     
-    Vector3f position = new Vector3f(0, 0, 0);
 
 
     /**
@@ -79,7 +82,7 @@ public class GameState extends AbstractAppState {
      */
     void initLight() {
 
-        gameLight = new GameLight(main);
+        setGameLight(new GameLight(main));
     }
 
     /**
@@ -107,7 +110,7 @@ public class GameState extends AbstractAppState {
     void initTerrain() {
 
         
-        GameObject terrain = new Terrain(main, position, "terrain");
+        GameObject terrain = new Terrain(main, new Vector3f(0, 0, 0), "terrain");
     }
 
     /**
@@ -122,13 +125,13 @@ public class GameState extends AbstractAppState {
         GameObject tree3 = new Tree(main, new Vector3f(20, 0, 20), "tree3");
         GameObject tree4 = new Tree(main, new Vector3f(25, 0, 20), "tree4");
 
-        props.add(tree0);
-        props.add(tree1);
-        props.add(tree2);
-        props.add(tree3);
-        props.add(tree4);
+        getProps().add(tree0);
+        getProps().add(tree1);
+        getProps().add(tree2);
+        getProps().add(tree3);
+        getProps().add(tree4);
 
-        props.get(4).model.setLocalScale(2);
+        
         
         GameObject volcano = new Volcano(main, new Vector3f(50, 0, 50), "volcano");
     }
@@ -138,20 +141,21 @@ public class GameState extends AbstractAppState {
      */
     void initPlayer() {
 
-        this.player = new Player(main);
+        this.setPlayer(new Player(main));
     }
 
     /**
      * init all item objects
      */
     void initItem() {
-        Item ham = new Ham(main, new Vector3f(5, 0, 5), "ham", 10 );
+        Item ham = new Ham(main, new Vector3f(5, 0, 5), "ham");
+        getItems().add(ham);
     }
 
     void initEnemy() {
         
         Enemy pig0 = new Pig(main, new Vector3f(20, 0, 5), "pig1", 20);
-        enemies.add(pig0);
+        getEnemies().add(pig0);
     }
 
     /**
@@ -162,12 +166,120 @@ public class GameState extends AbstractAppState {
     @Override
     public void update(float tpf) {
 
-        player.updateMovement();
+        getPlayer().updateMovement();
         
-        for(int i = 0; i < enemies.size(); i++){
-            enemies.get(i).behaviour(player);
-            //((Pig)ememies.get(i)). 
+        enemyBehaviour(getPlayer());
+        itemBehaviour(getPlayer());
+        
+    }
+    
+    private void enemyBehaviour(Player player){
+        
+        for(int i = 0; i < getEnemies().size(); i++){
+            getEnemies().get(i).behaviour(player);
         }
-        
+    }
+    private void itemBehaviour(Player player){
+        for(int i = 0; i < getItems().size(); i++){
+            getItems().get(i).behaviour(player);
+        }
+    }
+
+    /**
+     * @return the inventory
+     */
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    /**
+     * @param inventory the inventory to set
+     */
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    /**
+     * @return the enemyQueue
+     */
+    public Queue getEnemyQueue() {
+        return enemyQueue;
+    }
+
+    /**
+     * @param enemyQueue the enemyQueue to set
+     */
+    public void setEnemyQueue(Queue enemyQueue) {
+        this.enemyQueue = enemyQueue;
+    }
+
+    /**
+     * @return the items
+     */
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    /**
+     * @param items the items to set
+     */
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
+    }
+
+    /**
+     * @return the enemies
+     */
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    /**
+     * @param enemies the enemies to set
+     */
+    public void setEnemies(ArrayList<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
+    /**
+     * @return the props
+     */
+    public ArrayList<GameObject> getProps() {
+        return props;
+    }
+
+    /**
+     * @param props the props to set
+     */
+    public void setProps(ArrayList<GameObject> props) {
+        this.props = props;
+    }
+
+    /**
+     * @return the gameLight
+     */
+    public GameLight getGameLight() {
+        return gameLight;
+    }
+
+    /**
+     * @param gameLight the gameLight to set
+     */
+    public void setGameLight(GameLight gameLight) {
+        this.gameLight = gameLight;
+    }
+
+    /**
+     * @return the player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
+     * @param player the player to set
+     */
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

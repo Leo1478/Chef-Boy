@@ -21,10 +21,10 @@ public class Pig extends BasicEnemy{
 
     public Pig(Main main, Vector3f position, String name, int health){
         super(main, position, name, health);
-        this.damage = 10;
-        this.speed = 0.01;
-        this.range = 10;
-        this.detectionRange = 30;
+        setDamage(10);
+        setSpeed(0.01);
+        setRange(10);
+        setDetectionRange(30);
         
         init();
         setPosition();
@@ -36,13 +36,13 @@ public class Pig extends BasicEnemy{
         
         Material mat = main.getAssetManager().loadMaterial("Materials/orange.j3m");
         // change to xml file with animation later 
-        model = main.getAssetManager().loadModel("Models/pig/pig.j3o");
+        setModel(main.getAssetManager().loadModel("Models/pig/pig.j3o"));
         
-        model.setMaterial(mat);
+        getModel().setMaterial(mat);
         
-        model.setShadowMode(RenderQueue.ShadowMode.Cast);
+        getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
-        main.getRootNode().attachChild(model);    
+        main.getRootNode().attachChild(getModel());    
 
     }
     
@@ -50,7 +50,7 @@ public class Pig extends BasicEnemy{
 
     @Override
     void delete() {
-        main.getRootNode().detachChild(model);
+        main.getRootNode().detachChild(getModel());
     }
     
     

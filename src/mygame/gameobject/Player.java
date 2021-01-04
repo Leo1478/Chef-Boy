@@ -42,7 +42,7 @@ public class Player implements ActionListener{
      * init model, collision, position
      */
     
-    void init() {
+    private void init() {
         
         setKeys();
         initCollision();
@@ -57,7 +57,7 @@ public class Player implements ActionListener{
      * create collision hit box
      * add gravity and physics to player 
      */
-    void initCollision(){
+    private void initCollision(){
         CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
         user = new CharacterControl(capsuleShape, 0.05f);
         user.setJumpSpeed(60);
@@ -73,7 +73,7 @@ public class Player implements ActionListener{
     /**
      * set position of player
      */
-    void setPosition() {
+    private void setPosition() {
         user.setPhysicsLocation(new Vector3f(-40, 10, 0));
     }
     
@@ -84,7 +84,7 @@ public class Player implements ActionListener{
      * S = down 
      * D = right 
      */
-    void setKeys(){
+    private void setKeys(){
         main.getInputManager().addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
         main.getInputManager().addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
         main.getInputManager().addMapping("Up", new KeyTrigger(KeyInput.KEY_W));
@@ -152,6 +152,10 @@ public class Player implements ActionListener{
         
         position = user.getPhysicsLocation();
         
+    }
+    
+    public Vector3f getPosition(){
+        return position;
     }
     
 }
