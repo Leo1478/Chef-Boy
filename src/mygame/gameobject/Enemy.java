@@ -170,4 +170,5 @@ public abstract class Enemy extends Character{
         this.detectedPlayer = detectedPlayer;
     }
     
+    
 }
