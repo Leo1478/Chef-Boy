@@ -82,6 +82,7 @@ public class Player implements ActionListener{
     public void onAction(String binding, boolean isPressed, float tpf) {
         
         
+        
         if (binding.equals("Left")) {
             setLeft(isPressed);
         } else if (binding.equals("Right")) {
@@ -99,6 +100,8 @@ public class Player implements ActionListener{
      * update movement of player
      */
     public void move(){
+        
+        
         
         camDir.set(main.getCamera().getDirection()).multLocal(0.6f);
         camLeft.set(main.getCamera().getLeft()).multLocal(0.4f);
@@ -181,21 +184,21 @@ public class Player implements ActionListener{
     }
 
     /**
-     * @param up the up to set
+     * @param forward the up to set
      */
     public void setUp(boolean forward) {
         this.forward = forward;
     }
 
     /**
-     * @return the down
+     * @return the back
      */
     public boolean isBack() {
         return back;
     }
 
     /**
-     * @param down the down to set
+     * @param back the back to set
      */
     public void setDown(boolean back) {
         this.back = back;

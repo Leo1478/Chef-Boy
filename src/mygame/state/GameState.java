@@ -172,12 +172,14 @@ public class GameState extends AbstractAppState {
      */
     @Override
     public void update(float tpf) {
-
-        getPlayer().move();
+        
+        
+        player.move();
         chefBoy.move();
         
-        enemyBehaviour(getPlayer());
-        itemBehaviour(getPlayer());
+        
+        enemyBehaviour(player);
+        itemBehaviour(player);
         
     }
     
@@ -187,6 +189,7 @@ public class GameState extends AbstractAppState {
             getEnemies().get(i).behaviour(chefBoy);
         }
     }
+    
     private void itemBehaviour(Player player){
         for(int i = 0; i < getItems().size(); i++){
             getItems().get(i).behaviour(chefBoy);

@@ -16,7 +16,7 @@ import mygame.state.Main;
  */
 public class ChefBoy extends Character implements Action, ChangeHealth{
     
-    private CharacterControl user; // object for controling player
+    public CharacterControl user; // object for controling player
     
     private Player player;
     
@@ -63,13 +63,14 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
      */
     @Override
     public void setPosition() {
-        user.setPhysicsLocation(new Vector3f(-40, 10, 0));
+        user.setPhysicsLocation(new Vector3f(-40, 20, 0));
     }
+    
     
     @Override
     public void move(){
-        
-        walkDirection.set(0, 0, 0);
+
+        walkDirection.set(0, 0, 0); // reset walk direction change 
         
         if (player.isLeft()) {
             walkDirection.addLocal(player.getCamLeft());
@@ -85,8 +86,9 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
         }
         if (player.isJump() && user.onGround()) {
             user.jump(new Vector3f(0, 20f, 0));
-            player.setJump(false);
         }
+        
+        player.setJump(false); // reset player jump
         
         walkDirection.y = 0; // make sure player does not increase in y axis (up)
         
@@ -94,10 +96,11 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
         main.getCamera().setLocation(user.getPhysicsLocation()); // update camera position to player position
         
         setPosition(user.getPhysicsLocation());
+        
     }
 
     @Override
-    public void attack(Character arg0) {
+    public void attack(Character character) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -107,7 +110,7 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
     }
 
     @Override
-    public void removeHealth(int arg0) {
+    public void removeHealth(int amount) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    

@@ -13,6 +13,7 @@ public enum CharacterState {
     
     IDLE,
     MOVING,
+    CHARGING,
     ATTACKING,
     DYING,
     
