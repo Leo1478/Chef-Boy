@@ -66,6 +66,11 @@ public abstract class Enemy extends Character{
     
     private void attack(ChefBoy chefBoy){
         
+        
+        /**
+         * actual attack method will be very different 
+         */
+        
         double distance;
         
         double x = this.getPosition().x;

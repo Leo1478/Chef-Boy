@@ -5,14 +5,11 @@
  */
 package mygame.gameobject;
 
-import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
-import com.jme3.scene.Spatial;
 import mygame.state.Main;
 
 
@@ -58,10 +55,5 @@ public class Tree extends Prop{
         
     }
     
-
-    @Override
-    void delete() {
-        main.getRootNode().detachChild(getModel());
-    }
     
 }

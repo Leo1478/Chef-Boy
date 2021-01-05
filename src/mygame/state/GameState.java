@@ -85,7 +85,7 @@ public class GameState extends AbstractAppState {
      */
     void initLight() {
 
-        setGameLight(new GameLight(main));
+        gameLight = new GameLight(main);
     }
 
     /**
@@ -144,7 +144,7 @@ public class GameState extends AbstractAppState {
      */
     void initPlayer() {
 
-        this.setPlayer(new Player(main));
+        player = new Player(main);
     }
     
     void initChefBoy(){
@@ -201,24 +201,10 @@ public class GameState extends AbstractAppState {
     }
 
     /**
-     * @param inventory the inventory to set
-     */
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
-
-    /**
      * @return the enemyQueue
      */
     public Queue getEnemyQueue() {
         return enemyQueue;
-    }
-
-    /**
-     * @param enemyQueue the enemyQueue to set
-     */
-    public void setEnemyQueue(Queue enemyQueue) {
-        this.enemyQueue = enemyQueue;
     }
 
     /**
@@ -229,24 +215,10 @@ public class GameState extends AbstractAppState {
     }
 
     /**
-     * @param items the items to set
-     */
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
-    }
-
-    /**
      * @return the enemies
      */
     public ArrayList<Enemy> getEnemies() {
         return enemies;
-    }
-
-    /**
-     * @param enemies the enemies to set
-     */
-    public void setEnemies(ArrayList<Enemy> enemies) {
-        this.enemies = enemies;
     }
 
     /**
@@ -257,37 +229,10 @@ public class GameState extends AbstractAppState {
     }
 
     /**
-     * @param props the props to set
-     */
-    public void setProps(ArrayList<GameObject> props) {
-        this.props = props;
-    }
-
-    /**
-     * @return the gameLight
-     */
-    public GameLight getGameLight() {
-        return gameLight;
-    }
-
-    /**
-     * @param gameLight the gameLight to set
-     */
-    public void setGameLight(GameLight gameLight) {
-        this.gameLight = gameLight;
-    }
-
-    /**
      * @return the player
      */
     public Player getPlayer() {
         return player;
     }
 
-    /**
-     * @param player the player to set
-     */
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 }

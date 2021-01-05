@@ -59,11 +59,4 @@ public class Volcano extends Prop{
         
     }
     
-
-
-    @Override
-    void delete() {
-        main.getRootNode().detachChild(getModel());
-    }
-    
 }

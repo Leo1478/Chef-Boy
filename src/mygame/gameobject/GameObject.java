@@ -43,7 +43,9 @@ public abstract class GameObject {
     /**
      * delete object when finished
      */
-    abstract void delete();
+    public void delete(){
+        main.getRootNode().detachChild(getModel());
+    }
     /**
      * @return the model
      */

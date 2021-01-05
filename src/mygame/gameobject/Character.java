@@ -24,7 +24,6 @@ public abstract class Character extends GameObject{
         this.health = health;
         this.state = CharacterState.IDLE;
         
-        
     }
 
     /**

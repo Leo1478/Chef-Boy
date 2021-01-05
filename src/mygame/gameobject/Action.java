@@ -9,8 +9,10 @@ package mygame.gameobject;
  *
  * @author leoze
  */
-public interface Attack {
+public interface Action {
     
-    public void attack(Character character);
+    void attack(Character character);
+    
+    void move();
     
 }

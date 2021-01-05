@@ -14,9 +14,9 @@ import mygame.state.Main;
  * chef boy character 
  * @author leoze
  */
-public class ChefBoy extends Character{
+public class ChefBoy extends Character implements Action, ChangeHealth{
     
-    public CharacterControl user; // object for controling player
+    private CharacterControl user; // object for controling player
     
     private Player player;
     
@@ -65,13 +65,8 @@ public class ChefBoy extends Character{
     public void setPosition() {
         user.setPhysicsLocation(new Vector3f(-40, 10, 0));
     }
-
-    @Override
-    void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     
+    @Override
     public void move(){
         
         walkDirection.set(0, 0, 0);
@@ -99,6 +94,21 @@ public class ChefBoy extends Character{
         main.getCamera().setLocation(user.getPhysicsLocation()); // update camera position to player position
         
         setPosition(user.getPhysicsLocation());
+    }
+
+    @Override
+    public void attack(Character arg0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addHealth(int amount) {
+        
+    }
+
+    @Override
+    public void removeHealth(int arg0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
 }
