@@ -35,4 +35,18 @@ public abstract class Item extends GameObject{
         }
         
     } 
+    void pickUpMove (Player player){
+        if (playerPickUp == true){
+            double xDiff = this.position.x - player.position.x;
+            double zDiff = this.position.z - player.position.z;
+            
+            double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
+            
+            xDiff = xDiff / normalizeNumber;
+            zDiff = zDiff / normalizeNumber;
+            
+            
+            setPosition();
+        }
+    }
 }
