@@ -17,7 +17,7 @@ import mygame.state.Main;
  *
  * @author leoze
  */
-public class Pig extends BasicEnemy{
+public class Pig extends Enemy{
 
     public Pig(Main main, Vector3f position, String name, int health){
         super(main, position, name, health);
