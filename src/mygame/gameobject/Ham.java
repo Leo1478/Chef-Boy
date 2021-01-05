@@ -19,10 +19,10 @@ import mygame.state.Main;
  */
 public class Ham extends Item{
     
-    public Ham(Main main, Vector3f position, String name, float pickUpRadius){
+    public Ham(Main main, Vector3f position, String name){
         
-        super(main, position, name, pickUpRadius);
-        this.pickUpRadius = 5;
+        super(main, position, name);
+        setPickUpRadius(2);
         init();
     }
 
@@ -31,21 +31,21 @@ public class Ham extends Item{
     void init() {
         
         Material mat = main.getAssetManager().loadMaterial("Materials/ham.j3m");
-        model = main.getAssetManager().loadModel("Models/ham/ham.j3o");
-        model.setMaterial(mat);
+        setModel(main.getAssetManager().loadModel("Models/ham/ham.j3o"));
+        getModel().setMaterial(mat);
         
         
-        model.setShadowMode(RenderQueue.ShadowMode.Cast);
+        getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
         setPosition(); // set position needs to be before creating collision mesh for some reason
         
-        main.getRootNode().attachChild(model);
+        main.getRootNode().attachChild(getModel());
     }
 
 
     
     @Override
     void delete() {
-        main.getRootNode().detachChild(model);
+        main.getRootNode().detachChild(getModel());
     }    
 }

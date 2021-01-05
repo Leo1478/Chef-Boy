@@ -20,12 +20,12 @@ public class Sky extends Map{
     
     @Override
     void init() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
-    
     @Override
     void delete() {
-        main.getRootNode().detachChild(model);
-    }   
+        main.getRootNode().detachChild(getModel());
+    }
+
 }

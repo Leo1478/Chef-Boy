@@ -14,11 +14,11 @@ import mygame.state.Main;
  */
 public abstract class Enemy extends Character{
     
-    int damage;
-    double speed;
-    double range;
-    double detectionRange;
-    boolean detectedPlayer;
+    private int damage;
+    private double speed;
+    private double range;
+    private double detectionRange;
+    private boolean detectedPlayer;
     
     public Enemy(Main main, Vector3f position, String name, int health){
         super(main, position, name, health);
@@ -37,67 +37,137 @@ public abstract class Enemy extends Character{
         
     }
     
-    void detection(Player player){
+    private void detection(Player player){
         
         double distance;
         
-        double x = this.position.x;
-        double x1 = player.position.x;
-        double z = this.position.z;
-        double z1 = player.position.z;
+        double x = this.getPosition().x;
+        double x1 = player.getPosition().x;
+        double z = this.getPosition().z;
+        double z1 = player.getPosition().z;
         
         distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
         
-        if(distance < detectionRange){
+        if(distance < getDetectionRange()){
             System.out.println("charge");
-            detectedPlayer = true;
+            setDetectedPlayer(true);
             
-            if(distance < range){
+            if(distance < getRange()){
                 System.out.println("attack");
-                detectedPlayer = false;
+                setDetectedPlayer(false);
             }
         }
         
         else {
             System.out.println("far from player");
-            detectedPlayer = false;         
+            setDetectedPlayer(false);         
         }
     }
     
-    void attack(Player player){
+    private void attack(Player player){
         
         double distance;
         
-        double x = this.position.x;
-        double x1 = player.position.x;
-        double z = this.position.z;
-        double z1 = player.position.z;
+        double x = this.getPosition().x;
+        double x1 = player.getPosition().x;
+        double z = this.getPosition().z;
+        double z1 = player.getPosition().z;
         
         distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
         
-        if(distance < range){
+        if(distance < getRange()){
             System.out.println("attack");
         }
     }
     
-    void moveTowardsPlayer(Player player){
-        if(detectedPlayer){
+    private void moveTowardsPlayer(Player player){
+        if(isDetectedPlayer()){
             
-            double xDiff = this.position.x - player.position.x;
-            double zDiff = this.position.z - player.position.z;
+            double xDiff = this.getPosition().x - player.getPosition().x;
+            double zDiff = this.getPosition().z - player.getPosition().z;
             
             double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
             
             xDiff = xDiff / normalizeNumber;
             zDiff = zDiff / normalizeNumber;
             
-            this.position.x -= xDiff * speed;
-            this.position.z -= zDiff * speed;
+            this.getPosition().x -= xDiff * getSpeed();
+            this.getPosition().z -= zDiff * getSpeed();
             
             setPosition();
             
 
         }
+    }
+
+    /**
+     * @return the damage
+     */
+    public int getDamage() {
+        return damage;
+    }
+
+    /**
+     * @param damage the damage to set
+     */
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    /**
+     * @return the speed
+     */
+    public double getSpeed() {
+        return speed;
+    }
+
+    /**
+     * @param speed the speed to set
+     */
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    /**
+     * @return the range
+     */
+    public double getRange() {
+        return range;
+    }
+
+    /**
+     * @param range the range to set
+     */
+    public void setRange(double range) {
+        this.range = range;
+    }
+
+    /**
+     * @return the detectionRange
+     */
+    public double getDetectionRange() {
+        return detectionRange;
+    }
+
+    /**
+     * @param detectionRange the detectionRange to set
+     */
+    public void setDetectionRange(double detectionRange) {
+        this.detectionRange = detectionRange;
+    }
+
+    /**
+     * @return the detectedPlayer
+     */
+    public boolean isDetectedPlayer() {
+        return detectedPlayer;
+    }
+
+    /**
+     * @param detectedPlayer the detectedPlayer to set
+     */
+    public void setDetectedPlayer(boolean detectedPlayer) {
+        this.detectedPlayer = detectedPlayer;
     }
     
 }

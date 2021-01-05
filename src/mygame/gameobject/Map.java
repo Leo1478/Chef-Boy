@@ -15,10 +15,24 @@ import mygame.state.Main;
  */
 public abstract class Map extends GameObject{
     
-    CollisionShape collisionMesh;
+    private CollisionShape collisionMesh;
     
     Map(Main main, Vector3f position, String name){
         super(main, position, name);
+    }
+
+    /**
+     * @return the collisionMesh
+     */
+    public CollisionShape getCollisionMesh() {
+        return collisionMesh;
+    }
+
+    /**
+     * @param collisionMesh the collisionMesh to set
+     */
+    public void setCollisionMesh(CollisionShape collisionMesh) {
+        this.collisionMesh = collisionMesh;
     }
     
 }

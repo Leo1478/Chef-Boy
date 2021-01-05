@@ -17,8 +17,7 @@ import mygame.state.Main;
  * @author leoze
  */
 public class Volcano extends Prop{
-    
-    private RigidBodyControl landscape;
+   
     
     public Volcano(Main main, Vector3f position, String name){
         super(main, position, name);
@@ -38,36 +37,33 @@ public class Volcano extends Prop{
         Material mat = main.getAssetManager().loadMaterial("Materials/volcano.j3m");
         
         
-        model = main.getAssetManager().loadModel("Models/volcano/volcano.j3o");
+        setModel(main.getAssetManager().loadModel("Models/volcano/volcano.j3o"));
         
-        model.setMaterial(mat);
+        getModel().setMaterial(mat);
         
         
-        model.setShadowMode(RenderQueue.ShadowMode.Cast);
+        getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
         setPosition(); // set position needs to be before creating collision mesh for some reason
 
-        collisionMesh = CollisionShapeFactory.createMeshShape(model);
-        landscape = new RigidBodyControl(collisionMesh, 0);
-        model.addControl(landscape);
+        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
+        setPropCollision(new RigidBodyControl(getCollisionMesh(), 0));
+        getModel().addControl(getPropCollision());
         
         
         
-        main.getRootNode().attachChild(model);
+        main.getRootNode().attachChild(getModel());
         
         initPhysics();
   
         
     }
     
-    void initPhysics(){
-        main.gameState.bulletAppState.getPhysicsSpace().add(landscape);
-    }
 
 
     @Override
     void delete() {
-        main.getRootNode().detachChild(model);
+        main.getRootNode().detachChild(getModel());
     }
     
 }

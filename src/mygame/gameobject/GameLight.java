@@ -18,7 +18,7 @@ import mygame.state.Main;
  */
 public class GameLight {
     
-    Main main;
+    private Main main;
     
     public GameLight(Main main){
         this.main = main;
