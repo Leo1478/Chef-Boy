@@ -190,21 +190,21 @@ public class GameState extends AbstractAppState {
         chefBoy.move();
         
         
-        enemyBehaviour(player);
-        itemBehaviour(player);
+        enemyBehaviour(tpf, player);
+        itemBehaviour(tpf, player);
         
     }
     
-    private void enemyBehaviour(Player player){
+    private void enemyBehaviour(float tpf, Player player){
         
         for(int i = 0; i < getEnemies().size(); i++){
-            getEnemies().get(i).behaviour(chefBoy);
+            getEnemies().get(i).behaviour(tpf, chefBoy);
         }
     }
     
-    private void itemBehaviour(Player player){
+    private void itemBehaviour(float tpf, Player player){
         for(int i = 0; i < getItems().size(); i++){
-            getItems().get(i).behaviour(chefBoy);
+            getItems().get(i).behaviour(tpf, chefBoy);
         }
     }
 
