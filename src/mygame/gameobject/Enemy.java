@@ -17,12 +17,13 @@ import mygame.state.Main;
  */
 public abstract class Enemy extends Character{
     
-    private AnimComposer animComposer;
+    private AnimComposer animComposer; // animation 
     
-    private int damage;
-    private double speed;
-    private double range;
-    private double detectionRange;
+    private int damage; // damage to player
+    private int coolDown; // cool down of attack 
+    private double speed; // speed 
+    private double range; // range of attack
+    private double detectionRange; // range to detect player 
     
     private double distanceToChef;
     
@@ -129,7 +130,8 @@ public abstract class Enemy extends Character{
         this.getPosition().x -= xDiff * getSpeed(); // move enemy
         this.getPosition().z -= zDiff * getSpeed();
 
-        setPosition();
+        setModelPosition();
+        
         
         float radian = (float) Math.atan2(zDiff, xDiff); // find out radian between player and enemy 
         // System.out.println(radian);
@@ -144,6 +146,13 @@ public abstract class Enemy extends Character{
             
 
     }
+    
+    /*
+    check if this enemy is colliding with any other game object when it is moving 
+    private boolean collideWithObject(){
+        
+    }
+    */
     
     public void move(){
         
@@ -160,6 +169,8 @@ public abstract class Enemy extends Character{
     public void removeHealth(int amount) {
         
     }
+    
+    
 
     /**
      * @return the damage

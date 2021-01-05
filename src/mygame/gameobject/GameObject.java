@@ -18,6 +18,7 @@ public abstract class GameObject {
     private Vector3f position; // position of object 
     private String name; // name of objct 
     private Spatial model;
+    private float collisionRadius; // circle so moving enemies wont collide 
     
     protected Main main;
    
@@ -36,8 +37,12 @@ public abstract class GameObject {
     /**
      * set position of object 
      */
-    public void setPosition(){
+    public void setModelPosition(){
         getModel().setLocalTranslation(position);
+    }
+    
+    public void setPosition(Vector3f position){
+        this.position = position;
     }
     
     /**
@@ -58,8 +63,11 @@ public abstract class GameObject {
     public String getName(){
         return name;
     }
-    public void setPosition(Vector3f position){
-        this.position = position;
+    public float getCollisionRadius(){
+        return collisionRadius;
+    }
+    public void setCollisionRadius(float collisionRadius){
+        this.collisionRadius = collisionRadius;
     }
     public void setModel(Spatial model){
         this.model = model;

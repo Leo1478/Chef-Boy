@@ -136,7 +136,8 @@ public class GameState extends AbstractAppState {
 
         
         
-        GameObject volcano = new Volcano(main, new Vector3f(50, 0, 50), "volcano");
+        GameObject volcano0 = new Volcano(main, new Vector3f(50, 0, 50), "volcano0");
+        getProps().add(volcano0);
     }
 
     /**
@@ -155,23 +156,23 @@ public class GameState extends AbstractAppState {
      * init all item objects
      */
     void initItem() {
-        Item ham = new Ham(main, new Vector3f(5, 0, 5), "ham");
-        getItems().add(ham);
+        Item ham0 = new Ham(main, new Vector3f(5, 3, 5), "ham0");
+        getItems().add(ham0);
     }
 
     void initEnemy() {
         
-        Enemy pig0 = new Pig(main, new Vector3f(20, 0, 5), "pig0", 20);
+        Enemy pig0 = new Pig(main, new Vector3f(100, 0, 50), "pig0", 20);
         getEnemies().add(pig0);
-        Enemy pig1 = new Pig(main, new Vector3f(6, 0, 8), "pig1", 20);
+        Enemy pig1 = new Pig(main, new Vector3f(60, 0, 80), "pig1", 20);
         getEnemies().add(pig1);
-        Enemy pig2 = new Pig(main, new Vector3f(9, 0, 12), "pig2", 20);
+        Enemy pig2 = new Pig(main, new Vector3f(90, 0, 12), "pig2", 20);
         getEnemies().add(pig2);
-        Enemy pig3 = new Pig(main, new Vector3f(14, 0, 2), "pig3", 20);
+        Enemy pig3 = new Pig(main, new Vector3f(14, 0, 20), "pig3", 20);
         getEnemies().add(pig3);
         Enemy pig4 = new Pig(main, new Vector3f(0, 0, 10), "pig4", 20);
         getEnemies().add(pig4);
-        Enemy pig5 = new Pig(main, new Vector3f(3, 0, 2), "pig5", 20);
+        Enemy pig5 = new Pig(main, new Vector3f(30, 0, 20), "pig5", 20);
         getEnemies().add(pig5);
         
     }

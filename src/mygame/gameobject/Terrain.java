@@ -46,7 +46,7 @@ public class Terrain extends Map{
         getModel().addControl(landscape);
         
         main.getRootNode().attachChild(getModel());
-        setPosition();
+        setModelPosition();
         initPhysics();
     }
     

@@ -61,7 +61,6 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
     /**
      * set position of player
      */
-    @Override
     public void setPosition() {
         user.setPhysicsLocation(new Vector3f(-40, 20, 0));
     }

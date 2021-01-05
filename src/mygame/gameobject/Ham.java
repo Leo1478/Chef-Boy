@@ -35,7 +35,7 @@ public class Ham extends Item{
         
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
-        setPosition(); // set position needs to be before creating collision mesh for some reason
+        setModelPosition(); // set position needs to be before creating collision mesh for some reason
         
         main.getRootNode().attachChild(getModel());
     }

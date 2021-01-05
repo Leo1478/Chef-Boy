@@ -5,6 +5,7 @@
  */
 package mygame.gameobject;
 
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
 
@@ -17,12 +18,27 @@ public abstract class Item extends GameObject{
     private boolean playerPickUp;
     private float pickUpRadius;
     
+    private float rotation = 0;
+    
     public Item(Main main, Vector3f position, String name){
         super(main, position, name);
     }
     
     public void behaviour(ChefBoy chefBoy){
         pickUp(chefBoy);
+        rotate();
+        
+    }
+    
+    
+    private void rotate(){
+        
+        rotation +=0.001;
+        
+        Quaternion roatation = new Quaternion();
+        roatation.fromAngles(0, rotation , 0); // y rotation,  reverse number
+
+        getModel().setLocalRotation(roatation); // change model rotation 
     }
     
     /**
@@ -58,7 +74,7 @@ public abstract class Item extends GameObject{
             zDiff = zDiff / normalizeNumber;
             
             
-            setPosition();
+            setModelPosition();
         }
     }
 

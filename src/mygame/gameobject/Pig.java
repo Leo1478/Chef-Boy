@@ -24,7 +24,7 @@ public class Pig extends Enemy{
         setDetectionRange(30);
         
         init();
-        setPosition();
+        setModelPosition();
 
     }
     
