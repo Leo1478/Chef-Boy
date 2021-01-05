@@ -19,6 +19,7 @@ import mygame.state.Main;
  * @author leoze
  */
 public class Player implements ActionListener{
+    boolean playerPickUp;
     
     public CharacterControl user; // object for controling player
     
@@ -152,6 +153,25 @@ public class Player implements ActionListener{
         
         position = user.getPhysicsLocation();
         
+    }
+    void checkPickUp (Player player){
+        user.getPhysicsLocation();
+       
+        
+    }
+    void pickUpMove (Player player){
+        if (playerPickUp == true){
+            double xDiff = this.position.x - player.position.x;
+            double zDiff = this.position.z - player.position.z;
+            
+            double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
+            
+            xDiff = xDiff / normalizeNumber;
+            zDiff = zDiff / normalizeNumber;
+            
+            
+            setPosition();
+        }
     }
     
     public Vector3f getPosition(){
