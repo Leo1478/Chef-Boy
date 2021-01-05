@@ -19,7 +19,7 @@ public class Pig extends Enemy{
     public Pig(Main main, Vector3f position, String name, int health){
         super(main, position, name, health);
         setDamage(10);
-        setSpeed(0.01);
+        setSpeed(10);
         setRange(10);
         setDetectionRange(30);
         
