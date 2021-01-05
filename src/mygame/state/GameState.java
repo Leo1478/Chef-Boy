@@ -161,8 +161,19 @@ public class GameState extends AbstractAppState {
 
     void initEnemy() {
         
-        Enemy pig0 = new Pig(main, new Vector3f(20, 0, 5), "pig1", 20);
+        Enemy pig0 = new Pig(main, new Vector3f(20, 0, 5), "pig0", 20);
         getEnemies().add(pig0);
+        Enemy pig1 = new Pig(main, new Vector3f(6, 0, 8), "pig1", 20);
+        getEnemies().add(pig1);
+        Enemy pig2 = new Pig(main, new Vector3f(9, 0, 12), "pig2", 20);
+        getEnemies().add(pig2);
+        Enemy pig3 = new Pig(main, new Vector3f(14, 0, 2), "pig3", 20);
+        getEnemies().add(pig3);
+        Enemy pig4 = new Pig(main, new Vector3f(0, 0, 10), "pig4", 20);
+        getEnemies().add(pig4);
+        Enemy pig5 = new Pig(main, new Vector3f(3, 0, 2), "pig5", 20);
+        getEnemies().add(pig5);
+        
     }
 
     /**

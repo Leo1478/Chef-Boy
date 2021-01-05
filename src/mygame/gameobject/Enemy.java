@@ -6,6 +6,8 @@
 package mygame.gameobject;
 
 import com.jme3.anim.AnimComposer;
+import com.jme3.math.Matrix3f;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
 
@@ -106,6 +108,7 @@ public abstract class Enemy extends Character{
         
         //System.out.println("chilling");
     }
+    float x = 0;
     
     /**
      * charge chef boy 
@@ -127,6 +130,15 @@ public abstract class Enemy extends Character{
         this.getPosition().z -= zDiff * getSpeed();
 
         setPosition();
+        
+        float radian = (float) Math.atan2(zDiff, xDiff); // find out radian between player and enemy 
+        // System.out.println(radian);
+        
+        Quaternion roatation = new Quaternion();
+        roatation.fromAngles(0, radian*-1 , 0); // y rotation,  reverse number
+
+        getModel().setLocalRotation(roatation); // change model rotation 
+
         
         //System.out.println("charg");
             
