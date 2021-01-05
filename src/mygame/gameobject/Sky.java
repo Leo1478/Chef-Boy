@@ -23,9 +23,4 @@ public class Sky extends Map{
        
     }
 
-    @Override
-    void delete() {
-        main.getRootNode().detachChild(getModel());
-    }
-
 }

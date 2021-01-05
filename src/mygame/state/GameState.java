@@ -13,6 +13,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
 import java.util.Queue;
+import mygame.gameobject.ChefBoy;
 import mygame.gameobject.Enemy;
 import mygame.gameobject.GameLight;
 import mygame.gameobject.GameObject;
@@ -42,6 +43,7 @@ public class GameState extends AbstractAppState {
     private GameLight gameLight; // lighting
 
     private Player player; // player object 
+    private ChefBoy chefBoy;
 
     public BulletAppState bulletAppState; // controls physics 
 
@@ -71,6 +73,7 @@ public class GameState extends AbstractAppState {
         initProp();
         initSky();
         initPlayer();
+        initChefBoy();
         initItem();
         initEnemy();
 
@@ -82,7 +85,7 @@ public class GameState extends AbstractAppState {
      */
     void initLight() {
 
-        setGameLight(new GameLight(main));
+        gameLight = new GameLight(main);
     }
 
     /**
@@ -133,7 +136,8 @@ public class GameState extends AbstractAppState {
 
         
         
-        GameObject volcano = new Volcano(main, new Vector3f(50, 0, 50), "volcano");
+        GameObject volcano0 = new Volcano(main, new Vector3f(50, 0, 50), "volcano0");
+        getProps().add(volcano0);
     }
 
     /**
@@ -141,21 +145,36 @@ public class GameState extends AbstractAppState {
      */
     void initPlayer() {
 
-        this.setPlayer(new Player(main));
+        player = new Player(main);
+    }
+    
+    void initChefBoy(){
+        chefBoy = new ChefBoy(main, new Vector3f(0, 0, 30), "chefBoy", 100);
     }
 
     /**
      * init all item objects
      */
     void initItem() {
-        Item ham = new Ham(main, new Vector3f(5, 0, 5), "ham");
-        getItems().add(ham);
+        Item ham0 = new Ham(main, new Vector3f(5, 3, 5), "ham0");
+        getItems().add(ham0);
     }
 
     void initEnemy() {
         
-        Enemy pig0 = new Pig(main, new Vector3f(20, 0, 5), "pig1", 20);
+        Enemy pig0 = new Pig(main, new Vector3f(100, 0, 50), "pig0", 20);
         getEnemies().add(pig0);
+        Enemy pig1 = new Pig(main, new Vector3f(60, 0, 80), "pig1", 20);
+        getEnemies().add(pig1);
+        Enemy pig2 = new Pig(main, new Vector3f(90, 0, 12), "pig2", 20);
+        getEnemies().add(pig2);
+        Enemy pig3 = new Pig(main, new Vector3f(14, 0, 20), "pig3", 20);
+        getEnemies().add(pig3);
+        Enemy pig4 = new Pig(main, new Vector3f(0, 0, 10), "pig4", 20);
+        getEnemies().add(pig4);
+        Enemy pig5 = new Pig(main, new Vector3f(30, 0, 20), "pig5", 20);
+        getEnemies().add(pig5);
+        
     }
 
     /**
@@ -165,23 +184,27 @@ public class GameState extends AbstractAppState {
      */
     @Override
     public void update(float tpf) {
-
-        getPlayer().updateMovement();
         
-        enemyBehaviour(getPlayer());
-        itemBehaviour(getPlayer());
+        
+        player.move();
+        chefBoy.move();
+        
+        
+        enemyBehaviour(player);
+        itemBehaviour(player);
         
     }
     
     private void enemyBehaviour(Player player){
         
         for(int i = 0; i < getEnemies().size(); i++){
-            getEnemies().get(i).behaviour(player);
+            getEnemies().get(i).behaviour(chefBoy);
         }
     }
+    
     private void itemBehaviour(Player player){
         for(int i = 0; i < getItems().size(); i++){
-            getItems().get(i).behaviour(player);
+            getItems().get(i).behaviour(chefBoy);
         }
     }
 
@@ -193,24 +216,10 @@ public class GameState extends AbstractAppState {
     }
 
     /**
-     * @param inventory the inventory to set
-     */
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
-
-    /**
      * @return the enemyQueue
      */
     public Queue getEnemyQueue() {
         return enemyQueue;
-    }
-
-    /**
-     * @param enemyQueue the enemyQueue to set
-     */
-    public void setEnemyQueue(Queue enemyQueue) {
-        this.enemyQueue = enemyQueue;
     }
 
     /**
@@ -221,24 +230,10 @@ public class GameState extends AbstractAppState {
     }
 
     /**
-     * @param items the items to set
-     */
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
-    }
-
-    /**
      * @return the enemies
      */
     public ArrayList<Enemy> getEnemies() {
         return enemies;
-    }
-
-    /**
-     * @param enemies the enemies to set
-     */
-    public void setEnemies(ArrayList<Enemy> enemies) {
-        this.enemies = enemies;
     }
 
     /**
@@ -249,37 +244,10 @@ public class GameState extends AbstractAppState {
     }
 
     /**
-     * @param props the props to set
-     */
-    public void setProps(ArrayList<GameObject> props) {
-        this.props = props;
-    }
-
-    /**
-     * @return the gameLight
-     */
-    public GameLight getGameLight() {
-        return gameLight;
-    }
-
-    /**
-     * @param gameLight the gameLight to set
-     */
-    public void setGameLight(GameLight gameLight) {
-        this.gameLight = gameLight;
-    }
-
-    /**
      * @return the player
      */
     public Player getPlayer() {
         return player;
     }
 
-    /**
-     * @param player the player to set
-     */
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 }

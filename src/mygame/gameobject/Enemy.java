@@ -5,6 +5,9 @@
  */
 package mygame.gameobject;
 
+import com.jme3.anim.AnimComposer;
+import com.jme3.math.Matrix3f;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
 
@@ -14,91 +17,160 @@ import mygame.state.Main;
  */
 public abstract class Enemy extends Character{
     
-    private int damage;
-    private double speed;
-    private double range;
-    private double detectionRange;
-    private boolean detectedPlayer;
+    private AnimComposer animComposer; // animation 
+    
+    private int damage; // damage to player
+    private int coolDown; // cool down of attack 
+    private double speed; // speed 
+    private double range; // range of attack
+    private double detectionRange; // range to detect player 
+    
+    private double distanceToChef;
+    
+    // private boolean change // if animation should change (last state is different from current)
     
     public Enemy(Main main, Vector3f position, String name, int health){
         super(main, position, name, health);
 
     }
     
-    
-    public void behaviour(Player player){
+    /**
+     * behaviour of enemy 
+     * calls other enemy methods 
+     * @param chefBoy 
+     */
+    public void behaviour(ChefBoy chefBoy){
         
-        detection(player);
+        determineDistance(chefBoy);
         
-        attack(player);
+        determinState();
         
-        moveTowardsPlayer(player);
+        setAnimation();
         
-        
+        switch (getState()) {
+            case IDLE:
+                idle();
+                break;
+            case CHARGING:
+                charge(chefBoy);
+                break;
+            case MOVING:
+                break;
+            case ATTACKING:
+                attack(chefBoy);
+                break;
+            default:
+                break;
+        }
     }
     
-    private void detection(Player player){
-        
-        double distance;
-        
-        double x = this.getPosition().x;
-        double x1 = player.getPosition().x;
-        double z = this.getPosition().z;
-        double z1 = player.getPosition().z;
-        
-        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
-        
-        if(distance < getDetectionRange()){
-            System.out.println("charge");
-            setDetectedPlayer(true);
+    private void setAnimation(){
+        // if animation is changing
+            // set animation 
             
-            if(distance < getRange()){
-                System.out.println("attack");
-                setDetectedPlayer(false);
+    }
+    
+    /**
+     * determine distance to chefBoy
+     * @param chefBoy 
+     */
+    private void determineDistance(ChefBoy chefBoy){
+
+        double x = this.getPosition().x;
+        double x1 = chefBoy.getPosition().x;
+        double z = this.getPosition().z;
+        double z1 = chefBoy.getPosition().z;
+        
+        distanceToChef = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
+    }
+    
+    /**
+     * determin state based on distance to chefBoy
+     * if in detectionRange, set state to charge 
+     * if in attackRange, set state to attack 
+     */
+    private void determinState(){
+        
+        if(distanceToChef < getDetectionRange()){
+            setState(CharacterState.CHARGING); 
+            if(distanceToChef < getRange()){
+                setState(CharacterState.ATTACKING);
             }
         }
-        
         else {
-            System.out.println("far from player");
-            setDetectedPlayer(false);         
+            setState(CharacterState.IDLE);         
         }
     }
     
-    private void attack(Player player){
+    /**
+     * idle mode for enemy 
+     */
+    private void idle(){
         
-        double distance;
-        
-        double x = this.getPosition().x;
-        double x1 = player.getPosition().x;
-        double z = this.getPosition().z;
-        double z1 = player.getPosition().z;
-        
-        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
-        
-        if(distance < getRange()){
-            System.out.println("attack");
-        }
+        //System.out.println("chilling");
     }
+    float x = 0;
     
-    private void moveTowardsPlayer(Player player){
-        if(isDetectedPlayer()){
-            
-            double xDiff = this.getPosition().x - player.getPosition().x;
-            double zDiff = this.getPosition().z - player.getPosition().z;
-            
-            double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
-            
-            xDiff = xDiff / normalizeNumber;
-            zDiff = zDiff / normalizeNumber;
-            
-            this.getPosition().x -= xDiff * getSpeed();
-            this.getPosition().z -= zDiff * getSpeed();
-            
-            setPosition();
+    /**
+     * charge chef boy 
+     * find location of chefBoy, move towards chefBoy
+     * @param chefBoy 
+     */
+    private void charge(ChefBoy chefBoy){
+        
+        double xDiff = this.getPosition().x - chefBoy.getPosition().x;
+        double zDiff = this.getPosition().z - chefBoy.getPosition().z;
+
+        // normalizeNumber adjust speed to be constant 
+        double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
+
+        xDiff = xDiff / normalizeNumber;
+        zDiff = zDiff / normalizeNumber;
+
+        this.getPosition().x -= xDiff * getSpeed(); // move enemy
+        this.getPosition().z -= zDiff * getSpeed();
+
+        setModelPosition();
+        
+        
+        float radian = (float) Math.atan2(zDiff, xDiff); // find out radian between player and enemy 
+        // System.out.println(radian);
+        
+        Quaternion roatation = new Quaternion();
+        roatation.fromAngles(0, radian*-1 , 0); // y rotation,  reverse number
+
+        getModel().setLocalRotation(roatation); // change model rotation 
+
+        
+        //System.out.println("charg");
             
 
-        }
     }
+    
+    /*
+    check if this enemy is colliding with any other game object when it is moving 
+    private boolean collideWithObject(){
+        
+    }
+    */
+    
+    public void move(){
+        
+    }
+
+    public void attack(Character character) {
+        //System.out.println("attack");
+    }
+
+    public void addHealth(int amount) {
+        
+    }
+
+    public void removeHealth(int amount) {
+        
+    }
+    
+    
 
     /**
      * @return the damage
@@ -156,19 +228,7 @@ public abstract class Enemy extends Character{
         this.detectionRange = detectionRange;
     }
 
-    /**
-     * @return the detectedPlayer
-     */
-    public boolean isDetectedPlayer() {
-        return detectedPlayer;
-    }
 
-    /**
-     * @param detectedPlayer the detectedPlayer to set
-     */
-    public void setDetectedPlayer(boolean detectedPlayer) {
-        this.detectedPlayer = detectedPlayer;
-    }
     
     
 }

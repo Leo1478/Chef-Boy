@@ -46,7 +46,7 @@ public class Terrain extends Map{
         getModel().addControl(landscape);
         
         main.getRootNode().attachChild(getModel());
-        setPosition();
+        setModelPosition();
         initPhysics();
     }
     
@@ -58,11 +58,5 @@ public class Terrain extends Map{
         main.gameState.bulletAppState.getPhysicsSpace().add(landscape);
     }
 
-
-    
-    @Override
-    void delete() {
-        main.getRootNode().detachChild(getModel());
-    }
     
 }

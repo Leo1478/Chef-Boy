@@ -5,8 +5,6 @@
  */
 package mygame.gameobject;
 
-import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
@@ -37,15 +35,11 @@ public class Ham extends Item{
         
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
-        setPosition(); // set position needs to be before creating collision mesh for some reason
+        setModelPosition(); // set position needs to be before creating collision mesh for some reason
         
         main.getRootNode().attachChild(getModel());
     }
 
 
-    
-    @Override
-    void delete() {
-        main.getRootNode().detachChild(getModel());
-    }    
+     
 }

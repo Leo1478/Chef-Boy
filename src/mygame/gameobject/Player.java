@@ -6,8 +6,6 @@
 package mygame.gameobject;
 
 
-import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
-import com.jme3.bullet.control.CharacterControl;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
@@ -19,22 +17,26 @@ import mygame.state.Main;
  * @author leoze
  */
 public class Player implements ActionListener{
-    boolean playerPickUp;
     
-    public CharacterControl user; // object for controling player
+    private boolean playerPickUp;
     
-    public Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
-    public boolean left = false, right = false, up = false, down = false; // movement
+    
+    private boolean left = false;
+    private boolean right = false;
+    private boolean forward = false;
+    private boolean back = false;
+    private boolean jump = false;
     
     private Vector3f camDir = new Vector3f(); // camera direction
     private Vector3f camLeft = new Vector3f();
     
-    Vector3f position = new Vector3f(); // current player position 
+    private Vector3f position = new Vector3f(); // current player position 
     
     Main main;
     
     public Player(Main main){
         this.main = main;
+        
         init();
         
     }
@@ -46,36 +48,7 @@ public class Player implements ActionListener{
     private void init() {
         
         setKeys();
-        initCollision();
-        setPosition();
         
-        user.getWalkDirection();
-        
-        
-    }
-
-    /**
-     * create collision hit box
-     * add gravity and physics to player 
-     */
-    private void initCollision(){
-        CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
-        user = new CharacterControl(capsuleShape, 0.05f);
-        user.setJumpSpeed(60);
-        user.setFallSpeed(60);
-        
-        main.gameState.bulletAppState.getPhysicsSpace().add(user);
-        
-        user.setGravity(new Vector3f(0,-60f,0));
-        
-       
-    }
-    
-    /**
-     * set position of player
-     */
-    private void setPosition() {
-        user.setPhysicsLocation(new Vector3f(-40, 10, 0));
     }
     
     /**
@@ -88,13 +61,13 @@ public class Player implements ActionListener{
     private void setKeys(){
         main.getInputManager().addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
         main.getInputManager().addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
-        main.getInputManager().addMapping("Up", new KeyTrigger(KeyInput.KEY_W));
-        main.getInputManager().addMapping("Down", new KeyTrigger(KeyInput.KEY_S));
+        main.getInputManager().addMapping("Forward", new KeyTrigger(KeyInput.KEY_W));
+        main.getInputManager().addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
         main.getInputManager().addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
         main.getInputManager().addListener(this, "Left");
         main.getInputManager().addListener(this, "Right");
-        main.getInputManager().addListener(this, "Up");
-        main.getInputManager().addListener(this, "Down");
+        main.getInputManager().addListener(this, "Forward");
+        main.getInputManager().addListener(this, "Back");
         main.getInputManager().addListener(this, "Jump");
     }
 
@@ -109,60 +82,42 @@ public class Player implements ActionListener{
     public void onAction(String binding, boolean isPressed, float tpf) {
         
         
+        
         if (binding.equals("Left")) {
-            left = isPressed;
+            setLeft(isPressed);
         } else if (binding.equals("Right")) {
-            right = isPressed;
-        } else if (binding.equals("Up")) {
-            up = isPressed;
-        } else if (binding.equals("Down")) {
-            down = isPressed;
+            setRight(isPressed);
+        } else if (binding.equals("Forward")) {
+            setUp(isPressed);
+        } else if (binding.equals("Back")) {
+            setDown(isPressed);
         } else if (binding.equals("Jump")) {
-            if (isPressed && user.onGround()) {
-                user.jump(new Vector3f(0, 20f, 0));
-            }
+            setJump(true);
         }
     }
     
     /**
      * update movement of player
      */
-    public void updateMovement(){
+    public void move(){
+        
+        
         
         camDir.set(main.getCamera().getDirection()).multLocal(0.6f);
         camLeft.set(main.getCamera().getLeft()).multLocal(0.4f);
-        walkDirection.set(0, 0, 0);
-        
-        if (left) {
-            walkDirection.addLocal(camLeft);
-        }
-        if (right) {
-            walkDirection.addLocal(camLeft.negate());
-        }
-        if (up) {
-            walkDirection.addLocal(camDir);
-        }
-        if (down) {
-            walkDirection.addLocal(camDir.negate());
-        }
-        
-        walkDirection.y = 0; // make sure player does not increase in y axis (up)
-        
-        user.setWalkDirection(walkDirection);
-        main.getCamera().setLocation(user.getPhysicsLocation()); // update camera position to player position
-        
-        position = user.getPhysicsLocation();
         
     }
+    
+    /*
     void checkPickUp (Player player){
         user.getPhysicsLocation();
        
         
     }
     void pickUpMove (Player player){
-        if (playerPickUp == true){
-            double xDiff = this.position.x - player.position.x;
-            double zDiff = this.position.z - player.position.z;
+        if (isPlayerPickUp() == true){
+            double xDiff = this.getPosition().x - player.getPosition().x;
+            double zDiff = this.getPosition().z - player.getPosition().z;
             
             double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
             
@@ -176,6 +131,130 @@ public class Player implements ActionListener{
     
     public Vector3f getPosition(){
         return position;
+    }
+    */
+
+    /**
+     * @return the playerPickUp
+     */
+    public boolean isPlayerPickUp() {
+        return playerPickUp;
+    }
+
+    /**
+     * @param playerPickUp the playerPickUp to set
+     */
+    public void setPlayerPickUp(boolean playerPickUp) {
+        this.playerPickUp = playerPickUp;
+    }
+
+    /**
+     * @return the left
+     */
+    public boolean isLeft() {
+        return left;
+    }
+
+    /**
+     * @param left the left to set
+     */
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    /**
+     * @return the right
+     */
+    public boolean isRight() {
+        return right;
+    }
+
+    /**
+     * @param right the right to set
+     */
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+
+    /**
+     * @return the up
+     */
+    public boolean isForward() {
+        return forward;
+    }
+
+    /**
+     * @param forward the up to set
+     */
+    public void setUp(boolean forward) {
+        this.forward = forward;
+    }
+
+    /**
+     * @return the back
+     */
+    public boolean isBack() {
+        return back;
+    }
+
+    /**
+     * @param back the back to set
+     */
+    public void setDown(boolean back) {
+        this.back = back;
+    }
+
+    /**
+     * @return the jump
+     */
+    public boolean isJump() {
+        return jump;
+    }
+
+    /**
+     * @param jump the jump to set
+     */
+    public void setJump(boolean jump) {
+        this.jump = jump;
+    }
+
+    /**
+     * @return the camDir
+     */
+    public Vector3f getCamDir() {
+        return camDir;
+    }
+
+    /**
+     * @param camDir the camDir to set
+     */
+    public void setCamDir(Vector3f camDir) {
+        this.camDir = camDir;
+    }
+
+    /**
+     * @return the camLeft
+     */
+    public Vector3f getCamLeft() {
+        return camLeft;
+    }
+
+    /**
+     * @param camLeft the camLeft to set
+     */
+    public void setCamLeft(Vector3f camLeft) {
+        this.camLeft = camLeft;
+    }
+    
+    public Vector3f getPosition(){
+        return position;
+    }
+
+    /**
+     * @param position the position to set
+     */
+    public void setPosition(Vector3f position) {
+        this.position = position;
     }
     
 }
