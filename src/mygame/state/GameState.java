@@ -13,6 +13,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
 import java.util.Queue;
+import mygame.gameobject.ChefBoy;
 import mygame.gameobject.Enemy;
 import mygame.gameobject.GameLight;
 import mygame.gameobject.GameObject;
@@ -42,6 +43,7 @@ public class GameState extends AbstractAppState {
     private GameLight gameLight; // lighting
 
     private Player player; // player object 
+    private ChefBoy chefBoy;
 
     public BulletAppState bulletAppState; // controls physics 
 
@@ -71,6 +73,7 @@ public class GameState extends AbstractAppState {
         initProp();
         initSky();
         initPlayer();
+        initChefBoy();
         initItem();
         initEnemy();
 
@@ -143,6 +146,10 @@ public class GameState extends AbstractAppState {
 
         this.setPlayer(new Player(main));
     }
+    
+    void initChefBoy(){
+        chefBoy = new ChefBoy(main, new Vector3f(0, 0, 30), "chefBoy", 100);
+    }
 
     /**
      * init all item objects
@@ -166,7 +173,8 @@ public class GameState extends AbstractAppState {
     @Override
     public void update(float tpf) {
 
-        getPlayer().updateMovement();
+        getPlayer().move();
+        chefBoy.move();
         
         enemyBehaviour(getPlayer());
         itemBehaviour(getPlayer());
@@ -176,12 +184,12 @@ public class GameState extends AbstractAppState {
     private void enemyBehaviour(Player player){
         
         for(int i = 0; i < getEnemies().size(); i++){
-            getEnemies().get(i).behaviour(player);
+            getEnemies().get(i).behaviour(chefBoy);
         }
     }
     private void itemBehaviour(Player player){
         for(int i = 0; i < getItems().size(); i++){
-            getItems().get(i).behaviour(player);
+            getItems().get(i).behaviour(chefBoy);
         }
     }
 

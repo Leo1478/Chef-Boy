@@ -21,22 +21,22 @@ public abstract class Item extends GameObject{
         super(main, position, name);
     }
     
-    public void behaviour(Player player){
-        pickUp(player);
+    public void behaviour(ChefBoy chefBoy){
+        pickUp(chefBoy);
     }
     
     /**
      * if player is within pickUpRadius of item, it will be picked up
      * @param player 
      */
-    void pickUp(Player player){
+    void pickUp(ChefBoy chefBoy){
         
         double distance;
         
         double x = this.getPosition().x;
-        double x1 = player.getPosition().x;
+        double x1 = chefBoy.getPosition().x;
         double z = this.getPosition().z;
-        double z1 = player.getPosition().z;
+        double z1 = chefBoy.getPosition().z;
         distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
         
         
@@ -49,8 +49,8 @@ public abstract class Item extends GameObject{
     } 
     void pickUpMove (Player player){
         if (playerPickUp == true){
-            double xDiff = this.position.x - player.position.x;
-            double zDiff = this.position.z - player.position.z;
+            double xDiff = this.getPosition().x - player.getPosition().x;
+            double zDiff = this.getPosition().z - player.getPosition().z;
             
             double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
             
@@ -60,12 +60,12 @@ public abstract class Item extends GameObject{
             
             setPosition();
         }
-
+    }
 
     /**
      * @return the playerPickUp
      */
-    public boolean isPlayerPickUp() {
+    public boolean PlayerPickUp() {
         return playerPickUp;
     }
 
@@ -88,6 +88,5 @@ public abstract class Item extends GameObject{
      */
     public void setPickUpRadius(float pickUpRadius) {
         this.pickUpRadius = pickUpRadius;
->>>>>>> abce196ac8906ceec65d69389876f87b6e3796a3
     }
 }

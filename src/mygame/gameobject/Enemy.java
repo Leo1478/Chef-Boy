@@ -26,25 +26,25 @@ public abstract class Enemy extends Character{
     }
     
     
-    public void behaviour(Player player){
+    public void behaviour(ChefBoy chefBoy){
         
-        detection(player);
+        detection(chefBoy);
         
-        attack(player);
+        attack(chefBoy);
         
-        moveTowardsPlayer(player);
+        moveTowardsPlayer(chefBoy);
         
         
     }
     
-    private void detection(Player player){
+    private void detection(ChefBoy chefBoy){
         
         double distance;
         
         double x = this.getPosition().x;
-        double x1 = player.getPosition().x;
+        double x1 = chefBoy.getPosition().x;
         double z = this.getPosition().z;
-        double z1 = player.getPosition().z;
+        double z1 = chefBoy.getPosition().z;
         
         distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
         
@@ -64,14 +64,14 @@ public abstract class Enemy extends Character{
         }
     }
     
-    private void attack(Player player){
+    private void attack(ChefBoy chefBoy){
         
         double distance;
         
         double x = this.getPosition().x;
-        double x1 = player.getPosition().x;
+        double x1 = chefBoy.getPosition().x;
         double z = this.getPosition().z;
-        double z1 = player.getPosition().z;
+        double z1 = chefBoy.getPosition().z;
         
         distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
         
@@ -80,11 +80,11 @@ public abstract class Enemy extends Character{
         }
     }
     
-    private void moveTowardsPlayer(Player player){
+    private void moveTowardsPlayer(ChefBoy chefBoy){
         if(isDetectedPlayer()){
             
-            double xDiff = this.getPosition().x - player.getPosition().x;
-            double zDiff = this.getPosition().z - player.getPosition().z;
+            double xDiff = this.getPosition().x - chefBoy.getPosition().x;
+            double zDiff = this.getPosition().z - chefBoy.getPosition().z;
             
             double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
             
