@@ -28,10 +28,11 @@ public class Ham extends Item{
     @Override
     void init() {
         
-        Material mat = main.getAssetManager().loadMaterial("Materials/ham.j3m");
-        setModel(main.getAssetManager().loadModel("Models/ham/ham.j3o"));
-        getModel().setMaterial(mat);
+        setMat(main.getAssetManager().loadMaterial("Materials/ham.j3m"));
         
+        setModel(main.getAssetManager().loadModel("Models/ham/ham.j3o"));
+        
+        getModel().setMaterial(getMat());
         
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         

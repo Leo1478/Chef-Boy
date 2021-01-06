@@ -34,13 +34,11 @@ public class Volcano extends Prop{
     @Override
     void init() {
         
-        Material mat = main.getAssetManager().loadMaterial("Materials/volcano.j3m");
-        
+        setMat(main.getAssetManager().loadMaterial("Materials/volcano.j3m"));
         
         setModel(main.getAssetManager().loadModel("Models/volcano/volcano.j3o"));
         
-        getModel().setMaterial(mat);
-        
+        getModel().setMaterial(getMat());
         
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
@@ -49,8 +47,6 @@ public class Volcano extends Prop{
         setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
         setPropCollision(new RigidBodyControl(getCollisionMesh(), 0));
         getModel().addControl(getPropCollision());
-        
-        
         
         main.getRootNode().attachChild(getModel());
         

@@ -35,11 +35,11 @@ public class Tree extends Prop{
     @Override
     void init() {
         
-        Material mat = main.getAssetManager().loadMaterial("Materials/tree.j3m");
+        setMat(main.getAssetManager().loadMaterial("Materials/tree.j3m"));
         
         setModel(main.getAssetManager().loadModel("Models/tree/tree.j3o"));
         
-        getModel().setMaterial(mat);
+        getModel().setMaterial(getMat());
         
         getModel().setShadowMode(ShadowMode.Cast);
         

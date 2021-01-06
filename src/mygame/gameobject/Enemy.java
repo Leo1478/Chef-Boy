@@ -15,7 +15,7 @@ import mygame.state.Main;
  *
  * @author leoze
  */
-public abstract class Enemy extends Character{
+public abstract class Enemy extends Character implements Action{
     
     private AnimComposer animComposer; // animation 
     
@@ -31,7 +31,6 @@ public abstract class Enemy extends Character{
     
     public Enemy(Main main, Vector3f position, String name, int health){
         super(main, position, name, health);
-
     }
     
     /**
@@ -110,7 +109,6 @@ public abstract class Enemy extends Character{
         
         //System.out.println("chilling");
     }
-    float x = 0;
     
     /**
      * charge chef boy 
@@ -145,7 +143,6 @@ public abstract class Enemy extends Character{
         
         //System.out.println("charg");
             
-
     }
     
     /*
@@ -155,10 +152,20 @@ public abstract class Enemy extends Character{
     }
     */
     
+    void spawn(){
+        
+        // add to list in gameState
+        // add to rootNode
+    }
+    
+    
+    @Override
     public void move(){
         
     }
+    
 
+    @Override
     public void attack(Character character) {
         //System.out.println("attack");
     }
@@ -228,8 +235,5 @@ public abstract class Enemy extends Character{
     public void setDetectionRange(double detectionRange) {
         this.detectionRange = detectionRange;
     }
-
-
-    
     
 }

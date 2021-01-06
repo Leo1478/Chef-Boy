@@ -33,11 +33,11 @@ public class Terrain extends Map{
     @Override
     void init() {
         
-        Material mat = main.getAssetManager().loadMaterial("Materials/terrainDots.j3m");
+        setMat(main.getAssetManager().loadMaterial("Materials/terrainDots.j3m"));
         
         setModel(main.getAssetManager().loadModel("Models/terrain/terrain.j3o"));
         
-        getModel().setMaterial(mat);
+        getModel().setMaterial(getMat());
         
         getModel().setShadowMode(ShadowMode.Receive);
 

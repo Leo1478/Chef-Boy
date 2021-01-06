@@ -5,6 +5,7 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
@@ -28,21 +29,23 @@ public class Pig extends Enemy{
 
     }
     
+
+    
     @Override
     void init() {
         
-        Material mat = main.getAssetManager().loadMaterial("Materials/orange.j3m");
+        setMat(main.getAssetManager().loadMaterial("Materials/orange.j3m"));
+        
         // change to xml file with animation later 
         setModel(main.getAssetManager().loadModel("Models/pig/pig.j3o"));
         
-        getModel().setMaterial(mat);
+        getModel().setMaterial(getMat());
         
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
         main.getRootNode().attachChild(getModel());    
 
     }
-
     
-
 }
+

@@ -20,6 +20,7 @@ public abstract class Character extends GameObject{
     //public Vector3f walkDirection = new Vector3f();
     
     public Character(Main main, Vector3f position, String name, int health){
+        
         super(main, position, name);
         this.health = health;
         this.state = CharacterState.IDLE;

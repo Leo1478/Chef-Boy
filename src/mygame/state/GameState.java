@@ -83,7 +83,7 @@ public class GameState extends AbstractAppState {
      * init lighting for game
      *
      */
-    void initLight() {
+    private void initLight() {
 
         gameLight = new GameLight(main);
     }
@@ -93,7 +93,7 @@ public class GameState extends AbstractAppState {
      * camera is attached to player's head, so this doesn't matter for now
      * flycam still works if camera is not based on player position 
      */
-    void initCamera() {
+    private void initCamera() {
 
         main.getFlyByCamera().setMoveSpeed(30);
     }
@@ -101,7 +101,7 @@ public class GameState extends AbstractAppState {
     /**
      * set sky color to light blue
      */
-    void initSky() {
+    private void initSky() {
         
         main.getViewPort().setBackgroundColor(new ColorRGBA(1f, 0.7f, 0.5f, 1f));
     }
@@ -110,16 +110,15 @@ public class GameState extends AbstractAppState {
      * init ground terrain a flat square for now TODO change terrain to
      * different model
      */
-    void initTerrain() {
+    private void initTerrain() {
 
-        
         GameObject terrain = new Terrain(main, new Vector3f(0, 0, 0), "terrain");
     }
 
     /**
      * init all props eg. trees
      */
-    void initProp() {
+    private void initProp() {
         
     
         GameObject tree0 = new Tree(main, new Vector3f(5, 0, 20), "tree0");
@@ -143,24 +142,24 @@ public class GameState extends AbstractAppState {
     /**
      * init chefBoy object
      */
-    void initPlayer() {
+    private void initPlayer() {
 
         player = new Player(main);
     }
     
-    void initChefBoy(){
+    private void initChefBoy(){
         chefBoy = new ChefBoy(main, new Vector3f(0, 0, 30), "chefBoy", 100);
     }
 
     /**
      * init all item objects
      */
-    void initItem() {
+    private void initItem() {
         Item ham0 = new Ham(main, new Vector3f(5, 3, 5), "ham0");
         getItems().add(ham0);
     }
 
-    void initEnemy() {
+    private void initEnemy() {
         
         Enemy pig0 = new Pig(main, new Vector3f(100, 0, 50), "pig0", 20);
         getEnemies().add(pig0);
@@ -180,19 +179,18 @@ public class GameState extends AbstractAppState {
     /**
      * game updates update enemy behaviour, enemy position, chef boy etc
      *
-     * @param tpf
+     * @param tpf delta time
      */
     @Override
     public void update(float tpf) {
         
-        
         player.move();
         chefBoy.move();
         
-        
+        chefBoy.behaviour();
+       
         enemyBehaviour(tpf, player);
         itemBehaviour(tpf, player);
-        
     }
     
     private void enemyBehaviour(float tpf, Player player){

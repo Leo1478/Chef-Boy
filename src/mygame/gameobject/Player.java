@@ -21,7 +21,6 @@ public class Player implements ActionListener{
     
     private boolean playerPickUp;
     
-    
     private boolean left = false;
     private boolean right = false;
     private boolean forward = false;
@@ -258,11 +257,13 @@ public class Player implements ActionListener{
         this.position = position;
     }
     
-    
+    // im going to comment this out for now
+    /*
     public void getItem (Vector3f position){
         if (MouseButtonTrigger(MouseInput.BUTTON_LEFT) == true){
             
         }
     }
+    */
     
 }

@@ -15,7 +15,7 @@ import mygame.state.Main;
  */
 public abstract class Item extends GameObject{
     
-    private boolean playerPickUp;
+    private boolean playerPickUp = false;
     private float pickUpRadius;
     
     private float rotation = 0;
@@ -25,8 +25,9 @@ public abstract class Item extends GameObject{
     }
     
     public void behaviour(ChefBoy chefBoy){
-        pickUp(chefBoy);
+        // pickUp(chefBoy);
         rotate();
+        checkPickUp();
         
     }
     
@@ -41,10 +42,18 @@ public abstract class Item extends GameObject{
         getModel().setLocalRotation(roatation); // change model rotation 
     }
     
+    private void checkPickUp(){
+        if(playerPickUp){
+            main.getRootNode().detachChild(getModel());
+        }
+    }
+    
     /**
      * if player is within pickUpRadius of item, it will be picked up
      * @param player 
      */
+    
+    /*
     void pickUp(ChefBoy chefBoy){
         
         double distance;
@@ -76,7 +85,7 @@ public abstract class Item extends GameObject{
             
             setModelPosition();
         }
-    }
+    }*/
 
     /**
      * @return the playerPickUp

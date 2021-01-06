@@ -5,6 +5,7 @@
  */
 package mygame.gameobject;
 
+import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
 import mygame.state.Main;
@@ -18,6 +19,7 @@ public abstract class GameObject {
     private Vector3f position; // position of object 
     private String name; // name of objct 
     private Spatial model;
+    private Material mat; // color of object 
     private float collisionRadius; // circle so moving enemies wont collide 
     
     protected Main main;
@@ -71,6 +73,20 @@ public abstract class GameObject {
     }
     public void setModel(Spatial model){
         this.model = model;
+    }
+
+    /**
+     * @return the mat
+     */
+    public Material getMat() {
+        return mat;
+    }
+
+    /**
+     * @param mat the mat to set
+     */
+    public void setMat(Material mat) {
+        this.mat = mat;
     }
 
 

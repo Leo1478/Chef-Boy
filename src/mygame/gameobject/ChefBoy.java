@@ -8,6 +8,7 @@ package mygame.gameobject;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
+import java.util.ArrayList;
 import mygame.state.Main;
 
 /**
@@ -58,11 +59,23 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
        
     }
     
+    public void behaviour(){
+        
+        ArrayList<Item> items = main.gameState.getItems();
+        for(Item i : items){
+            pickUpItem(i);
+        }
+        
+        
+    }
+    
+    
     /**
      * set position of player
      */
     public void setPosition() {
         user.setPhysicsLocation(new Vector3f(-40, 20, 0));
+        setPosition(new Vector3f(-40, 20, 0));
     }
     
     
@@ -102,7 +115,25 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
     public void attack(Character character) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    private void pickUpItem(Item item){
+        
+        double distance;
+        
+        double x = this.getPosition().x;
+        double x1 = item.getPosition().x;
+        double z = this.getPosition().z;
+        double z1 = item.getPosition().z;
+        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
+        
+        if (item.getPickUpRadius() > distance){
+            System.out.println("picked up item");
+            main.getRootNode().detachChild(item.getModel()); // remove model // change this later
+            // also need to remove from item list 
+        }
+    }
 
+    
     @Override
     public void addHealth(int amount) {
         
