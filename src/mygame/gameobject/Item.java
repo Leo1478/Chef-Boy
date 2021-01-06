@@ -24,17 +24,16 @@ public abstract class Item extends GameObject{
         super(main, position, name);
     }
     
-    public void behaviour(float tpf, ChefBoy chefBoy){
-        
+    public void behaviour(ChefBoy chefBoy){
         pickUp(chefBoy);
-        rotate(tpf);
+        rotate();
         
     }
     
     
-    private void rotate(float tpf){
+    private void rotate(){
         
-        rotation += 1 * tpf;
+        rotation +=0.001;
         
         Quaternion roatation = new Quaternion();
         roatation.fromAngles(0, rotation , 0); // y rotation,  reverse number
@@ -106,4 +105,5 @@ public abstract class Item extends GameObject{
     public void setPickUpRadius(float pickUpRadius) {
         this.pickUpRadius = pickUpRadius;
     }
+   
 }

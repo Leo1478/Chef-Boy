@@ -204,7 +204,7 @@ public class GameState extends AbstractAppState {
     
     private void itemBehaviour(float tpf, Player player){
         for(int i = 0; i < getItems().size(); i++){
-            getItems().get(i).behaviour(tpf, chefBoy);
+            getItems().get(i).behaviour(chefBoy);
         }
     }
 
