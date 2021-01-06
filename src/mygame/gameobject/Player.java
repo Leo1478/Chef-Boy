@@ -11,6 +11,7 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
+import com.jme3.input.controls.MouseButtonTrigger;
 
 /**
  *
@@ -255,6 +256,13 @@ public class Player implements ActionListener{
      */
     public void setPosition(Vector3f position) {
         this.position = position;
+    }
+    
+    
+    public void getItem (Vector3f position){
+        if (MouseButtonTrigger(MouseInput.BUTTON_LEFT) == true){
+            
+        }
     }
     
 }
