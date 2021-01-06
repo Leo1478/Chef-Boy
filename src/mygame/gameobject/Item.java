@@ -24,16 +24,17 @@ public abstract class Item extends GameObject{
         super(main, position, name);
     }
     
-    public void behaviour(ChefBoy chefBoy){
+    public void behaviour(float tpf, ChefBoy chefBoy){
+        
         pickUp(chefBoy);
-        rotate();
+        rotate(tpf);
         
     }
     
     
-    private void rotate(){
+    private void rotate(float tpf){
         
-        rotation +=0.001;
+        rotation += 1 * tpf;
         
         Quaternion roatation = new Quaternion();
         roatation.fromAngles(0, rotation , 0); // y rotation,  reverse number

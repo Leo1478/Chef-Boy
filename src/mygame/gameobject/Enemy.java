@@ -37,9 +37,10 @@ public abstract class Enemy extends Character{
     /**
      * behaviour of enemy 
      * calls other enemy methods 
+     * @param tpf
      * @param chefBoy 
      */
-    public void behaviour(ChefBoy chefBoy){
+    public void behaviour(float tpf, ChefBoy chefBoy){
         
         determineDistance(chefBoy);
         
@@ -52,7 +53,7 @@ public abstract class Enemy extends Character{
                 idle();
                 break;
             case CHARGING:
-                charge(chefBoy);
+                charge(tpf, chefBoy);
                 break;
             case MOVING:
                 break;
@@ -116,7 +117,7 @@ public abstract class Enemy extends Character{
      * find location of chefBoy, move towards chefBoy
      * @param chefBoy 
      */
-    private void charge(ChefBoy chefBoy){
+    private void charge(float tpf, ChefBoy chefBoy){
         
         double xDiff = this.getPosition().x - chefBoy.getPosition().x;
         double zDiff = this.getPosition().z - chefBoy.getPosition().z;
@@ -127,8 +128,8 @@ public abstract class Enemy extends Character{
         xDiff = xDiff / normalizeNumber;
         zDiff = zDiff / normalizeNumber;
 
-        this.getPosition().x -= xDiff * getSpeed(); // move enemy
-        this.getPosition().z -= zDiff * getSpeed();
+        this.getPosition().x -= xDiff * getSpeed() * tpf; // move enemy
+        this.getPosition().z -= zDiff * getSpeed() * tpf;
 
         setModelPosition();
         
