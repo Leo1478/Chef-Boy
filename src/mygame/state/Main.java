@@ -3,6 +3,7 @@ package mygame.state;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppState;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.font.BitmapFont;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -23,7 +24,11 @@ public class Main extends SimpleApplication {
     
     
     public GameState gameState;
+    public MenuState menuState;
+    
+    public AppSettings settings1 = settings;
 
+    
     /**
      * main method 
      * start program 
@@ -40,6 +45,8 @@ public class Main extends SimpleApplication {
         appSettings.put("Title", "ChefBoy");          
         app.setSettings(appSettings);   
         app.start();  
+        
+        
     }
 
     /**
@@ -47,9 +54,17 @@ public class Main extends SimpleApplication {
      */
     @Override
     public void simpleInitApp() {
+        
+        menuState = new MenuState();
+        stateManager.attach((AppState) menuState);
 
-        gameState = new GameState();
-        stateManager.attach((AppState) gameState); 
+        //gameState = new GameState();
+        //stateManager.attach((AppState) gameState); 
+        
+        //gameState.setEnabled(false);
+
+        
+        
     }
 
     @Override
