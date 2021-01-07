@@ -21,7 +21,7 @@ public abstract class Character extends GameObject{
     private double speed;
     private double range;
     private int damage;
-    private int coolDownSpeed;
+    private int coolDown; // interval between each attack 
     
     public Character(SimpleApplication app, Vector3f position, String name, int health){
         

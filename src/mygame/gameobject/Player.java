@@ -94,7 +94,7 @@ public class Player implements ActionListener{
         } else if (binding.equals("Back")) {
             back = isPressed;
         } else if (binding.equals("Jump")) {
-            jump = true;
+            jump = isPressed;
         }
     }
     
@@ -129,8 +129,9 @@ public class Player implements ActionListener{
         
         if (jump) {
             chefBoy.jump();
-            jump = false;
         }
+        
+        jump = false;
         
         setCamPosition();
     }

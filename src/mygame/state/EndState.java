@@ -6,33 +6,45 @@
 package mygame.state;
 
 import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import ui.Inventory;
+import java.awt.Rectangle;
+import ui.Button;
 
 /**
- *
+ * game over state 
  * @author leoze
  */
-public class InventoryState extends AbstractAppState{
+public class EndState extends AbstractAppState{
     
-    private Application app;
-    private Inventory inventory;
-    
-    public InventoryState(Application app, Inventory inventory){
-
-    }
+    private SimpleApplication app;
+    private Button menuButton = new Button(app, new Rectangle(322, 240, 600, 600), "UI/test.png" );
     
     @Override
-    public void initialize(AppStateManager stateManager, Application app){
-        this.app = (Application) app;
+    public void initialize(AppStateManager stateManager, Application app) {
         
+        this.app = (SimpleApplication) app;
+
+    }
+
+
+    @Override
+    public void update(float tpf) {
+
+
+        
+    }
+
+    void display() {
+
     }
     public void enterState(){
         setEnabled(true);
     }
+    
+
     public void exitState() {
         setEnabled(false);
-        //main.gameState.setEnabled(true);
     }
 }

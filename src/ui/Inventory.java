@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mygame.gameobject;
+package ui;
 
 import com.jme3.app.Application;
 import com.jme3.input.KeyInput;
@@ -12,6 +12,7 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
 import java.util.ArrayList;
+import mygame.gameobject.Item;
 
 /**
  *
@@ -26,6 +27,7 @@ public class Inventory {
     private Item[][] item = new Item[5][10]; // grid to store item 
     
     private Vector2f[][] positions = new Vector2f[5][10]; // positions to place pictures 
+    private int pictureSize; // size of all itemPics in pixels
     
     private Item selected = null;
     
@@ -36,7 +38,7 @@ public class Inventory {
     
     
     public void behaviour(){
-        
+        display();
     }
     
     public void add(Item item){
@@ -78,9 +80,13 @@ public class Inventory {
         selected = null;
     }
     
-    public void display(){
+    private void display(){
         // loop through each itemPic 
         // display each 
+    }
+    
+    private void displaySelected(Item item, Vector2f mousePosition){
+        // display selected item and it's changed position 
     }
     
 

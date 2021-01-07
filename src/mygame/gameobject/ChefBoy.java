@@ -113,7 +113,10 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
 
     
     public void jump(){
-        user.jump(new Vector3f(0, 20f, 0)); 
+        
+        if(user.onGround()){
+            user.jump(new Vector3f(0, 20f, 0)); 
+        }
     }
     
     @Override

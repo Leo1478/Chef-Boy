@@ -6,33 +6,47 @@
 package mygame.state;
 
 import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import ui.Inventory;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector2f;
+import java.awt.Point;
+import java.awt.Rectangle;
+import ui.Button;
 
 /**
- *
+ * shows starting animation / story 
  * @author leoze
  */
-public class InventoryState extends AbstractAppState{
+public class StartState extends AbstractAppState{
     
-    private Application app;
-    private Inventory inventory;
+    private SimpleApplication app;
     
-    public InventoryState(Application app, Inventory inventory){
+    @Override
+    public void initialize(AppStateManager stateManager, Application app) {
+        
+        this.app = (SimpleApplication) app;
+
+    }
+
+
+    @Override
+    public void update(float tpf) {
+
+
+        
+    }
+
+    void display() {
 
     }
     
-    @Override
-    public void initialize(AppStateManager stateManager, Application app){
-        this.app = (Application) app;
-        
-    }
     public void enterState(){
         setEnabled(true);
     }
+
     public void exitState() {
         setEnabled(false);
-        //main.gameState.setEnabled(true);
     }
 }

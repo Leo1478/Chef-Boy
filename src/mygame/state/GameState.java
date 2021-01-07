@@ -19,7 +19,7 @@ import mygame.gameobject.Enemy;
 import mygame.gameobject.GameLight;
 import mygame.gameobject.GameObject;
 import mygame.gameobject.Ham;
-import mygame.gameobject.Inventory;
+import ui.Inventory;
 import mygame.gameobject.Item;
 import mygame.gameobject.Pig;
 import mygame.gameobject.Player;
@@ -201,18 +201,19 @@ public class GameState extends AbstractAppState {
             items.get(i).behaviour(chefBoy);
         }
     }
+    
+    public void enterState(){
+        setEnabled(true);
+    }
+    public void exitState() {
+        setEnabled(false);
+        //main.gameState.setEnabled(true);
+    }
 
     /**
      * @return the inventory
      */
     public Inventory getInventory() {
         return inventory;
-    }
-
-    /**
-     * @return the enemyQueue
-     */
-    public Queue getEnemyQueue() {
-        return enemyQueue;
     }
 }

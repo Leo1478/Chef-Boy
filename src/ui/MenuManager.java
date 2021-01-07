@@ -3,25 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mygame.gameobject;
+package ui;
 
 import com.jme3.app.Application;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
-import java.util.ArrayList;
 
 /**
  *
  * @author leoze
  */
-public class InventoryManager implements ActionListener {
-    
+public class MenuManager implements ActionListener{
+
     private Application app;
     
-    private Inventory inventory;
-    
-    InventoryManager(Application app){
+    MenuManager(Application app){
         this.app = app;
     }
     
@@ -31,7 +28,7 @@ public class InventoryManager implements ActionListener {
         app.getInputManager().addListener(this, "click");
         
     }
-
+    
     @Override
     public void onAction(String arg0, boolean arg1, float arg2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -44,4 +41,5 @@ public class InventoryManager implements ActionListener {
     public void update(){
 
     }
+    
 }

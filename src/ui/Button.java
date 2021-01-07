@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mygame.gameobject;
+package ui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.queue.RenderQueue;
@@ -20,11 +20,13 @@ public class Button {
     private Rectangle hitBox;
     private Picture picture;
     private String path;
+    private boolean clicked;
     private SimpleApplication app;
     
     public Button(SimpleApplication app, Rectangle hitBox, String path){
         this.hitBox = hitBox;
         this.path = path;
+        this.clicked = false;
         this.app = app;
         init();
     }
@@ -70,6 +72,20 @@ public class Button {
      */
     public void setPicture(Picture picture) {
         this.picture = picture;
+    }
+
+    /**
+     * @return the clicked
+     */
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    /**
+     * @param clicked the clicked to set
+     */
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
     }
     
 }
