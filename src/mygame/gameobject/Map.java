@@ -27,6 +27,8 @@ public abstract class Map extends GameObject{
         super(app, position, name);
         this.bulletAppState = bulletAppState;
     }
+    
+    public abstract void initCollision();
 
     /**
      * init physics 

@@ -14,6 +14,8 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mygame.gameobject.ChefBoy;
 import mygame.gameobject.Enemy;
 import mygame.gameobject.GameLight;
@@ -23,6 +25,7 @@ import ui.Inventory;
 import mygame.gameobject.Item;
 import mygame.gameobject.Pig;
 import mygame.gameobject.Player;
+import mygame.gameobject.Slime;
 import mygame.gameobject.Terrain;
 import mygame.gameobject.Tree;
 import mygame.gameobject.Volcano;
@@ -158,21 +161,23 @@ public class GameState extends AbstractAppState {
 
     private void initEnemy() {
         
-        Enemy pig0 = new Pig((SimpleApplication) app, new Vector3f(100, 0, 50), "pig0", 20);
+        Enemy pig0 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(100, 10, 50), "pig0", 20);
         enemies.add(pig0);
-        Enemy pig1 = new Pig((SimpleApplication) app, new Vector3f(60, 0, 80), "pig1", 20);
+        Enemy pig1 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(60, 10, 80), "pig1", 20);
         enemies.add(pig1);
-        Enemy pig2 = new Pig((SimpleApplication) app, new Vector3f(90, 0, 12), "pig2", 20);
+        Enemy pig2 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(90, 10, 12), "pig2", 20);
         enemies.add(pig2);
-        Enemy pig3 = new Pig((SimpleApplication) app, new Vector3f(14, 0, 20), "pig3", 20);
+        Enemy pig3 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(14, 10, 20), "pig3", 20);
         enemies.add(pig3);
-        Enemy pig4 = new Pig((SimpleApplication) app, new Vector3f(0, 0, 10), "pig4", 20);
+        Enemy pig4 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(0, 10, 10), "pig4", 20);
         enemies.add(pig4);
-        Enemy pig5 = new Pig((SimpleApplication) app, new Vector3f(30, 0, 20), "pig5", 20);
+        Enemy pig5 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(30, 10, 20), "pig5", 20);
         enemies.add(pig5);
         
+        Enemy slime0 = new Slime((SimpleApplication) app, bulletAppState, new Vector3f(40, 5, 40), "slime0", 20);
+        enemies.add(slime0);
     }
-
+    
     /**
      * game updates update enemy behaviour, enemy position, chef boy etc
      *

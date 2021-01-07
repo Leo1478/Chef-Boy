@@ -28,9 +28,16 @@ public class InventoryState extends AbstractAppState{
         this.app = (Application) app;
         
     }
+    
+    @Override
+    public void update(float tpf){
+        
+    }
+    
     public void enterState(){
         setEnabled(true);
     }
+    
     public void exitState() {
         setEnabled(false);
         //main.gameState.setEnabled(true);

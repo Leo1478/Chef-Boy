@@ -5,10 +5,67 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.BoxCollisionShape;
+import com.jme3.bullet.control.CharacterControl;
+import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue;
+
 /**
  *
  * @author leoze
  */
-public class Slime {
+public class Slime extends Enemy{
     
+    BulletAppState bulletAppState;
+    
+    public Slime(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
+        super(app, bulletAppState, position, name, health);
+        
+        this.bulletAppState = bulletAppState;
+        
+        
+        setDamage(10);
+        setSpeed(1000);
+        setRange(10);
+        setDetectionRange(50);
+        
+        init();
+        setModelPosition();
+
+    }
+    
+    @Override
+    void init() {
+        
+        // this is still pigs stuff 
+        
+        setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
+        
+        // change to xml file with animation later 
+        setModel(app.getAssetManager().loadModel("Models/slime/slime.j3o"));
+        
+        getModel().setMaterial(getMat());
+        
+        getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
+        
+        app.getRootNode().attachChild(getModel());    
+        
+        initCollision();
+
+    }
+    @Override
+    public void initCollision(){
+        
+        BoxCollisionShape collisionShape = new BoxCollisionShape(new Vector3f(1, 1, 1));
+        setCharacterControl(new CharacterControl(collisionShape, 0.05f));
+        getCharacterControl().setFallSpeed(10);
+        
+        bulletAppState.getPhysicsSpace().add(getCharacterControl());
+        getCharacterControl().setGravity(new Vector3f(0, -60f, 0));
+        
+        getCharacterControl().setPhysicsLocation(getPosition());
+        
+    }
 }

@@ -7,6 +7,9 @@ package mygame.gameobject;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.BoxCollisionShape;
+import com.jme3.bullet.control.CharacterControl;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
@@ -17,15 +20,21 @@ import mygame.state.Main;
  * @author leoze
  */
 public class Pig extends Enemy{
+    
+    BulletAppState bulletAppState;
 
-    public Pig(SimpleApplication app, Vector3f position, String name, int health){
-        super(app, position, name, health);
+    public Pig(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
+        super(app, bulletAppState, position, name, health);
+        
+        this.bulletAppState = bulletAppState;
+        
         setDamage(10);
-        setSpeed(10);
+        setSpeed(600);
         setRange(10);
         setDetectionRange(30);
         
         init();
+        initCollision();
         setModelPosition();
 
     }
@@ -45,7 +54,28 @@ public class Pig extends Enemy{
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
         app.getRootNode().attachChild(getModel());    
+        
+        initCollision();
+        
+        
 
+    }
+    
+    
+    @Override
+    public void initCollision(){
+        
+        BoxCollisionShape collisionShape = new BoxCollisionShape(new Vector3f(0.8f, 0.5f, 0.8f));
+        setCharacterControl(new CharacterControl(collisionShape, 0.05f));
+        getCharacterControl().setFallSpeed(10);
+        
+        bulletAppState.getPhysicsSpace().add(getCharacterControl());
+        getCharacterControl().setGravity(new Vector3f(0, -60f, 0));
+        
+        getCharacterControl().setPhysicsLocation(getPosition());
+        
+        // init rigidbody here for all characters 
+        
     }
     
 }
