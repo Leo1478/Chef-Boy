@@ -6,6 +6,7 @@
 package mygame.gameobject;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
@@ -27,7 +28,7 @@ public class Slime extends Enemy{
         
         
         setDamage(10);
-        setSpeed(1000);
+        setSpeed(10);
         setRange(10);
         setDetectionRange(50);
         
@@ -44,7 +45,7 @@ public class Slime extends Enemy{
         setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
         
         // change to xml file with animation later 
-        setModel(app.getAssetManager().loadModel("Models/slime/slime.j3o"));
+        setModel(app.getAssetManager().loadModel("Models/slime/Plane.mesh.xml"));
         
         getModel().setMaterial(getMat());
         
@@ -58,7 +59,8 @@ public class Slime extends Enemy{
     @Override
     public void initCollision(){
         
-        BoxCollisionShape collisionShape = new BoxCollisionShape(new Vector3f(1, 1, 1));
+        Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
+        BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
         setCharacterControl(new CharacterControl(collisionShape, 0.05f));
         getCharacterControl().setFallSpeed(10);
         
