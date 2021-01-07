@@ -27,12 +27,8 @@ import ui.Menu;
  * @author leoze
  */
 public class MenuState extends AbstractAppState {
-
-
     
     private SimpleApplication app;
-    
-    
     
     private Menu menu;
     
@@ -46,9 +42,6 @@ public class MenuState extends AbstractAppState {
         //main.setDisplayStatView(false); 
         //main.setDisplayFps(false);
         
-        
-        
-
     }
 
 

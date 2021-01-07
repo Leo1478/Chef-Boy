@@ -8,6 +8,9 @@ package mygame.gameobject;
 import com.jme3.anim.AnimComposer;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.BoxCollisionShape;
+import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Matrix3f;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
@@ -17,9 +20,9 @@ import mygame.state.Main;
  *
  * @author leoze
  */
-public abstract class Enemy extends Character implements Action, ChangeHealth{
+public abstract class Enemy extends Character{
     
-    private AnimComposer animComposer; // animation 
+
     
     private double detectionRange; // range to detect player 
     
@@ -27,8 +30,10 @@ public abstract class Enemy extends Character implements Action, ChangeHealth{
     
     // private boolean change // if animation should change (last state is different from current)
     
-    public Enemy(SimpleApplication app, Vector3f position, String name, int health){
-        super(app, position, name, health);
+    public Enemy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
+        super(app, bulletAppState, position, name, health);
+        
+        
     }
     
     /**
@@ -45,6 +50,8 @@ public abstract class Enemy extends Character implements Action, ChangeHealth{
         
         setAnimation();
         
+        move(new Vector3f(0, 0, 0)); // calling move with 0 change will make sure gravity works as intended 
+        
         switch (getState()) {
             case IDLE:
                 idle();
@@ -58,7 +65,11 @@ public abstract class Enemy extends Character implements Action, ChangeHealth{
             default:
                 break;
         }
+        
+        setModelPosition();
     }
+    
+
     
     private void setAnimation(){
         // if animation is changing
@@ -113,6 +124,8 @@ public abstract class Enemy extends Character implements Action, ChangeHealth{
      */
     private void charge(float tpf, ChefBoy chefBoy){
         
+        Vector3f change = new Vector3f(); // change in position 
+        
         double xDiff = this.getPosition().x - chefBoy.getPosition().x;
         double zDiff = this.getPosition().z - chefBoy.getPosition().z;
 
@@ -121,16 +134,12 @@ public abstract class Enemy extends Character implements Action, ChangeHealth{
 
         xDiff = xDiff / normalizeNumber;
         zDiff = zDiff / normalizeNumber;
-
-        this.getPosition().x -= xDiff * getSpeed() * tpf; // move enemy
-        this.getPosition().z -= zDiff * getSpeed() * tpf;
-
-        setModelPosition();
         
+        change.x -= xDiff * getSpeed() * tpf;
+        change.z -= zDiff * getSpeed() * tpf;
         
+        // rotate enemy 
         float radian = (float) Math.atan2(zDiff, xDiff); // find out radian between player and enemy 
-        // System.out.println(radian);
-        
         Quaternion roatation = new Quaternion();
         roatation.fromAngles(0, radian*-1 , 0); // y rotation,  reverse number
 
@@ -138,46 +147,19 @@ public abstract class Enemy extends Character implements Action, ChangeHealth{
 
         
         //System.out.println("charg");
+        
+        move(change);
             
     }
     
-    /*
-    check if this enemy is colliding with any other game object when it is moving 
-    private boolean collideWithObject(){
-        
-    }
-    */
     
     void spawn(){
         
         // add to list in gameState
         // add to rootNode
     }
-    
-    
-    @Override
-    public void move(Vector3f change){
-        
-    }
-    
 
-    @Override
-    public void attack(Character character) {
-        //System.out.println("attack");
-    }
-    
-    @Override
     public void block(){
-        
-    }
-
-    @Override
-    public void addHealth(int amount) {
-        
-    }
-
-    @Override
-    public void removeHealth(int amount) {
         
     }
     
@@ -186,9 +168,6 @@ public abstract class Enemy extends Character implements Action, ChangeHealth{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
-
-
     /**
      * @return the detectionRange
      */

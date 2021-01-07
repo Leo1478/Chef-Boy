@@ -15,8 +15,6 @@ public interface Action {
     
     public void attack(Character character);
     
-    public void block();
-    
     public void move(Vector3f change);
     
     

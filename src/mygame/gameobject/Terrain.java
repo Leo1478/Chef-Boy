@@ -43,13 +43,19 @@ public class Terrain extends Map{
         
         getModel().setShadowMode(ShadowMode.Receive);
 
+        app.getRootNode().attachChild(getModel());
+        setModelPosition();
+        
+        initCollision();
+        initPhysics();
+    }
+
+    @Override
+    public void initCollision() {
         setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
         setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
         getModel().addControl(getRigidBody());
-        
-        app.getRootNode().attachChild(getModel());
-        setModelPosition();
-        initPhysics();
+    
     }
     
 

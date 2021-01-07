@@ -18,9 +18,8 @@ import mygame.state.Main;
  * chef boy character 
  * @author leoze
  */
-public class ChefBoy extends Character implements Action, ChangeHealth{
+public class ChefBoy extends Character{
     
-    private CharacterControl user; // object for controling player
     private BulletAppState bulletAppState; 
     
     private Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
@@ -30,11 +29,10 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
     
     public ChefBoy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         
-        super(app, position, name, health);
+        super(app, bulletAppState, position, name, health);
         
         this.bulletAppState = bulletAppState;
         
-        // this.player = app.gameState.getPlayer();CHANGE
         
         init();
         
@@ -51,16 +49,16 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
      * create collision hit box
      * add gravity and physics to player 
      */
-    private void initCollision(){
+    public void initCollision(){
         
         CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
-        user = new CharacterControl(capsuleShape, 0.05f);
-        user.setJumpSpeed(60);
-        user.setFallSpeed(60);
+        setCharacterControl(new CharacterControl(capsuleShape, 0.05f));
+        getCharacterControl().setJumpSpeed(60);
+        getCharacterControl().setFallSpeed(60);
         
-        bulletAppState.getPhysicsSpace().add(user);
+        bulletAppState.getPhysicsSpace().add(getCharacterControl());
         
-        user.setGravity(new Vector3f(0,-60f,0));
+        getCharacterControl().setGravity(new Vector3f(0,-60f,0));
         
        
     }
@@ -83,7 +81,7 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
      * set position of player
      */
     private void setPosition() {
-        user.setPhysicsLocation(new Vector3f(-40, 20, 0));
+        getCharacterControl().setPhysicsLocation(new Vector3f(-40, 20, 0));
         setPosition(new Vector3f(-40, 20, 0));
     }
     
@@ -114,34 +112,17 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
     
     public void jump(){
         
-        if(user.onGround()){
-            user.jump(new Vector3f(0, 20f, 0)); 
+        if(getCharacterControl().onGround()){
+            getCharacterControl().jump(new Vector3f(0, 20f, 0)); 
         }
     }
     
-    @Override
-    public void move(Vector3f change){
-        
-
-        walkDirection.set(0, 0, 0); // reset walk direction change 
-        
-        
-        walkDirection.addLocal(change);
-        
-        walkDirection.y = 0; // make sure player does not increase in y axis (up)
-        
-        user.setWalkDirection(walkDirection);
- 
-        setPosition(user.getPhysicsLocation());
-        
-    }
-    
-
 
     @Override
     public void attack(Character character) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
     
     public void block(){
         
