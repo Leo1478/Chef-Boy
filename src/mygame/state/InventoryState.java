@@ -26,7 +26,7 @@ public class InventoryState extends AbstractAppState{
     @Override
     public void initialize(AppStateManager stateManager, Application app){
         this.app = (Application) app;
-        // this.inventory = app.gameState.getInventory();
+        
     }
     
 }

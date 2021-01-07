@@ -14,4 +14,6 @@ public interface ChangeHealth {
     public void addHealth(int amount);
     
     public void removeHealth(int amount);
+    
+    public void takeDamage(int amount);
 }

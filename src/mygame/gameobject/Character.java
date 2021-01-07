@@ -18,8 +18,10 @@ public abstract class Character extends GameObject{
     
     private int health;
     private CharacterState state;
-    //public CharacterControl character;
-    //public Vector3f walkDirection = new Vector3f();
+    private double speed;
+    private double range;
+    private int damage;
+    private int coolDownSpeed;
     
     public Character(SimpleApplication app, Vector3f position, String name, int health){
         
@@ -56,6 +58,49 @@ public abstract class Character extends GameObject{
     public void setState(CharacterState state) {
         this.state = state;
     }
+    
+        /**
+     * @return the damage
+     */
+    public int getDamage() {
+        return damage;
+    }
+
+    /**
+     * @param damage the damage to set
+     */
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    /**
+     * @return the speed
+     */
+    public double getSpeed() {
+        return speed;
+    }
+
+    /**
+     * @param speed the speed to set
+     */
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    /**
+     * @return the range
+     */
+    public double getRange() {
+        return range;
+    }
+
+    /**
+     * @param range the range to set
+     */
+    public void setRange(double range) {
+        this.range = range;
+    }
+
     
 
     

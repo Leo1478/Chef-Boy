@@ -1,0 +1,75 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mygame.gameobject;
+
+import com.jme3.app.SimpleApplication;
+import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.system.AppSettings;
+import com.jme3.ui.Picture;
+import java.awt.Rectangle;
+
+/**
+ *
+ * @author leoze
+ */
+public class Button {
+    
+    private Rectangle hitBox;
+    private Picture picture;
+    private String path;
+    private SimpleApplication app;
+    
+    public Button(SimpleApplication app, Rectangle hitBox, String path){
+        this.hitBox = hitBox;
+        this.path = path;
+        this.app = app;
+        init();
+    }
+    
+    private void init(){
+        
+        AppSettings settings = new AppSettings(true);
+        
+        Picture test = new Picture("test");
+        test.setImage(app.getAssetManager(), path, true);
+        test.setWidth(settings.getWidth());
+        test.setHeight(settings.getHeight());
+        test.setPosition(settings.getWidth() / 2, settings.getHeight() / 2);
+
+        app.getGuiNode().attachChild(test);
+        test.setQueueBucket(RenderQueue.Bucket.Gui);
+        
+    }
+
+    /**
+     * @return the hitBox
+     */
+    public Rectangle getHitBox() {
+        return hitBox;
+    }
+
+    /**
+     * @param hitBox the hitBox to set
+     */
+    public void setHitBox(Rectangle hitBox) {
+        this.hitBox = hitBox;
+    }
+
+    /**
+     * @return the picture
+     */
+    public Picture getPicture() {
+        return picture;
+    }
+
+    /**
+     * @param picture the picture to set
+     */
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
+    
+}

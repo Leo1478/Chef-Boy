@@ -33,14 +33,13 @@ public class Player implements ActionListener{
     
     private Vector3f position = new Vector3f(); // current player position 
     
-    Application app;
+    private Application app;
     
-    ChefBoy chefBoy;
+    private ChefBoy chefBoy;
     
     public Player(Application app, ChefBoy chefBoy){
         
         this.app = app;
-        
         this.chefBoy = chefBoy;
         
         init();
@@ -50,7 +49,6 @@ public class Player implements ActionListener{
     /**
      * init model, collision, position
      */
-    
     private void init() {
         
         setKeys();
@@ -88,17 +86,16 @@ public class Player implements ActionListener{
     public void onAction(String binding, boolean isPressed, float tpf) {
         
         if (binding.equals("Left")) {
-            setLeft(isPressed);
+            left = isPressed;
         } else if (binding.equals("Right")) {
-            setRight(isPressed);
+            right = isPressed;
         } else if (binding.equals("Forward")) {
-            setUp(isPressed);
+            forward = isPressed;
         } else if (binding.equals("Back")) {
-            setDown(isPressed);
+            back = isPressed;
         } else if (binding.equals("Jump")) {
-            setJump(true);
+            jump = true;
         }
-        
     }
     
     /**
@@ -106,27 +103,26 @@ public class Player implements ActionListener{
      */
     public void move(){
         
-        camDir.set(app.getCamera().getDirection()).multLocal(0.6f);
-        camLeft.set(app.getCamera().getLeft()).multLocal(0.4f);
+        camDir.set(app.getCamera().getDirection()).multLocal(0.6f); // forward speed 
+        camLeft.set(app.getCamera().getLeft()).multLocal(0.4f); // left speed 
         
-        
-        Vector3f change = new Vector3f(0, 0, 0);
+        Vector3f change = new Vector3f(0, 0, 0); // change in position
         
         if (left) {
-            change.x += getCamLeft().x;
-            change.z += getCamLeft().z;
+            change.x += camLeft.x;
+            change.z += camLeft.z;
         }
         if (right) {
-            change.x += getCamLeft().negate().x;
-            change.z += getCamLeft().negate().z;
+            change.x += camLeft.negate().x;
+            change.z += camLeft.negate().z;
         }
         if (forward) {
-            change.x += getCamDir().x;
-            change.z += getCamDir().z;
+            change.x += camDir.x;
+            change.z += camDir.z;
         }
         if (back) {
-            change.x += getCamDir().negate().x;
-            change.z += getCamDir().negate().z;
+            change.x += camDir.negate().x;
+            change.z += camDir.negate().z;
         }
 
         chefBoy.move(change); // call chefBoy's method to move 
@@ -136,172 +132,12 @@ public class Player implements ActionListener{
             jump = false;
         }
         
-        setPosition();
-        
+        setCamPosition();
     }
     
-    private void setPosition(){
+    private void setCamPosition(){
         
         position = chefBoy.getPosition();
         app.getCamera().setLocation(position); // update camera position to player position
     }
-    
-    /*
-    void checkPickUp (Player player){
-        user.getPhysicsLocation();
-       
-        
-    }
-    void pickUpMove (Player player){
-        if (isPlayerPickUp() == true){
-            double xDiff = this.getPosition().x - player.getPosition().x;
-            double zDiff = this.getPosition().z - player.getPosition().z;
-            
-            double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
-            
-            xDiff = xDiff / normalizeNumber;
-            zDiff = zDiff / normalizeNumber;
-            
-            
-            setPosition();
-        }
-    }
-    
-    public Vector3f getPosition(){
-        return position;
-    }
-    */
-
-    /**
-     * @return the playerPickUp
-     */
-    public boolean isPlayerPickUp() {
-        return playerPickUp;
-    }
-
-    /**
-     * @param playerPickUp the playerPickUp to set
-     */
-    public void setPlayerPickUp(boolean playerPickUp) {
-        this.playerPickUp = playerPickUp;
-    }
-
-    /**
-     * @return the left
-     */
-    public boolean isLeft() {
-        return left;
-    }
-
-    /**
-     * @param left the left to set
-     */
-    public void setLeft(boolean left) {
-        this.left = left;
-    }
-
-    /**
-     * @return the right
-     */
-    public boolean isRight() {
-        return right;
-    }
-
-    /**
-     * @param right the right to set
-     */
-    public void setRight(boolean right) {
-        this.right = right;
-    }
-
-    /**
-     * @return the up
-     */
-    public boolean isForward() {
-        return forward;
-    }
-
-    /**
-     * @param forward the up to set
-     */
-    public void setUp(boolean forward) {
-        this.forward = forward;
-    }
-
-    /**
-     * @return the back
-     */
-    public boolean isBack() {
-        return back;
-    }
-
-    /**
-     * @param back the back to set
-     */
-    public void setDown(boolean back) {
-        this.back = back;
-    }
-
-    /**
-     * @return the jump
-     */
-    public boolean isJump() {
-        return jump;
-    }
-
-    /**
-     * @param jump the jump to set
-     */
-    public void setJump(boolean jump) {
-        this.jump = jump;
-    }
-
-    /**
-     * @return the camDir
-     */
-    public Vector3f getCamDir() {
-        return camDir;
-    }
-
-    /**
-     * @param camDir the camDir to set
-     */
-    public void setCamDir(Vector3f camDir) {
-        this.camDir = camDir;
-    }
-
-    /**
-     * @return the camLeft
-     */
-    public Vector3f getCamLeft() {
-        return camLeft;
-    }
-
-    /**
-     * @param camLeft the camLeft to set
-     */
-    public void setCamLeft(Vector3f camLeft) {
-        this.camLeft = camLeft;
-    }
-    
-    public Vector3f getPosition(){
-        return position;
-    }
-
-    /**
-     * @param position the position to set
-     */
-    public void setPosition(Vector3f position) {
-        this.position = position;
-    }
-    
-    // im going to comment this out for now
-    /*
-    public void getItem (Vector3f position){
-        if (MouseButtonTrigger(MouseInput.BUTTON_LEFT) == true){
-            
-        }
-    }
-    */
-    
 }

@@ -13,8 +13,11 @@ import com.jme3.math.Vector3f;
  */
 public interface Action {
     
-    void attack(Character character);
+    public void attack(Character character);
     
-    void move(Vector3f change);
+    public void block();
+    
+    public void move(Vector3f change);
+    
     
 }

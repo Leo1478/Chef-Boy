@@ -19,15 +19,23 @@ import mygame.state.Main;
  */
 public abstract class Map extends GameObject{
     
-    private CollisionShape collisionMesh;
-    private RigidBodyControl rigidBody;
-    private BulletAppState bulletAppState; 
+    private CollisionShape collisionMesh; // mesh to map collision 
+    private RigidBodyControl rigidBody; // rigidbody to simulate physical object 
+    private BulletAppState bulletAppState; // controls physics 
     
-    Map(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
+    public Map(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
         super(app, position, name);
         this.bulletAppState = bulletAppState;
     }
 
+    /**
+     * init physics 
+     * add physics to bulletAppstate 
+     */
+    public void initPhysics(){
+        bulletAppState.getPhysicsSpace().add(getRigidBody());
+    }
+    
     /**
      * @return the collisionMesh
      */
@@ -40,14 +48,6 @@ public abstract class Map extends GameObject{
      */
     public void setCollisionMesh(CollisionShape collisionMesh) {
         this.collisionMesh = collisionMesh;
-    }
-    
-    /**
-     * init physics 
-     * add physics to bulletAppstate 
-     */
-    void initPhysics(){
-        bulletAppState.getPhysicsSpace().add(getRigidBody());
     }
 
     /**

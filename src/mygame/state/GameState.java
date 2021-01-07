@@ -40,18 +40,15 @@ public class GameState extends AbstractAppState {
     private ArrayList<Enemy> enemies = new ArrayList<>(); // list to store enemies 
     private ArrayList<GameObject> props = new ArrayList<>(); // list of all props 
     
-    
     private GameLight gameLight; // lighting
 
     private Player player; // player object 
     private ChefBoy chefBoy;
 
-    public BulletAppState bulletAppState; // controls physics 
-
+    private BulletAppState bulletAppState; // controls physics 
     private Application app; // main object, this is needed because Main extends SimpleApplication
                 // SimpleApplication contains things like rootNode, camera, assetManager, etc
     
-
 
     /**
      * init all models, lighting, camera, physics, objects, and add them to game
@@ -96,7 +93,7 @@ public class GameState extends AbstractAppState {
      */
     private void initCamera() {
 
-        // app.getFlyByCamera().setMoveSpeed(30);
+        ((SimpleApplication)app).getFlyByCamera().setMoveSpeed(30); // not needed since camera is tied to player
     }
 
     /**
@@ -121,23 +118,22 @@ public class GameState extends AbstractAppState {
      */
     private void initProp() {
         
-    
         GameObject tree0 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(5, 0, 20), "tree0");
         GameObject tree1 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(10, 0, 20), "tree1");
         GameObject tree2 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(15, 0, 20), "tree2");
         GameObject tree3 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(20, 0, 20), "tree3");
         GameObject tree4 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(25, 0, 20), "tree4");
 
-        getProps().add(tree0);
-        getProps().add(tree1);
-        getProps().add(tree2);
-        getProps().add(tree3);
-        getProps().add(tree4);
+        props.add(tree0);
+        props.add(tree1);
+        props.add(tree2);
+        props.add(tree3);
+        props.add(tree4);
 
         
         
         GameObject volcano0 = new Volcano((SimpleApplication) app, bulletAppState, new Vector3f(50, 0, 50), "volcano0");
-        getProps().add(volcano0);
+        props.add(volcano0);
     }
     
     private void initChefBoy(){
@@ -157,23 +153,23 @@ public class GameState extends AbstractAppState {
      */
     private void initItem() {
         Item ham0 = new Ham((SimpleApplication) app, new Vector3f(5, 3, 5), "ham0");
-        getItems().add(ham0);
+        items.add(ham0);
     }
 
     private void initEnemy() {
         
         Enemy pig0 = new Pig((SimpleApplication) app, new Vector3f(100, 0, 50), "pig0", 20);
-        getEnemies().add(pig0);
+        enemies.add(pig0);
         Enemy pig1 = new Pig((SimpleApplication) app, new Vector3f(60, 0, 80), "pig1", 20);
-        getEnemies().add(pig1);
+        enemies.add(pig1);
         Enemy pig2 = new Pig((SimpleApplication) app, new Vector3f(90, 0, 12), "pig2", 20);
-        getEnemies().add(pig2);
+        enemies.add(pig2);
         Enemy pig3 = new Pig((SimpleApplication) app, new Vector3f(14, 0, 20), "pig3", 20);
-        getEnemies().add(pig3);
+        enemies.add(pig3);
         Enemy pig4 = new Pig((SimpleApplication) app, new Vector3f(0, 0, 10), "pig4", 20);
-        getEnemies().add(pig4);
+        enemies.add(pig4);
         Enemy pig5 = new Pig((SimpleApplication) app, new Vector3f(30, 0, 20), "pig5", 20);
-        getEnemies().add(pig5);
+        enemies.add(pig5);
         
     }
 
@@ -195,14 +191,14 @@ public class GameState extends AbstractAppState {
     
     private void enemyBehaviour(float tpf, Player player){
         
-        for(int i = 0; i < getEnemies().size(); i++){
-            getEnemies().get(i).behaviour(tpf, chefBoy);
+        for(int i = 0; i < enemies.size(); i++){
+            enemies.get(i).behaviour(tpf, chefBoy);
         }
     }
     
     private void itemBehaviour(float tpf, Player player){
-        for(int i = 0; i < getItems().size(); i++){
-            getItems().get(i).behaviour(chefBoy);
+        for(int i = 0; i < items.size(); i++){
+            items.get(i).behaviour(chefBoy);
         }
     }
 
@@ -219,33 +215,4 @@ public class GameState extends AbstractAppState {
     public Queue getEnemyQueue() {
         return enemyQueue;
     }
-
-    /**
-     * @return the items
-     */
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
-    /**
-     * @return the enemies
-     */
-    public ArrayList<Enemy> getEnemies() {
-        return enemies;
-    }
-
-    /**
-     * @return the props
-     */
-    public ArrayList<GameObject> getProps() {
-        return props;
-    }
-
-    /**
-     * @return the player
-     */
-    public Player getPlayer() {
-        return player;
-    }
-
 }

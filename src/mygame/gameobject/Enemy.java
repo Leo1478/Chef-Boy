@@ -17,14 +17,10 @@ import mygame.state.Main;
  *
  * @author leoze
  */
-public abstract class Enemy extends Character implements Action{
+public abstract class Enemy extends Character implements Action, ChangeHealth{
     
     private AnimComposer animComposer; // animation 
     
-    private int damage; // damage to player
-    private int coolDown; // cool down of attack 
-    private double speed; // speed 
-    private double range; // range of attack
     private double detectionRange; // range to detect player 
     
     private double distanceToChef;
@@ -53,10 +49,8 @@ public abstract class Enemy extends Character implements Action{
             case IDLE:
                 idle();
                 break;
-            case CHARGING:
-                charge(tpf, chefBoy);
-                break;
             case MOVING:
+                charge(tpf, chefBoy);
                 break;
             case ATTACKING:
                 attack(chefBoy);
@@ -94,7 +88,7 @@ public abstract class Enemy extends Character implements Action{
     private void determinState(){
         
         if(distanceToChef < getDetectionRange()){
-            setState(CharacterState.CHARGING); 
+            setState(CharacterState.MOVING); 
             if(distanceToChef < getRange()){
                 setState(CharacterState.ATTACKING);
             }
@@ -171,58 +165,29 @@ public abstract class Enemy extends Character implements Action{
     public void attack(Character character) {
         //System.out.println("attack");
     }
+    
+    @Override
+    public void block(){
+        
+    }
 
+    @Override
     public void addHealth(int amount) {
         
     }
 
+    @Override
     public void removeHealth(int amount) {
         
     }
     
+    @Override
+    public void takeDamage(int arg0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 
-    /**
-     * @return the damage
-     */
-    public int getDamage() {
-        return damage;
-    }
-
-    /**
-     * @param damage the damage to set
-     */
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    /**
-     * @return the speed
-     */
-    public double getSpeed() {
-        return speed;
-    }
-
-    /**
-     * @param speed the speed to set
-     */
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    /**
-     * @return the range
-     */
-    public double getRange() {
-        return range;
-    }
-
-    /**
-     * @param range the range to set
-     */
-    public void setRange(double range) {
-        this.range = range;
-    }
 
     /**
      * @return the detectionRange

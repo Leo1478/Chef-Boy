@@ -33,7 +33,8 @@ public class GameLight {
      * create directional light to represent sun
      * low ambient light for everything 
      */
-    void init(){
+    private void init(){
+        
         /*
         // TODO can also use different types of light 
         DirectionalLight dl = new DirectionalLight();
@@ -41,8 +42,6 @@ public class GameLight {
         dl.setDirection(new Vector3f(0f, -30f, 0f).normalizeLocal());
         main.getRootNode().addLight(dl);
         */
-        
-
         
         
         DirectionalLight sun = new DirectionalLight();

@@ -13,67 +13,74 @@ import com.jme3.scene.Spatial;
 import mygame.state.Main;
 
 /**
- * all game objects that exist 
+ * all game objects that exist
+ *
  * @author leoze
  */
 public abstract class GameObject {
-    
+
     private Vector3f position; // position of object 
     private String name; // name of objct 
     private Spatial model;
     private Material mat; // color of object 
     private float collisionRadius; // circle so moving enemies wont collide 
-    
+
     protected SimpleApplication app;
-   
-    public GameObject(SimpleApplication app, Vector3f position, String name){
-        
+
+    public GameObject(SimpleApplication app, Vector3f position, String name) {
+
         this.position = position;
         this.name = name;
-        this.app = app; 
+        this.app = app;
     }
-    
+
     /**
      * init, create model and add to rootNode
      */
     abstract void init();
-    
+
     /**
-     * set position of object 
+     * set position of object
      */
-    public void setModelPosition(){
+    public void setModelPosition() {
         getModel().setLocalTranslation(position);
     }
-    
-    public void setPosition(Vector3f position){
+
+    public void setPosition(Vector3f position) {
         this.position = position;
     }
-    
+
     /**
      * delete object when finished
      */
-    public void delete(){
+    public void delete() {
         app.getRootNode().detachChild(getModel());
     }
+
     /**
      * @return the model
      */
     public Spatial getModel() {
         return model;
     }
-    public Vector3f getPosition(){
+
+    public Vector3f getPosition() {
         return position;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public float getCollisionRadius(){
+
+    public float getCollisionRadius() {
         return collisionRadius;
     }
-    public void setCollisionRadius(float collisionRadius){
+
+    public void setCollisionRadius(float collisionRadius) {
         this.collisionRadius = collisionRadius;
     }
-    public void setModel(Spatial model){
+
+    public void setModel(Spatial model) {
         this.model = model;
     }
 
@@ -91,9 +98,4 @@ public abstract class GameObject {
         this.mat = mat;
     }
 
-
-    
-    
-    
-    
 }

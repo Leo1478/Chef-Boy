@@ -22,14 +22,15 @@ public abstract class Item extends GameObject{
     
     private float rotation = 0;
     
+    private ItemPic itemPic;
+    
     public Item(SimpleApplication app, Vector3f position, String name){
         super(app, position, name);
     }
     
     public void behaviour(ChefBoy chefBoy){
-        // pickUp(chefBoy);
+        
         rotate();
-        checkPickUp();
         
     }
     
@@ -44,50 +45,10 @@ public abstract class Item extends GameObject{
         getModel().setLocalRotation(roatation); // change model rotation 
     }
     
-    private void checkPickUp(){
-        if(playerPickUp){
-            app.getRootNode().detachChild(getModel());
-        }
+    private void pickedUp(){
+        // remove item from rootNode 
+        // remove from list 
     }
-    
-    /**
-     * if player is within pickUpRadius of item, it will be picked up
-     * @param player 
-     */
-    
-    /*
-    void pickUp(ChefBoy chefBoy){
-        
-        double distance;
-        
-        double x = this.getPosition().x;
-        double x1 = chefBoy.getPosition().x;
-        double z = this.getPosition().z;
-        double z1 = chefBoy.getPosition().z;
-        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
-        
-        
-        if (getPickUpRadius() > distance){
-            setPlayerPickUp(true); 
-            System.out.println("picked up item");
-            main.getRootNode().detachChild(getModel()); // remove model 
-        }
-        
-    } 
-    void pickUpMove (Player player){
-        if (playerPickUp == true){
-            double xDiff = this.getPosition().x - player.getPosition().x;
-            double zDiff = this.getPosition().z - player.getPosition().z;
-            
-            double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
-            
-            xDiff = xDiff / normalizeNumber;
-            zDiff = zDiff / normalizeNumber;
-            
-            
-            setModelPosition();
-        }
-    }*/
 
     /**
      * @return the playerPickUp

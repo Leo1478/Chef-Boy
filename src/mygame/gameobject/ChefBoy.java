@@ -20,10 +20,12 @@ import mygame.state.Main;
  */
 public class ChefBoy extends Character implements Action, ChangeHealth{
     
-    public CharacterControl user; // object for controling player
-    BulletAppState bulletAppState; 
+    private CharacterControl user; // object for controling player
+    private BulletAppState bulletAppState; 
     
     private Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
+    
+    private boolean blocking; // if chefboy is blocking hits 
     
     
     public ChefBoy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
@@ -49,7 +51,7 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
      * create collision hit box
      * add gravity and physics to player 
      */
-    public void initCollision(){
+    private void initCollision(){
         
         CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
         user = new CharacterControl(capsuleShape, 0.05f);
@@ -69,6 +71,10 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
             pickUpItem(i);
         }
         
+        for(Enemy e : enemies){
+            
+        }
+        
         
     }
     
@@ -76,11 +82,35 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
     /**
      * set position of player
      */
-    public void setPosition() {
+    private void setPosition() {
         user.setPhysicsLocation(new Vector3f(-40, 20, 0));
         setPosition(new Vector3f(-40, 20, 0));
     }
     
+    private void pickUpItem(Item item){
+        
+        double distance;
+        
+        double x = this.getPosition().x;
+        double x1 = item.getPosition().x;
+        double z = this.getPosition().z;
+        double z1 = item.getPosition().z;
+        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
+        
+        if (item.getPickUpRadius() > distance){
+            System.out.println("picked up item");
+            item.delete();
+            // also need to remove from item list 
+            //call on item's method 
+        }
+        
+    }
+    
+    private void addToInventory(Item item){
+        
+    }
+    
+
     
     public void jump(){
         user.jump(new Vector3f(0, 20f, 0)); 
@@ -102,31 +132,18 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
         setPosition(user.getPhysicsLocation());
         
     }
+    
+
 
     @Override
     public void attack(Character character) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    private void pickUpItem(Item item){
-        
-        double distance;
-        
-        double x = this.getPosition().x;
-        double x1 = item.getPosition().x;
-        double z = this.getPosition().z;
-        double z1 = item.getPosition().z;
-        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
-        
-        if (item.getPickUpRadius() > distance){
-            System.out.println("picked up item");
-            item.delete();
-            // also need to remove from item list 
-        }
-        
+    public void block(){
         
     }
-
+    
     
     @Override
     public void addHealth(int amount) {
@@ -135,6 +152,11 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
 
     @Override
     public void removeHealth(int amount) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void takeDamage(int arg0) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
