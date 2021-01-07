@@ -5,6 +5,9 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
@@ -20,8 +23,8 @@ import mygame.state.Main;
 public class Tree extends Prop{
     
     
-    public Tree(Main main, Vector3f position, String name){
-        super(main, position, name);
+    public Tree(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
+        super(app, bulletAppState, position, name);
         init();
     }
 
@@ -35,9 +38,9 @@ public class Tree extends Prop{
     @Override
     void init() {
         
-        setMat(main.getAssetManager().loadMaterial("Materials/tree.j3m"));
+        setMat(app.getAssetManager().loadMaterial("Materials/tree.j3m"));
         
-        setModel(main.getAssetManager().loadModel("Models/tree/tree.j3o"));
+        setModel(app.getAssetManager().loadModel("Models/tree/tree.j3o"));
         
         getModel().setMaterial(getMat());
         
@@ -46,10 +49,10 @@ public class Tree extends Prop{
         setModelPosition(); // set position needs to be before creating collision mesh for some reason
 
         setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
-        setPropCollision(new RigidBodyControl(getCollisionMesh(), 0));
-        getModel().addControl(getPropCollision());
+        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
+        getModel().addControl(getRigidBody());
         
-        main.getRootNode().attachChild(getModel());
+        app.getRootNode().attachChild(getModel());
         
         initPhysics();      
         

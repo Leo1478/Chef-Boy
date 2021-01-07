@@ -5,6 +5,9 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
@@ -18,10 +21,9 @@ import mygame.state.Main;
  */
 public class Terrain extends Map{
     
-    private RigidBodyControl landscape;
 
-    public Terrain(Main main, Vector3f position, String name){
-        super(main, position, name);
+    public Terrain(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
+        super(app, bulletAppState, position, name);
         init();
     }
     
@@ -33,30 +35,23 @@ public class Terrain extends Map{
     @Override
     void init() {
         
-        setMat(main.getAssetManager().loadMaterial("Materials/terrainDots.j3m"));
+        setMat(app.getAssetManager().loadMaterial("Materials/terrainDots.j3m"));
         
-        setModel(main.getAssetManager().loadModel("Models/terrain/terrain.j3o"));
+        setModel(app.getAssetManager().loadModel("Models/terrain/terrain.j3o"));
         
         getModel().setMaterial(getMat());
         
         getModel().setShadowMode(ShadowMode.Receive);
 
         setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
-        landscape = new RigidBodyControl(getCollisionMesh(), 0);
-        getModel().addControl(landscape);
+        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
+        getModel().addControl(getRigidBody());
         
-        main.getRootNode().attachChild(getModel());
+        app.getRootNode().attachChild(getModel());
         setModelPosition();
         initPhysics();
     }
     
-    /**
-     * init physics 
-     * add physics to bulletAppstate 
-     */
-    void initPhysics(){
-        main.gameState.bulletAppState.getPhysicsSpace().add(landscape);
-    }
 
     
 }

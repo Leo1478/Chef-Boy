@@ -55,11 +55,11 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
-        menuState = new MenuState();
-        stateManager.attach((AppState) menuState);
+        //menuState = new MenuState();
+        //stateManager.attach((AppState) menuState);
 
-        //gameState = new GameState();
-        //stateManager.attach((AppState) gameState); 
+        gameState = new GameState();
+        stateManager.attach((AppState) gameState); 
         
         //gameState.setEnabled(false);
 

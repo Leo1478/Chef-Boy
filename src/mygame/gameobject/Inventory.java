@@ -5,6 +5,7 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
 import java.util.ArrayList;
 import mygame.state.Main;
 
@@ -14,10 +15,10 @@ import mygame.state.Main;
  */
 public class Inventory {
     
-    private Main main;
+    private Application app;
     
-    Inventory(Main main){
-        this.main = main;
+    Inventory(Application app){
+        this.app = app;
     }
     
     ArrayList<Item> itemList = new ArrayList<>();

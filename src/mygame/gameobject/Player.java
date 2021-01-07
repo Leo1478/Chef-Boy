@@ -6,6 +6,7 @@
 package mygame.gameobject;
 
 
+import com.jme3.app.Application;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
@@ -28,14 +29,19 @@ public class Player implements ActionListener{
     private boolean jump = false;
     
     private Vector3f camDir = new Vector3f(); // camera direction
-    private Vector3f camLeft = new Vector3f();
+    private Vector3f camLeft = new Vector3f(); // camera's left direction (for left and right movement) 
     
     private Vector3f position = new Vector3f(); // current player position 
     
-    Main main;
+    Application app;
     
-    public Player(Main main){
-        this.main = main;
+    ChefBoy chefBoy;
+    
+    public Player(Application app, ChefBoy chefBoy){
+        
+        this.app = app;
+        
+        this.chefBoy = chefBoy;
         
         init();
         
@@ -59,16 +65,16 @@ public class Player implements ActionListener{
      * D = right 
      */
     private void setKeys(){
-        main.getInputManager().addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
-        main.getInputManager().addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
-        main.getInputManager().addMapping("Forward", new KeyTrigger(KeyInput.KEY_W));
-        main.getInputManager().addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
-        main.getInputManager().addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
-        main.getInputManager().addListener(this, "Left");
-        main.getInputManager().addListener(this, "Right");
-        main.getInputManager().addListener(this, "Forward");
-        main.getInputManager().addListener(this, "Back");
-        main.getInputManager().addListener(this, "Jump");
+        app.getInputManager().addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
+        app.getInputManager().addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
+        app.getInputManager().addMapping("Forward", new KeyTrigger(KeyInput.KEY_W));
+        app.getInputManager().addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
+        app.getInputManager().addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
+        app.getInputManager().addListener(this, "Left");
+        app.getInputManager().addListener(this, "Right");
+        app.getInputManager().addListener(this, "Forward");
+        app.getInputManager().addListener(this, "Back");
+        app.getInputManager().addListener(this, "Jump");
     }
 
     /**
@@ -81,8 +87,6 @@ public class Player implements ActionListener{
     @Override
     public void onAction(String binding, boolean isPressed, float tpf) {
         
-        
-        
         if (binding.equals("Left")) {
             setLeft(isPressed);
         } else if (binding.equals("Right")) {
@@ -94,6 +98,7 @@ public class Player implements ActionListener{
         } else if (binding.equals("Jump")) {
             setJump(true);
         }
+        
     }
     
     /**
@@ -101,11 +106,44 @@ public class Player implements ActionListener{
      */
     public void move(){
         
+        camDir.set(app.getCamera().getDirection()).multLocal(0.6f);
+        camLeft.set(app.getCamera().getLeft()).multLocal(0.4f);
         
         
-        camDir.set(main.getCamera().getDirection()).multLocal(0.6f);
-        camLeft.set(main.getCamera().getLeft()).multLocal(0.4f);
+        Vector3f change = new Vector3f(0, 0, 0);
         
+        if (left) {
+            change.x += getCamLeft().x;
+            change.z += getCamLeft().z;
+        }
+        if (right) {
+            change.x += getCamLeft().negate().x;
+            change.z += getCamLeft().negate().z;
+        }
+        if (forward) {
+            change.x += getCamDir().x;
+            change.z += getCamDir().z;
+        }
+        if (back) {
+            change.x += getCamDir().negate().x;
+            change.z += getCamDir().negate().z;
+        }
+
+        chefBoy.move(change); // call chefBoy's method to move 
+        
+        if (jump) {
+            chefBoy.jump();
+            jump = false;
+        }
+        
+        setPosition();
+        
+    }
+    
+    private void setPosition(){
+        
+        position = chefBoy.getPosition();
+        app.getCamera().setLocation(position); // update camera position to player position
     }
     
     /*

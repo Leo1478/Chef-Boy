@@ -5,6 +5,8 @@
  */
 package mygame.gameobject;
 
+import com.jme3.math.Vector3f;
+
 /**
  *
  * @author leoze
@@ -13,6 +15,6 @@ public interface Action {
     
     void attack(Character character);
     
-    void move();
+    void move(Vector3f change);
     
 }

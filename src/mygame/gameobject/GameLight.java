@@ -5,6 +5,8 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
@@ -18,10 +20,10 @@ import mygame.state.Main;
  */
 public class GameLight {
     
-    private Main main;
+    private SimpleApplication app;
     
-    public GameLight(Main main){
-        this.main = main;
+    public GameLight(SimpleApplication app){
+        this.app = app;
         init();
     }
     
@@ -46,13 +48,13 @@ public class GameLight {
         DirectionalLight sun = new DirectionalLight();
         sun.setColor(ColorRGBA.White.mult(0.8f));
         sun.setDirection(new Vector3f(-0.5f, -1f, -0.5f));
-        main.getRootNode().addLight(sun);
+        app.getRootNode().addLight(sun);
         
 
         final int SHADOWMAP_SIZE=512;
-        DirectionalLightShadowRenderer dlsr = new DirectionalLightShadowRenderer(main.getAssetManager(), SHADOWMAP_SIZE, 1);
+        DirectionalLightShadowRenderer dlsr = new DirectionalLightShadowRenderer(app.getAssetManager(), SHADOWMAP_SIZE, 1);
         dlsr.setLight(sun);
-        main.getViewPort().addProcessor(dlsr);
+        app.getViewPort().addProcessor(dlsr);
 
         
         // NOTE: use either renderer or filter, rednerer can change cast/receive setting 
@@ -71,7 +73,7 @@ public class GameLight {
         AmbientLight al = new AmbientLight();
         al.setColor(new ColorRGBA(1f, 0.5f, 0.5f, 1f).mult(0.2f));
         al.setEnabled(true);
-        main.getRootNode().addLight(al);
+        app.getRootNode().addLight(al);
     }
         
 }

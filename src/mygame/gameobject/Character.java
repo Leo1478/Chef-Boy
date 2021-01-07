@@ -5,6 +5,8 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
 
@@ -19,9 +21,9 @@ public abstract class Character extends GameObject{
     //public CharacterControl character;
     //public Vector3f walkDirection = new Vector3f();
     
-    public Character(Main main, Vector3f position, String name, int health){
+    public Character(SimpleApplication app, Vector3f position, String name, int health){
         
-        super(main, position, name);
+        super(app, position, name);
         this.health = health;
         this.state = CharacterState.IDLE;
         

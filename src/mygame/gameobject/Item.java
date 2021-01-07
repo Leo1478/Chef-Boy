@@ -5,6 +5,8 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
@@ -20,8 +22,8 @@ public abstract class Item extends GameObject{
     
     private float rotation = 0;
     
-    public Item(Main main, Vector3f position, String name){
-        super(main, position, name);
+    public Item(SimpleApplication app, Vector3f position, String name){
+        super(app, position, name);
     }
     
     public void behaviour(ChefBoy chefBoy){
@@ -44,7 +46,7 @@ public abstract class Item extends GameObject{
     
     private void checkPickUp(){
         if(playerPickUp){
-            main.getRootNode().detachChild(getModel());
+            app.getRootNode().detachChild(getModel());
         }
     }
     

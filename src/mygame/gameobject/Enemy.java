@@ -6,6 +6,8 @@
 package mygame.gameobject;
 
 import com.jme3.anim.AnimComposer;
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.math.Matrix3f;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
@@ -29,8 +31,8 @@ public abstract class Enemy extends Character implements Action{
     
     // private boolean change // if animation should change (last state is different from current)
     
-    public Enemy(Main main, Vector3f position, String name, int health){
-        super(main, position, name, health);
+    public Enemy(SimpleApplication app, Vector3f position, String name, int health){
+        super(app, position, name, health);
     }
     
     /**
@@ -160,7 +162,7 @@ public abstract class Enemy extends Character implements Action{
     
     
     @Override
-    public void move(){
+    public void move(Vector3f change){
         
     }
     

@@ -5,7 +5,11 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
 
@@ -16,9 +20,12 @@ import mygame.state.Main;
 public abstract class Map extends GameObject{
     
     private CollisionShape collisionMesh;
+    private RigidBodyControl rigidBody;
+    private BulletAppState bulletAppState; 
     
-    Map(Main main, Vector3f position, String name){
-        super(main, position, name);
+    Map(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
+        super(app, position, name);
+        this.bulletAppState = bulletAppState;
     }
 
     /**
@@ -34,5 +41,30 @@ public abstract class Map extends GameObject{
     public void setCollisionMesh(CollisionShape collisionMesh) {
         this.collisionMesh = collisionMesh;
     }
+    
+    /**
+     * init physics 
+     * add physics to bulletAppstate 
+     */
+    void initPhysics(){
+        bulletAppState.getPhysicsSpace().add(getRigidBody());
+    }
+
+    /**
+     * @param rigidBody the rigidBody to set
+     */
+    public void setRigidBody(RigidBodyControl rigidBody) {
+        this.rigidBody = rigidBody;
+    }
+
+    /**
+     * @return the rigidBody
+     */
+    public RigidBodyControl getRigidBody() {
+        return rigidBody;
+    }
+    
+    
+
     
 }

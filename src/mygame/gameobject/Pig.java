@@ -5,6 +5,7 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
@@ -17,8 +18,8 @@ import mygame.state.Main;
  */
 public class Pig extends Enemy{
 
-    public Pig(Main main, Vector3f position, String name, int health){
-        super(main, position, name, health);
+    public Pig(SimpleApplication app, Vector3f position, String name, int health){
+        super(app, position, name, health);
         setDamage(10);
         setSpeed(10);
         setRange(10);
@@ -34,16 +35,16 @@ public class Pig extends Enemy{
     @Override
     void init() {
         
-        setMat(main.getAssetManager().loadMaterial("Materials/orange.j3m"));
+        setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
         
         // change to xml file with animation later 
-        setModel(main.getAssetManager().loadModel("Models/pig/pig.j3o"));
+        setModel(app.getAssetManager().loadModel("Models/pig/pig.j3o"));
         
         getModel().setMaterial(getMat());
         
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
-        main.getRootNode().attachChild(getModel());    
+        app.getRootNode().attachChild(getModel());    
 
     }
     

@@ -5,6 +5,8 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
@@ -17,9 +19,9 @@ import mygame.state.Main;
  */
 public class Ham extends Item{
     
-    public Ham(Main main, Vector3f position, String name){
+    public Ham(SimpleApplication app, Vector3f position, String name){
         
-        super(main, position, name);
+        super(app, position, name);
         setPickUpRadius(2);
         init();
     }
@@ -28,9 +30,9 @@ public class Ham extends Item{
     @Override
     void init() {
         
-        setMat(main.getAssetManager().loadMaterial("Materials/ham.j3m"));
+        setMat(app.getAssetManager().loadMaterial("Materials/ham.j3m"));
         
-        setModel(main.getAssetManager().loadModel("Models/ham/ham.j3o"));
+        setModel(app.getAssetManager().loadModel("Models/ham/ham.j3o"));
         
         getModel().setMaterial(getMat());
         
@@ -38,7 +40,7 @@ public class Ham extends Item{
         
         setModelPosition(); // set position needs to be before creating collision mesh for some reason
         
-        main.getRootNode().attachChild(getModel());
+        app.getRootNode().attachChild(getModel());
     }
 
 

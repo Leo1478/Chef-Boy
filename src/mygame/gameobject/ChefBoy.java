@@ -5,6 +5,9 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
@@ -18,17 +21,18 @@ import mygame.state.Main;
 public class ChefBoy extends Character implements Action, ChangeHealth{
     
     public CharacterControl user; // object for controling player
-    
-    private Player player;
+    BulletAppState bulletAppState; 
     
     private Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
     
     
-    public ChefBoy(Main main, Vector3f position, String name, int health){
+    public ChefBoy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         
-        super(main, position, name, health);
+        super(app, position, name, health);
         
-        this.player = main.gameState.getPlayer();
+        this.bulletAppState = bulletAppState;
+        
+        // this.player = app.gameState.getPlayer();CHANGE
         
         init();
         
@@ -52,16 +56,15 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
         user.setJumpSpeed(60);
         user.setFallSpeed(60);
         
-        main.gameState.bulletAppState.getPhysicsSpace().add(user);
+        bulletAppState.getPhysicsSpace().add(user);
         
         user.setGravity(new Vector3f(0,-60f,0));
         
        
     }
     
-    public void behaviour(){
+    public void behaviour(ArrayList<Item> items, ArrayList<Enemy> enemies){
         
-        ArrayList<Item> items = main.gameState.getItems();
         for(Item i : items){
             pickUpItem(i);
         }
@@ -79,34 +82,23 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
     }
     
     
+    public void jump(){
+        user.jump(new Vector3f(0, 20f, 0)); 
+    }
+    
     @Override
-    public void move(){
+    public void move(Vector3f change){
+        
 
         walkDirection.set(0, 0, 0); // reset walk direction change 
         
-        if (player.isLeft()) {
-            walkDirection.addLocal(player.getCamLeft());
-        }
-        if (player.isRight()) {
-            walkDirection.addLocal(player.getCamLeft().negate());
-        }
-        if (player.isForward()) {
-            walkDirection.addLocal(player.getCamDir());
-        }
-        if (player.isBack()) {
-            walkDirection.addLocal(player.getCamDir().negate());
-        }
-        if (player.isJump() && user.onGround()) {
-            user.jump(new Vector3f(0, 20f, 0));
-        }
         
-        player.setJump(false); // reset player jump
+        walkDirection.addLocal(change);
         
         walkDirection.y = 0; // make sure player does not increase in y axis (up)
         
         user.setWalkDirection(walkDirection);
-        main.getCamera().setLocation(user.getPhysicsLocation()); // update camera position to player position
-        
+ 
         setPosition(user.getPhysicsLocation());
         
     }
@@ -128,9 +120,11 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
         
         if (item.getPickUpRadius() > distance){
             System.out.println("picked up item");
-            main.getRootNode().detachChild(item.getModel()); // remove model // change this later
+            item.delete();
             // also need to remove from item list 
         }
+        
+        
     }
 
     
@@ -143,5 +137,8 @@ public class ChefBoy extends Character implements Action, ChangeHealth{
     public void removeHealth(int amount) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
+
    
 }

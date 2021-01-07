@@ -5,6 +5,8 @@
  */
 package mygame.gameobject;
 
+import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
@@ -22,13 +24,13 @@ public abstract class GameObject {
     private Material mat; // color of object 
     private float collisionRadius; // circle so moving enemies wont collide 
     
-    protected Main main;
+    protected SimpleApplication app;
    
-    public GameObject(Main main, Vector3f position, String name){
+    public GameObject(SimpleApplication app, Vector3f position, String name){
         
         this.position = position;
         this.name = name;
-        this.main = main; 
+        this.app = app; 
     }
     
     /**
@@ -51,7 +53,7 @@ public abstract class GameObject {
      * delete object when finished
      */
     public void delete(){
-        main.getRootNode().detachChild(getModel());
+        app.getRootNode().detachChild(getModel());
     }
     /**
      * @return the model

@@ -16,17 +16,17 @@ import mygame.gameobject.Inventory;
  */
 public class InventoryState extends AbstractAppState{
     
-    private Main main;
+    private Application app;
     private Inventory inventory;
     
-    public InventoryState(Main main, Inventory inventory){
+    public InventoryState(Application app, Inventory inventory){
 
     }
     
     @Override
     public void initialize(AppStateManager stateManager, Application app){
-        this.main = (Main) app;
-        this.inventory = main.gameState.getInventory();
+        this.app = (Application) app;
+        // this.inventory = app.gameState.getInventory();
     }
     
 }

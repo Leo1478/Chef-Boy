@@ -26,31 +26,7 @@ public class MenuState extends BaseAppState {
     private Main main;
     
     Rectangle startButtonBox;
-
-
-    @Override
-    public void update(float tpf) {
-
-        Vector2f click2d = main.getInputManager().getCursorPosition();
-        System.out.println(click2d.toString());
-        
-        Point point = new Point((int)click2d.x, (int)click2d.y);
-        
-        if(startButtonBox.contains(point)){
-            System.out.println("Mouse is in button");
-        }
-        
-    }
-
-    void display() {
-
-    }
-
-    public void exitState() {
-        setEnabled(false);
-        //main.gameState.setEnabled(true);
-    }
-
+    
     @Override
     protected void initialize(Application app) {
         this.main = (Main) app;
@@ -77,6 +53,32 @@ public class MenuState extends BaseAppState {
         test.setQueueBucket(Bucket.Gui);
 
     }
+
+
+    @Override
+    public void update(float tpf) {
+
+        Vector2f click2d = main.getInputManager().getCursorPosition();
+        System.out.println(click2d.toString());
+        
+        Point point = new Point((int)click2d.x, (int)click2d.y);
+        
+        if(startButtonBox.contains(point)){
+            System.out.println("Mouse is in button");
+        }
+        
+    }
+
+    void display() {
+
+    }
+
+    public void exitState() {
+        setEnabled(false);
+        //main.gameState.setEnabled(true);
+    }
+
+
 
     @Override
     protected void cleanup(Application app) {
