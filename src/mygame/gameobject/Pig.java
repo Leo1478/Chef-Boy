@@ -48,7 +48,7 @@ public class Pig extends Enemy {
         setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
 
         // change to xml file with animation later 
-        setModel(app.getAssetManager().loadModel("Models/pig/Plane.mesh.xml"));
+        setModel(app.getAssetManager().loadModel("Models/pig/Plane.mesh.j3o"));
 
         getModel().setMaterial(getMat());
 

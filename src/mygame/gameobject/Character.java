@@ -12,6 +12,7 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
 
@@ -19,7 +20,7 @@ import mygame.state.Main;
  * characters that can move and attack 
  * @author leoze
  */
-public abstract class Character extends GameObject implements Action, ChangeHealth{
+public abstract class Character extends GameObject implements Action, ChangeHealth, Collidable{
 
 
     
@@ -50,11 +51,23 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
     }
     
-    public void updateCollision(){
-        // update collision mesh every frame 
+    @Override
+    public void initCollision() {
+        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
+        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
+        getModel().addControl(getRigidBody());
     }
     
-    public abstract void initCollision();
+    @Override
+    public void updateCollision(){
+        
+    }
+    
+    @Override
+    public void deleteCollision(){
+        
+    }
+    
     
     @Override
     public void move(Vector3f change){
