@@ -20,7 +20,6 @@ import com.jme3.input.controls.MouseButtonTrigger;
  */
 public class Player implements ActionListener{
     
-    private boolean playerPickUp;
     
     private boolean left = false;
     private boolean right = false;

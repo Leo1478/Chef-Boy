@@ -24,12 +24,8 @@ import com.jme3.bounding.BoundingBox;
  */
 public class Pig extends Enemy {
 
-    BulletAppState bulletAppState;
-
     public Pig(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health) {
         super(app, bulletAppState, position, name, health);
-
-        this.bulletAppState = bulletAppState;
 
         setDamage(10);
         setSpeed(0.3);

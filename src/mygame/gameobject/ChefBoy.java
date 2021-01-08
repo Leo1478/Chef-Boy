@@ -20,8 +20,6 @@ import mygame.state.Main;
  */
 public class ChefBoy extends Character{
     
-    private BulletAppState bulletAppState; 
-    
     private Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
     
     private boolean blocking; // if chefboy is blocking hits 
@@ -30,8 +28,6 @@ public class ChefBoy extends Character{
     public ChefBoy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         
         super(app, bulletAppState, position, name, health);
-        
-        this.bulletAppState = bulletAppState;
         
         
         init();
@@ -97,7 +93,7 @@ public class ChefBoy extends Character{
         
         if (item.getPickUpRadius() > distance){
             System.out.println("picked up item");
-            item.delete();
+            item.deleteModel();
             // also need to remove from item list 
             //call on item's method 
         }
@@ -127,24 +123,5 @@ public class ChefBoy extends Character{
     public void block(){
         
     }
-    
-    
-    @Override
-    public void addHealth(int amount) {
-        
-    }
-
-    @Override
-    public void removeHealth(int amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void takeDamage(int arg0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
    
 }

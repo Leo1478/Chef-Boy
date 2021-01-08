@@ -19,12 +19,9 @@ import com.jme3.renderer.queue.RenderQueue;
  */
 public class Slime extends Enemy{
     
-    BulletAppState bulletAppState;
     
     public Slime(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         super(app, bulletAppState, position, name, health);
-        
-        this.bulletAppState = bulletAppState;
         
         
         setDamage(10);

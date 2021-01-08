@@ -35,7 +35,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     
     private CharacterControl characterControl;
     
-    private BulletAppState bulletAppState; 
+    protected BulletAppState bulletAppState; 
     private CollisionShape collisionMesh; // mesh to map collision 
     private RigidBodyControl rigidBody; // rigidbody to simulate physical object 
     
@@ -96,6 +96,11 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
 
     @Override
     public void removeHealth(int amount) {
+        
+    }
+    
+    @Override
+    public void takeDamage(int amount){
         
     }
     
