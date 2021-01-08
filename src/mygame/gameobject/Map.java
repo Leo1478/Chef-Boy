@@ -7,8 +7,11 @@ package mygame.gameobject;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
+import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.math.Vector3f;
@@ -31,7 +34,11 @@ public abstract class Map extends GameObject implements Collidable{
     
     @Override
     public void initCollision() {
-        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
+        Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
+        BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
+        setCollisionMesh(collisionShape);
+        
+        //setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
         setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
         getModel().addControl(getRigidBody());
     }
