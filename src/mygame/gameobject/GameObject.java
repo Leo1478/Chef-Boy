@@ -23,7 +23,7 @@ public abstract class GameObject {
     private String name; // name of objct 
     private Spatial model;
     private Material mat; // color of object 
-    private float collisionRadius; // circle so moving enemies wont collide 
+    //private float collisionRadius; // circle so moving enemies wont collide //no need for this anymore 
 
     protected SimpleApplication app;
 
@@ -72,13 +72,6 @@ public abstract class GameObject {
         return name;
     }
 
-    public float getCollisionRadius() {
-        return collisionRadius;
-    }
-
-    public void setCollisionRadius(float collisionRadius) {
-        this.collisionRadius = collisionRadius;
-    }
 
     public void setModel(Spatial model) {
         this.model = model;

@@ -18,7 +18,7 @@ public class MenuManager implements ActionListener{
 
     private Application app;
     
-    MenuManager(Application app){
+    public MenuManager(Application app){
         this.app = app;
     }
     
@@ -30,7 +30,7 @@ public class MenuManager implements ActionListener{
     }
     
     @Override
-    public void onAction(String arg0, boolean arg1, float arg2) {
+    public void onAction(String binding, boolean isPressed, float tpf) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

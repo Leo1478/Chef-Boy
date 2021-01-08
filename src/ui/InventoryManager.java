@@ -21,7 +21,7 @@ public class InventoryManager implements ActionListener {
     
     private Inventory inventory;
     
-    InventoryManager(Application app){
+    public InventoryManager(Application app){
         this.app = app;
     }
     
@@ -33,7 +33,7 @@ public class InventoryManager implements ActionListener {
     }
 
     @Override
-    public void onAction(String arg0, boolean arg1, float arg2) {
+    public void onAction(String binding, boolean isPressed, float tpf) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

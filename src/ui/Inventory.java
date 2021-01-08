@@ -22,22 +22,24 @@ public class Inventory {
     
     private Application app;
     
-    private ArrayList<Item> itemList = new ArrayList<>(); // list to temp store items for sorting 
-    
-    private Item[][] item = new Item[5][10]; // grid to store item 
-    
-    private Vector2f[][] positions = new Vector2f[5][10]; // positions to place pictures 
+    private ArrayList<Item> itemList; // list to temp store items for sorting 
+    private Item[][] item; // grid to store item 
+    private Vector2f[][] position; // positions to place pictures 
     private int pictureSize; // size of all itemPics in pixels
     
-    private Item selected = null;
+    private Item selected;
     
     
-    Inventory(Application app){
+    public Inventory(Application app){
         this.app = app;
+        itemList = new ArrayList<>(); 
+        item = new Item[5][10]; 
+        position = new Vector2f[5][10];
+        selected = null;
     }
     
     
-    public void behaviour(){
+    public void update(){
         display();
     }
     
@@ -88,8 +90,5 @@ public class Inventory {
     private void displaySelected(Item item, Vector2f mousePosition){
         // display selected item and it's changed position 
     }
-    
-
-    
     
 }

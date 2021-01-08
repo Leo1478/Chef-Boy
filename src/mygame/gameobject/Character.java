@@ -126,7 +126,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         this.state = state;
     }
     
-        /**
+    /**
      * @return the damage
      */
     public int getDamage() {

@@ -29,6 +29,7 @@ import mygame.gameobject.Slime;
 import mygame.gameobject.Terrain;
 import mygame.gameobject.Tree;
 import mygame.gameobject.Volcano;
+import ui.HeadsUpDisplay;
 
 /**
  * state for in game init all game objects update all game objects
@@ -42,6 +43,7 @@ public class GameState extends AbstractAppState {
     private ArrayList<Item> items = new ArrayList<>(); // list to store all existing items
     private ArrayList<Enemy> enemies = new ArrayList<>(); // list to store enemies 
     private ArrayList<GameObject> props = new ArrayList<>(); // list of all props 
+    private HeadsUpDisplay hud;
     
     private GameLight gameLight; // lighting
 
@@ -68,6 +70,7 @@ public class GameState extends AbstractAppState {
         bulletAppState = new BulletAppState(); // for physics 
         stateManager.attach(bulletAppState); // add bulletAppState into state manager
 
+        initHud();
         initLight();
         initCamera();
         initTerrain();
@@ -78,6 +81,9 @@ public class GameState extends AbstractAppState {
         initItem();
         initEnemy();
 
+    }
+    private void initHud(){
+        
     }
 
     /**

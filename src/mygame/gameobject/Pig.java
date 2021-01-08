@@ -32,7 +32,7 @@ public class Pig extends Enemy {
         this.bulletAppState = bulletAppState;
 
         setDamage(10);
-        setSpeed(10f);
+        setSpeed(0.3);
         setRange(10);
         setDetectionRange(30);
 

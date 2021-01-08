@@ -135,8 +135,8 @@ public abstract class Enemy extends Character{
         xDiff = xDiff / normalizeNumber;
         zDiff = zDiff / normalizeNumber;
         
-        change.x -= xDiff * getSpeed() * tpf;
-        change.z -= zDiff * getSpeed() * tpf;
+        change.x -= xDiff * getSpeed();
+        change.z -= zDiff * getSpeed();
         
         // rotate enemy 
         float radian = (float) Math.atan2(zDiff, xDiff); // find out radian between player and enemy 

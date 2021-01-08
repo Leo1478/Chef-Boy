@@ -28,7 +28,7 @@ public class Slime extends Enemy{
         
         
         setDamage(10);
-        setSpeed(10);
+        setSpeed(0.5);
         setRange(10);
         setDetectionRange(50);
         

@@ -19,7 +19,7 @@ public class Menu {
     private Button startButton;
     private Button settingButton;
     
-    Menu(SimpleApplication app){
+    public Menu(SimpleApplication app){
         this.app = app;
         init();
     }
