@@ -55,12 +55,4 @@ public class Tree extends Prop{
         
     }
     
-    @Override
-    public void initCollision() {
-        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
-        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
-        getModel().addControl(getRigidBody());
-    }
-    
-    
 }

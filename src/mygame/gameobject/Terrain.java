@@ -50,14 +50,5 @@ public class Terrain extends Map{
         initPhysics();
     }
 
-    @Override
-    public void initCollision() {
-        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
-        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
-        getModel().addControl(getRigidBody());
-    
-    }
-    
-
     
 }

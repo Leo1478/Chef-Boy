@@ -10,6 +10,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
 
@@ -17,7 +18,7 @@ import mygame.state.Main;
  * map objects 
  * @author leoze
  */
-public abstract class Map extends GameObject{
+public abstract class Map extends GameObject implements Collidable{
     
     private CollisionShape collisionMesh; // mesh to map collision 
     private RigidBodyControl rigidBody; // rigidbody to simulate physical object 
@@ -28,7 +29,24 @@ public abstract class Map extends GameObject{
         this.bulletAppState = bulletAppState;
     }
     
-    public abstract void initCollision();
+    @Override
+    public void initCollision() {
+        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
+        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
+        getModel().addControl(getRigidBody());
+    }
+    
+    @Override
+    public void updateCollision(){
+        
+    }
+    
+    @Override
+    public void deleteCollision(){
+        
+    }
+    
+
 
     /**
      * init physics 
