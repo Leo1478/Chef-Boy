@@ -6,40 +6,42 @@
 package mygame.state;
 
 import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import ui.Inventory;
 
 /**
  *
  * @author leoze
  */
-public class InventoryState extends AbstractAppState{
+public class SettingState extends AbstractAppState{
     
-    private Application app;
-    private Inventory inventory;
+    private SimpleApplication app;
     
-    public InventoryState(Application app, Inventory inventory){
+    @Override
+    public void initialize(AppStateManager stateManager, Application app) {
+        
+        this.app = (SimpleApplication) app;
 
     }
-    
+
+
     @Override
-    public void initialize(AppStateManager stateManager, Application app){
-        this.app = (Application) app;
+    public void update(float tpf) {
+
+
         
     }
-    
-    @Override
-    public void update(float tpf){
-        
+
+    void display() {
+
     }
     
     public void enterState(){
         setEnabled(true);
     }
-    
+
     public void exitState() {
         setEnabled(false);
-        //main.gameState.setEnabled(true);
     }
 }

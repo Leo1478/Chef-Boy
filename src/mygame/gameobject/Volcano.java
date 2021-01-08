@@ -46,17 +46,12 @@ public class Volcano extends Prop{
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
         
         setModelPosition(); // set position needs to be before creating collision mesh for some reason
-
-        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
-        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
-        getModel().addControl(getRigidBody());
         
         app.getRootNode().attachChild(getModel());
         
+        initCollision();
+        
         initPhysics();
   
-        
     }
-
-
 }

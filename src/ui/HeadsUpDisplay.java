@@ -18,7 +18,7 @@ public class HeadsUpDisplay {
     private Picture healthBar;
     private Picture crossHair; 
     
-    HeadsUpDisplay(SimpleApplication app){
+    public HeadsUpDisplay(SimpleApplication app){
         
         this.app = app;
         init();
@@ -32,7 +32,7 @@ public class HeadsUpDisplay {
         
     }
     
-    public void display(){
+    private void display(){
         
     }
     

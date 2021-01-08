@@ -47,16 +47,12 @@ public class Tree extends Prop{
         getModel().setShadowMode(ShadowMode.Cast);
         
         setModelPosition(); // set position needs to be before creating collision mesh for some reason
-
-        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
-        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
-        getModel().addControl(getRigidBody());
         
         app.getRootNode().attachChild(getModel());
         
+        initCollision();
         initPhysics();      
         
     }
-    
     
 }

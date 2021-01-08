@@ -5,17 +5,15 @@
  */
 package mygame.gameobject;
 
-import com.jme3.math.Vector3f;
-
 /**
  *
  * @author leoze
  */
-public interface Action {
+public interface Collidable {
     
-    public void attack(Character character);
+    public void initCollision();
     
-    public void move(Vector3f change);
+    public void updateCollision();
     
-    
+    public void deleteCollision();
 }
