@@ -40,8 +40,8 @@ public class Main extends SimpleApplication {
         Main app = new Main();
         app.showSettings = false;            
         AppSettings appSettings = new AppSettings(true);   
-        appSettings.put("Width",1920);      
-        appSettings.put("Height",1080);       
+        appSettings.put("Width",1500);      //1920
+        appSettings.put("Height",800);    //1080   
         appSettings.put("Title", "ChefBoy");  
         app.setSettings(appSettings);   
         app.start();  

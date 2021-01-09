@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/home/ariana/Grade12Project/src/mygame/state/Main.java</file>
             <file>file:/home/ariana/Grade12Project/src/mygame/gameobject/Pan.java</file>
             <file>file:/home/ariana/Grade12Project/src/mygame/gameobject/Item.java</file>
@@ -23,28 +24,51 @@
             <file>file:/home/ariana/Grade12Project/src/mygame/gameobject/ChangeHealth.java</file>
             <file>file:/home/ariana/Grade12Project/src/mygame/gameobject/Terrain.java</file>
 =======
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/ui/HeadsUpDisplay.java</file>
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Pig.java</file>
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Player.java</file>
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Terrain.java</file>
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/InventoryState.java</file>
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/Main.java</file>
+=======
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Action.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/StartState.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/SettingState.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/ui/MenuManager.java</file>
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Prop.java</file>
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Pan.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/ui/Inventory.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Ham.java</file>
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/MenuState.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/ui/Setting.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/ui/InventoryManager.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/EndState.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Map.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Slime.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Character.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/GameState.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/ChangeHealth.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/ChefBoy.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Item.java</file>
+>>>>>>> 925d676279b9138268e8ff53ec36a48050dbd893
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/ui/HeadsUpDisplay.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/GameLight.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Pig.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Player.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Terrain.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/ui/Menu.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/ui/SettingManager.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/ui/Button.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/InventoryState.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/Main.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/CharacterState.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/ItemPic.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Prop.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/assets/Models/slime/Plane.mesh.j3o</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Pan.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/MenuState.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Volcano.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/GameObject.java</file>
-            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Slime.java</file>
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Enemy.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Tree.java</file>
+<<<<<<< HEAD
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/state/GameState.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/ChefBoy.java</file>
 >>>>>>> 9d8df598f81fc9328ca938ec013794772c83e0cf
+=======
+            <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Collidable.java</file>
+>>>>>>> 925d676279b9138268e8ff53ec36a48050dbd893
         </group>
     </open-files>
 </project-private>

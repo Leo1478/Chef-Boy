@@ -56,20 +56,6 @@ public class Pig extends Enemy {
 
     }
 
-    @Override
-    public void initCollision() {
 
-        Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
-        BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
-        setCharacterControl(new CharacterControl(collisionShape, 0.05f));
-        getCharacterControl().setFallSpeed(10);
-
-        bulletAppState.getPhysicsSpace().add(getCharacterControl());
-        getCharacterControl().setGravity(new Vector3f(0, -60f, 0));
-
-        getCharacterControl().setPhysicsLocation(getPosition());
-
-        // init rigidbody here for all characters 
-    }
 
 }

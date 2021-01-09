@@ -8,7 +8,9 @@ package mygame.gameobject;
 import com.jme3.anim.AnimComposer;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
+import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -51,11 +53,22 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
     }
     
+
+    
     @Override
     public void initCollision() {
-        setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
-        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));
-        getModel().addControl(getRigidBody());
+
+        Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
+        BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
+        setCharacterControl(new CharacterControl(collisionShape, 0.05f));
+        getCharacterControl().setFallSpeed(10);
+
+        bulletAppState.getPhysicsSpace().add(getCharacterControl());
+        getCharacterControl().setGravity(new Vector3f(0, -60f, 0));
+
+        getCharacterControl().setPhysicsLocation(getPosition());
+
+        // init rigidbody here for all characters 
     }
     
     @Override
