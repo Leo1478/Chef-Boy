@@ -31,7 +31,8 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     private double speed;
     private double range;
     private int damage;
-    private int coolDown; // interval between each attack 
+    private float attackSpeed; // interval between each attack
+    private float coolDown; // time remaining on interval
     
     private AnimComposer animComposer; // animation 
     
@@ -97,9 +98,23 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         setPosition(getCharacterControl().getPhysicsLocation());
     }
     
+    public void behaviour(float tpf){
+        
+        setCoolDown(getCoolDown() - tpf);
+        
+    }
+    
     @Override
     public void attack(Character character) {
-        //System.out.println("attack");
+        
+        if(state == CharacterState.ATTACKING){
+            if(getCoolDown() <= 0){
+                character.removeHealth(damage);
+                coolDown = getAttackSpeed();
+            }
+            
+        }
+        
     }
     
     @Override
@@ -109,7 +124,8 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
 
     @Override
     public void removeHealth(int amount) {
-        
+        System.out.println(health);
+        health -= amount;
     }
     
     @Override
@@ -225,6 +241,31 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
      */
     public RigidBodyControl getRigidBody() {
         return rigidBody;
+    }
+
+    /**
+     * @param attackSpeed the attackSpeed to set
+     */
+    public void setAttackSpeed(int attackSpeed) {
+        this.attackSpeed = attackSpeed;
+    }
+
+    /**
+     * @param coolDown the coolDown to set
+     */
+    public void setCoolDown(float coolDown) {
+        this.coolDown = coolDown;
+    }
+
+    /**
+     * @return the coolDown
+     */
+    public float getCoolDown() {
+        return coolDown;
+    }
+
+    private float getAttackSpeed() {
+        return attackSpeed;
     }
 
     

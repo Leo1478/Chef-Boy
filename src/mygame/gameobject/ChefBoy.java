@@ -69,7 +69,6 @@ public class ChefBoy extends Character{
             
         }
         
-        
     }
     
     

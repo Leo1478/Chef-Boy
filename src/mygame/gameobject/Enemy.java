@@ -44,6 +44,8 @@ public abstract class Enemy extends Character{
      */
     public void behaviour(float tpf, ChefBoy chefBoy){
         
+        super.behaviour(tpf);
+        
         determineDistance(chefBoy);
         
         determinState();
@@ -65,6 +67,7 @@ public abstract class Enemy extends Character{
             default:
                 break;
         }
+        
         
         setModelPosition();
     }

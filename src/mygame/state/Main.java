@@ -40,8 +40,8 @@ public class Main extends SimpleApplication {
         Main app = new Main();
         app.showSettings = false;            
         AppSettings appSettings = new AppSettings(true);   
-        appSettings.put("Width",1920);      
-        appSettings.put("Height",1080);       
+        appSettings.put("Width",1280);      
+        appSettings.put("Height",720);       
         appSettings.put("Title", "ChefBoy");  
         app.setSettings(appSettings);   
         app.start();  
@@ -54,6 +54,12 @@ public class Main extends SimpleApplication {
      */
     @Override
     public void simpleInitApp() {
+        
+        /* make exit key not close program 
+        if (inputManager.hasMapping(INPUT_MAPPING_EXIT)) {
+            inputManager.deleteMapping(INPUT_MAPPING_EXIT);
+        }
+        */
         
         //menuState = new MenuState();
         //stateManager.attach((AppState) menuState);
