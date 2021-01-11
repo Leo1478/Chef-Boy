@@ -28,7 +28,17 @@ public class ChefBoy extends Character{
     public ChefBoy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         
         super(app, bulletAppState, position, name, health);
+        setDamage(10);
+        setAttackSpeed(2);
+        setCoolDown(2);
+        setRange(10);
+        setAlive(true);
+        setHealth(20);
+        setDamage(10);
+        setSpeed(1);
+
         
+        setState(CharacterState.ATTACKING);
         
         init();
         
@@ -59,8 +69,11 @@ public class ChefBoy extends Character{
        
     }
     
-    public void behaviour(ArrayList<Item> items, ArrayList<Enemy> enemies){
+    public void behaviour(float tpf, ArrayList<Item> items, ArrayList<Enemy> enemies){
         
+        super.behaviour(tpf);
+        
+
         for(Item i : items){
             pickUpItem(i);
         }
@@ -113,12 +126,6 @@ public class ChefBoy extends Character{
     }
     
 
-    @Override
-    public void attack(Character character) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
     public void block(){
         
     }

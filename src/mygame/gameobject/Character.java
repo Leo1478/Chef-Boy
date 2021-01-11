@@ -25,7 +25,7 @@ import mygame.state.Main;
 public abstract class Character extends GameObject implements Action, ChangeHealth, Collidable{
 
 
-    
+    private boolean alive;
     private int health;
     private CharacterState state;
     private double speed;
@@ -72,6 +72,10 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         // init rigidbody here for all characters 
     }
     
+    public void updatePosition(){
+        setPosition(characterControl.getPhysicsLocation());
+    }
+    
     @Override
     public void updateCollision(){
         
@@ -100,17 +104,53 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     
     public void behaviour(float tpf){
         
-        setCoolDown(getCoolDown() - tpf);
+        setCoolDown(getCoolDown() - tpf); // reduce attack cooldown timer 
         
+        checkDie();
+        
+    }
+    
+    public void checkDie(){
+        if(health <= 0){
+            alive = false;
+        }
     }
     
     @Override
     public void attack(Character character) {
         
         if(state == CharacterState.ATTACKING){
+            
+            //System.out.println(getCoolDown());
+            
             if(getCoolDown() <= 0){
-                character.removeHealth(damage);
-                coolDown = getAttackSpeed();
+                
+                //System.out.println(getCoolDown());
+                
+                double x = this.getPosition().x;
+                double x1 = character.getPosition().x;
+                double z = this.getPosition().z;
+                double z1 = character.getPosition().z;
+        
+                double distance = Math.abs(Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2)));
+                
+                System.out.println("distance to " + character.getClass().toString() + distance);
+                
+                if(distance < getRange()){
+                    character.removeHealth(damage);
+                    System.out.println("attacking   " + character.getClass().toString());
+                    
+                    coolDown = getAttackSpeed();
+                }
+                else{
+                    System.out.println("tried to attack" + character.getClass().toString());
+                }
+                
+                
+                
+                
+                
+                
             }
             
         }
@@ -266,6 +306,20 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
 
     private float getAttackSpeed() {
         return attackSpeed;
+    }
+
+    /**
+     * @return the alive
+     */
+    public boolean getAlive() {
+        return alive;
+    }
+
+    /**
+     * @param alive the alive to set
+     */
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 
     

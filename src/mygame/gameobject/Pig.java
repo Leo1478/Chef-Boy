@@ -27,6 +27,8 @@ public class Pig extends Enemy {
     public Pig(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health) {
         super(app, bulletAppState, position, name, health);
 
+        setAlive(true);
+        setHealth(20);
         setDamage(10);
         setSpeed(0.3);
         setRange(10);
