@@ -28,6 +28,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     private boolean alive;
     private int health;
     private CharacterState state;
+    private CharacterState previousState;
     private double speed;
     private double range;
     private int damage;
@@ -49,7 +50,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         super(app, position, name);
         this.health = health;
         this.state = CharacterState.IDLE;
-        
+        this.previousState = CharacterState.IDLE;
         this.bulletAppState = bulletAppState;
         
     }
@@ -61,13 +62,13 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
 
         Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
         BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
-        setCharacterControl(new CharacterControl(collisionShape, 0.05f));
-        getCharacterControl().setFallSpeed(10);
+        characterControl = new CharacterControl(collisionShape, 0.05f);
+        characterControl.setFallSpeed(10);
 
-        bulletAppState.getPhysicsSpace().add(getCharacterControl());
-        getCharacterControl().setGravity(new Vector3f(0, -60f, 0));
+        bulletAppState.getPhysicsSpace().add(characterControl);
+        characterControl.setGravity(new Vector3f(0, -60f, 0));
 
-        getCharacterControl().setPhysicsLocation(getPosition());
+        characterControl.setPhysicsLocation(getPosition());
 
         // init rigidbody here for all characters 
     }
@@ -86,22 +87,31 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
     }
     
-    
+    /**
+     * move 
+     * move character control by certain position 
+     * @param change vector3f of change in position 
+     */
     @Override
     public void move(Vector3f change){
         walkDirection.set(0, 0, 0); // reset walk direction change 
         
+        change.x = change.x * (float)speed; // multiply change by character's speed 
+        change.z = change.z * (float)speed;
         
-        walkDirection.addLocal(change);
+        walkDirection.addLocal(change); // add change
         
         walkDirection.y = 0; // make sure player does not increase in y axis (up)
         
-        
-        getCharacterControl().setWalkDirection(walkDirection);
+        characterControl.setWalkDirection(walkDirection); // apply to characterControl 
  
-        setPosition(getCharacterControl().getPhysicsLocation());
+        setPosition(characterControl.getPhysicsLocation()); // update position 
     }
     
+    /**
+     * all behaviour for character 
+     * @param tpf 
+     */
     public void behaviour(float tpf){
         
         setCoolDown(getCoolDown() - tpf); // reduce attack cooldown timer 
@@ -110,61 +120,78 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
     }
     
+    /**
+     * check if character should be dead 
+     */
     public void checkDie(){
         if(health <= 0){
             alive = false;
         }
     }
     
+    /**
+     * change animation when state changes 
+     */
+    private void setAnimation(){
+        
+        if(previousState != state){
+            
+            switch (state) {
+                case IDLE:
+                    animComposer.setCurrentAction("ArmatureAction");
+                    break;
+                case MOVING:
+
+                    break;
+                case ATTACKING:
+
+                    break;
+                default:
+                    break;
+            }
+            previousState = state;
+        }
+    }
+    
+    /**
+     * attack 
+     * @param character character to attack
+     */
     @Override
     public void attack(Character character) {
         
-        if(state == CharacterState.ATTACKING){
+        if(state == CharacterState.ATTACKING){ // if character is in attacking state 
             
             //System.out.println(getCoolDown());
             
-            if(getCoolDown() <= 0){
-                
-                //System.out.println(getCoolDown());
+            if(getCoolDown() <= 0){ // if no cooldown, ready to attack    
                 
                 double x = this.getPosition().x;
                 double x1 = character.getPosition().x;
                 double z = this.getPosition().z;
                 double z1 = character.getPosition().z;
         
-                double distance = Math.abs(Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2)));
+                double distance = Math.abs(Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2))); // find distance to character 
                 
-                System.out.println("distance to " + character.getClass().toString() + distance);
-                
-                if(distance < getRange()){
+                if(distance < getRange()){ // if character is within range 
                     character.removeHealth(damage);
-                    System.out.println("attacking   " + character.getClass().toString());
-                    
-                    coolDown = getAttackSpeed();
+                    //System.out.println("attacking   " + character.getClass().toString());
+                    coolDown = getAttackSpeed(); // reset cool down 
                 }
                 else{
-                    System.out.println("tried to attack" + character.getClass().toString());
+                    //System.out.println("tried to attack" + character.getClass().toString());
                 }
-                
-                
-                
-                
-                
-                
-            }
-            
+            }    
         }
-        
     }
     
     @Override
     public void addHealth(int amount) {
-        
+        health += amount;
     }
 
     @Override
     public void removeHealth(int amount) {
-        System.out.println(health);
         health -= amount;
     }
     
@@ -173,17 +200,14 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
     }
     
-    
-    
-    
-    public CharacterControl getCharacterControl() {
+    public CharacterControl getCharacterControl(){
         return characterControl;
     }
-
-
-    public void setCharacterControl(CharacterControl characterControl) {
+    
+    public void setCharacterControl(CharacterControl characterControl){
         this.characterControl = characterControl;
     }
+    
 
     /**
      * @return the health

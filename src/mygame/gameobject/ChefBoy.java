@@ -37,7 +37,6 @@ public class ChefBoy extends Character{
         setDamage(10);
         setSpeed(1);
 
-        
         setState(CharacterState.ATTACKING);
         
         init();
@@ -55,6 +54,7 @@ public class ChefBoy extends Character{
      * create collision hit box
      * add gravity and physics to player 
      */
+    @Override
     public void initCollision(){
         
         CapsuleCollisionShape capsuleShape = new CapsuleCollisionShape(1.5f, 6f, 1);
