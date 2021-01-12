@@ -44,6 +44,8 @@ public abstract class Enemy extends Character{
      */
     public void behaviour(float tpf, ChefBoy chefBoy){
         
+        super.behaviour(tpf);
+        
         determineDistance(chefBoy);
         
         determinState();
@@ -65,6 +67,7 @@ public abstract class Enemy extends Character{
             default:
                 break;
         }
+        
         
         setModelPosition();
     }
@@ -158,7 +161,8 @@ public abstract class Enemy extends Character{
         // add to list in gameState
         // add to rootNode
     }
-
+    
+    
     public void block(){
         
     }
