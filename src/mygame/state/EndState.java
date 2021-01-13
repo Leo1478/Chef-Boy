@@ -16,7 +16,7 @@ import ui.Button;
  * game over state 
  * @author leoze
  */
-public class EndState extends AbstractAppState{
+public class EndState extends State{
     
     private SimpleApplication app;
     private Button menuButton = new Button(app, new Rectangle(322, 240, 600, 600), "UI/test.png" );
@@ -39,12 +39,10 @@ public class EndState extends AbstractAppState{
     void display() {
 
     }
-    public void enterState(){
-        setEnabled(true);
-    }
-    
 
-    public void exitState() {
-        setEnabled(false);
+    @Override
+    public void cleanUp() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

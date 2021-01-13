@@ -9,31 +9,28 @@ import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector2f;
-import java.awt.Point;
-import java.awt.Rectangle;
 import ui.Button;
+import ui.Menu;
+import ui.MenuManager;
 
 /**
- * shows starting animation / story 
+ *
  * @author leoze
  */
-public class StartState extends State{
+public abstract class State extends AbstractAppState{
     
-    private SimpleApplication app;
+    protected AppStateManager stateManager;
+    
+    protected SimpleApplication app;
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
-        
+        this.stateManager = stateManager;
         this.app = (SimpleApplication) app;
-
     }
-
-
+    
     @Override
     public void update(float tpf) {
-
 
         
     }
@@ -41,11 +38,16 @@ public class StartState extends State{
     void display() {
 
     }
+    
+    public void enterState(){
+        setEnabled(true);
+    }
 
-    @Override
-    public void cleanUp() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void exitState() {
+        setEnabled(false);
+        cleanUp();
     }
     
+    public abstract void cleanUp();
 
 }

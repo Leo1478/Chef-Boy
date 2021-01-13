@@ -32,9 +32,10 @@ public class Button {
     }
     
     private void init(){
+       
         
         AppSettings settings = new AppSettings(true);
-        
+     
         Picture test = new Picture("test");
         test.setImage(app.getAssetManager(), path, true);
         test.setWidth(settings.getWidth());

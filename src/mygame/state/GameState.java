@@ -36,7 +36,7 @@ import ui.HeadsUpDisplay;
  *
  * @author leoze
  */
-public class GameState extends AbstractAppState {
+public class GameState extends State {
 
     private Inventory inventory; // inventory of items 
     private Queue enemyQueue; // queue to spawn enemies 
@@ -64,6 +64,7 @@ public class GameState extends AbstractAppState {
      */
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
+        
 
         this.app = (SimpleApplication) app;
 
@@ -231,18 +232,21 @@ public class GameState extends AbstractAppState {
         }
     }
     
-    public void enterState(){
-        setEnabled(true);
-    }
-    public void exitState() {
-        setEnabled(false);
-        //main.gameState.setEnabled(true);
-    }
 
     /**
      * @return the inventory
      */
     public Inventory getInventory() {
         return inventory;
+    }
+    
+    @Override
+    public void enterState(){
+        super.enterState();
+        app.getInputManager().setCursorVisible(false);
+    }
+    
+    public void cleanUp(){
+        app.getRootNode().detachAllChildren();
     }
 }

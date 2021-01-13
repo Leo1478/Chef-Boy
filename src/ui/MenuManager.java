@@ -9,6 +9,7 @@ import com.jme3.app.Application;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
+import java.awt.Point;
 
 /**
  *
@@ -17,29 +18,29 @@ import com.jme3.math.Vector2f;
 public class MenuManager implements ActionListener{
 
     private Application app;
+    private Menu menu;
     
-    public MenuManager(Application app){
+    public MenuManager(Application app, Menu menu){
         this.app = app;
+        this.menu = menu;
+        setKeys();
     }
     
-    
     private void setKeys(){
-        app.getInputManager().addMapping("click", new MouseButtonTrigger(0));
-        app.getInputManager().addListener(this, "click");
+        app.getInputManager().addMapping("mouseLeft", new MouseButtonTrigger(0));
+        app.getInputManager().addListener(this, "mouseLeft");
         
     }
     
     @Override
     public void onAction(String binding, boolean isPressed, float tpf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (binding.equals("mouseLeft")) {
+            menu.clickButton(getMousePosition());
+        }
     }
     
-    private Vector2f getMousePosotion(){
+    private Vector2f getMousePosition(){
         return app.getInputManager().getCursorPosition();
-    }
-    
-    public void update(){
-
     }
     
 }

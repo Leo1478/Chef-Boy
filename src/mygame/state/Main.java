@@ -15,8 +15,6 @@ public class Main extends SimpleApplication {
     
     public GameState gameState;
     public MenuState menuState;
-    
-    public AppSettings settings1 = settings;
 
     
     /**
@@ -45,21 +43,22 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
-        //menuState = new MenuState();
-        //stateManager.attach((AppState) menuState);
+        menuState = new MenuState();
+        stateManager.attach((AppState) menuState);
 
         gameState = new GameState();
         stateManager.attach((AppState) gameState); 
         
-        //gameState.setEnabled(false);
+        menuState.setEnabled(true);
+        gameState.setEnabled(paused);
+        
 
-        
-        
+
     }
 
     @Override
     public void simpleUpdate(float tpf) {
-        //TODO: add update code
+        
     }
 
     @Override

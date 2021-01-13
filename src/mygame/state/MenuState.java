@@ -21,56 +21,52 @@ import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import ui.Button;
 import ui.Menu;
+import ui.MenuManager;
 
 /**
  *
  * @author leoze
  */
-public class MenuState extends AbstractAppState {
+public class MenuState extends State {
     
-    private SimpleApplication app;
+    AppStateManager stateManager;
     
+    //private SimpleApplication app;
+    Button startButton;
+    
+    private MenuManager menuManager;
     private Menu menu;
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         this.app = (SimpleApplication) app;
+        this.stateManager = stateManager;
 
-        //app.getInputManager().setCursorVisible(true);
+        app.getInputManager().setCursorVisible(true);
         //app.getViewPort().setBackgroundColor(ColorRGBA.Red);
 
         //main.setDisplayStatView(false); 
         //main.setDisplayFps(false);
         
+        menu = new Menu(this.app, stateManager);
+        menuManager = new MenuManager(this.app, menu);
+
+
+    }
+    
+    public void cleanUp(){
+        app.getGuiNode().detachAllChildren();
     }
 
 
     @Override
     public void update(float tpf) {
 
-        //Vector2f click2d = app.getInputManager().getCursorPosition();
-        //System.out.println(click2d.toString());
-        
-        //Point point = new Point((int)click2d.x, (int)click2d.y);
-        
-        //if(startButton.getHitBox().contains(point)){
-        //    System.out.println("Mouse is in button");
-        //}
-        
-    }
-
-    void display() {
 
     }
     
-    public void enterState(){
-        setEnabled(true);
-    }
+    void display() {
 
-    public void exitState() {
-        setEnabled(false);
-        //main.gameState.setEnabled(true);
     }
-
 
 }
