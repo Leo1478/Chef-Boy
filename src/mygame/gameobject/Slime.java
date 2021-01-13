@@ -23,11 +23,14 @@ public class Slime extends Enemy{
     public Slime(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         super(app, bulletAppState, position, name, health);
         
-        
-        setDamage(10);
+        setAlive(true);
+        setHealth(20);
+        setDamage(5);
         setSpeed(0.5);
         setRange(10);
         setDetectionRange(50);
+        setAttackSpeed(10);
+        setCoolDown(10);
         
         init();
         setModelPosition();

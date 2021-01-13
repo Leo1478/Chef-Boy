@@ -14,7 +14,7 @@ import com.jme3.app.state.AppStateManager;
  *
  * @author leoze
  */
-public class SettingState extends AbstractAppState{
+public class SettingState extends State{
     
     private SimpleApplication app;
     
@@ -36,12 +36,11 @@ public class SettingState extends AbstractAppState{
     void display() {
 
     }
-    
-    public void enterState(){
-        setEnabled(true);
-    }
 
-    public void exitState() {
-        setEnabled(false);
+    @Override
+    public void cleanUp() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+
 }

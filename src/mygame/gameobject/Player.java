@@ -8,6 +8,7 @@ package mygame.gameobject;
 
 import com.jme3.app.Application;
 import com.jme3.input.KeyInput;
+import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
@@ -26,6 +27,8 @@ public class Player implements ActionListener{
     private boolean forward = false;
     private boolean back = false;
     private boolean jump = false;
+    private boolean mouseLeft = false;
+    private boolean mouseRight = false;
     
     private Vector3f camDir = new Vector3f(); // camera direction
     private Vector3f camLeft = new Vector3f(); // camera's left direction (for left and right movement) 
@@ -72,6 +75,11 @@ public class Player implements ActionListener{
         app.getInputManager().addListener(this, "Forward");
         app.getInputManager().addListener(this, "Back");
         app.getInputManager().addListener(this, "Jump");
+        
+        app.getInputManager().addMapping("MouseLeft", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        app.getInputManager().addMapping("MouseRight", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
+        app.getInputManager().addListener(this, "MouseLeft");
+        app.getInputManager().addListener(this, "MouseRight");
     }
 
     /**
@@ -95,6 +103,13 @@ public class Player implements ActionListener{
         } else if (binding.equals("Jump")) {
             jump = isPressed;
         }
+        
+        if(binding.equals("MouseLeft")){
+            mouseLeft = isPressed;
+        } else if (binding.equals("MouseRight")){
+            mouseRight = isPressed;
+        }
+        
     }
     
     /**
@@ -135,9 +150,17 @@ public class Player implements ActionListener{
         setCamPosition();
     }
     
+    public void attack(Character character){
+        if(mouseLeft){
+
+            chefBoy.attack(character);
+        }
+    }
+    
     private void setCamPosition(){
         
         position = chefBoy.getPosition();
         app.getCamera().setLocation(position); // update camera position to player position
     }
+
 }

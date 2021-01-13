@@ -14,7 +14,7 @@ import ui.Inventory;
  *
  * @author leoze
  */
-public class InventoryState extends AbstractAppState{
+public class InventoryState extends State{
     
     private Application app;
     private Inventory inventory;
@@ -33,13 +33,10 @@ public class InventoryState extends AbstractAppState{
     public void update(float tpf){
         
     }
-    
-    public void enterState(){
-        setEnabled(true);
+
+    @Override
+    public void cleanUp() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public void exitState() {
-        setEnabled(false);
-        //main.gameState.setEnabled(true);
-    }
 }

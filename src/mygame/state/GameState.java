@@ -36,7 +36,7 @@ import ui.HeadsUpDisplay;
  *
  * @author leoze
  */
-public class GameState extends AbstractAppState {
+public class GameState extends State {
 
     private Inventory inventory; // inventory of items 
     private Queue enemyQueue; // queue to spawn enemies 
@@ -51,7 +51,7 @@ public class GameState extends AbstractAppState {
     private ChefBoy chefBoy;
 
     private BulletAppState bulletAppState; // controls physics 
-    private Application app; // main object, this is needed because Main extends SimpleApplication
+    private SimpleApplication app; // main object, this is needed because Main extends SimpleApplication
                 // SimpleApplication contains things like rootNode, camera, assetManager, etc
     
 
@@ -64,8 +64,9 @@ public class GameState extends AbstractAppState {
      */
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
+        
 
-        this.app = app;
+        this.app = (SimpleApplication) app;
 
         bulletAppState = new BulletAppState(); // for physics 
         stateManager.attach(bulletAppState); // add bulletAppState into state manager
@@ -119,7 +120,7 @@ public class GameState extends AbstractAppState {
      */
     private void initTerrain() {
 
-        GameObject terrain = new Terrain((SimpleApplication) app, bulletAppState, new Vector3f(0, 0, 0), "terrain");
+        GameObject terrain = new Terrain( app, bulletAppState, new Vector3f(0, 0, 0), "terrain");
     }
 
     /**
@@ -127,11 +128,11 @@ public class GameState extends AbstractAppState {
      */
     private void initProp() {
         
-        GameObject tree0 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(5, 0, 20), "tree0");
-        GameObject tree1 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(10, 0, 20), "tree1");
-        GameObject tree2 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(15, 0, 20), "tree2");
-        GameObject tree3 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(20, 0, 20), "tree3");
-        GameObject tree4 = new Tree((SimpleApplication) app, bulletAppState, new Vector3f(25, 0, 20), "tree4");
+        GameObject tree0 = new Tree( app, bulletAppState, new Vector3f(5, 0, 20), "tree0");
+        GameObject tree1 = new Tree( app, bulletAppState, new Vector3f(10, 0, 20), "tree1");
+        GameObject tree2 = new Tree( app, bulletAppState, new Vector3f(15, 0, 20), "tree2");
+        GameObject tree3 = new Tree( app, bulletAppState, new Vector3f(20, 0, 20), "tree3");
+        GameObject tree4 = new Tree( app, bulletAppState, new Vector3f(25, 0, 20), "tree4");
 
         props.add(tree0);
         props.add(tree1);
@@ -141,12 +142,12 @@ public class GameState extends AbstractAppState {
 
         
         
-        GameObject volcano0 = new Volcano((SimpleApplication) app, bulletAppState, new Vector3f(50, 0, 50), "volcano0");
+        GameObject volcano0 = new Volcano( app, bulletAppState, new Vector3f(50, 0, 50), "volcano0");
         props.add(volcano0);
     }
     
     private void initChefBoy(){
-        chefBoy = new ChefBoy((SimpleApplication) app, bulletAppState, new Vector3f(0, 0, 30), "chefBoy", 100);
+        chefBoy = new ChefBoy( app, bulletAppState, new Vector3f(0, 0, 30), "chefBoy", 100);
     }
 
     /**
@@ -154,33 +155,33 @@ public class GameState extends AbstractAppState {
      */
     private void initPlayer() {
 
-        player = new Player((SimpleApplication) app, chefBoy);
+        player = new Player( app, chefBoy);
     }
     
     /**
      * init all item objects
      */
     private void initItem() {
-        Item ham0 = new Ham((SimpleApplication) app, new Vector3f(5, 3, 5), "ham0");
+        Item ham0 = new Ham( app, new Vector3f(5, 3, 5), "ham0");
         items.add(ham0);
     }
 
     private void initEnemy() {
         
-        Enemy pig0 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(100, 10, 50), "pig0", 20);
+        Enemy pig0 = new Pig( app, bulletAppState, new Vector3f(100, 10, 50), "pig0", 20);
         enemies.add(pig0);
-        Enemy pig1 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(60, 10, 80), "pig1", 20);
+        Enemy pig1 = new Pig( app, bulletAppState, new Vector3f(60, 10, 80), "pig1", 20);
         enemies.add(pig1);
-        Enemy pig2 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(90, 10, 12), "pig2", 20);
+        Enemy pig2 = new Pig( app, bulletAppState, new Vector3f(90, 10, 12), "pig2", 20);
         enemies.add(pig2);
-        Enemy pig3 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(14, 10, 20), "pig3", 20);
+        Enemy pig3 = new Pig( app, bulletAppState, new Vector3f(14, 10, 20), "pig3", 20);
         enemies.add(pig3);
-        Enemy pig4 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(0, 10, 10), "pig4", 20);
+        Enemy pig4 = new Pig( app, bulletAppState, new Vector3f(0, 10, 10), "pig4", 20);
         enemies.add(pig4);
-        Enemy pig5 = new Pig((SimpleApplication) app, bulletAppState, new Vector3f(30, 10, 20), "pig5", 20);
+        Enemy pig5 = new Pig( app, bulletAppState, new Vector3f(30, 10, 20), "pig5", 20);
         enemies.add(pig5);
         
-        Enemy slime0 = new Slime((SimpleApplication) app, bulletAppState, new Vector3f(40, 5, 40), "slime0", 20);
+        Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(40, 5, 40), "slime0", 20);
         enemies.add(slime0);
     }
     
@@ -192,18 +193,36 @@ public class GameState extends AbstractAppState {
     @Override
     public void update(float tpf) {
         
-        player.move();
-        
-        chefBoy.behaviour(items, enemies);
-       
+
+        playerBehaviour(tpf, enemies, items);
         enemyBehaviour(tpf, player);
         itemBehaviour(tpf, player);
     }
     
+    private void playerBehaviour(float tpf, ArrayList<Enemy> enemies, ArrayList items){
+        
+        player.move();
+        
+        for(int i = 0; i < enemies.size(); i++){
+            player.attack(enemies.get(i));
+        }
+        
+        
+        chefBoy.behaviour(tpf, items, enemies);
+    }
+    
+    
     private void enemyBehaviour(float tpf, Player player){
         
         for(int i = 0; i < enemies.size(); i++){
-            enemies.get(i).behaviour(tpf, chefBoy);
+            
+            Enemy current = enemies.get(i);
+            
+            current.behaviour(tpf, chefBoy);
+            if(current.getAlive() == false){
+                app.getRootNode().detachChild(current.getModel());
+                enemies.remove(current);
+            }
         }
     }
     
@@ -213,18 +232,21 @@ public class GameState extends AbstractAppState {
         }
     }
     
-    public void enterState(){
-        setEnabled(true);
-    }
-    public void exitState() {
-        setEnabled(false);
-        //main.gameState.setEnabled(true);
-    }
 
     /**
      * @return the inventory
      */
     public Inventory getInventory() {
         return inventory;
+    }
+    
+    @Override
+    public void enterState(){
+        super.enterState();
+        app.getInputManager().setCursorVisible(false);
+    }
+    
+    public void cleanUp(){
+        app.getRootNode().detachAllChildren();
     }
 }
