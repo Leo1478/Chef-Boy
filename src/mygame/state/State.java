@@ -9,9 +9,6 @@ import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import ui.Button;
-import ui.Menu;
-import ui.MenuManager;
 
 /**
  *
@@ -48,6 +45,10 @@ public abstract class State extends AbstractAppState{
         cleanUp();
     }
     
+    /**
+     * remove all graphics from rootNode or guiNode 
+     * delete objects from lists 
+     */
     public abstract void cleanUp();
 
 }

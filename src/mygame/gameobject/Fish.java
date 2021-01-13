@@ -25,5 +25,41 @@ import com.jme3.bounding.BoundingBox;
  * @author ariana
  */
 public class Fish extends Enemy {
+
+    public Fish(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health) {
+        super(app, bulletAppState, position, name, health);
+
+        setAlive(true);
+        setHealth(20);
+        setDamage(10);
+        setSpeed(0.3);
+        setRange(10);
+        setDetectionRange(30);
+        setAttackSpeed(5);
+        setCoolDown(5);
+        
+        init();
+        initCollision();
+        setModelPosition();
+
+    }
+
+    @Override
+    void init() {
+
+        setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
+
+        // change to xml file with animation later 
+        setModel(app.getAssetManager().loadModel("Models/pig/Plane.mesh.j3o"));
+
+        getModel().setMaterial(getMat());
+
+        getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
+
+        app.getRootNode().attachChild(getModel());
+
+        initCollision();
+
+    }
     
 }

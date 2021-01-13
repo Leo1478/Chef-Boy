@@ -7,18 +7,7 @@ package mygame.state;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
-import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.app.state.BaseAppState;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector2f;
-import com.jme3.math.Vector3f;
-import com.jme3.renderer.queue.RenderQueue.Bucket;
-import com.jme3.system.AppSettings;
-import com.jme3.ui.Picture;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.Point2D;
 import ui.Button;
 import ui.Menu;
 import ui.MenuManager;
@@ -45,17 +34,19 @@ public class MenuState extends State {
         app.getInputManager().setCursorVisible(true);
         //app.getViewPort().setBackgroundColor(ColorRGBA.Red);
 
-        //main.setDisplayStatView(false); 
-        //main.setDisplayFps(false);
-        
         menu = new Menu(this.app, stateManager);
         menuManager = new MenuManager(this.app, menu);
 
 
     }
     
+    /**
+     *  remove all menu elements from guiNode
+     */
+    @Override
     public void cleanUp(){
-        app.getGuiNode().detachAllChildren();
+        app.getGuiNode().detachChildNamed("menuBackground");
+        app.getGuiNode().detachChildNamed("button");
     }
 
 
@@ -65,8 +56,6 @@ public class MenuState extends State {
 
     }
     
-    void display() {
 
-    }
 
 }

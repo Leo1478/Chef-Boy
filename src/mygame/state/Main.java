@@ -43,6 +43,9 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
+        setDisplayStatView(true); 
+        setDisplayFps(true);
+        
         menuState = new MenuState();
         stateManager.attach((AppState) menuState);
 

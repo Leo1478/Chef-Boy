@@ -12,6 +12,8 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.scene.Spatial;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.logging.Level;
@@ -81,10 +83,12 @@ public class GameState extends State {
         initPlayer();
         initItem();
         initEnemy();
+        
+        this.app.getRootNode().setQueueBucket(RenderQueue.Bucket.Opaque);
 
     }
     private void initHud(){
-        
+        hud = new HeadsUpDisplay(app);
     }
 
     /**
@@ -93,7 +97,7 @@ public class GameState extends State {
      */
     private void initLight() {
 
-        gameLight = new GameLight((SimpleApplication)app);
+        gameLight = new GameLight(app);
     }
 
     /**

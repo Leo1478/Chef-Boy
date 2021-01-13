@@ -36,7 +36,7 @@ public class Button {
         
         AppSettings settings = new AppSettings(true);
      
-        Picture test = new Picture("test");
+        Picture test = new Picture("button");
         test.setImage(app.getAssetManager(), path, true);
         test.setWidth(settings.getWidth());
         test.setHeight(settings.getHeight());

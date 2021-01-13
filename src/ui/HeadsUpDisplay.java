@@ -6,6 +6,8 @@
 package ui;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 
 /**
@@ -26,6 +28,16 @@ public class HeadsUpDisplay {
     
     private void init(){
         
+        AppSettings settings = new AppSettings(true);
+     
+        Picture test = new Picture("health bar");
+        test.setImage(app.getAssetManager(), "UI/health bar.png", true);
+        test.setWidth(300);
+        test.setHeight(100);
+        test.setPosition(1300,600);
+
+        app.getGuiNode().attachChild(test);
+        test.setQueueBucket(RenderQueue.Bucket.Gui);
     }
     
     public void update(){

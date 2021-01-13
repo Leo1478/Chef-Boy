@@ -36,6 +36,9 @@ public class Menu {
     
     private void init(){
         
+        
+        
+        
         AppSettings settings = new AppSettings(true);
         
         Picture menuBackground = new Picture("menuBackground");
@@ -46,8 +49,6 @@ public class Menu {
 
         app.getGuiNode().attachChild(menuBackground);
         menuBackground.setQueueBucket(RenderQueue.Bucket.Gui);
-
-        
         
         startButton = new Button(app, new Rectangle(322, 240, 600, 600), "UI/start button.png" );
         
