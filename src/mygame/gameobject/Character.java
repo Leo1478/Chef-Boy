@@ -141,10 +141,10 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
                     animComposer.setCurrentAction("ArmatureAction");
                     break;
                 case MOVING:
-
+                    animComposer.setCurrentAction("Running");
                     break;
                 case ATTACKING:
-
+                    animComposer.setCurrentAction("ArmatureAction.0");    
                     break;
                 default:
                     break;
