@@ -157,8 +157,10 @@ public class GameState extends State {
 
         
         
-        GameObject volcano0 = new Volcano( app, bulletAppState, new Vector3f(50, 0, 50), "volcano0");
+        GameObject volcano0 = new Volcano( app, bulletAppState, new Vector3f(150, 0, 0), "volcano0");
         props.add(volcano0);
+        GameObject volcano1 = new Volcano( app, bulletAppState, new Vector3f(-250, 5, -200), "volcano1");
+        props.add(volcano1);
     }
     
     private void initChefBoy(){
