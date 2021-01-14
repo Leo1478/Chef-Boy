@@ -155,8 +155,6 @@ public class GameState extends State {
         props.add(tree3);
         props.add(tree4);
 
-        
-        
         GameObject volcano0 = new Volcano( app, bulletAppState, new Vector3f(150, 0, 0), "volcano0");
         props.add(volcano0);
         GameObject volcano1 = new Volcano( app, bulletAppState, new Vector3f(-250, 5, -200), "volcano1");
@@ -235,16 +233,28 @@ public class GameState extends State {
             Enemy current = enemies.get(i);
             
             current.behaviour(tpf, chefBoy);
+            
             if(current.getAlive() == false){
-                app.getRootNode().detachChild(current.getModel());
+                
+                System.out.println("this");
+                
                 enemies.remove(current);
             }
         }
     }
     
     private void itemBehaviour(float tpf, Player player){
+        
         for(int i = 0; i < items.size(); i++){
-            items.get(i).behaviour(chefBoy);
+            
+            Item current = items.get(i);
+            
+            current.behaviour(chefBoy);
+            
+            if(current.getPickedUp()){
+                
+                items.remove(current);
+            }
         }
     }
     

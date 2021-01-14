@@ -61,11 +61,10 @@ public class Menu {
     public void clickButton(Vector2f mousePosition){
         
         Point point = new Point((int)mousePosition.x, (int)mousePosition.y);
-        System.out.println(point.toString());
+
         
         if(startButton.getHitBox().contains(point)){
-            
-            System.out.println(stateManager.getState(GameState.class));
+
 
             stateManager.getState(MenuState.class).exitState();
             stateManager.getState(MenuState.class).cleanUp();

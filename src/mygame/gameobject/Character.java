@@ -116,6 +116,8 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
         setCoolDown(getCoolDown() - tpf); // reduce attack cooldown timer 
         
+        setAnimation();
+        
         checkDie();
         
     }
@@ -124,9 +126,12 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
      * check if character should be dead 
      */
     public void checkDie(){
+        
         if(health <= 0){
             alive = false;
+            deleteModel();
         }
+        
     }
     
     /**
@@ -138,9 +143,12 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
             
             switch (state) {
                 case IDLE:
+                    
+                    System.out.println("animation");
                     animComposer.setCurrentAction("Idle");
                     break;
                 case MOVING:
+                    System.out.println("animation");
                     animComposer.setCurrentAction("Running");
                     break;
                 case ATTACKING:

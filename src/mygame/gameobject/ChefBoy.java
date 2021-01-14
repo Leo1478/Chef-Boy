@@ -11,8 +11,10 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue;
 import java.util.ArrayList;
 import mygame.state.Main;
+import ui.Inventory;
 
 /**
  * chef boy character 
@@ -46,6 +48,13 @@ public class ChefBoy extends Character{
 
     @Override
     void init() {
+        
+        setModel(app.getAssetManager().loadModel("Models/slime/Plane.mesh.j3o"));
+
+        getModel().setShadowMode(RenderQueue.ShadowMode.Off);
+        
+        app.getRootNode().attachChild(getModel());   
+        
         initCollision();
         setPosition();
     }
@@ -68,6 +77,7 @@ public class ChefBoy extends Character{
         
        
     }
+    
     
     public void behaviour(float tpf, ArrayList<Item> items, ArrayList<Enemy> enemies){
         
@@ -106,13 +116,14 @@ public class ChefBoy extends Character{
         if (item.getPickUpRadius() > distance){
             System.out.println("picked up item");
             item.deleteModel();
+            item.pickedUp();
             // also need to remove from item list 
             //call on item's method 
         }
         
     }
     
-    private void addToInventory(Item item){
+    private void addToInventory(Inventory inventory, Item item){
         
     }
     

@@ -61,8 +61,7 @@ public abstract class Enemy extends Character{
             default:
                 break;
         }
-        
-        
+
         setModelPosition();
     }
     

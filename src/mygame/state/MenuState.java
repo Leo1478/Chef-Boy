@@ -30,8 +30,7 @@ public class MenuState extends State {
     public void initialize(AppStateManager stateManager, Application app) {
         this.app = (SimpleApplication) app;
         this.stateManager = stateManager;
-        
-        System.out.println("initialize");
+
         app.getInputManager().setCursorVisible(true);
     }
     

@@ -17,7 +17,7 @@ import mygame.state.Main;
  */
 public abstract class Item extends GameObject{
     
-    private boolean playerPickUp = false;
+    private boolean pickedUp = false;
     private float pickUpRadius;
     
     private float rotation = 0;
@@ -45,24 +45,19 @@ public abstract class Item extends GameObject{
         getModel().setLocalRotation(roatation); // change model rotation 
     }
     
-    private void pickedUp(){
-        // remove item from rootNode 
-        // remove from list 
+    public void pickedUp(){
+        pickedUp = true;
+        
+        deleteModel();
     }
-
+    
     /**
-     * @return the playerPickUp
+     * @return the pickedUp
      */
-    public boolean PlayerPickUp() {
-        return playerPickUp;
+    public boolean getPickedUp() {
+        return pickedUp;
     }
-
-    /**
-     * @param playerPickUp the playerPickUp to set
-     */
-    public void setPlayerPickUp(boolean playerPickUp) {
-        this.playerPickUp = playerPickUp;
-    }
+    
 
     /**
      * @return the pickUpRadius

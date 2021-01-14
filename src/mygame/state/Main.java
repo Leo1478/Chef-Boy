@@ -58,9 +58,6 @@ public class Main extends SimpleApplication {
         inventoryState = new InventoryState();
         stateManager.attach((AppState) inventoryState);
         
-        
-        
-        
         menuState.setEnabled(false); // start all of the states on disabled 
         gameState.setEnabled(false);    
         inventoryState.setEnabled(false);
@@ -79,8 +76,6 @@ public class Main extends SimpleApplication {
     public void simpleRender(RenderManager rm) {
         
     }
-    
-    
 }
 
 
