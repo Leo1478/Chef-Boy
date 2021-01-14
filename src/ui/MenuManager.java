@@ -34,7 +34,7 @@ public class MenuManager implements ActionListener{
     
     @Override
     public void onAction(String binding, boolean isPressed, float tpf) {
-        if (binding.equals("mouseLeft")) {
+        if (binding.equals("mouseLeft") && isPressed) {
             menu.clickButton(getMousePosition());
         }
     }

@@ -37,8 +37,6 @@ public class Menu {
     private void init(){
         
         
-        
-        
         AppSettings settings = new AppSettings(true);
         
         Picture menuBackground = new Picture("menuBackground");
@@ -68,11 +66,10 @@ public class Menu {
         if(startButton.getHitBox().contains(point)){
             
             System.out.println(stateManager.getState(GameState.class));
-            
-            stateManager.getState(GameState.class).enterState();
+
             stateManager.getState(MenuState.class).exitState();
             stateManager.getState(MenuState.class).cleanUp();
-        
+            stateManager.getState(GameState.class).enterState();
         }
     }
     

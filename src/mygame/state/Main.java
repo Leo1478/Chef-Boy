@@ -4,6 +4,8 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppState;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This is the Main Class of your Game. You should only do initialization here.
@@ -13,8 +15,10 @@ import com.jme3.system.AppSettings;
 public class Main extends SimpleApplication {
     
     
-    public GameState gameState;
-    public MenuState menuState;
+    private GameState gameState;
+    private MenuState menuState;
+    private InventoryState inventoryState;
+    
 
     
     /**
@@ -34,11 +38,10 @@ public class Main extends SimpleApplication {
         app.setSettings(appSettings);   
         app.start();  
         
-        
     }
 
     /**
-     * create states
+     * create states 
      */
     @Override
     public void simpleInitApp() {
@@ -46,17 +49,25 @@ public class Main extends SimpleApplication {
         setDisplayStatView(true); 
         setDisplayFps(true);
         
-        menuState = new MenuState();
+        menuState = new MenuState(); // create each state 
         stateManager.attach((AppState) menuState);
 
         gameState = new GameState();
-        stateManager.attach((AppState) gameState); 
+        stateManager.attach((AppState) gameState);
         
-        menuState.setEnabled(true);
-        gameState.setEnabled(paused);
+        inventoryState = new InventoryState();
+        stateManager.attach((AppState) inventoryState);
         
-
-
+        
+        
+        
+        menuState.setEnabled(false); // start all of the states on disabled 
+        gameState.setEnabled(false);    
+        inventoryState.setEnabled(false);
+        
+        menuState.initialize(stateManager, this);  // init and start the menu
+        menuState.enterState();
+        
     }
 
     @Override
@@ -66,7 +77,7 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleRender(RenderManager rm) {
-        //TODO: add render code
+        
     }
     
     

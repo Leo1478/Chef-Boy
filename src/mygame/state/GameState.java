@@ -53,13 +53,14 @@ public class GameState extends State {
     private ChefBoy chefBoy;
 
     private BulletAppState bulletAppState; // controls physics 
+    private AppStateManager stateManager; // controls states
     private SimpleApplication app; // main object, this is needed because Main extends SimpleApplication
                 // SimpleApplication contains things like rootNode, camera, assetManager, etc
     
 
     /**
-     * init all models, lighting, camera, physics, objects, and add them to game
-     * world
+     * initialize
+     * add enable state 
      *
      * @param stateManager
      * @param app
@@ -67,12 +68,23 @@ public class GameState extends State {
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         
-
         this.app = (SimpleApplication) app;
+        this.stateManager = stateManager;
 
+    }
+    /**
+     * init all models, lighting, camera, physics, objects, and add them to game
+     * world
+     */
+    private void init(){
+        
+        System.out.println("init");
+        
         bulletAppState = new BulletAppState(); // for physics 
         stateManager.attach(bulletAppState); // add bulletAppState into state manager
-
+        
+        app.getInputManager().setCursorVisible(false);
+        
         initHud();
         initLight();
         initCamera();
@@ -84,9 +96,8 @@ public class GameState extends State {
         initItem();
         initEnemy();
         
-        this.app.getRootNode().setQueueBucket(RenderQueue.Bucket.Opaque);
-
     }
+    
     private void initHud(){
         hud = new HeadsUpDisplay(app);
     }
@@ -197,7 +208,6 @@ public class GameState extends State {
     @Override
     public void update(float tpf) {
         
-
         playerBehaviour(tpf, enemies, items);
         enemyBehaviour(tpf, player);
         itemBehaviour(tpf, player);
@@ -236,7 +246,6 @@ public class GameState extends State {
         }
     }
     
-
     /**
      * @return the inventory
      */
@@ -247,8 +256,9 @@ public class GameState extends State {
     @Override
     public void enterState(){
         super.enterState();
-        app.getInputManager().setCursorVisible(false);
+        init();
     }
+    
     
     public void cleanUp(){
         app.getRootNode().detachAllChildren();

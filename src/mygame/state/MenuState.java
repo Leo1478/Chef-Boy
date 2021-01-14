@@ -30,14 +30,20 @@ public class MenuState extends State {
     public void initialize(AppStateManager stateManager, Application app) {
         this.app = (SimpleApplication) app;
         this.stateManager = stateManager;
-
+        
+        System.out.println("initialize");
+        app.getInputManager().setCursorVisible(true);
+    }
+    
+    public void init(){
+        
+        System.out.println(app);
+        
         app.getInputManager().setCursorVisible(true);
         //app.getViewPort().setBackgroundColor(ColorRGBA.Red);
 
         menu = new Menu(this.app, stateManager);
         menuManager = new MenuManager(this.app, menu);
-
-
     }
     
     /**
@@ -49,13 +55,14 @@ public class MenuState extends State {
         app.getGuiNode().detachChildNamed("button");
     }
 
-
     @Override
     public void update(float tpf) {
 
-
+    }
+    @Override
+    public void enterState(){
+        super.enterState();
+        init();
     }
     
-
-
 }

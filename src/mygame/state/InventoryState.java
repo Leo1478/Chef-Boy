@@ -19,8 +19,12 @@ public class InventoryState extends State{
     private Application app;
     private Inventory inventory;
     
-    public InventoryState(Application app, Inventory inventory){
+    public InventoryState(){
 
+    }
+    
+    public void init(Inventory inventory){
+        this.inventory = inventory;
     }
     
     @Override
