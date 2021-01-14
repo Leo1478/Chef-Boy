@@ -138,13 +138,13 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
             
             switch (state) {
                 case IDLE:
-                    animComposer.setCurrentAction("ArmatureAction");
+                    animComposer.setCurrentAction("Idle");
                     break;
                 case MOVING:
                     animComposer.setCurrentAction("Running");
                     break;
                 case ATTACKING:
-                    animComposer.setCurrentAction("ArmatureAction.0");    
+                    animComposer.setCurrentAction("Attack");    
                     break;
                 default:
                     break;
