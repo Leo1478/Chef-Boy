@@ -51,7 +51,8 @@ public class ChefBoy extends Character{
     @Override
     void init() {
         
-        setModel(app.getAssetManager().loadModel("Models/pig/Pig.mesh.xml"));
+        // since chef boy has no model, just use a cube as place holder
+        setModel(app.getAssetManager().loadModel("Models/cube/Cube.mesh.xml"));
 
         getModel().setShadowMode(RenderQueue.ShadowMode.Off);
         
@@ -82,6 +83,8 @@ public class ChefBoy extends Character{
     
     
     public void behaviour(float tpf, ArrayList<Item> items, ArrayList<Enemy> enemies){
+        
+        setModelPosition();
         
         super.behaviour(tpf);
         

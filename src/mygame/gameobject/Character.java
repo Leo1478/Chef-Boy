@@ -76,6 +76,8 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     public void initAnimation(){
         
         animComposer = getModel().getControl(AnimComposer.class);
+        animComposer.setCurrentAction("Idle");
+        
     }
     
     public void updatePosition(){
@@ -152,10 +154,10 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
                     animComposer.setCurrentAction("Idle"); 
                     break;
                 case MOVING:
-                    animComposer.setCurrentAction("Running");
+                    animComposer.setCurrentAction("Moving");
                     break;
                 case ATTACKING:
-                    animComposer.setCurrentAction("Attack");    
+                    animComposer.setCurrentAction("Attacking");    
                     break;
                 default:
                     break;

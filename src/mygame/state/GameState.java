@@ -196,7 +196,7 @@ public class GameState extends State {
         Enemy pig5 = new Pig( app, bulletAppState, new Vector3f(30, 10, 20), "pig5", 20);
         enemies.add(pig5);
         
-        Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(40, 10, 40), "slime0", 20);
+        Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(100, 10, 100), "slime0", 20);
         enemies.add(slime0);
     }
     
