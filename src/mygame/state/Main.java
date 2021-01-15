@@ -19,7 +19,8 @@ public class Main extends SimpleApplication {
     private MenuState menuState;
     private InventoryState inventoryState;
     
-
+    private static final int SCREENWIDTH = 1500;
+    private static final int SCREENHEIGHT = 800;
     
     /**
      * main method 
@@ -32,8 +33,8 @@ public class Main extends SimpleApplication {
         Main app = new Main();
         app.showSettings = false;            
         AppSettings appSettings = new AppSettings(true);   
-        appSettings.put("Width",1500);      //1920
-        appSettings.put("Height",800);    //1080   
+        appSettings.put("Width",SCREENWIDTH);      //1920
+        appSettings.put("Height",SCREENHEIGHT);    //1080   
         appSettings.put("Title", "ChefBoy");  
         app.setSettings(appSettings);   
         app.start();  

@@ -82,7 +82,7 @@ public class ChefBoy extends Character{
     }
     
     
-    public void behaviour(float tpf, ArrayList<Item> items, ArrayList<Enemy> enemies){
+    public void behaviour(float tpf, ArrayList<Item> items, ArrayList<Enemy> enemies, Inventory inventory){
         
         setModelPosition();
         
@@ -90,11 +90,11 @@ public class ChefBoy extends Character{
         
 
         for(Item i : items){
-            pickUpItem(i);
+            pickUpItem(i, inventory);
         }
         
         for(Enemy e : enemies){
-            
+            attack(e);
         }
         
     }
@@ -108,7 +108,7 @@ public class ChefBoy extends Character{
 
     }
     
-    private void pickUpItem(Item item){
+    private void pickUpItem(Item item, Inventory inventory){
         
         double distance;
         
@@ -120,16 +120,13 @@ public class ChefBoy extends Character{
         
         if (item.getPickUpRadius() > distance){
             System.out.println("picked up item");
-            item.deleteModel();
             item.pickedUp();
-            // also need to remove from item list 
-            //call on item's method 
+            addToInventory(item, inventory);
         }
-        
     }
     
-    private void addToInventory(Inventory inventory, Item item){
-        
+    private void addToInventory(Item item, Inventory inventory){
+        inventory.add(item);
     }
     
 

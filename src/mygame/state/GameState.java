@@ -31,6 +31,7 @@ import mygame.gameobject.Slime;
 import mygame.gameobject.Terrain;
 import mygame.gameobject.Tree;
 import mygame.gameobject.Volcano;
+import ui.GameStateManager;
 import ui.HeadsUpDisplay;
 
 /**
@@ -51,6 +52,8 @@ public class GameState extends State {
 
     private Player player; // player object 
     private ChefBoy chefBoy;
+    
+    private GameStateManager gameStateManager;
 
     private BulletAppState bulletAppState; // controls physics 
     private AppStateManager stateManager; // controls states
@@ -78,8 +81,6 @@ public class GameState extends State {
      */
     private void init(){
         
-        System.out.println("init");
-        
         bulletAppState = new BulletAppState(); // for physics 
         stateManager.attach(bulletAppState); // add bulletAppState into state manager
         
@@ -95,7 +96,9 @@ public class GameState extends State {
         initPlayer();
         initItem();
         initEnemy();
+        initInventory();
         
+        gameStateManager = new GameStateManager(app, stateManager, inventory);
     }
     
     private void initHud(){
@@ -200,6 +203,10 @@ public class GameState extends State {
         enemies.add(slime0);
     }
     
+    private void initInventory(){
+        inventory = new Inventory(app);
+    }
+    
     /**
      * game updates update enemy behaviour, enemy position, chef boy etc
      *
@@ -208,25 +215,21 @@ public class GameState extends State {
     @Override
     public void update(float tpf) {
         
-        playerBehaviour(tpf, enemies, items);
-        enemyBehaviour(tpf, player);
-        itemBehaviour(tpf, player);
+        playerBehaviour(tpf);
+        enemyBehaviour(tpf);
+        itemBehaviour(tpf);
     }
     
-    private void playerBehaviour(float tpf, ArrayList<Enemy> enemies, ArrayList items){
+    private void playerBehaviour(float tpf){
         
         player.move();
+
+        chefBoy.behaviour(tpf, items, enemies, inventory);
         
-        for(int i = 0; i < enemies.size(); i++){
-            player.attack(enemies.get(i));
-        }
-        
-        
-        chefBoy.behaviour(tpf, items, enemies);
     }
     
     
-    private void enemyBehaviour(float tpf, Player player){
+    private void enemyBehaviour(float tpf){
         
         for(int i = 0; i < enemies.size(); i++){
             
@@ -242,7 +245,7 @@ public class GameState extends State {
         }
     }
     
-    private void itemBehaviour(float tpf, Player player){
+    private void itemBehaviour(float tpf){
         
         for(int i = 0; i < items.size(); i++){
             

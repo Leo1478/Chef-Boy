@@ -6,11 +6,15 @@
 package ui;
 
 import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
+import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.system.AppSettings;
+import com.jme3.ui.Picture;
 import java.util.ArrayList;
 import mygame.gameobject.Item;
 
@@ -20,7 +24,7 @@ import mygame.gameobject.Item;
  */
 public class Inventory {
     
-    private Application app;
+    private SimpleApplication app;
     
     private ArrayList<Item> itemList; // list to temp store items for sorting 
     private Item[][] item; // grid to store item 
@@ -29,13 +33,37 @@ public class Inventory {
     
     private Item selected;
     
+    private static final int SCREENWIDTH = 1500;
+    private static final int SCREENHEIGHT = 800;
     
-    public Inventory(Application app){
+    
+    public Inventory(SimpleApplication app){
         this.app = app;
         itemList = new ArrayList<>(); 
         item = new Item[5][10]; 
         position = new Vector2f[5][10];
         selected = null;
+        init();
+    }
+    
+    private void init(){
+        
+        System.out.println("init inventory");
+    }
+    
+    public void initPicture(){
+        System.out.println("init inventory pictures");
+        
+        AppSettings settings = new AppSettings(true);
+        
+        Picture inventoryBackground = new Picture("inventoryBackground");
+        inventoryBackground.setImage(app.getAssetManager(), "UI/inventory background.png", true);
+        inventoryBackground.setWidth(SCREENWIDTH);
+        inventoryBackground.setHeight(SCREENHEIGHT);
+        inventoryBackground.setPosition(0, 0);
+
+        app.getGuiNode().attachChild(inventoryBackground);
+        inventoryBackground.setQueueBucket(RenderQueue.Bucket.Gui);
     }
     
     

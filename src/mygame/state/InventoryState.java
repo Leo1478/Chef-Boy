@@ -6,6 +6,7 @@
 package mygame.state;
 
 import com.jme3.app.Application;
+import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import ui.Inventory;
@@ -16,21 +17,25 @@ import ui.Inventory;
  */
 public class InventoryState extends State{
     
-    private Application app;
+    private SimpleApplication app;
     private Inventory inventory;
     
     public InventoryState(){
 
     }
     
+    @Override
+    public void initialize(AppStateManager stateManager, Application app) {
+        this.app = (SimpleApplication) app;
+        this.stateManager = stateManager;
+
+        app.getInputManager().setCursorVisible(true);
+    }
+
     public void init(Inventory inventory){
         this.inventory = inventory;
-    }
-    
-    @Override
-    public void initialize(AppStateManager stateManager, Application app){
-        this.app = (Application) app;
-        
+        inventory.initPicture();
+        //inventoryManager = new InventoryManager(app, inventory);
     }
     
     @Override
@@ -40,7 +45,12 @@ public class InventoryState extends State{
 
     @Override
     public void cleanUp() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        app.getGuiNode().detachChildNamed("inventoryBackground");
+    }
+
+    public void enterState(Inventory inventory){
+        super.enterState();
+        init(inventory);
     }
     
 }

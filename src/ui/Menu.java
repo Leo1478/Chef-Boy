@@ -28,6 +28,9 @@ public class Menu {
     private Button startButton;
     private Button settingButton;
     
+    private static final int SCREENWIDTH = 1500;
+    private static final int SCREENHEIGHT = 800;
+    
     public Menu(SimpleApplication app, AppStateManager stateManager){
         this.app = app;
         this.stateManager = stateManager;
@@ -41,8 +44,8 @@ public class Menu {
         
         Picture menuBackground = new Picture("menuBackground");
         menuBackground.setImage(app.getAssetManager(), "UI/menu background.png", true);
-        menuBackground.setWidth(1920);
-        menuBackground.setHeight(1080);
+        menuBackground.setWidth(SCREENWIDTH);
+        menuBackground.setHeight(SCREENHEIGHT);
         menuBackground.setPosition(0, 0);
 
         app.getGuiNode().attachChild(menuBackground);
@@ -64,7 +67,6 @@ public class Menu {
 
         
         if(startButton.getHitBox().contains(point)){
-
 
             stateManager.getState(MenuState.class).exitState();
             stateManager.getState(MenuState.class).cleanUp();
