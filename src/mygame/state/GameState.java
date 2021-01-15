@@ -223,6 +223,7 @@ public class GameState extends State {
     private void playerBehaviour(float tpf){
         
         player.move();
+        player.attack(enemies);
 
         chefBoy.behaviour(tpf, items, enemies, inventory);
         

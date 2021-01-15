@@ -93,13 +93,12 @@ public class ChefBoy extends Character{
             pickUpItem(i, inventory);
         }
         
-        for(Enemy e : enemies){
-            attack(e);
-        }
+//        for(Enemy e : enemies){
+//            attack(e);
+//        }
         
     }
-    
-    
+
     /**
      * set position of player
      */
