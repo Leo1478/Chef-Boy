@@ -39,9 +39,11 @@ public class ChefBoy extends Character{
         setDamage(10);
         setSpeed(1);
 
+        setPreviousState(CharacterState.ATTACKING);
         setState(CharacterState.ATTACKING);
         
         init();
+        initAnimation();
         
     }
     
@@ -49,7 +51,7 @@ public class ChefBoy extends Character{
     @Override
     void init() {
         
-        setModel(app.getAssetManager().loadModel("Models/slime/Plane.mesh.j3o"));
+        setModel(app.getAssetManager().loadModel("Models/pig/Pig.mesh.xml"));
 
         getModel().setShadowMode(RenderQueue.ShadowMode.Off);
         

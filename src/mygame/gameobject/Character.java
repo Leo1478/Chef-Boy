@@ -73,6 +73,11 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         // init rigidbody here for all characters 
     }
     
+    public void initAnimation(){
+        
+        animComposer = getModel().getControl(AnimComposer.class);
+    }
+    
     public void updatePosition(){
         setPosition(characterControl.getPhysicsLocation());
     }
@@ -143,12 +148,10 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
             
             switch (state) {
                 case IDLE:
-                    
                     System.out.println("animation");
-                    animComposer.setCurrentAction("Idle");
+                    animComposer.setCurrentAction("Idle"); 
                     break;
                 case MOVING:
-                    System.out.println("animation");
                     animComposer.setCurrentAction("Running");
                     break;
                 case ATTACKING:
@@ -243,6 +246,12 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
      */
     public void setState(CharacterState state) {
         this.state = state;
+    }
+        /**
+     * @param state the state to set
+     */
+    public void setPreviousState(CharacterState setPreviousState) {
+        this.state = setPreviousState;
     }
     
     /**

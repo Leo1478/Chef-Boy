@@ -33,6 +33,8 @@ public class Slime extends Enemy{
         setCoolDown(10);
         
         init();
+        initCollision();
+        initAnimation();
         setModelPosition();
 
     }

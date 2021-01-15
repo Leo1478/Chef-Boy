@@ -30,6 +30,7 @@ public class Pig extends Enemy {
         
         init();
         initCollision();
+        initAnimation();
         setModelPosition();
 
     }
