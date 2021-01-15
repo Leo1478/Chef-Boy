@@ -58,7 +58,7 @@ public class ChefBoy extends Character{
         app.getRootNode().attachChild(getModel());   
         
         initCollision();
-        setPosition();
+        setPhysicsPosition();
     }
     
     /**
@@ -100,9 +100,9 @@ public class ChefBoy extends Character{
     /**
      * set position of player
      */
-    private void setPosition() {
-        getCharacterControl().setPhysicsLocation(new Vector3f(-40, 20, 0));
-        setPosition(new Vector3f(-40, 20, 0));
+    private void setPhysicsPosition() {
+        getCharacterControl().setPhysicsLocation(getPosition());
+
     }
     
     private void pickUpItem(Item item){

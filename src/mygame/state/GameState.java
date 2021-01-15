@@ -162,7 +162,7 @@ public class GameState extends State {
     }
     
     private void initChefBoy(){
-        chefBoy = new ChefBoy( app, bulletAppState, new Vector3f(0, 0, 30), "chefBoy", 100);
+        chefBoy = new ChefBoy( app, bulletAppState, new Vector3f(0, 100, 60), "chefBoy", 100);
     }
 
     /**
@@ -177,7 +177,7 @@ public class GameState extends State {
      * init all item objects
      */
     private void initItem() {
-        Item ham0 = new Ham( app, new Vector3f(5, 3, 5), "ham0");
+        Item ham0 = new Ham( app, new Vector3f(5, 0, 5), "ham0");
         items.add(ham0);
     }
 
@@ -196,7 +196,7 @@ public class GameState extends State {
         Enemy pig5 = new Pig( app, bulletAppState, new Vector3f(30, 10, 20), "pig5", 20);
         enemies.add(pig5);
         
-        Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(40, 5, 40), "slime0", 20);
+        Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(40, 10, 40), "slime0", 20);
         enemies.add(slime0);
     }
     
@@ -234,9 +234,8 @@ public class GameState extends State {
             
             current.behaviour(tpf, chefBoy);
             
+            
             if(current.getAlive() == false){
-                
-                System.out.println("this");
                 
                 enemies.remove(current);
             }

@@ -43,9 +43,7 @@ public abstract class Enemy extends Character{
         determineDistance(chefBoy);
         
         determinState();
-        
-        setAnimation();
-        
+
         move(new Vector3f(0, 0, 0)); // calling move with 0 change will make sure gravity works as intended 
         
         switch (getState()) {
@@ -63,14 +61,7 @@ public abstract class Enemy extends Character{
         }
 
         setModelPosition();
-    }
-    
-
-    
-    private void setAnimation(){
-        // if animation is changing
-            // set animation 
-            
+        
     }
     
     /**

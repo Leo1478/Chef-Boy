@@ -28,7 +28,7 @@ public class Slime extends Enemy{
         setDamage(5);
         setSpeed(0.5);
         setRange(10);
-        setDetectionRange(5);
+        setDetectionRange(50);
         setAttackSpeed(10);
         setCoolDown(10);
         
@@ -44,10 +44,11 @@ public class Slime extends Enemy{
         
         // this is still pigs stuff 
         
-        setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
+        setMat(app.getAssetManager().loadMaterial("Materials/tree.j3m"));
         
         // change to xml file with animation later 
-        setModel(app.getAssetManager().loadModel("Models/slime/Plane.mesh.j3o"));
+        // using pigs animation as a place holder change later
+        setModel(app.getAssetManager().loadModel("Models/pig/Pig.mesh.xml"));
         
         getModel().setMaterial(getMat());
         
@@ -55,21 +56,6 @@ public class Slime extends Enemy{
         
         app.getRootNode().attachChild(getModel());    
         
-        initCollision();
 
-    }
-    @Override
-    public void initCollision(){
-        
-        Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
-        BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
-        setCharacterControl(new CharacterControl(collisionShape, 0.05f));
-        getCharacterControl().setFallSpeed(10);
-        
-        bulletAppState.getPhysicsSpace().add(getCharacterControl());
-        getCharacterControl().setGravity(new Vector3f(0, -60f, 0));
-        
-        getCharacterControl().setPhysicsLocation(getPosition());
-        
     }
 }

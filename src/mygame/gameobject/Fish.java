@@ -40,6 +40,7 @@ public class Fish extends Enemy {
         
         init();
         initCollision();
+        initAnimation();
         setModelPosition();
 
     }
@@ -50,15 +51,13 @@ public class Fish extends Enemy {
         setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
 
         // change to xml file with animation later 
-        setModel(app.getAssetManager().loadModel("Models/pig/Plane.mesh.j3o"));
+        setModel(app.getAssetManager().loadModel("Models/pig/Pig.mesh.xml"));
 
         getModel().setMaterial(getMat());
 
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
 
         app.getRootNode().attachChild(getModel());
-
-        initCollision();
 
     }
     
