@@ -151,13 +151,13 @@ public class Player implements ActionListener{
         setCamPosition();
     }
     
-    public void attack(ArrayList<Enemy> enemies){
+    public void attack(Enemy enemy){
         
-        for(Enemy e : enemies){
-            if(mouseLeft){
-                chefBoy.attack(e);
-            }
+
+        if(mouseLeft){
+            chefBoy.attack(enemy);
         }
+
     }
     
     private void setCamPosition(){

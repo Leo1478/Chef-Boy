@@ -93,10 +93,6 @@ public class ChefBoy extends Character{
             pickUpItem(i, inventory);
         }
         
-//        for(Enemy e : enemies){
-//            attack(e);
-//        }
-        
     }
 
     /**
@@ -120,14 +116,10 @@ public class ChefBoy extends Character{
         if (item.getPickUpRadius() > distance){
             System.out.println("picked up item");
             item.pickedUp();
-            addToInventory(item, inventory);
         }
     }
     
-    private void addToInventory(Item item, Inventory inventory){
-        inventory.add(item);
-    }
-    
+
 
     
     public void jump(){

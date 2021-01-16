@@ -17,6 +17,7 @@ import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.util.ArrayList;
 import mygame.gameobject.Item;
+import mygame.gameobject.ItemPic;
 
 /**
  *
@@ -43,16 +44,19 @@ public class Inventory {
         item = new Item[5][10]; 
         position = new Vector2f[5][10];
         selected = null;
-        init();
+
     }
     
-    private void init(){
+    public void init(){
         
-        System.out.println("init inventory");
+       initBackground();
+       initItemPicture();
     }
     
-    public void initPicture(){
-        System.out.println("init inventory pictures");
+    /**
+     * init background of inventory 
+     */
+    private void initBackground(){
         
         AppSettings settings = new AppSettings(true);
         
@@ -61,14 +65,45 @@ public class Inventory {
         inventoryBackground.setWidth(SCREENWIDTH);
         inventoryBackground.setHeight(SCREENHEIGHT);
         inventoryBackground.setPosition(0, 0);
+        inventoryBackground.setLocalTranslation(0, 0, -1);
 
         app.getGuiNode().attachChild(inventoryBackground);
         inventoryBackground.setQueueBucket(RenderQueue.Bucket.Gui);
+        
+    }
+    
+    /**
+     * init each item picture in inventory
+     */
+    private void initItemPicture(){
+        
+        for(Item i : itemList){
+            ItemPic current = i.getItemPic(); // get picture 
+            app.getGuiNode().attachChild(current.getPicture()); // attatch to GuiNide
+            current.getPicture().setQueueBucket(RenderQueue.Bucket.Gui);
+        }
+
+    }
+    
+    private void setPicturePosition(){
+        
+        int x = 200; 
+        int y = 500;
+        
+        for(Item i : itemList){
+
+            ItemPic current = i.getItemPic();
+            current.getPicture().setPosition(x, y); // set position of picture
+            
+            x += 200;
+        }
+        
     }
     
     
     public void update(){
         display();
+        setPicturePosition();
     }
     
     public void add(Item item){

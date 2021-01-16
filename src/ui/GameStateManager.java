@@ -44,7 +44,8 @@ public class GameStateManager implements ActionListener{
     public void onAction(String binding, boolean isPressed, float tpf) {
         if (binding.equals("Inventory") && isPressed) {
             System.out.println("clicked inv");
-            stateManager.getState(InventoryState.class).enterState(inventory);
+            stateManager.getState(InventoryState.class).enterState();
+            stateManager.getState(InventoryState.class).init(inventory);
         }
     }
     

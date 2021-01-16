@@ -79,7 +79,8 @@ public class GameState extends State {
      * init all models, lighting, camera, physics, objects, and add them to game
      * world
      */
-    private void init(){
+    @Override
+    public void init(){
         
         bulletAppState = new BulletAppState(); // for physics 
         stateManager.attach(bulletAppState); // add bulletAppState into state manager
@@ -184,6 +185,9 @@ public class GameState extends State {
         items.add(ham0);
     }
 
+    /**
+     * init all enemy objects
+     */
     private void initEnemy() {
         
         Enemy pig0 = new Pig( app, bulletAppState, new Vector3f(100, 10, 50), "pig0", 20);
@@ -203,13 +207,16 @@ public class GameState extends State {
         enemies.add(slime0);
     }
     
+    /**
+     * init inventory 
+     */
     private void initInventory(){
         inventory = new Inventory(app);
     }
     
     /**
      * game updates update enemy behaviour, enemy position, chef boy etc
-     *
+     * main update loop for gameState 
      * @param tpf delta time
      */
     @Override
@@ -220,16 +227,26 @@ public class GameState extends State {
         itemBehaviour(tpf);
     }
     
+    /**
+     * behaviour for player & chefboy 
+     * @param tpf 
+     */
     private void playerBehaviour(float tpf){
         
-        player.move();
-        player.attack(enemies);
-
-        chefBoy.behaviour(tpf, items, enemies, inventory);
+        player.move(); // check move inputs 
+        
+        for(Enemy e : enemies){ 
+            player.attack(e); // attack inputs 
+        }
+        
+        chefBoy.behaviour(tpf, items, enemies, inventory); // rest of chefboy's behaviour 
         
     }
     
-    
+    /**
+     * behaviour for all enemy in enemies list 
+     * @param tpf 
+     */
     private void enemyBehaviour(float tpf){
         
         for(int i = 0; i < enemies.size(); i++){
@@ -238,14 +255,25 @@ public class GameState extends State {
             
             current.behaviour(tpf, chefBoy);
             
-            
-            if(current.getAlive() == false){
+            if(current.getAlive() == false){ // if current enemy dies 
                 
-                enemies.remove(current);
+                enemies.remove(current); // remove from list 
+                
+                if(current.getClass().equals(Pig.class)){
+                    
+                    Item item = new Ham(app, current.getPosition(), "ham"); // spawn cooresponding item 
+                    items.add(item);
+                }
+                
+                
             }
         }
     }
     
+    /**
+     * behaviour of all items in list 
+     * @param tpf 
+     */
     private void itemBehaviour(float tpf){
         
         for(int i = 0; i < items.size(); i++){
@@ -254,24 +282,22 @@ public class GameState extends State {
             
             current.behaviour(chefBoy);
             
-            if(current.getPickedUp()){
+            if(current.getPickedUp()){ // if current is picked up 
                 
-                items.remove(current);
+                items.remove(current); // remove from list 
+                inventory.add(current); // add to inventory
             }
         }
+        
     }
+    
+    
     
     /**
      * @return the inventory
      */
     public Inventory getInventory() {
         return inventory;
-    }
-    
-    @Override
-    public void enterState(){
-        super.enterState();
-        init();
     }
     
     

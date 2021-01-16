@@ -35,6 +35,8 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     private float attackSpeed; // interval between each attack
     private float coolDown; // time remaining on interval
     
+    private Item itemDrop; // item the enemy will drop after death 
+    
     private AnimComposer animComposer; // animation 
     
     private CharacterControl characterControl;
@@ -138,7 +140,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
             alive = false;
             deleteModel();
         }
-        
     }
     
     /**
@@ -363,6 +364,20 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
      */
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    /**
+     * @return the itemDrop
+     */
+    public Item getItemDrop() {
+        return itemDrop;
+    }
+
+    /**
+     * @param itemDrop the itemDrop to set
+     */
+    public void setItemDrop(Item itemDrop) {
+        this.itemDrop = itemDrop;
     }
 
     

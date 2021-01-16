@@ -47,6 +47,9 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
+
+        getInputManager().setCursorVisible(true);
+        
         setDisplayStatView(true); 
         setDisplayFps(true);
         
@@ -62,6 +65,8 @@ public class Main extends SimpleApplication {
         menuState.setEnabled(false); // start all of the states on disabled 
         gameState.setEnabled(false);    
         inventoryState.setEnabled(false);
+        
+        
         
         menuState.initialize(stateManager, this);  // init and start the menu
         menuState.enterState();

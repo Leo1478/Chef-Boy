@@ -29,18 +29,19 @@ public class InventoryState extends State{
         this.app = (SimpleApplication) app;
         this.stateManager = stateManager;
 
-        app.getInputManager().setCursorVisible(true);
     }
 
     public void init(Inventory inventory){
+        app.getInputManager().setCursorVisible(true);
         this.inventory = inventory;
-        inventory.initPicture();
+        this.inventory.init();
+        
         //inventoryManager = new InventoryManager(app, inventory);
     }
     
     @Override
     public void update(float tpf){
-        
+        inventory.update();
     }
 
     @Override
@@ -48,9 +49,10 @@ public class InventoryState extends State{
         app.getGuiNode().detachChildNamed("inventoryBackground");
     }
 
-    public void enterState(Inventory inventory){
-        super.enterState();
-        init(inventory);
+    @Override
+    public void init() {
+        
     }
+
     
 }

@@ -56,10 +56,4 @@ public class MenuState extends State {
     public void update(float tpf) {
 
     }
-    @Override
-    public void enterState(){
-        super.enterState();
-        init();
-    }
-    
 }
