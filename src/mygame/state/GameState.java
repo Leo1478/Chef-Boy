@@ -25,6 +25,7 @@ import mygame.gameobject.GameObject;
 import mygame.gameobject.Ham;
 import ui.Inventory;
 import mygame.gameobject.Item;
+import mygame.gameobject.Pan;
 import mygame.gameobject.Pig;
 import mygame.gameobject.Player;
 import mygame.gameobject.Slime;
@@ -176,6 +177,9 @@ public class GameState extends State {
     private void initPlayer() {
 
         player = new Player( app, chefBoy);
+        
+        Pan pan = new Pan(app, new Vector3f(0, 0, 0), "pab");
+        pan.getModel().setLocalScale(10);
     }
     
     /**
@@ -243,7 +247,7 @@ public class GameState extends State {
         }
         
         for(Item i : items){
-            chefBoy.pickUpItem(i);
+            chefBoy.pickUpItem(i); // pick up item 
         }
         
         chefBoy.behaviour(tpf); // rest of chefboy's behaviour 

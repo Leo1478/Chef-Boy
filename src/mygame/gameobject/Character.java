@@ -250,11 +250,12 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     public void setState(CharacterState state) {
         this.state = state;
     }
-        /**
-     * @param state the state to set
+    
+    /**
+     * @param previousState
      */
-    public void setPreviousState(CharacterState setPreviousState) {
-        this.state = setPreviousState;
+    public void setPreviousState(CharacterState previousState) {
+        this.state = previousState;
     }
     
     /**

@@ -10,6 +10,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import java.util.ArrayList;
@@ -22,9 +23,13 @@ import ui.Inventory;
  */
 public class ChefBoy extends Character{
     
+    
+    
     private Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
     
     private boolean blocking; // if chefboy is blocking hits 
+    
+    Pan pan;
     
     
     public ChefBoy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
@@ -45,11 +50,13 @@ public class ChefBoy extends Character{
         init();
         initAnimation();
         
+       
+        
     }
     
 
     @Override
-    void init() {
+    public void init() {
         
         // since chef boy has no model, just use a cube as place holder
         setModel(app.getAssetManager().loadModel("Models/cube/Cube.mesh.xml"));
@@ -60,6 +67,11 @@ public class ChefBoy extends Character{
         
         initCollision();
         setPhysicsPosition();
+        initPan();
+    }
+    
+    private void initPan(){
+        pan = new Pan(app, new Vector3f(getPosition()), "pan");
     }
     
     /**
@@ -82,7 +94,7 @@ public class ChefBoy extends Character{
     }
     
     /**
-     * all chefboy behaviour 
+     * rest of chefboy's behaviour 
      * @param tpf
      */
     public void behaviour(float tpf){
@@ -90,6 +102,18 @@ public class ChefBoy extends Character{
         super.behaviour(tpf);
         
         setModelPosition(); // set model to current position 
+        pan.setPosition(this.getPosition());
+        
+        Quaternion rotation = new Quaternion();
+
+        rotation = app.getCamera().getRotation(); 
+        
+        pan.setRotation(rotation);
+        pan.setModelRotation();
+        pan.setModelPosition();
+        
+        System.out.println(pan.getRotation().toString());
+        System.out.println(pan.getPosition().toString());
     }
 
     /**
