@@ -8,6 +8,7 @@ package mygame.gameobject;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
 import mygame.state.Main;
@@ -20,6 +21,7 @@ import mygame.state.Main;
 public abstract class GameObject {
 
     private Vector3f position; // position of object 
+    private Quaternion rotation; // rotation of object
     private String name; // name of objct 
     private Spatial model;
     private Material mat; // color of object 
@@ -31,6 +33,9 @@ public abstract class GameObject {
         this.position = position;
         this.name = name;
         this.app = app;
+        
+        this.rotation = new Quaternion();
+        rotation.fromAngles(0, 0, 0);
     }
 
     /**
@@ -43,6 +48,10 @@ public abstract class GameObject {
      */
     public void setModelPosition() {
         getModel().setLocalTranslation(position);
+    }
+    
+    public void setModelRotation() {
+        getModel().setLocalRotation(rotation);
     }
 
     public void setPosition(Vector3f position) {
@@ -88,6 +97,20 @@ public abstract class GameObject {
      */
     public void setMat(Material mat) {
         this.mat = mat;
+    }
+
+    /**
+     * @return the rotation
+     */
+    public Quaternion getRotation() {
+        return rotation;
+    }
+
+    /**
+     * @param rotation the rotation to set
+     */
+    public void setRotation(Quaternion rotation) {
+        this.rotation = rotation;
     }
 
 }

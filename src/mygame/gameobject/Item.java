@@ -72,5 +72,19 @@ public abstract class Item extends GameObject{
     public void setPickUpRadius(float pickUpRadius) {
         this.pickUpRadius = pickUpRadius;
     }
+
+    /**
+     * @return the itemPic
+     */
+    public ItemPic getItemPic() {
+        return itemPic;
+    }
+
+    /**
+     * @param itemPic the itemPic to set
+     */
+    public void setItemPic(ItemPic itemPic) {
+        this.itemPic = itemPic;
+    }
    
 }

@@ -19,7 +19,8 @@ public class Main extends SimpleApplication {
     private MenuState menuState;
     private InventoryState inventoryState;
     
-
+    public static final int SCREENWIDTH = 1500;
+    public static final int SCREENHEIGHT = 800;
     
     /**
      * main method 
@@ -32,8 +33,8 @@ public class Main extends SimpleApplication {
         Main app = new Main();
         app.showSettings = false;            
         AppSettings appSettings = new AppSettings(true);   
-        appSettings.put("Width",1500);      //1920
-        appSettings.put("Height",800);    //1080   
+        appSettings.put("Width",SCREENWIDTH);      //1920
+        appSettings.put("Height",SCREENHEIGHT);    //1080   
         appSettings.put("Title", "ChefBoy");  
         app.setSettings(appSettings);   
         app.start();  
@@ -45,6 +46,9 @@ public class Main extends SimpleApplication {
      */
     @Override
     public void simpleInitApp() {
+        
+
+        getInputManager().setCursorVisible(true);
         
         setDisplayStatView(true); 
         setDisplayFps(true);
@@ -61,6 +65,8 @@ public class Main extends SimpleApplication {
         menuState.setEnabled(false); // start all of the states on disabled 
         gameState.setEnabled(false);    
         inventoryState.setEnabled(false);
+        
+        
         
         menuState.initialize(stateManager, this);  // init and start the menu
         menuState.enterState();

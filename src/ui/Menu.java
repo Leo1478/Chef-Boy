@@ -14,6 +14,8 @@ import com.jme3.ui.Picture;
 import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.state.GameState;
+import static mygame.state.Main.SCREENHEIGHT;
+import static mygame.state.Main.SCREENWIDTH;
 import mygame.state.MenuState;
 
 /**
@@ -41,8 +43,8 @@ public class Menu {
         
         Picture menuBackground = new Picture("menuBackground");
         menuBackground.setImage(app.getAssetManager(), "UI/menu background.png", true);
-        menuBackground.setWidth(1920);
-        menuBackground.setHeight(1080);
+        menuBackground.setWidth(SCREENWIDTH);
+        menuBackground.setHeight(SCREENHEIGHT);
         menuBackground.setPosition(0, 0);
 
         app.getGuiNode().attachChild(menuBackground);
@@ -64,7 +66,6 @@ public class Menu {
 
         
         if(startButton.getHitBox().contains(point)){
-
 
             stateManager.getState(MenuState.class).exitState();
             stateManager.getState(MenuState.class).cleanUp();

@@ -22,8 +22,6 @@ public abstract class Enemy extends Character{
     
     private double distanceToChef;
     
-    // private boolean change // if animation should change (last state is different from current)
-    
     public Enemy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         super(app, bulletAppState, position, name, health);
         

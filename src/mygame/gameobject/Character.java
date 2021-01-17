@@ -35,6 +35,8 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     private float attackSpeed; // interval between each attack
     private float coolDown; // time remaining on interval
     
+    private Item itemDrop; // item the enemy will drop after death 
+    
     private AnimComposer animComposer; // animation 
     
     private CharacterControl characterControl;
@@ -76,6 +78,8 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     public void initAnimation(){
         
         animComposer = getModel().getControl(AnimComposer.class);
+        animComposer.setCurrentAction("Idle");
+        
     }
     
     public void updatePosition(){
@@ -121,9 +125,9 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
         setCoolDown(getCoolDown() - tpf); // reduce attack cooldown timer 
         
-        setAnimation();
+        setAnimation(); // set current animation 
         
-        checkDie();
+        checkDie(); // check if character should be dead 
         
     }
     
@@ -136,7 +140,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
             alive = false;
             deleteModel();
         }
-        
     }
     
     /**
@@ -152,10 +155,10 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
                     animComposer.setCurrentAction("Idle"); 
                     break;
                 case MOVING:
-                    animComposer.setCurrentAction("Running");
+                    animComposer.setCurrentAction("Moving");
                     break;
                 case ATTACKING:
-                    animComposer.setCurrentAction("Attack");    
+                    animComposer.setCurrentAction("Attacking");    
                     break;
                 default:
                     break;
@@ -247,11 +250,12 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     public void setState(CharacterState state) {
         this.state = state;
     }
-        /**
-     * @param state the state to set
+    
+    /**
+     * @param previousState
      */
-    public void setPreviousState(CharacterState setPreviousState) {
-        this.state = setPreviousState;
+    public void setPreviousState(CharacterState previousState) {
+        this.state = previousState;
     }
     
     /**
@@ -361,6 +365,20 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
      */
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    /**
+     * @return the itemDrop
+     */
+    public Item getItemDrop() {
+        return itemDrop;
+    }
+
+    /**
+     * @param itemDrop the itemDrop to set
+     */
+    public void setItemDrop(Item itemDrop) {
+        this.itemDrop = itemDrop;
     }
 
     
