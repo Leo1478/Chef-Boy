@@ -87,7 +87,6 @@ public class GameState extends State {
         
         app.getInputManager().setCursorVisible(false);
         
-        initHud();
         initLight();
         initCamera();
         initTerrain();
@@ -99,11 +98,13 @@ public class GameState extends State {
         initEnemy();
         initInventory();
         
+        initHud();
+        
         gameStateManager = new GameStateManager(app, stateManager, inventory);
     }
     
     private void initHud(){
-        hud = new HeadsUpDisplay(app);
+        hud = new HeadsUpDisplay(app, chefBoy);
     }
 
     /**
@@ -225,6 +226,8 @@ public class GameState extends State {
         playerBehaviour(tpf);
         enemyBehaviour(tpf);
         itemBehaviour(tpf);
+        
+        updateHUD();
     }
     
     /**
@@ -289,6 +292,10 @@ public class GameState extends State {
             }
         }
         
+    }
+    
+    private void updateHUD(){
+        hud.update();
     }
     
     

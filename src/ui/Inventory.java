@@ -87,7 +87,7 @@ public class Inventory {
     
     private void setPicturePosition(){
         
-        int x = 200; 
+        int x = 200;
         int y = 500;
         
         for(Item i : itemList){

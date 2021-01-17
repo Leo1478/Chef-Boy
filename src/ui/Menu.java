@@ -14,6 +14,8 @@ import com.jme3.ui.Picture;
 import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.state.GameState;
+import static mygame.state.Main.SCREENHEIGHT;
+import static mygame.state.Main.SCREENWIDTH;
 import mygame.state.MenuState;
 
 /**
@@ -27,9 +29,6 @@ public class Menu {
     
     private Button startButton;
     private Button settingButton;
-    
-    private static final int SCREENWIDTH = 1500;
-    private static final int SCREENHEIGHT = 800;
     
     public Menu(SimpleApplication app, AppStateManager stateManager){
         this.app = app;

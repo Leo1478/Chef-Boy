@@ -19,8 +19,8 @@ public class Main extends SimpleApplication {
     private MenuState menuState;
     private InventoryState inventoryState;
     
-    private static final int SCREENWIDTH = 1500;
-    private static final int SCREENHEIGHT = 800;
+    public static final int SCREENWIDTH = 1500;
+    public static final int SCREENHEIGHT = 800;
     
     /**
      * main method 

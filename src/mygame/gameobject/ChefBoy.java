@@ -35,7 +35,7 @@ public class ChefBoy extends Character{
         setCoolDown(2);
         setRange(10);
         setAlive(true);
-        setHealth(20);
+        setHealth(100);
         setDamage(10);
         setSpeed(1);
 
