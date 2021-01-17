@@ -66,7 +66,7 @@ public class Menu {
 
         
         if(startButton.getHitBox().contains(point)){
-
+            
             stateManager.getState(MenuState.class).exitState();
             stateManager.getState(MenuState.class).cleanUp();
             stateManager.getState(GameState.class).enterState();

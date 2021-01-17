@@ -242,9 +242,9 @@ public class GameState extends State {
         
         player.move(); // check move inputs 
         
-        for(Enemy e : enemies){ 
-            player.attack(e); // attack inputs 
-        }
+
+        player.attack(enemies); // attack inputs 
+
         
         for(Item i : items){
             chefBoy.pickUpItem(i); // pick up item 
@@ -266,7 +266,11 @@ public class GameState extends State {
             
             current.behaviour(tpf, chefBoy);
             
-            if(current.getAlive() == false){ // if current enemy dies 
+            if(current.canAttack()){ // if ready to attack
+                current.attack(chefBoy);
+            }
+            
+            if(! current.getAlive()){ // if current enemy dies 
                 
                 enemies.remove(current); // remove from list 
                 
@@ -275,8 +279,7 @@ public class GameState extends State {
                     Item item = new Ham(app, current.getPosition(), "ham"); // spawn cooresponding item 
                     items.add(item);
                 }
-                
-                
+
             }
         }
     }

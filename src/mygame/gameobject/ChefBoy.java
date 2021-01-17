@@ -29,14 +29,14 @@ public class ChefBoy extends Character{
     
     private boolean blocking; // if chefboy is blocking hits 
     
-    Pan pan;
+    private Pan pan;
     
     
     public ChefBoy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         
         super(app, bulletAppState, position, name, health);
         setDamage(10);
-        setAttackSpeed(2);
+        setAttackSpeed(1);
         setCoolDown(2);
         setRange(10);
         setAlive(true);
@@ -102,18 +102,26 @@ public class ChefBoy extends Character{
         super.behaviour(tpf);
         
         setModelPosition(); // set model to current position 
-        pan.setPosition(this.getPosition());
+        getPan().setPosition(this.getPosition());
         
         Quaternion rotation = new Quaternion();
 
         rotation = app.getCamera().getRotation(); 
+       
+        getPan().setRotation(rotation);
+        getPan().setModelRotation();
+        getPan().setModelPosition();
         
-        pan.setRotation(rotation);
-        pan.setModelRotation();
-        pan.setModelPosition();
         
-        System.out.println(pan.getRotation().toString());
-        System.out.println(pan.getPosition().toString());
+        if(getState() == CharacterState.ATTACKING && getCoolDown() <= 0){
+            pan.setAnimationAttack();
+        }
+        
+        
+        else if(getCoolDown() <= 0){
+            pan.setAnimationIdle();
+        }
+        
     }
 
     /**
@@ -156,6 +164,13 @@ public class ChefBoy extends Character{
     
     public void block(){
         
+    }
+
+    /**
+     * @return the pan
+     */
+    public Pan getPan() {
+        return pan;
     }
    
 }

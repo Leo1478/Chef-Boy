@@ -168,35 +168,41 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
     
     /**
+     * check if character can attack 
+     * if in attacking state and no cooldown 
+     * @return if character can attack
+     */
+    public boolean canAttack(){
+        
+        if(state == CharacterState.ATTACKING){
+           if(coolDown <= 0){
+               coolDown = attackSpeed;
+               return true;
+           } 
+        }
+        return false;
+
+    }
+    
+    /**
      * attack 
      * @param character character to attack
      */
     @Override
     public void attack(Character character) {
         
-        if(state == CharacterState.ATTACKING){ // if character is in attacking state 
-            
-            //System.out.println(getCoolDown());
-            
-            if(getCoolDown() <= 0){ // if no cooldown, ready to attack    
-                
-                double x = this.getPosition().x;
-                double x1 = character.getPosition().x;
-                double z = this.getPosition().z;
-                double z1 = character.getPosition().z;
-        
-                double distance = Math.abs(Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2))); // find distance to character 
-                
-                if(distance < getRange()){ // if character is within range 
-                    character.removeHealth(damage);
-                    //System.out.println("attacking   " + character.getClass().toString());
-                    coolDown = getAttackSpeed(); // reset cool down 
-                }
-                else{
-                    //System.out.println("tried to attack" + character.getClass().toString());
-                }
-            }    
+        double x = this.getPosition().x; // get position of both character 
+        double x1 = character.getPosition().x;
+        double z = this.getPosition().z;
+        double z1 = character.getPosition().z;
+
+        double distance = Math.abs(Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2))); // find distance to character 
+
+        if(distance < getRange()){ // if character is within range 
+            character.removeHealth(damage);
         }
+        
+        // also check rotation 
     }
     
     @Override
@@ -349,7 +355,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         return coolDown;
     }
 
-    private float getAttackSpeed() {
+    public float getAttackSpeed() {
         return attackSpeed;
     }
 

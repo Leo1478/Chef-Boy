@@ -52,7 +52,6 @@ public abstract class Enemy extends Character{
                 charge(tpf, chefBoy);
                 break;
             case ATTACKING:
-                attack(chefBoy);
                 break;
             default:
                 break;
