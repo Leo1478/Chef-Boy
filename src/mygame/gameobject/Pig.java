@@ -6,7 +6,10 @@
 package mygame.gameobject;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.BoxCollisionShape;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 
@@ -41,13 +44,17 @@ public class Pig extends Enemy {
         setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
 
         // change to xml file with animation later 
-        setModel(app.getAssetManager().loadModel("Models/pig/Pig.mesh.xml"));
+        setModel(app.getAssetManager().loadModel("Models/pig/Plane.mesh.xml"));
+        //setModel(app.getAssetManager().loadModel("Models/cube/Cube.mesh.xml"));
+        
+
 
         getModel().setMaterial(getMat());
 
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
-
+        
         app.getRootNode().attachChild(getModel());
 
     }
+    
 }

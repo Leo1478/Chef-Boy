@@ -18,10 +18,10 @@ import ui.MenuManager;
  */
 public class MenuState extends State {
     
-    AppStateManager stateManager;
+    private AppStateManager stateManager;
     
-    //private SimpleApplication app;
-    Button startButton;
+    private SimpleApplication app;
+    private Button startButton;
     
     private MenuManager menuManager;
     private Menu menu;
@@ -35,8 +35,6 @@ public class MenuState extends State {
     }
     
     public void init(){
-        
-        System.out.println(app);
         
         app.getInputManager().setCursorVisible(true);
         //app.getViewPort().setBackgroundColor(ColorRGBA.Red);
@@ -58,10 +56,4 @@ public class MenuState extends State {
     public void update(float tpf) {
 
     }
-    @Override
-    public void enterState(){
-        super.enterState();
-        init();
-    }
-    
 }

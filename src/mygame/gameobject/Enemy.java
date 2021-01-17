@@ -7,6 +7,7 @@ package mygame.gameobject;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 
@@ -21,8 +22,6 @@ public abstract class Enemy extends Character{
     private double detectionRange; // range to detect player 
     
     private double distanceToChef;
-    
-    // private boolean change // if animation should change (last state is different from current)
     
     public Enemy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         super(app, bulletAppState, position, name, health);
@@ -131,9 +130,8 @@ public abstract class Enemy extends Character{
         roatation.fromAngles(0, radian*-1 , 0); // y rotation,  reverse number
 
         getModel().setLocalRotation(roatation); // change model rotation 
-
         
-        //System.out.println("charg");
+        //System.out.println("charge");
         
         move(change);
             
