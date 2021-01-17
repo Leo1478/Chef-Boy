@@ -29,9 +29,9 @@ public abstract class Map extends GameObject implements Collidable{
     
     @Override
     public void initCollision() {
-//        Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
-//        BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
-//        setCollisionMesh(collisionShape);
+        //Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
+        //BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
+        //setCollisionMesh(collisionShape);
         
         setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));
         setRigidBody(new RigidBodyControl(getCollisionMesh(), 0));

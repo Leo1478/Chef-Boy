@@ -10,7 +10,6 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import java.util.ArrayList;
@@ -23,13 +22,9 @@ import ui.Inventory;
  */
 public class ChefBoy extends Character{
     
-    
-    
     private Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
     
     private boolean blocking; // if chefboy is blocking hits 
-    
-    Pan pan;
     
     
     public ChefBoy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
@@ -40,7 +35,7 @@ public class ChefBoy extends Character{
         setCoolDown(2);
         setRange(10);
         setAlive(true);
-        setHealth(100);
+        setHealth(20);
         setDamage(10);
         setSpeed(1);
 
@@ -50,16 +45,13 @@ public class ChefBoy extends Character{
         init();
         initAnimation();
         
-       
-        
     }
     
 
     @Override
-    public void init() {
+    void init() {
         
-        // since chef boy has no model, just use a cube as place holder
-        setModel(app.getAssetManager().loadModel("Models/cube/Cube.mesh.xml"));
+        setModel(app.getAssetManager().loadModel("Models/pig/Pig.mesh.xml"));
 
         getModel().setShadowMode(RenderQueue.ShadowMode.Off);
         
@@ -67,11 +59,6 @@ public class ChefBoy extends Character{
         
         initCollision();
         setPhysicsPosition();
-        initPan();
-    }
-    
-    private void initPan(){
-        pan = new Pan(app, new Vector3f(getPosition()), "pan");
     }
     
     /**
@@ -93,29 +80,23 @@ public class ChefBoy extends Character{
        
     }
     
-    /**
-     * rest of chefboy's behaviour 
-     * @param tpf
-     */
-    public void behaviour(float tpf){
-
+    
+    public void behaviour(float tpf, ArrayList<Item> items, ArrayList<Enemy> enemies){
+        
         super.behaviour(tpf);
         
-        setModelPosition(); // set model to current position 
-        pan.setPosition(this.getPosition());
-        
-        Quaternion rotation = new Quaternion();
 
-        rotation = app.getCamera().getRotation(); 
+        for(Item i : items){
+            pickUpItem(i);
+        }
         
-        pan.setRotation(rotation);
-        pan.setModelRotation();
-        pan.setModelPosition();
+        for(Enemy e : enemies){
+            
+        }
         
-        System.out.println(pan.getRotation().toString());
-        System.out.println(pan.getPosition().toString());
     }
-
+    
+    
     /**
      * set position of player
      */
@@ -124,12 +105,7 @@ public class ChefBoy extends Character{
 
     }
     
-    /**
-     * check if chef boy can pick up an item 
-     * if item is in range, it will be picked up 
-     * @param item item to pick up
-     */
-    public void pickUpItem(Item item){
+    private void pickUpItem(Item item){
         
         double distance;
         
@@ -137,23 +113,32 @@ public class ChefBoy extends Character{
         double x1 = item.getPosition().x;
         double z = this.getPosition().z;
         double z1 = item.getPosition().z;
-        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2)); // find distance to player 
+        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
         
-        if (item.getPickUpRadius() > distance){ // if in pickUpRadius 
-            item.pickedUp(); // pick up the item 
+        if (item.getPickUpRadius() > distance){
+            System.out.println("picked up item");
+            item.deleteModel();
+            item.pickedUp();
+            // also need to remove from item list 
+            //call on item's method 
         }
+        
     }
     
-    /**
-     * chef boy jump 
-     */
+    private void addToInventory(Inventory inventory, Item item){
+        
+    }
+    
+
+    
     public void jump(){
         
-        if(getCharacterControl().onGround()){ // if chefboy is on ground 
-            getCharacterControl().jump(new Vector3f(0, 20f, 0)); // add jump to characterControl
+        if(getCharacterControl().onGround()){
+            getCharacterControl().jump(new Vector3f(0, 20f, 0)); 
         }
     }
     
+
     public void block(){
         
     }

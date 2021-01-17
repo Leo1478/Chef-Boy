@@ -15,10 +15,8 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
-import com.jme3.bullet.objects.PhysicsRigidBody;
 
 /**
  * characters that can move and attack 
@@ -36,8 +34,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     private int damage;
     private float attackSpeed; // interval between each attack
     private float coolDown; // time remaining on interval
-    
-    private Item itemDrop; // item the enemy will drop after death 
     
     private AnimComposer animComposer; // animation 
     
@@ -66,10 +62,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
 
         Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
         BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
-        
-        setCollisionMesh(collisionShape);
-        
-        
         characterControl = new CharacterControl(collisionShape, 0.05f);
         characterControl.setFallSpeed(10);
 
@@ -78,24 +70,12 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
 
         characterControl.setPhysicsLocation(getPosition());
 
-        
-        setRigidBody(new RigidBodyControl(getCollisionMesh(), 1));
-        getModel().addControl(getRigidBody());
-        getModel().getControl(RigidBodyControl.class).setPhysicsLocation(characterControl.getPhysicsLocation());
-        bulletAppState.getPhysicsSpace().add(getRigidBody());
-        
-//        GhostControl ghost = new GhostControl(new BoxCollisionShape(extent));
-//        getModel().addControl(ghost);
-//        bulletAppState.getPhysicsSpace().add(ghost);
-        
-        bulletAppState.setDebugEnabled(true);
+        // init rigidbody here for all characters 
     }
     
     public void initAnimation(){
         
         animComposer = getModel().getControl(AnimComposer.class);
-        animComposer.setCurrentAction("Idle");
-        
     }
     
     public void updatePosition(){
@@ -131,8 +111,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         characterControl.setWalkDirection(walkDirection); // apply to characterControl 
  
         setPosition(characterControl.getPhysicsLocation()); // update position 
-        
-        
     }
     
     /**
@@ -143,9 +121,9 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
         setCoolDown(getCoolDown() - tpf); // reduce attack cooldown timer 
         
-        setAnimation(); // set current animation 
+        setAnimation();
         
-        checkDie(); // check if character should be dead 
+        checkDie();
         
     }
     
@@ -158,6 +136,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
             alive = false;
             deleteModel();
         }
+        
     }
     
     /**
@@ -173,10 +152,10 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
                     animComposer.setCurrentAction("Idle"); 
                     break;
                 case MOVING:
-                    animComposer.setCurrentAction("Moving");
+                    animComposer.setCurrentAction("Running");
                     break;
                 case ATTACKING:
-                    animComposer.setCurrentAction("Attacking");    
+                    animComposer.setCurrentAction("Attack");    
                     break;
                 default:
                     break;
@@ -268,12 +247,11 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     public void setState(CharacterState state) {
         this.state = state;
     }
-    
-    /**
-     * @param previousState
+        /**
+     * @param state the state to set
      */
-    public void setPreviousState(CharacterState previousState) {
-        this.state = previousState;
+    public void setPreviousState(CharacterState setPreviousState) {
+        this.state = setPreviousState;
     }
     
     /**
@@ -383,20 +361,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
      */
     public void setAlive(boolean alive) {
         this.alive = alive;
-    }
-
-    /**
-     * @return the itemDrop
-     */
-    public Item getItemDrop() {
-        return itemDrop;
-    }
-
-    /**
-     * @param itemDrop the itemDrop to set
-     */
-    public void setItemDrop(Item itemDrop) {
-        this.itemDrop = itemDrop;
     }
 
     

@@ -14,7 +14,6 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
 import mygame.state.Main;
 import com.jme3.input.controls.MouseButtonTrigger;
-import java.util.ArrayList;
 
 /**
  *
@@ -151,13 +150,11 @@ public class Player implements ActionListener{
         setCamPosition();
     }
     
-    public void attack(Enemy enemy){
-        
-
+    public void attack(Character character){
         if(mouseLeft){
-            chefBoy.attack(enemy);
-        }
 
+            chefBoy.attack(character);
+        }
     }
     
     private void setCamPosition(){

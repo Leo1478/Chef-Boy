@@ -44,11 +44,11 @@ public class Slime extends Enemy{
         
         // this is still pigs stuff 
         
-        setMat(app.getAssetManager().loadMaterial("Materials/slime.j3m"));
+        setMat(app.getAssetManager().loadMaterial("Materials/tree.j3m"));
         
         // change to xml file with animation later 
         // using pigs animation as a place holder change later
-        setModel(app.getAssetManager().loadModel("Models/slime/Plane.mesh.xml"));
+        setModel(app.getAssetManager().loadModel("Models/pig/Pig.mesh.xml"));
         
         getModel().setMaterial(getMat());
         

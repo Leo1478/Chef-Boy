@@ -36,20 +36,14 @@ public abstract class State extends AbstractAppState{
 
     }
     
-    public void enterState(){       
+    public void enterState(){
         setEnabled(true);
-        init();
     }
 
     public void exitState() {
         setEnabled(false);
         cleanUp();
     }
-    
-    /**
-     * init all objects for the state 
-     */
-    public abstract void init();
     
     /**
      * remove all graphics from rootNode or guiNode 

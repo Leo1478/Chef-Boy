@@ -25,14 +25,12 @@ import mygame.gameobject.GameObject;
 import mygame.gameobject.Ham;
 import ui.Inventory;
 import mygame.gameobject.Item;
-import mygame.gameobject.Pan;
 import mygame.gameobject.Pig;
 import mygame.gameobject.Player;
 import mygame.gameobject.Slime;
 import mygame.gameobject.Terrain;
 import mygame.gameobject.Tree;
 import mygame.gameobject.Volcano;
-import ui.GameStateManager;
 import ui.HeadsUpDisplay;
 
 /**
@@ -53,8 +51,6 @@ public class GameState extends State {
 
     private Player player; // player object 
     private ChefBoy chefBoy;
-    
-    private GameStateManager gameStateManager;
 
     private BulletAppState bulletAppState; // controls physics 
     private AppStateManager stateManager; // controls states
@@ -80,14 +76,16 @@ public class GameState extends State {
      * init all models, lighting, camera, physics, objects, and add them to game
      * world
      */
-    @Override
-    public void init(){
+    private void init(){
+        
+        System.out.println("init");
         
         bulletAppState = new BulletAppState(); // for physics 
         stateManager.attach(bulletAppState); // add bulletAppState into state manager
         
         app.getInputManager().setCursorVisible(false);
         
+        initHud();
         initLight();
         initCamera();
         initTerrain();
@@ -97,15 +95,11 @@ public class GameState extends State {
         initPlayer();
         initItem();
         initEnemy();
-        initInventory();
         
-        initHud();
-        
-        gameStateManager = new GameStateManager(app, stateManager, inventory);
     }
     
     private void initHud(){
-        hud = new HeadsUpDisplay(app, chefBoy);
+        hud = new HeadsUpDisplay(app);
     }
 
     /**
@@ -177,9 +171,6 @@ public class GameState extends State {
     private void initPlayer() {
 
         player = new Player( app, chefBoy);
-        
-        Pan pan = new Pan(app, new Vector3f(0, 0, 0), "pab");
-        pan.getModel().setLocalScale(10);
     }
     
     /**
@@ -190,9 +181,6 @@ public class GameState extends State {
         items.add(ham0);
     }
 
-    /**
-     * init all enemy objects
-     */
     private void initEnemy() {
         
         Enemy pig0 = new Pig( app, bulletAppState, new Vector3f(100, 10, 50), "pig0", 20);
@@ -208,57 +196,37 @@ public class GameState extends State {
         Enemy pig5 = new Pig( app, bulletAppState, new Vector3f(30, 10, 20), "pig5", 20);
         enemies.add(pig5);
         
-        Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(100, 10, 100), "slime0", 20);
+        Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(40, 10, 40), "slime0", 20);
         enemies.add(slime0);
     }
     
     /**
-     * init inventory 
-     */
-    private void initInventory(){
-        inventory = new Inventory(app);
-    }
-    
-    /**
      * game updates update enemy behaviour, enemy position, chef boy etc
-     * main update loop for gameState 
+     *
      * @param tpf delta time
      */
     @Override
     public void update(float tpf) {
         
-        playerBehaviour(tpf);
-        enemyBehaviour(tpf);
-        itemBehaviour(tpf);
-        
-        updateHUD();
+        playerBehaviour(tpf, enemies, items);
+        enemyBehaviour(tpf, player);
+        itemBehaviour(tpf, player);
     }
     
-    /**
-     * behaviour for player & chefboy 
-     * @param tpf 
-     */
-    private void playerBehaviour(float tpf){
+    private void playerBehaviour(float tpf, ArrayList<Enemy> enemies, ArrayList items){
         
-        player.move(); // check move inputs 
+        player.move();
         
-        for(Enemy e : enemies){ 
-            player.attack(e); // attack inputs 
+        for(int i = 0; i < enemies.size(); i++){
+            player.attack(enemies.get(i));
         }
         
-        for(Item i : items){
-            chefBoy.pickUpItem(i); // pick up item 
-        }
         
-        chefBoy.behaviour(tpf); // rest of chefboy's behaviour 
-        
+        chefBoy.behaviour(tpf, items, enemies);
     }
     
-    /**
-     * behaviour for all enemy in enemies list 
-     * @param tpf 
-     */
-    private void enemyBehaviour(float tpf){
+    
+    private void enemyBehaviour(float tpf, Player player){
         
         for(int i = 0; i < enemies.size(); i++){
             
@@ -266,26 +234,15 @@ public class GameState extends State {
             
             current.behaviour(tpf, chefBoy);
             
-            if(current.getAlive() == false){ // if current enemy dies 
+            
+            if(current.getAlive() == false){
                 
-                enemies.remove(current); // remove from list 
-                
-                if(current.getClass().equals(Pig.class)){
-                    
-                    Item item = new Ham(app, current.getPosition(), "ham"); // spawn cooresponding item 
-                    items.add(item);
-                }
-                
-                
+                enemies.remove(current);
             }
         }
     }
     
-    /**
-     * behaviour of all items in list 
-     * @param tpf 
-     */
-    private void itemBehaviour(float tpf){
+    private void itemBehaviour(float tpf, Player player){
         
         for(int i = 0; i < items.size(); i++){
             
@@ -293,26 +250,24 @@ public class GameState extends State {
             
             current.behaviour(chefBoy);
             
-            if(current.getPickedUp()){ // if current is picked up 
+            if(current.getPickedUp()){
                 
-                items.remove(current); // remove from list 
-                inventory.add(current); // add to inventory
+                items.remove(current);
             }
         }
-        
     }
-    
-    private void updateHUD(){
-        hud.update();
-    }
-    
-    
     
     /**
      * @return the inventory
      */
     public Inventory getInventory() {
         return inventory;
+    }
+    
+    @Override
+    public void enterState(){
+        super.enterState();
+        init();
     }
     
     

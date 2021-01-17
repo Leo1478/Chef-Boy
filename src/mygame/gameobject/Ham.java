@@ -41,9 +41,6 @@ public class Ham extends Item{
         setModelPosition(); // set position needs to be before creating collision mesh for some reason
         
         app.getRootNode().attachChild(getModel());
-        
-        setItemPic(new ItemPic(app, "Models/ham/ham.png"));
-        
     }
 
 

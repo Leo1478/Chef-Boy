@@ -6,9 +6,7 @@
 package mygame.gameobject;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.queue.RenderQueue;
 
 /**
  *
@@ -18,28 +16,13 @@ public class Pan extends GameObject{
 
     
     
-    public Pan(SimpleApplication app, Vector3f position, String name){
+    Pan(SimpleApplication app, Vector3f position, String name){
         super(app, position, name);
-        
-        init();
     }
     
-
-
     @Override
     void init() {
-
-        setMat(app.getAssetManager().loadMaterial("Materials/pan.j3m"));
-
-        //setModel(app.getAssetManager().loadModel("Models/pan/pan.mesh.xml"));
-        setModel(app.getAssetManager().loadModel("Models/pan/pan.glb"));
-
-        getModel().setMaterial(getMat());
-
-        getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
-
-        app.getRootNode().attachChild(getModel());
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }
