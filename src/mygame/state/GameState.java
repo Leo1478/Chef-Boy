@@ -242,7 +242,11 @@ public class GameState extends State {
             player.attack(e); // attack inputs 
         }
         
-        chefBoy.behaviour(tpf, items, enemies, inventory); // rest of chefboy's behaviour 
+        for(Item i : items){
+            chefBoy.pickUpItem(i);
+        }
+        
+        chefBoy.behaviour(tpf); // rest of chefboy's behaviour 
         
     }
     

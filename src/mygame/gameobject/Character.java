@@ -125,9 +125,9 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
         setCoolDown(getCoolDown() - tpf); // reduce attack cooldown timer 
         
-        setAnimation();
+        setAnimation(); // set current animation 
         
-        checkDie();
+        checkDie(); // check if character should be dead 
         
     }
     

@@ -37,6 +37,9 @@ public class HeadsUpDisplay {
         init();
     }
     
+    /**
+     * init health bar and health text 
+     */
     private void init(){
 
         AppSettings settings = new AppSettings(true);

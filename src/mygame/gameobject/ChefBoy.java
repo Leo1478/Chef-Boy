@@ -81,18 +81,15 @@ public class ChefBoy extends Character{
        
     }
     
-    
-    public void behaviour(float tpf, ArrayList<Item> items, ArrayList<Enemy> enemies, Inventory inventory){
-        
-        setModelPosition();
-        
+    /**
+     * all chefboy behaviour 
+     * @param tpf
+     */
+    public void behaviour(float tpf){
+
         super.behaviour(tpf);
         
-
-        for(Item i : items){
-            pickUpItem(i, inventory);
-        }
-        
+        setModelPosition(); // set model to current position 
     }
 
     /**
@@ -103,7 +100,12 @@ public class ChefBoy extends Character{
 
     }
     
-    private void pickUpItem(Item item, Inventory inventory){
+    /**
+     * check if chef boy can pick up an item 
+     * if item is in range, it will be picked up 
+     * @param item item to pick up
+     */
+    public void pickUpItem(Item item){
         
         double distance;
         
@@ -111,25 +113,23 @@ public class ChefBoy extends Character{
         double x1 = item.getPosition().x;
         double z = this.getPosition().z;
         double z1 = item.getPosition().z;
-        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2));
+        distance = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2)); // find distance to player 
         
-        if (item.getPickUpRadius() > distance){
-            System.out.println("picked up item");
-            item.pickedUp();
+        if (item.getPickUpRadius() > distance){ // if in pickUpRadius 
+            item.pickedUp(); // pick up the item 
         }
     }
     
-
-
-    
+    /**
+     * chef boy jump 
+     */
     public void jump(){
         
-        if(getCharacterControl().onGround()){
-            getCharacterControl().jump(new Vector3f(0, 20f, 0)); 
+        if(getCharacterControl().onGround()){ // if chefboy is on ground 
+            getCharacterControl().jump(new Vector3f(0, 20f, 0)); // add jump to characterControl
         }
     }
     
-
     public void block(){
         
     }
