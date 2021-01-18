@@ -217,7 +217,7 @@ public class GameState extends State {
     }
     
     private void initChefBoy(){
-        chefBoy = new ChefBoy( app, bulletAppState, new Vector3f(0, 100, 60), "chefBoy", 100);
+        chefBoy = new ChefBoy( app, bulletAppState, new Vector3f(-205, 30, 208), "chefBoy", 100);
     }
 
     /**
@@ -245,40 +245,38 @@ public class GameState extends State {
     private void initEnemy() {
         
         Enemy pig0 = new Pig( app, bulletAppState, new Vector3f(100, 10, 50), "pig0", 20);
-        pig0.spawn();
-        enemies.add(pig0);
+        enemyQueue.add(pig0);
         Enemy pig1 = new Pig( app, bulletAppState, new Vector3f(60, 10, 80), "pig1", 20);
-        pig1.spawn();
-        enemies.add(pig1);
+        enemyQueue.add(pig1);
         Enemy pig2 = new Pig( app, bulletAppState, new Vector3f(90, 10, 12), "pig2", 20);
-        pig2.spawn();
-        enemies.add(pig2);
+        enemyQueue.add(pig2);
         Enemy pig3 = new Pig( app, bulletAppState, new Vector3f(14, 10, 20), "pig3", 20);
-        pig3.spawn();
-        enemies.add(pig3);
+        enemyQueue.add(pig3);
         Enemy pig4 = new Pig( app, bulletAppState, new Vector3f(0, 10, 10), "pig4", 20);
-        pig4.spawn();
-        enemies.add(pig4);
+        enemyQueue.add(pig4);
         Enemy pig5 = new Pig( app, bulletAppState, new Vector3f(30, 10, 20), "pig5", 20);
-        pig5.spawn();
-        enemies.add(pig5);
+        enemyQueue.add(pig5);
+        Enemy pig6 = new Pig( app, bulletAppState, new Vector3f(250, 0, 190), "pig6", 20);
+        enemyQueue.add(pig6);
+        Enemy pig7 = new Pig( app, bulletAppState, new Vector3f(-210, 0, -50), "pig7", 20);
+        enemyQueue.add(pig7);
+        Enemy pig8 = new Pig( app, bulletAppState, new Vector3f(-70, 0, -280), "pig8", 20);
+        enemyQueue.add(pig8);
+        Enemy pig9 = new Pig( app, bulletAppState, new Vector3f(-140, 0, -70), "pig9", 20);
+        enemyQueue.add(pig9);
+        Enemy pig10 = new Pig( app, bulletAppState, new Vector3f(-220, 0, 190), "pig10", 20);
+        enemyQueue.add(pig10);
         
         //Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(100, 10, 100), "slime0", 20);
         //slime0.spawn();
         //enemies.add(slime0);
         
-        // enemies to be spawned throughout the game 
-        Enemy pig6 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig6", 20);
-        enemyQueue.add(pig6);
-        Enemy pig7 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig7", 20);
-        enemyQueue.add(pig7);
-        Enemy pig8 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig8", 20);
-        enemyQueue.add(pig8);
-        Enemy pig9 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig9", 20);
-        enemyQueue.add(pig9);
-        Enemy pig10 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig10", 20);
-        enemyQueue.add(pig10);
         
+        for(int i = 0; i < 10; i++){ // spawn the first 30 enemies 
+            Enemy enemy = enemyQueue.poll(); // remove from queue 
+            enemy.spawn(); // spawn, make model visible 
+            enemies.add(enemy); // add to enemy list 
+        }
   
     }
     

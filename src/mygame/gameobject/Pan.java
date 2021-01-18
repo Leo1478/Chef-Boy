@@ -56,7 +56,7 @@ public class Pan extends GameObject{
 
         getModel().setMaterial(getMat());
 
-        getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
+        getModel().setShadowMode(RenderQueue.ShadowMode.Off);
 
         app.getRootNode().attachChild(getModel());
 
