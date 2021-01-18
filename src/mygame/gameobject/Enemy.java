@@ -133,12 +133,6 @@ public abstract class Enemy extends Character{
         
         float[] angles = new float[3];
             
-            
-        System.out.println(Arrays.toString(this.getRotation().toAngles(angles)));
-
-        
-        //System.out.println("charg");
-        
         move(change);
             
     }

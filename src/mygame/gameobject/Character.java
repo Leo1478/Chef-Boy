@@ -206,13 +206,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
             
             character.takeDamage(damage);
             
-            float[] angles = new float[3];
-            
-            System.out.println(Arrays.toString(this.getRotation().toAngles(angles)));
-            System.out.println(Arrays.toString(app.getCamera().getRotation().toAngles(angles)));
-            
-            
-            
             /*
             // calculate if self is facing character
             float[] angles = new float[3];

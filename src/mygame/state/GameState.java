@@ -154,17 +154,61 @@ public class GameState extends State {
      */
     private void initProp() {
         
-        GameObject tree0 = new Tree( app, bulletAppState, new Vector3f(5, 0, 20), "tree0");
-        GameObject tree1 = new Tree( app, bulletAppState, new Vector3f(10, 0, 20), "tree1");
-        GameObject tree2 = new Tree( app, bulletAppState, new Vector3f(15, 0, 20), "tree2");
-        GameObject tree3 = new Tree( app, bulletAppState, new Vector3f(20, 0, 20), "tree3");
-        GameObject tree4 = new Tree( app, bulletAppState, new Vector3f(25, 0, 20), "tree4");
+        GameObject tree0 = new Tree( app, bulletAppState, new Vector3f(260, -10, 193), "tree0");
+        GameObject tree1 = new Tree( app, bulletAppState, new Vector3f(205, -13, 223), "tree1");
+        GameObject tree2 = new Tree( app, bulletAppState, new Vector3f(105, 4, 154), "tree2");
+        GameObject tree3 = new Tree( app, bulletAppState, new Vector3f(41, -6, 164), "tree3");
+        GameObject tree4 = new Tree( app, bulletAppState, new Vector3f(-40, 7, 221), "tree4");
+        GameObject tree5 = new Tree( app, bulletAppState, new Vector3f(-112, -7, 191), "tree4");
+        GameObject tree6 = new Tree( app, bulletAppState, new Vector3f(-251, 15, 212), "tree4");
+        GameObject tree7 = new Tree( app, bulletAppState, new Vector3f(-304, 2, 162), "tree4");
+        GameObject tree8 = new Tree( app, bulletAppState, new Vector3f(-214, 2, 146), "tree4");
+        GameObject tree9 = new Tree( app, bulletAppState, new Vector3f(-112, -6, 153), "tree4");
+        GameObject tree10 = new Tree( app, bulletAppState, new Vector3f(99, -4, 122), "tree4");
+        GameObject tree11 = new Tree( app, bulletAppState, new Vector3f(204, -15, 104), "tree4");
+        GameObject tree12 = new Tree( app, bulletAppState, new Vector3f(260, 10, 11), "tree4");
+        GameObject tree13 = new Tree( app, bulletAppState, new Vector3f(192, -6, -49), "tree4");
+        GameObject tree14 = new Tree( app, bulletAppState, new Vector3f(108, 5, -42), "tree4");
+        GameObject tree15 = new Tree( app, bulletAppState, new Vector3f(38, -4, -21), "tree4");
+        GameObject tree16 = new Tree( app, bulletAppState, new Vector3f(-78, -9, -16), "tree4");
+        GameObject tree17 = new Tree( app, bulletAppState, new Vector3f(-236, 10, 35), "tree4");
+        GameObject tree18 = new Tree( app, bulletAppState, new Vector3f(-279, 14, -82), "tree4");
+        GameObject tree19 = new Tree( app, bulletAppState, new Vector3f(-119, -7, -161), "tree4");
+        GameObject tree20 = new Tree( app, bulletAppState, new Vector3f(53, 6, -152), "tree4");
+        GameObject tree21 = new Tree( app, bulletAppState, new Vector3f(252, -17, -184), "tree4");
+        GameObject tree22 = new Tree( app, bulletAppState, new Vector3f(295, -12, -345), "tree4");
+        GameObject tree23 = new Tree( app, bulletAppState, new Vector3f(201, -9, -366), "tree4");
+        GameObject tree24 = new Tree( app, bulletAppState, new Vector3f(33, -6, -363), "tree4");
+        GameObject tree25 = new Tree( app, bulletAppState, new Vector3f(-185, 18, -318), "tree4");
+
 
         props.add(tree0);
         props.add(tree1);
         props.add(tree2);
         props.add(tree3);
         props.add(tree4);
+        props.add(tree5);
+        props.add(tree6);
+        props.add(tree7);
+        props.add(tree8);
+        props.add(tree9);
+        props.add(tree10);
+        props.add(tree11);
+        props.add(tree12);
+        props.add(tree13);
+        props.add(tree14);
+        props.add(tree15);
+        props.add(tree16);
+        props.add(tree17);
+        props.add(tree18);
+        props.add(tree19);
+        props.add(tree20);
+        props.add(tree21);
+        props.add(tree22);
+        props.add(tree23);
+        props.add(tree24);
+        props.add(tree25);
+        
 
         GameObject volcano0 = new Volcano( app, bulletAppState, new Vector3f(150, 0, 0), "volcano0");
         props.add(volcano0);
@@ -260,6 +304,8 @@ public class GameState extends State {
         spawnEnemy(tpf);
         
         updateHUD();
+        
+        System.out.println(chefBoy.getPosition());
     }
     
     

@@ -96,6 +96,13 @@ public class ChefBoy extends Character {
         super.behaviour(tpf);
 
         setModelPosition(); // set model to current position 
+        setPanPosition();
+
+        setAnimation();
+
+    }
+    
+    private void setPanPosition(){
         getPan().setPosition(this.getPosition());
 
         Quaternion rotation = new Quaternion();
@@ -112,22 +119,21 @@ public class ChefBoy extends Character {
         roatation.fromAngles(0, rotation.toAngles(angles)[1] * -1, 0); // y rotation
 
         setRotation(roatation);
-
-        setAnimation();
-
     }
 
     private void setAnimation() {
         
-        if (getState() == CharacterState.ATTACKING && getCoolDown() <= 0) {
-            pan.setAnimationAttack();
-        } else if (getCoolDown() <= 0) {
-            pan.setAnimationIdle();
-        }
-        
         if(block){
             pan.setAnimationBlock();
         }
+        else if (getState() == CharacterState.ATTACKING && getCoolDown() <= 0) {
+            pan.setAnimationAttack();
+        } 
+        else if (getCoolDown() <= 0) {
+            pan.setAnimationIdle();
+        }
+        
+
     }
 
     /**

@@ -150,21 +150,20 @@ public class Player implements ActionListener{
         
         setCamPosition();
     }
-    
+    /**
+     * attack
+     * @param enemies list of enemies to attack 
+     */
     public void attack(ArrayList<Enemy> enemies){
         
-
-        if(mouseLeft){
-            if(chefBoy.canAttack()){
-               
+        if(mouseLeft && ! mouseRight){ // if pressing left mouse
+            if(chefBoy.canAttack()){ // if no cool down           
                 for(Enemy e : enemies){
-                    chefBoy.attack(e);
-                    chefBoy.setCoolDown(chefBoy.getAttackSpeed());
+                    chefBoy.attack(e); // attack enemy 
                 }
-                
+                chefBoy.setCoolDown(chefBoy.getAttackSpeed()); // reset cooldown 
             }
         }
-
     }
     
     /**
@@ -174,6 +173,9 @@ public class Player implements ActionListener{
         chefBoy.setBlock(mouseRight);
     }
     
+    /**
+     * set camera position based on chefBoy's position 
+     */
     private void setCamPosition(){
         
         position = chefBoy.getPosition();
