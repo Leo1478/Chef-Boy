@@ -50,7 +50,7 @@ public class Pig extends Enemy {
 
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
 
-        app.getRootNode().attachChild(getModel());
+
 
     }
     

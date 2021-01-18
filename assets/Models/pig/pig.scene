@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- exporter: blender2ogre 0.8.0 -->
-<!-- export_time: Fri, 15 Jan 2021 05:56:49 +0000 -->
-<!-- previous_export_time: Fri, 15 Jan 2021 05:38:35 +0000 -->
+<!-- export_time: Mon, 18 Jan 2021 00:49:32 +0000 -->
+<!-- previous_export_time: Mon, 18 Jan 2021 00:49:24 +0000 -->
 <scene author="leoze" formatVersion="1.1" >
   <nodes >
     <node name="Object" >
-      <position x="-3.929282" y="-1.428248" z="0.028931" />
-      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
-      <scale x="3.364439" y="3.364439" z="3.364439" />
+      <position x="-2.748775" y="-1.428248" z="-3.683754" />
+      <rotation qw="0.707107" qx="0.000000" qy="-0.707107" qz="-0.000000" />
+      <scale x="3.364438" y="3.364439" z="3.364438" />
       <node name="Plane" >
         <position x="1.236293" y="1.206665" z="-1.051204" />
         <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
@@ -16,14 +16,14 @@
           <userData />
         </entity>
         <node name="rig" >
-          <position x="-1.241320" y="-1.279474" z="1.070236" />
+          <position x="-0.542882" y="-1.279474" z="-0.075999" />
           <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
           <scale x="1.000000" y="1.000000" z="1.000000" />
         </node>
       </node>
     </node>
     <node name="Light" >
-      <position x="12.691334" y="18.732672" z="-6.514759" />
+      <position x="19.471020" y="18.732672" z="-10.227444" />
       <rotation qw="0.570948" qx="0.169076" qy="0.755880" qz="-0.272171" />
       <scale x="3.364439" y="3.364439" z="3.364439" />
     </node>

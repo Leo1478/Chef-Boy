@@ -30,7 +30,7 @@ public abstract class Item extends GameObject{
     
     public void behaviour(ChefBoy chefBoy){
         
-        rotate();
+        //rotate();
         
     }
     

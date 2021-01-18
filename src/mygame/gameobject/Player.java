@@ -156,7 +156,7 @@ public class Player implements ActionListener{
 
         if(mouseLeft){
             if(chefBoy.canAttack()){
-                
+               
                 for(Enemy e : enemies){
                     chefBoy.attack(e);
                     chefBoy.setCoolDown(chefBoy.getAttackSpeed());

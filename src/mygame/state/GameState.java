@@ -11,10 +11,13 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Spatial;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,11 +46,13 @@ import ui.HeadsUpDisplay;
 public class GameState extends State {
 
     private Inventory inventory; // inventory of items 
-    private Queue enemyQueue; // queue to spawn enemies 
+    private Queue<Enemy> enemyQueue = new LinkedList<>(); // queue to spawn enemies 
     private ArrayList<Item> items = new ArrayList<>(); // list to store all existing items
     private ArrayList<Enemy> enemies = new ArrayList<>(); // list to store enemies 
     private ArrayList<GameObject> props = new ArrayList<>(); // list of all props 
     private HeadsUpDisplay hud;
+    
+    private float spawnRate = 10; // 10 seconds between each spawn 
     
     private GameLight gameLight; // lighting
 
@@ -196,20 +201,41 @@ public class GameState extends State {
     private void initEnemy() {
         
         Enemy pig0 = new Pig( app, bulletAppState, new Vector3f(100, 10, 50), "pig0", 20);
+        pig0.spawn();
         enemies.add(pig0);
         Enemy pig1 = new Pig( app, bulletAppState, new Vector3f(60, 10, 80), "pig1", 20);
+        pig1.spawn();
         enemies.add(pig1);
         Enemy pig2 = new Pig( app, bulletAppState, new Vector3f(90, 10, 12), "pig2", 20);
+        pig2.spawn();
         enemies.add(pig2);
         Enemy pig3 = new Pig( app, bulletAppState, new Vector3f(14, 10, 20), "pig3", 20);
+        pig3.spawn();
         enemies.add(pig3);
         Enemy pig4 = new Pig( app, bulletAppState, new Vector3f(0, 10, 10), "pig4", 20);
+        pig4.spawn();
         enemies.add(pig4);
         Enemy pig5 = new Pig( app, bulletAppState, new Vector3f(30, 10, 20), "pig5", 20);
+        pig5.spawn();
         enemies.add(pig5);
         
-        Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(100, 10, 100), "slime0", 20);
-        enemies.add(slime0);
+        //Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(100, 10, 100), "slime0", 20);
+        //slime0.spawn();
+        //enemies.add(slime0);
+        
+        
+        Enemy pig6 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig6", 20);
+        enemyQueue.add(pig6);
+        Enemy pig7 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig7", 20);
+        enemyQueue.add(pig7);
+        Enemy pig8 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig8", 20);
+        enemyQueue.add(pig8);
+        Enemy pig9 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig9", 20);
+        enemyQueue.add(pig9);
+        Enemy pig10 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig10", 20);
+        enemyQueue.add(pig10);
+        
+  
     }
     
     /**
@@ -231,8 +257,12 @@ public class GameState extends State {
         enemyBehaviour(tpf);
         itemBehaviour(tpf);
         
+        spawnEnemy(tpf);
+        
         updateHUD();
     }
+    
+    
     
     /**
      * behaviour for player & chefboy 
@@ -303,6 +333,21 @@ public class GameState extends State {
             }
         }
         
+    }
+    
+    private void spawnEnemy(float tpf){
+        if(spawnRate <= 0){
+            if(enemyQueue.size() > 0){
+                Enemy enemy = enemyQueue.poll(); // remove from queue 
+                enemy.spawn(); // spawn, make model visible 
+                enemies.add(enemy); // add to enemy list 
+            }
+            spawnRate = 10; // reset spawn rate
+        }
+        
+        if(spawnRate > 0){
+            spawnRate -= tpf;
+        }
     }
     
     private void updateHUD(){

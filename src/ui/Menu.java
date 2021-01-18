@@ -52,8 +52,6 @@ public class Menu {
         
         startButton = new Button(app, new Rectangle(322, 240, 600, 600), "UI/start button.png" );
         
-        
-        
     }
     
     private void display(){
@@ -76,6 +74,4 @@ public class Menu {
     public void update(){
         
     }
-    
-
 }

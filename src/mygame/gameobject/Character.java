@@ -16,6 +16,7 @@ import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.math.Vector3f;
+import java.util.Arrays;
 import mygame.state.Main;
 
 /**
@@ -191,6 +192,8 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     @Override
     public void attack(Character character) {
         
+        
+        
         double x = this.getPosition().x; // get position of both character 
         double x1 = character.getPosition().x;
         double z = this.getPosition().z;
@@ -199,10 +202,67 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         double distance = Math.abs(Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2))); // find distance to character 
 
         if(distance < getRange()){ // if character is within range 
+            
+            
             character.removeHealth(damage);
+            
+            float[] angles = new float[3];
+            
+            System.out.println(Arrays.toString(this.getRotation().toAngles(angles)));
+            System.out.println(Arrays.toString(app.getCamera().getRotation().toAngles(angles)));
+            
+            
+            
+            /*
+            // calculate if self is facing character
+            float[] angles = new float[3];
+            //System.out.println(Math.atan2(z-z1, x-x1));
+            //System.out.println((getRotation().toAngles(angles))[1]*-1);
+            
+            float angleCharacter = (float) Math.atan2(z-z1, x-x1); // angle of character
+            float angleSelf = (getRotation().toAngles(angles))[1]*-1; // angle of this object 
+
+            float angleDifference;// difference in angle 
+            
+            if(angleCharacter >= angleSelf){
+                angleDifference = angleCharacter - angleSelf; // difference in angle 
+            }
+            else{
+                angleDifference = angleSelf - angleCharacter; 
+            }
+              
+            float angleAttack = (10 * (float) Math.PI) / 180; // cone of attack (10 degrees) (in radians)
+
+            if(angleDifference < angleAttack){ // if within angleAttack
+                character.removeHealth(damage);
+            }
+            
+            if(this instanceof ChefBoy){
+                System.out.println(angleCharacter);
+                System.out.println(angleSelf);
+                System.out.println(angleDifference);
+                
+                float[] angles2 = new float[3];
+                System.out.println((app.getCamera().getRotation().toAngles(angles2))[1]);
+                System.out.println();
+                
+            }
+            
+            
+            
+            if(this instanceof Pig){
+//                System.out.println(angleCharacter);
+//                System.out.println(angleSelf);
+//                System.out.println(angleDifference);
+//                System.out.println();
+            }
+            
+            */
+            
+             
         }
         
-        // also check rotation 
+        
     }
     
     @Override

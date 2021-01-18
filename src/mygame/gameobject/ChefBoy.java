@@ -107,11 +107,22 @@ public class ChefBoy extends Character{
         Quaternion rotation = new Quaternion();
 
         rotation = app.getCamera().getRotation(); 
-       
+        
         getPan().setRotation(rotation);
         getPan().setModelRotation();
         getPan().setModelPosition();
         
+        float[] angles = new float[3];
+        
+
+        Quaternion roatation = new Quaternion();
+        roatation.fromAngles(0, rotation.toAngles(angles)[1] * -1 , 0); // y rotation
+        
+       
+        
+        
+        
+        setRotation(roatation);
         
         if(getState() == CharacterState.ATTACKING && getCoolDown() <= 0){
             pan.setAnimationAttack();

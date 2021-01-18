@@ -53,9 +53,5 @@ public class Slime extends Enemy{
         getModel().setMaterial(getMat());
         
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
-        
-        app.getRootNode().attachChild(getModel());    
-        
-
     }
 }

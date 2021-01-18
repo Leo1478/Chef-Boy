@@ -9,6 +9,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
+import java.util.Arrays;
 
 /**
  *
@@ -125,9 +126,15 @@ public abstract class Enemy extends Character{
         // rotate enemy 
         float radian = (float) Math.atan2(zDiff, xDiff); // find out radian between player and enemy 
         Quaternion roatation = new Quaternion();
-        roatation.fromAngles(0, radian*-1 , 0); // y rotation,  reverse number
-
+        roatation.fromAngles(0, radian*-1, 0); // y rotation
+        
+        setRotation(roatation);
         getModel().setLocalRotation(roatation); // change model rotation 
+        
+        float[] angles = new float[3];
+            
+            
+        System.out.println(Arrays.toString(this.getRotation().toAngles(angles)));
 
         
         //System.out.println("charg");
@@ -136,20 +143,18 @@ public abstract class Enemy extends Character{
             
     }
     
-    
-    void spawn(){
+    /**
+     * spawn enemy 
+     * add model to rootNode
+     */
+    public void spawn(){
         
-        // add to list in gameState
-        // add to rootNode
+        app.getRootNode().attachChild(getModel());
     }
     
-    
-    public void block(){
-        
-    }
     
     @Override
-    public void takeDamage(int arg0) {
+    public void takeDamage(int amount) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
