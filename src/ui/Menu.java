@@ -29,6 +29,7 @@ public class Menu {
     
     private Button startButton;
     private Button settingButton;
+    private Button exitButton;
     
     public Menu(SimpleApplication app, AppStateManager stateManager){
         this.app = app;
@@ -50,7 +51,9 @@ public class Menu {
         app.getGuiNode().attachChild(menuBackground);
         menuBackground.setQueueBucket(RenderQueue.Bucket.Gui);
         
-        startButton = new Button(app, new Rectangle(322, 240, 600, 600), "UI/start button.png" );
+        startButton = new Button(app, new Rectangle(50, 650, 320, 100), "UI/play button.png" );
+        settingButton = new Button(app, new Rectangle(50, 500, 320, 100), "UI/setting button.png");
+        exitButton = new Button(app, new Rectangle(50, 350, 320, 100), "UI/exit button.png");
         
     }
     

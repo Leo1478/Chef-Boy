@@ -36,14 +36,14 @@ public class Button {
         
         AppSettings settings = new AppSettings(true);
      
-        Picture test = new Picture("button");
-        test.setImage(app.getAssetManager(), path, true);
-        test.setWidth(settings.getWidth());
-        test.setHeight(settings.getHeight());
-        test.setPosition(settings.getWidth() / 2, settings.getHeight() / 2);
+        Picture picture = new Picture("button");
+        picture.setImage(app.getAssetManager(), path, true);
+        picture.setWidth(hitBox.width);
+        picture.setHeight(hitBox.height);
+        picture.setPosition(hitBox.x, hitBox.y);
 
-        app.getGuiNode().attachChild(test);
-        test.setQueueBucket(RenderQueue.Bucket.Gui);
+        app.getGuiNode().attachChild(picture);
+        picture.setQueueBucket(RenderQueue.Bucket.Gui);
         
     }
 
