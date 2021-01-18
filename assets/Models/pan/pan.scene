@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- exporter: blender2ogre 0.8.0 -->
-<!-- export_time: Sun, 17 Jan 2021 22:28:53 +0000 -->
-<!-- previous_export_time: Sun, 17 Jan 2021 22:25:22 +0000 -->
+<!-- export_time: Mon, 18 Jan 2021 05:17:14 +0000 -->
+<!-- previous_export_time: Mon, 18 Jan 2021 05:12:39 +0000 -->
 <scene author="leoze" formatVersion="1.1" >
   <nodes >
     <node name="Armature" >

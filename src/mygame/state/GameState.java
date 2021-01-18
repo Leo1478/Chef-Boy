@@ -223,7 +223,7 @@ public class GameState extends State {
         //slime0.spawn();
         //enemies.add(slime0);
         
-        
+        // enemies to be spawned throughout the game 
         Enemy pig6 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig6", 20);
         enemyQueue.add(pig6);
         Enemy pig7 = new Pig( app, bulletAppState, new Vector3f(0, 0, 0), "pig7", 20);
@@ -274,7 +274,7 @@ public class GameState extends State {
         
 
         player.attack(enemies); // attack inputs 
-
+        player.block(); // block inputs 
         
         for(Item i : items){
             chefBoy.pickUpItem(i); // pick up item 

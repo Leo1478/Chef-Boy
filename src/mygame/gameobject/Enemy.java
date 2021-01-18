@@ -153,11 +153,6 @@ public abstract class Enemy extends Character{
     }
     
     
-    @Override
-    public void takeDamage(int amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     /**
      * @return the detectionRange
      */

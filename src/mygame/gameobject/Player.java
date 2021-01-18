@@ -167,6 +167,13 @@ public class Player implements ActionListener{
 
     }
     
+    /**
+     * set chefboy's blocking based on mouseRight
+     */
+    public void block(){
+        chefBoy.setBlock(mouseRight);
+    }
+    
     private void setCamPosition(){
         
         position = chefBoy.getPosition();

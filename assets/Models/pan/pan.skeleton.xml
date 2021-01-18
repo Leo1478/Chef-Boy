@@ -197,6 +197,38 @@
                 </track>
             </tracks>
         </animation>
+        <animation name="Block" length="1.20833">
+            <tracks>
+                <track bone="Bone">
+                    <keyframes>
+                        <keyframe time="0">
+                            <translate x="-2.50567" y="-0.538348" z="2.41089" />
+                            <rotate angle="2.11532">
+                                <axis x="0.727547" y="0.422972" z="-0.540157" />
+                            </rotate>
+                        </keyframe>
+                        <keyframe time="0.041667">
+                            <translate x="-2.50567" y="-0.538348" z="2.41089" />
+                            <rotate angle="2.11532">
+                                <axis x="0.727547" y="0.422972" z="-0.540157" />
+                            </rotate>
+                        </keyframe>
+                        <keyframe time="1.16667">
+                            <translate x="-2.50567" y="-0.538348" z="2.41089" />
+                            <rotate angle="2.11532">
+                                <axis x="0.727547" y="0.422972" z="-0.540157" />
+                            </rotate>
+                        </keyframe>
+                        <keyframe time="1.20833">
+                            <translate x="-2.50567" y="-0.538348" z="2.41089" />
+                            <rotate angle="2.11532">
+                                <axis x="0.727547" y="0.422972" z="-0.540157" />
+                            </rotate>
+                        </keyframe>
+                    </keyframes>
+                </track>
+            </tracks>
+        </animation>
         <animation name="Idle" length="1.20833">
             <tracks>
                 <track bone="Bone">

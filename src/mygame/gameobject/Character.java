@@ -204,7 +204,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         if(distance < getRange()){ // if character is within range 
             
             
-            character.removeHealth(damage);
+            character.takeDamage(damage);
             
             float[] angles = new float[3];
             
@@ -277,7 +277,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     
     @Override
     public void takeDamage(int amount){
-        
+        health -= amount;
     }
     
     public CharacterControl getCharacterControl(){

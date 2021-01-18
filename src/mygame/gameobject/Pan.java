@@ -42,6 +42,10 @@ public class Pan extends GameObject{
         animComposer.setCurrentAction("Idle");
     }
     
+    public void setAnimationBlock(){
+        animComposer.setCurrentAction("Block");
+    }
+    
     @Override
     void init() {
 
