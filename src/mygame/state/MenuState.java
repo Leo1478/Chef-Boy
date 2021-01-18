@@ -32,15 +32,18 @@ public class MenuState extends State {
         this.stateManager = stateManager;
 
         app.getInputManager().setCursorVisible(true);
+        
+        System.out.println("initialize menuState");
     }
     
+    @Override
     public void init(){
         
         app.getInputManager().setCursorVisible(true);
         //app.getViewPort().setBackgroundColor(ColorRGBA.Red);
 
-        menu = new Menu(this.app, stateManager);
-        menuManager = new MenuManager(this.app, menu);
+        menu = new Menu(app, stateManager);
+        menuManager = new MenuManager(app, menu);
     }
     
     /**
@@ -48,8 +51,11 @@ public class MenuState extends State {
      */
     @Override
     public void cleanUp(){
+        
         app.getGuiNode().detachChildNamed("menuBackground");
         app.getGuiNode().detachChildNamed("button");
+        app.getGuiNode().detachChildNamed("button");
+        
     }
 
     @Override

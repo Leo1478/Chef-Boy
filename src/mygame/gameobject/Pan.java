@@ -51,7 +51,7 @@ public class Pan extends GameObject{
 
         setMat(app.getAssetManager().loadMaterial("Materials/pan.j3m"));
 
-        setModel(app.getAssetManager().loadModel("Models/pan/pan.mesh.xml"));
+        setModel(app.getAssetManager().loadModel("Models/pan/pan.mesh.j3o"));
         //setModel(app.getAssetManager().loadModel("Models/pan/pan.glb"));
 
         getModel().setMaterial(getMat());

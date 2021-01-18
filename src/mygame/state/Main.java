@@ -66,16 +66,18 @@ public class Main extends SimpleApplication {
         gameState.setEnabled(false);    
         inventoryState.setEnabled(false);
         
-        
-        
-        menuState.initialize(stateManager, this);  // init and start the menu
-        menuState.enterState();
-        
     }
 
+    boolean menu = false;
     @Override
     public void simpleUpdate(float tpf) {
-        
+        if(! menu){
+            // entering the menu has to be called here
+            // if called from simpleInitApp(), the menu will be created before menuState
+            // jmonkey initialize the states after simpleInitApp()
+            menuState.enterState(); 
+            menu = true;
+        }
     }
 
     @Override

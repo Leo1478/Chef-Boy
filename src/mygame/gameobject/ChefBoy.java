@@ -54,7 +54,7 @@ public class ChefBoy extends Character {
     public void init() {
 
         // since chef boy has no model, just use a cube as place holder
-        setModel(app.getAssetManager().loadModel("Models/cube/Cube.mesh.xml"));
+        setModel(app.getAssetManager().loadModel("Models/cube/Cube.mesh.j3o"));
 
         getModel().setShadowMode(RenderQueue.ShadowMode.Off);
 

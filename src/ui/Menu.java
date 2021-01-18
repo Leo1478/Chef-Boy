@@ -39,9 +39,6 @@ public class Menu {
     
     private void init(){
         
-        
-        AppSettings settings = new AppSettings(true);
-        
         Picture menuBackground = new Picture("menuBackground");
         menuBackground.setImage(app.getAssetManager(), "UI/menu background.png", true);
         menuBackground.setWidth(SCREENWIDTH);
