@@ -28,6 +28,7 @@ import mygame.gameobject.GameObject;
 import mygame.gameobject.Ham;
 import ui.Inventory;
 import mygame.gameobject.Item;
+import mygame.gameobject.Jelly;
 import mygame.gameobject.Pan;
 import mygame.gameobject.Pig;
 import mygame.gameobject.Player;
@@ -294,7 +295,11 @@ public class GameState extends State {
         enemyQueue.add(slime10);
         
         
-        for(int i = 0; i < 20; i++){ // spawn the first 30 enemies 
+        Enemy slime11 = new Slime( app, bulletAppState, new Vector3f(-200, 40, 200), "slime0", 10); // right beside chefBoy spawn 
+        enemyQueue.add(slime11);
+        
+        
+        for(int i = 0; i < 23; i++){ // spawn the first 30 enemies 
             Enemy enemy = enemyQueue.poll(); // remove from queue 
             enemy.spawn(); // spawn, make model visible 
             enemies.add(enemy); // add to enemy list 
@@ -373,6 +378,11 @@ public class GameState extends State {
                 if(current instanceof Pig){
                     
                     Item item = new Ham(app, current.getPosition(), "ham"); // spawn cooresponding item 
+                    items.add(item);
+                }
+                else if(current instanceof Slime){
+                    
+                    Item item = new Jelly(app, current.getPosition(), "jelly"); // spawn cooresponding item 
                     items.add(item);
                 }
 

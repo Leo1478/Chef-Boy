@@ -27,7 +27,7 @@ public class Menu {
     private SimpleApplication app;
     private AppStateManager stateManager;
     
-    private Button startButton;
+    private Button playButton;
     private Button settingButton;
     private Button exitButton;
     
@@ -48,7 +48,7 @@ public class Menu {
         app.getGuiNode().attachChild(menuBackground);
         menuBackground.setQueueBucket(RenderQueue.Bucket.Gui);
         
-        startButton = new Button(app, new Rectangle(50, 650, 320, 100), "UI/play button.png" );
+        playButton = new Button(app, new Rectangle(50, 650, 320, 100), "UI/play button.png" );
         settingButton = new Button(app, new Rectangle(50, 500, 320, 100), "UI/setting button.png");
         exitButton = new Button(app, new Rectangle(50, 350, 320, 100), "UI/exit button.png");
         
@@ -63,11 +63,15 @@ public class Menu {
         Point point = new Point((int)mousePosition.x, (int)mousePosition.y);
 
         
-        if(startButton.getHitBox().contains(point)){
+        if(playButton.getHitBox().contains(point)){ // play button
             
-            stateManager.getState(MenuState.class).exitState();
+            stateManager.getState(MenuState.class).exitState(); // exit menuState
             stateManager.getState(MenuState.class).cleanUp();
-            stateManager.getState(GameState.class).enterState();
+            stateManager.getState(GameState.class).enterState(); // enter gameState
+        }
+        
+        if(exitButton.getHitBox().contains(point)){ // exit button 
+            app.stop(); // exit program 
         }
     }
     
