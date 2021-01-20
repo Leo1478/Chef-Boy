@@ -48,10 +48,9 @@ public class Fish extends Enemy {
     @Override
     void init() {
 
-        setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
-
-        // change to xml file with animation later 
-        setModel(app.getAssetManager().loadModel("Models/pig/Pig.mesh.xml"));
+        setMat(app.getAssetManager().loadMaterial("Materials/fish.j3m"));
+        
+        setModel(app.getAssetManager().loadModel("Models/fish/fish.mesh.xml"));
 
         getModel().setMaterial(getMat());
 
