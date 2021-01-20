@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import mygame.gameobject.ChefBoy;
 import mygame.gameobject.Enemy;
+import mygame.gameobject.Fish;
 import mygame.gameobject.GameLight;
 import mygame.gameobject.GameObject;
 import mygame.gameobject.Ham;
@@ -303,8 +304,10 @@ public class GameState extends State {
         Enemy slime11 = new Slime( app, bulletAppState, new Vector3f(-200, 40, 200), "slime0", 10); // right beside chefBoy spawn 
         enemyQueue.add(slime11);
         
+        Enemy fish0 = new Fish( app, bulletAppState, new Vector3f(-180, 40, 180), "fish0", 10);
+        enemyQueue.add(fish0);
         
-        for(int i = 0; i < 23; i++){ // spawn the first 30 enemies 
+        for(int i = 0; i < 24; i++){ // spawn the first 30 enemies 
             Enemy enemy = enemyQueue.poll(); // remove from queue 
             enemy.spawn(); // spawn, make model visible 
             enemies.add(enemy); // add to enemy list 
