@@ -16,12 +16,7 @@ import com.jme3.ui.Picture;
  */
 public class ItemPic {
 
-    /**
-     * @return the picture
-     */
-    public Picture getPicture() {
-        return picture;
-    }
+
     
     private Picture picture;
     
@@ -45,6 +40,7 @@ public class ItemPic {
         getPicture().setWidth(PICTUREWIDTH);
         getPicture().setHeight(PICTURELENGTH);
         getPicture().setPosition(0, 0);
+        getPicture().setLocalTranslation(0,0,2);
         
         //app.getGuiNode().attachChild(picture);
 
@@ -59,6 +55,13 @@ public class ItemPic {
     
     public void display(){
         
+    }
+    
+    /**
+     * @return the picture
+     */
+    public Picture getPicture() {
+        return picture;
     }
     
     public void setPosition(int x, int y){

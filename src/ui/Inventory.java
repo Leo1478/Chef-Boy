@@ -65,7 +65,7 @@ public class Inventory {
         inventoryBackground.setWidth(SCREENWIDTH);
         inventoryBackground.setHeight(SCREENHEIGHT);
         inventoryBackground.setPosition(0, 0);
-        inventoryBackground.setLocalTranslation(0, 0, -1);
+        inventoryBackground.setLocalTranslation(0, 0, 1); // z = 1 makes inventory in front of everything else 
 
         app.getGuiNode().attachChild(inventoryBackground);
         inventoryBackground.setQueueBucket(RenderQueue.Bucket.Gui);
