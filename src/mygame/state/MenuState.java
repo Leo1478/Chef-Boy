@@ -58,6 +58,7 @@ public class MenuState extends State {
         app.getGuiNode().detachChildNamed("button");
         
         app.getInputManager().removeListener(menuManager);
+
         
         menu = null;
         menuManager = null;

@@ -69,6 +69,7 @@ public class Menu {
             stateManager.getState(MenuState.class).cleanUp();
             stateManager.getState(GameState.class).enterState(); // enter gameState
             stateManager.getState(GameState.class).init();
+            app.getInputManager().setCursorVisible(false);
             
         }
         

@@ -66,7 +66,7 @@ public class Setting {
             
             stateManager.getState(SettingState.class).exitState(); // exit settingState
             stateManager.getState(SettingState.class).cleanUp();
-            stateManager.getState(GameState.class).cleanUp(); // clean up gameState
+            //stateManager.getState(GameState.class).cleanUp(); // clean up gameState
             stateManager.getState(MenuState.class).enterState(); // enter menuState
             stateManager.getState(MenuState.class).init(); // enter menuState
             

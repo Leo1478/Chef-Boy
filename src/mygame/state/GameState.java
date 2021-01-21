@@ -65,10 +65,13 @@ public class GameState extends State {
     private BulletAppState bulletAppState; // controls physics 
     private AppStateManager stateManager; // controls states
     private SimpleApplication app; // main object, this is needed because Main extends SimpleApplication
-                // SimpleApplication contains things like rootNode, camera, assetManager, etc
+                                    // SimpleApplication contains things like rootNode, camera, assetManager, etc
     private DirectionalLight sun;
     private AmbientLight al;
     private DirectionalLightShadowRenderer dlsr;
+    
+    private boolean init = false; // if gameState has been inited yet
+    
     /**
      * initialize
      * add enable state 
@@ -89,31 +92,35 @@ public class GameState extends State {
      */
     @Override
     public void init(){
-        
-        enemyQueue = new LinkedList<>();
-        items = new ArrayList<>();
-        enemies = new ArrayList<>();
-        props = new ArrayList<>();
-        
-        bulletAppState = new BulletAppState(); // for physics 
-        stateManager.attach(bulletAppState); // add bulletAppState into state manager
-        
-        app.getInputManager().setCursorVisible(false);
-        
-        initLight();
-        initCamera();
-        initTerrain();
-        initProp();
-        initSky();
-        initChefBoy();
-        initPlayer();
-        initItem();
-        initEnemy();
-        initInventory();
-        
-        initHud();
-        
-        gameStateManager = new GameStateManager(app, stateManager, inventory);
+        if(!init){
+            
+            init = true;
+            
+            enemyQueue = new LinkedList<>();
+            items = new ArrayList<>();
+            enemies = new ArrayList<>();
+            props = new ArrayList<>();
+
+            bulletAppState = new BulletAppState(); // for physics 
+            stateManager.attach(bulletAppState); // add bulletAppState into state manager
+
+            app.getInputManager().setCursorVisible(false);
+
+            initLight();
+            initCamera();
+            initTerrain();
+            initProp();
+            initSky();
+            initChefBoy();
+            initPlayer();
+            initItem();
+            initEnemy();
+            initInventory();
+
+            initHud();
+
+            gameStateManager = new GameStateManager(app, stateManager, inventory);
+        }
     }
     
     private void initHud(){
@@ -484,6 +491,7 @@ public class GameState extends State {
     }
     
     
+    @Override
     public void cleanUp(){
         
         app.getGuiNode().detachAllChildren();
@@ -507,8 +515,6 @@ public class GameState extends State {
         sun = null;
         al = null;
         dlsr = null;
-
-
-
+        
     }
 }
