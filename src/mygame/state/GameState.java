@@ -35,7 +35,9 @@ import mygame.gameobject.Prop;
 import mygame.gameobject.Slime;
 import mygame.gameobject.Terrain;
 import mygame.gameobject.Tree;
+import mygame.gameobject.TreeTwo;
 import mygame.gameobject.Volcano;
+import mygame.gameobject.Crystal;
 import ui.GameStateManager;
 import ui.HeadsUpDisplay;
 
@@ -198,18 +200,18 @@ public class GameState extends State {
         Prop tree11 = new Tree(app, bulletAppState, new Vector3f(204, -15, 104), "tree4");
         Prop tree12 = new Tree(app, bulletAppState, new Vector3f(260, 10, 11), "tree4");
         Prop tree13 = new Tree(app, bulletAppState, new Vector3f(192, -6, -49), "tree4");
-        Prop tree14 = new Tree(app, bulletAppState, new Vector3f(108, 5, -42), "tree4");
-        Prop tree15 = new Tree(app, bulletAppState, new Vector3f(38, -4, -21), "tree4");
-        Prop tree16 = new Tree(app, bulletAppState, new Vector3f(-78, -9, -16), "tree4");
-        Prop tree17 = new Tree(app, bulletAppState, new Vector3f(-236, 10, 35), "tree4");
-        Prop tree18 = new Tree(app, bulletAppState, new Vector3f(-279, 14, -82), "tree4");
-        Prop tree19 = new Tree(app, bulletAppState, new Vector3f(-119, -7, -161), "tree4");
-        Prop tree20 = new Tree(app, bulletAppState, new Vector3f(53, 6, -152), "tree4");
-        Prop tree21 = new Tree(app, bulletAppState, new Vector3f(252, -17, -184), "tree4");
-        Prop tree22 = new Tree(app, bulletAppState, new Vector3f(295, -12, -345), "tree4");
-        Prop tree23 = new Tree(app, bulletAppState, new Vector3f(201, -9, -366), "tree4");
-        Prop tree24 = new Tree(app, bulletAppState, new Vector3f(33, -6, -363), "tree4");
-        Prop tree25 = new Tree(app, bulletAppState, new Vector3f(-185, 18, -318), "tree4");
+        Prop tree14 = new TreeTwo(app, bulletAppState, new Vector3f(108, 5, -42), "tree4");
+        Prop tree15 = new TreeTwo(app, bulletAppState, new Vector3f(38, -4, -21), "tree4");
+        Prop tree16 = new TreeTwo(app, bulletAppState, new Vector3f(-78, -9, -16), "tree4");
+        Prop tree17 = new TreeTwo(app, bulletAppState, new Vector3f(-236, 10, 35), "tree4");
+        Prop tree18 = new TreeTwo(app, bulletAppState, new Vector3f(-279, 14, -82), "tree4");
+        Prop tree19 = new TreeTwo(app, bulletAppState, new Vector3f(-119, -7, -161), "tree4");
+        Prop tree20 = new TreeTwo(app, bulletAppState, new Vector3f(53, 6, -152), "tree4");
+        Prop tree21 = new TreeTwo(app, bulletAppState, new Vector3f(252, -17, -184), "tree4");
+        Prop tree22 = new TreeTwo(app, bulletAppState, new Vector3f(295, -12, -345), "tree4");
+        Prop tree23 = new TreeTwo(app, bulletAppState, new Vector3f(201, -9, -366), "tree4");
+        Prop tree24 = new TreeTwo(app, bulletAppState, new Vector3f(33, -6, -363), "tree4");
+        Prop tree25 = new TreeTwo(app, bulletAppState, new Vector3f(-185, 18, -318), "tree4");
 
         props.add(tree0);
         props.add(tree1);
@@ -242,6 +244,9 @@ public class GameState extends State {
         props.add(volcano0);
         Prop volcano1 = new Volcano(app, bulletAppState, new Vector3f(-250, 5, -200), "volcano1");
         props.add(volcano1);
+        
+        Prop crystal0 = new Crystal(app, bulletAppState, new Vector3f(-210, 20, 200), "crystal0");
+        props.add(volcano0);
     }
     
     private void initChefBoy(){

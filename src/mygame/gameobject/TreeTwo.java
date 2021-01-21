@@ -20,10 +20,10 @@ import mygame.state.Main;
  *
  * @author leoze
  */
-public class Tree extends Prop{
+public class TreeTwo extends Prop{
     
     
-    public Tree(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
+    public TreeTwo(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
         super(app, bulletAppState, position, name);
         init();
     }
@@ -38,9 +38,9 @@ public class Tree extends Prop{
     @Override
     void init() {
         
-        setMat(app.getAssetManager().loadMaterial("Materials/tree.j3m"));
+        setMat(app.getAssetManager().loadMaterial("Materials/TreeTwo.j3m"));
         
-        setModel(app.getAssetManager().loadModel("Models/trees/Tree 1/tree.j3o"));
+        setModel(app.getAssetManager().loadModel("Models/trees/Tree 2/Tree 2.j3o"));
         
         getModel().setMaterial(getMat());
         
