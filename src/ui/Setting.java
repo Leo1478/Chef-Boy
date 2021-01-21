@@ -62,7 +62,7 @@ public class Setting {
         Point point = new Point((int)mousePosition.x, (int)mousePosition.y);
 
         
-        if(menuButton.getHitBox().contains(point)){ // play button
+        if(menuButton.getHitBox().contains(point)){ // return to menu button
             
             stateManager.getState(SettingState.class).exitState(); // exit settingState
             stateManager.getState(SettingState.class).cleanUp();
@@ -72,7 +72,7 @@ public class Setting {
             
         }
         
-        if(gameButton.getHitBox().contains(point)){ // exit button 
+        if(gameButton.getHitBox().contains(point)){ // return to game button 
             stateManager.getState(SettingState.class).exitState(); // exit settingState
             stateManager.getState(SettingState.class).cleanUp();
             stateManager.getState(GameState.class).enterState(); // enter gameState

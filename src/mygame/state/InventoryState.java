@@ -49,8 +49,10 @@ public class InventoryState extends State{
     @Override
     public void cleanUp() {
         app.getGuiNode().detachChildNamed("inventoryBackground");
-        
         app.getInputManager().removeListener(inventoryManager);
+        
+        inventory = null;
+        inventoryManager = null;
     }
 
     @Override

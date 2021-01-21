@@ -47,10 +47,10 @@ import ui.HeadsUpDisplay;
 public class GameState extends State {
 
     private Inventory inventory; // inventory of items 
-    private Queue<Enemy> enemyQueue = new LinkedList<>(); // queue to spawn enemies 
-    private ArrayList<Item> items = new ArrayList<>(); // list to store all existing items
-    private ArrayList<Enemy> enemies = new ArrayList<>(); // list to store enemies 
-    private ArrayList<Prop> props = new ArrayList<>(); // list of all props 
+    private Queue<Enemy> enemyQueue; // queue to spawn enemies 
+    private ArrayList<Item> items; // list to store all existing items
+    private ArrayList<Enemy> enemies; // list to store enemies 
+    private ArrayList<Prop> props; // list of all props 
     private HeadsUpDisplay hud;
     
     private float spawnRate = 10; // 10 seconds between each spawn 
@@ -89,6 +89,11 @@ public class GameState extends State {
      */
     @Override
     public void init(){
+        
+        enemyQueue = new LinkedList<>();
+        items = new ArrayList<>();
+        enemies = new ArrayList<>();
+        props = new ArrayList<>();
         
         bulletAppState = new BulletAppState(); // for physics 
         stateManager.attach(bulletAppState); // add bulletAppState into state manager
@@ -480,11 +485,30 @@ public class GameState extends State {
     
     
     public void cleanUp(){
+        
+        app.getGuiNode().detachAllChildren();
         app.getRootNode().detachAllChildren();
-        app.getInputManager().removeListener(player);
+        app.getInputManager().removeListener(player); 
+        app.getInputManager().removeListener(gameStateManager); 
         app.getRootNode().removeLight(sun);
         app.getRootNode().removeLight(al);
         app.getViewPort().removeProcessor(dlsr);
-        //app.getViewPort().removeProcessor(processor);
+        
+        inventory = null;
+        enemyQueue = null;
+        items = null;
+        enemies = null;
+        props = null;  
+        gameLight = null;
+        player = null;
+        chefBoy = null;
+        gameStateManager = null;
+        bulletAppState = null;
+        sun = null;
+        al = null;
+        dlsr = null;
+
+
+
     }
 }

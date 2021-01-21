@@ -22,7 +22,6 @@ public class MenuState extends State {
     private AppStateManager stateManager;
     
     private SimpleApplication app;
-    private Button startButton;
     
     private MenuManager menuManager;
     private Menu menu;

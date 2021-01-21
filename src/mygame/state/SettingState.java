@@ -56,6 +56,9 @@ public class SettingState extends State {
         
         app.getInputManager().removeListener(settingManager);
         
+        settingManager = null;
+        setting = null;
+        
     }
 
     @Override
