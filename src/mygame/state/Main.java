@@ -18,6 +18,7 @@ public class Main extends SimpleApplication {
     private GameState gameState;
     private MenuState menuState;
     private InventoryState inventoryState;
+    private SettingState settingState;
     
     public static final int SCREENWIDTH = 1500;
     public static final int SCREENHEIGHT = 800;
@@ -47,8 +48,8 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
-
-        getInputManager().setCursorVisible(true);
+        getInputManager().deleteMapping( SimpleApplication.INPUT_MAPPING_EXIT ); // unbind esc to exit 
+        getInputManager().setCursorVisible(true); // make cursor visible to start
         
         setDisplayStatView(true); 
         setDisplayFps(true);
@@ -62,9 +63,13 @@ public class Main extends SimpleApplication {
         inventoryState = new InventoryState();
         stateManager.attach((AppState) inventoryState);
         
+        settingState = new SettingState();
+        stateManager.attach((AppState) settingState);
+        
         menuState.setEnabled(false); // start all of the states on disabled 
         gameState.setEnabled(false);    
         inventoryState.setEnabled(false);
+        settingState.setEnabled(false);
         
     }
 
@@ -76,7 +81,10 @@ public class Main extends SimpleApplication {
             // if called from simpleInitApp(), the menu will be created before menuState
             // jmonkey initialize the states after simpleInitApp()
             menuState.enterState(); 
+            menuState.init();
             menu = true;
+            
+            
         }
     }
 

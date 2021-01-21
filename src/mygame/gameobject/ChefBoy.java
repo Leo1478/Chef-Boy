@@ -184,7 +184,7 @@ public class ChefBoy extends Character {
         if (!block) {
             super.takeDamage(amount);
         } else {
-            block = false;
+            // block = false;
         }
     }
 

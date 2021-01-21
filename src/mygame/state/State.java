@@ -38,12 +38,10 @@ public abstract class State extends AbstractAppState{
     
     public void enterState(){       
         setEnabled(true);
-        init();
     }
 
     public void exitState() {
         setEnabled(false);
-        cleanUp();
     }
     
     /**

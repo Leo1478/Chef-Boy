@@ -16,6 +16,7 @@ import com.jme3.math.Vector2f;
 import mygame.state.GameState;
 import mygame.state.InventoryState;
 import mygame.state.MenuState;
+import mygame.state.SettingState;
 
 /**
  *
@@ -38,14 +39,22 @@ public class GameStateManager implements ActionListener{
         app.getInputManager().addMapping("Inventory", new KeyTrigger(KeyInput.KEY_I));
         app.getInputManager().addListener(this, "Inventory");
         
+        app.getInputManager().addMapping("Setting", new KeyTrigger(KeyInput.KEY_ESCAPE));
+        app.getInputManager().addListener(this, "Setting");
     }
     
     @Override
     public void onAction(String binding, boolean isPressed, float tpf) {
         if (binding.equals("Inventory") && isPressed) {
-            System.out.println("clicked inv");
             stateManager.getState(InventoryState.class).enterState();
             stateManager.getState(InventoryState.class).init(inventory);
+            stateManager.getState(GameState.class).exitState();
+            
+        }
+        if (binding.equals("Setting") && isPressed) {
+            stateManager.getState(SettingState.class).enterState();
+            stateManager.getState(SettingState.class).init();
+            stateManager.getState(GameState.class).exitState();
         }
     }
     

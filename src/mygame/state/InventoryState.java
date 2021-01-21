@@ -10,6 +10,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import ui.Inventory;
+import ui.InventoryManager;
 
 /**
  *
@@ -19,6 +20,7 @@ public class InventoryState extends State{
     
     private SimpleApplication app;
     private Inventory inventory;
+    private InventoryManager inventoryManager;
     
     public InventoryState(){
 
@@ -47,12 +49,12 @@ public class InventoryState extends State{
     @Override
     public void cleanUp() {
         app.getGuiNode().detachChildNamed("inventoryBackground");
+        
+        app.getInputManager().removeListener(inventoryManager);
     }
 
     @Override
     public void init() {
         
     }
-
-    
 }

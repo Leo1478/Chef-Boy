@@ -32,9 +32,9 @@ public class Fish extends Enemy {
         setAlive(true);
         setHealth(20);
         setDamage(10);
-        setSpeed(0.3);
+        setSpeed(0.6);
         setRange(10);
-        setDetectionRange(30);
+        setDetectionRange(50);
         setAttackSpeed(5);
         setCoolDown(5);
         
@@ -50,13 +50,11 @@ public class Fish extends Enemy {
 
         setMat(app.getAssetManager().loadMaterial("Materials/fish.j3m"));
         
-        setModel(app.getAssetManager().loadModel("Models/fish/fish.mesh.xml"));
+        setModel(app.getAssetManager().loadModel("Models/fish/fish.mesh.j3o"));
 
         getModel().setMaterial(getMat());
 
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
-
-        app.getRootNode().attachChild(getModel());
 
     }
     

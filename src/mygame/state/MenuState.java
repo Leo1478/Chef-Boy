@@ -8,6 +8,7 @@ package mygame.state;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.input.controls.MouseButtonTrigger;
 import ui.Button;
 import ui.Menu;
 import ui.MenuManager;
@@ -53,8 +54,14 @@ public class MenuState extends State {
     public void cleanUp(){
         
         app.getGuiNode().detachChildNamed("menuBackground");
+        app.getGuiNode().detachChildNamed("button"); // delete the 3 buttons 
         app.getGuiNode().detachChildNamed("button");
         app.getGuiNode().detachChildNamed("button");
+        
+        app.getInputManager().removeListener(menuManager);
+        
+        menu = null;
+        menuManager = null;
         
     }
 

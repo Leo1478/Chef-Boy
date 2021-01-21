@@ -68,6 +68,7 @@ public class Menu {
             stateManager.getState(MenuState.class).exitState(); // exit menuState
             stateManager.getState(MenuState.class).cleanUp();
             stateManager.getState(GameState.class).enterState(); // enter gameState
+            stateManager.getState(GameState.class).init();
         }
         
         if(exitButton.getHitBox().contains(point)){ // exit button 

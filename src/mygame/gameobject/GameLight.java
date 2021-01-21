@@ -44,16 +44,7 @@ public class GameLight {
         */
         
         
-        DirectionalLight sun = new DirectionalLight();
-        sun.setColor(ColorRGBA.White.mult(0.8f));
-        sun.setDirection(new Vector3f(-0.5f, -1f, -0.5f));
-        app.getRootNode().addLight(sun);
-        
 
-        final int SHADOWMAP_SIZE=512;
-        DirectionalLightShadowRenderer dlsr = new DirectionalLightShadowRenderer(app.getAssetManager(), SHADOWMAP_SIZE, 1);
-        dlsr.setLight(sun);
-        app.getViewPort().addProcessor(dlsr);
 
         
         // NOTE: use either renderer or filter, rednerer can change cast/receive setting 
@@ -69,10 +60,7 @@ public class GameLight {
         
         
         // ambient light requires material to work 
-        AmbientLight al = new AmbientLight();
-        al.setColor(new ColorRGBA(1f, 0.5f, 0.5f, 1f).mult(0.2f));
-        al.setEnabled(true);
-        app.getRootNode().addLight(al);
+
     }
         
 }
