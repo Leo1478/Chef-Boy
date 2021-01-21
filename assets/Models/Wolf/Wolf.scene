@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- exporter: blender2ogre 0.8.0 -->
+<!-- export_time: Thu, 21 Jan 2021 17:47:36 +0000 -->
+<scene author="ningy" formatVersion="1.1" >
+  <nodes >
+    <node name="Armature" >
+      <position x="0.246151" y="0.105493" z="0.000000" />
+      <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <node name="Wolf" >
+        <position x="0.000000" y="0.000000" z="-0.000000" />
+        <rotation qw="1.000000" qx="0.000000" qy="0.000000" qz="-0.000000" />
+        <scale x="1.000000" y="1.000000" z="1.000000" />
+        <entity meshFile="Wolf.mesh" name="Wolf" >
+          <userData />
+        </entity>
+      </node>
+    </node>
+  </nodes>
+  <externals />
+  <environment >
+    <colourBackground b="0.05087608844041824" g="0.05087608844041824" r="0.05087608844041824" />
+  </environment>
+</scene>
