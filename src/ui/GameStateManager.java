@@ -25,8 +25,8 @@ import mygame.state.SettingState;
 public class GameStateManager implements ActionListener{
     
     private Application app;
-    AppStateManager stateManager;
-    Inventory inventory;
+    private AppStateManager stateManager;
+    private Inventory inventory;
     
     public GameStateManager(SimpleApplication app, AppStateManager stateManager, Inventory inventory){
         this.app = app;
@@ -37,10 +37,10 @@ public class GameStateManager implements ActionListener{
     
     private void setKeys(){
         app.getInputManager().addMapping("Inventory", new KeyTrigger(KeyInput.KEY_I));
-        app.getInputManager().addListener(this, "Inventory");
+//        app.getInputManager().addListener(this, "Inventory");
         
         app.getInputManager().addMapping("Setting", new KeyTrigger(KeyInput.KEY_ESCAPE));
-        app.getInputManager().addListener(this, "Setting");
+//        app.getInputManager().addListener(this, "Setting");
     }
     
     @Override
@@ -48,12 +48,16 @@ public class GameStateManager implements ActionListener{
         if (binding.equals("Inventory") && isPressed) {
             stateManager.getState(InventoryState.class).enterState();
             stateManager.getState(InventoryState.class).init(inventory);
+            stateManager.getState(InventoryState.class).addListener();
+            stateManager.getState(GameState.class).removeListener();
             stateManager.getState(GameState.class).exitState();
             
         }
         if (binding.equals("Setting") && isPressed) {
             stateManager.getState(SettingState.class).enterState();
             stateManager.getState(SettingState.class).init();
+             stateManager.getState(SettingState.class).addListener();
+            stateManager.getState(GameState.class).removeListener();
             stateManager.getState(GameState.class).exitState();
         }
     }
@@ -61,4 +65,6 @@ public class GameStateManager implements ActionListener{
     private Vector2f getMousePosition(){
         return app.getInputManager().getCursorPosition();
     }
+    
+    
 }

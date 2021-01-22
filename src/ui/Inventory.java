@@ -7,17 +7,22 @@ package ui;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
-import com.jme3.input.KeyInput;
-import com.jme3.input.controls.ActionListener;
-import com.jme3.input.controls.KeyTrigger;
-import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.app.state.AppStateManager;
 import com.jme3.math.Vector2f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import mygame.gameobject.Item;
 import mygame.gameobject.ItemPic;
+import mygame.state.GameState;
+import mygame.state.InventoryState;
+import static mygame.state.Main.SCREENHEIGHT;
+import static mygame.state.Main.SCREENWIDTH;
+import mygame.state.MenuState;
+import mygame.state.SettingState;
 
 /**
  *
@@ -27,23 +32,18 @@ public class Inventory {
     
     private SimpleApplication app;
     
-    private ArrayList<Item> itemList; // list to temp store items for sorting 
-    private Item[][] item; // grid to store item 
-    private Vector2f[][] position; // positions to place pictures 
+    private Item[] itemArray;
     private int pictureSize; // size of all itemPics in pixels
-    
-    private Item selected;
-    
-    private static final int SCREENWIDTH = 1500;
-    private static final int SCREENHEIGHT = 800;
-    
-    
-    public Inventory(SimpleApplication app){
+    private int size;
+    private Button sortButton;
+    private Button gameButton;
+    private AppStateManager stateManager;
+
+    public Inventory(SimpleApplication app, AppStateManager stateManager){
         this.app = app;
-        itemList = new ArrayList<>(); 
-        item = new Item[5][10]; 
-        position = new Vector2f[5][10];
-        selected = null;
+        this.stateManager = stateManager;
+        size = 0;
+        itemArray = new Item[50];
 
     }
     
@@ -51,6 +51,9 @@ public class Inventory {
         
        initBackground();
        initItemPicture();
+       
+       sortButton = new Button(app, new Rectangle(50, 650, 320, 100), "UI/return to game.png");
+       gameButton = new Button(app, new Rectangle(50, 500, 320, 100), "UI/return to game.png");
     }
     
     /**
@@ -76,28 +79,57 @@ public class Inventory {
      * init each item picture in inventory
      */
     private void initItemPicture(){
-        
-        for(Item i : itemList){
-            ItemPic current = i.getItemPic(); // get picture 
-            app.getGuiNode().attachChild(current.getPicture()); // attatch to GuiNide
-            current.getPicture().setQueueBucket(RenderQueue.Bucket.Gui);
+        if(size > 0){
+            for(Item i : itemArray){
+                ItemPic current = i.getItemPic(); // get picture 
+                app.getGuiNode().attachChild(current.getPicture()); // attatch to GuiNide
+                current.getPicture().setQueueBucket(RenderQueue.Bucket.Gui);
+            }            
         }
 
     }
     
     private void setPicturePosition(){
         
-        int x = 200;
+        int x = 200; // starting position of first itemPic
         int y = 500;
         
-        for(Item i : itemList){
-
-            ItemPic current = i.getItemPic();
-            current.getPicture().setPosition(x, y); // set position of picture
+        for(int i = 0; i < size; i++){
             
-            x += 200;
+            Item item = itemArray[i];
+            ItemPic current = item.getItemPic();
+            current.getPicture().setPosition(x, y); // set position of picture
+
+            x += 120;
+            if(i % 10 == 0){ // next row 
+                y += 120;
+                x = 200;
+            }
+        }
+    }
+    
+    public void clickButton(Vector2f mousePosition){
+        
+        System.out.println("clickButton in inventory");
+        
+        Point point = new Point((int)mousePosition.x, (int)mousePosition.y);
+        
+        if(sortButton.getHitBox().contains(point)){ // sort button
+             
         }
         
+        if(gameButton.getHitBox().contains(point)){ // return to game button
+            
+            System.out.println("return to game");
+            stateManager.getState(InventoryState.class).exitState();
+            stateManager.getState(InventoryState.class).removeListener();
+            stateManager.getState(InventoryState.class).cleanUp();
+            
+            stateManager.getState(GameState.class).enterState();
+            stateManager.getState(GameState.class).addListener();
+            app.getInputManager().setCursorVisible(false);
+            
+        }
     }
     
     
@@ -107,11 +139,14 @@ public class Inventory {
     }
     
     public void add(Item item){
-        itemList.add(item);
+        if(size < 50){
+            itemArray[size] = item;
+            size ++;
+        }
     }
     
-    public void remove(Item item){
-        itemList.remove(item);
+    public void remove(int index){
+        itemArray[index] = null;
     }
     
     public void sort(){
@@ -142,7 +177,7 @@ public class Inventory {
         // called with mouse lets go
         // place item at empty spot
         // if spot is not empty, return item to original location 
-        selected = null;
+        
     }
     
     private void display(){

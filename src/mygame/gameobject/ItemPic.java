@@ -46,11 +46,6 @@ public class ItemPic {
 
         //picture.setQueueBucket(RenderQueue.Bucket.Gui);
         
-        
-        
-        
-        
-        
     }
     
     public void display(){

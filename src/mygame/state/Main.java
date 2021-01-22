@@ -47,6 +47,7 @@ public class Main extends SimpleApplication {
      */
     @Override
     public void simpleInitApp() {
+
         
         getInputManager().deleteMapping( SimpleApplication.INPUT_MAPPING_EXIT ); // unbind esc to exit 
         getInputManager().setCursorVisible(true); // make cursor visible to start
@@ -82,6 +83,7 @@ public class Main extends SimpleApplication {
             // jmonkey initialize the states after simpleInitApp()
             menuState.enterState(); 
             menuState.init();
+            menuState.addListener();
             menu = true;
             
             

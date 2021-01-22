@@ -67,6 +67,14 @@ public class MenuState extends State {
 
     @Override
     public void update(float tpf) {
-
+        System.out.println("in MenuState");
+    }
+    
+    public void addListener(){
+        app.getInputManager().addListener(menuManager, "mouseLeft");
+    }
+    
+    public void removeListener(){
+        app.getInputManager().removeListener(menuManager);
     }
 }

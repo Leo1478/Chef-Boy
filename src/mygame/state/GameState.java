@@ -28,7 +28,6 @@ import mygame.gameobject.Hut;
 import ui.Inventory;
 import mygame.gameobject.Item;
 import mygame.gameobject.Jelly;
-import mygame.gameobject.Pan;
 import mygame.gameobject.Pig;
 import mygame.gameobject.Player;
 import mygame.gameobject.Prop;
@@ -122,6 +121,8 @@ public class GameState extends State {
             initHud();
 
             gameStateManager = new GameStateManager(app, stateManager, inventory);
+            
+            addListener();
         }
     }
     
@@ -360,7 +361,7 @@ public class GameState extends State {
      * init inventory 
      */
     private void initInventory(){
-        inventory = new Inventory(app);
+        inventory = new Inventory(app, stateManager);
     }
     
     /**
@@ -379,10 +380,9 @@ public class GameState extends State {
         
         updateHUD();
         
-        //System.out.println(chefBoy.getPosition());
+        System.out.println(chefBoy.getPosition());
     }
-    
-    
+
     
     /**
      * behaviour for player & chefboy 
@@ -392,7 +392,6 @@ public class GameState extends State {
         
         player.move(); // check move inputs 
         
-
         player.attack(enemies); // attack inputs 
         player.block(); // block inputs 
         
@@ -454,7 +453,7 @@ public class GameState extends State {
             
             Item current = items.get(i);
             
-            current.behaviour(chefBoy);
+            current.behaviour(chefBoy, tpf);
             
             if(current.getPickedUp()){ // if current is picked up 
                 
@@ -495,6 +494,10 @@ public class GameState extends State {
         return inventory;
     }
     
+    public boolean getInit(){
+        return init;
+    }
+    
     
     @Override
     public void cleanUp(){
@@ -522,4 +525,27 @@ public class GameState extends State {
         dlsr = null;
         
     }
+    
+    public void addListener(){
+        
+        app.getInputManager().addListener(player, "Left");
+        app.getInputManager().addListener(player, "Right");
+        app.getInputManager().addListener(player, "Forward");
+        app.getInputManager().addListener(player, "Back");
+        app.getInputManager().addListener(player, "Jump");
+        
+        app.getInputManager().addListener(player, "MouseLeft");
+        app.getInputManager().addListener(player, "MouseRight");
+        
+        app.getInputManager().addListener(gameStateManager, "Inventory");
+        app.getInputManager().addListener(gameStateManager, "Setting");
+        
+    }
+    
+    public void removeListener(){
+        
+        app.getInputManager().removeListener(player);
+        app.getInputManager().removeListener(gameStateManager);
+    }
+            
 }

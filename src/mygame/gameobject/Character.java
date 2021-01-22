@@ -66,7 +66,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
         BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
         characterControl = new CharacterControl(collisionShape, 0.05f);
-        characterControl.setFallSpeed(10);
+        characterControl.setFallSpeed(60);
 
         bulletAppState.getPhysicsSpace().add(characterControl);
         characterControl.setGravity(new Vector3f(0, -60f, 0));

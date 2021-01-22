@@ -28,11 +28,12 @@ public class MenuManager implements ActionListener{
     
     private void setKeys(){
         app.getInputManager().addMapping("mouseLeft", new MouseButtonTrigger(0));
-        app.getInputManager().addListener(this, "mouseLeft");
+//        app.getInputManager().addListener(this, "mouseLeft");
     }
     
     @Override
     public void onAction(String binding, boolean isPressed, float tpf) {
+        
         if (binding.equals("mouseLeft") && isPressed) {
             menu.clickButton(getMousePosition());
             System.out.println("thing from MenuManger");

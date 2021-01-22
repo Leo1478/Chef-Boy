@@ -31,6 +31,11 @@ public class Setting {
     private Button menuButton;
     private Button gameButton;
     
+    private Button changeButton;
+    private Button thirtyButton;
+    private Button sixtyButton;
+    private Button unlimitedButton;
+    
     public Setting(SimpleApplication app, AppStateManager stateManager){
         this.app = app;
         this.stateManager = stateManager;
@@ -50,6 +55,10 @@ public class Setting {
         
         menuButton = new Button(app, new Rectangle(50, 650, 320, 100), "UI/return to menu.png" );
         gameButton = new Button(app, new Rectangle(50, 500, 320, 100), "UI/return to game.png");
+        changeButton = new Button(app, new Rectangle(50, 350, 320, 100), "UI/return to game.png");
+        thirtyButton = new Button(app, new Rectangle(400, 350, 320, 100), "UI/return to game.png");
+        sixtyButton = new Button(app, new Rectangle(750, 350, 320, 100), "UI/return to game.png");
+        unlimitedButton = new Button(app, new Rectangle(1100, 350, 320, 100), "UI/return to game.png");
         
     }
     
@@ -60,24 +69,62 @@ public class Setting {
     public void clickButton(Vector2f mousePosition){
         
         Point point = new Point((int)mousePosition.x, (int)mousePosition.y);
-
         
-        if(menuButton.getHitBox().contains(point)){ // return to menu button
+        if(thirtyButton.getHitBox().contains(point)){
+            
+            AppSettings appSettings = new AppSettings(true);   
+            appSettings.setFrameRate(30);
+            appSettings.put("Width",SCREENWIDTH);
+            appSettings.put("Height",SCREENHEIGHT);
+            appSettings.put("Title", "ChefBoy");  
+            app.setSettings(appSettings);   
+            app.restart();
+        }
+        
+        else if(sixtyButton.getHitBox().contains(point)){
+            
+            AppSettings appSettings = new AppSettings(true);   
+            appSettings.setFrameRate(60);
+            appSettings.put("Width",SCREENWIDTH);
+            appSettings.put("Height",SCREENHEIGHT);
+            appSettings.put("Title", "ChefBoy");  
+            app.setSettings(appSettings);   
+            app.restart();
+        }
+        else if(unlimitedButton.getHitBox().contains(point)){
+            
+            AppSettings appSettings = new AppSettings(true);   
+            appSettings.setFrameRate(-1);
+            appSettings.put("Width",SCREENWIDTH);
+            appSettings.put("Height",SCREENHEIGHT);
+            appSettings.put("Title", "ChefBoy");  
+            app.setSettings(appSettings);   
+            app.restart();
+        }
+        else if(menuButton.getHitBox().contains(point)){ // return to menu button
             
             stateManager.getState(SettingState.class).exitState(); // exit settingState
             stateManager.getState(SettingState.class).cleanUp();
-            //stateManager.getState(GameState.class).cleanUp(); // clean up gameState
+            stateManager.getState(SettingState.class).removeListener();
             stateManager.getState(MenuState.class).enterState(); // enter menuState
-            stateManager.getState(MenuState.class).init(); // enter menuState
+            stateManager.getState(MenuState.class).init(); 
+            stateManager.getState(MenuState.class).addListener(); 
             
         }
         
-        if(gameButton.getHitBox().contains(point)){ // return to game button 
+        else if(gameButton.getHitBox().contains(point)){ // return to game button 
             stateManager.getState(SettingState.class).exitState(); // exit settingState
             stateManager.getState(SettingState.class).cleanUp();
+            stateManager.getState(SettingState.class).removeListener();
             stateManager.getState(GameState.class).enterState(); // enter gameState
+            stateManager.getState(GameState.class).addListener();
+            if( !stateManager.getState(GameState.class).getInit()){
+                stateManager.getState(GameState.class).init();
+            }
             app.getInputManager().setCursorVisible(false);
         }
+        
+        
     }
     
     public void update(){

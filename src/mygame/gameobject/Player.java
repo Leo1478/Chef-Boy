@@ -71,16 +71,16 @@ public class Player implements ActionListener{
         app.getInputManager().addMapping("Forward", new KeyTrigger(KeyInput.KEY_W));
         app.getInputManager().addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
         app.getInputManager().addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
-        app.getInputManager().addListener(this, "Left");
-        app.getInputManager().addListener(this, "Right");
-        app.getInputManager().addListener(this, "Forward");
-        app.getInputManager().addListener(this, "Back");
-        app.getInputManager().addListener(this, "Jump");
+//        app.getInputManager().addListener(this, "Left");
+//        app.getInputManager().addListener(this, "Right");
+//        app.getInputManager().addListener(this, "Forward");
+//        app.getInputManager().addListener(this, "Back");
+//        app.getInputManager().addListener(this, "Jump");
         
         app.getInputManager().addMapping("MouseLeft", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         app.getInputManager().addMapping("MouseRight", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
-        app.getInputManager().addListener(this, "MouseLeft");
-        app.getInputManager().addListener(this, "MouseRight");
+//        app.getInputManager().addListener(this, "MouseLeft");
+//        app.getInputManager().addListener(this, "MouseRight");
     }
 
     /**

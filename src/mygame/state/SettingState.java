@@ -23,7 +23,6 @@ public class SettingState extends State {
     private AppStateManager stateManager;
     
     private SimpleApplication app;
-    private Button startButton;
     
     private SettingManager settingManager;
     private Setting setting;
@@ -53,6 +52,10 @@ public class SettingState extends State {
         app.getGuiNode().detachChildNamed("settingBackground");
         app.getGuiNode().detachChildNamed("button");
         app.getGuiNode().detachChildNamed("button");
+        app.getGuiNode().detachChildNamed("button");
+        app.getGuiNode().detachChildNamed("button");
+        app.getGuiNode().detachChildNamed("button");
+        app.getGuiNode().detachChildNamed("button");
         
         app.getInputManager().removeListener(settingManager);
         
@@ -63,6 +66,15 @@ public class SettingState extends State {
 
     @Override
     public void update(float tpf) {
-
+        System.out.println("in SettingState");
+    }
+    
+        
+    public void addListener(){
+        app.getInputManager().addListener(settingManager, "mouseLeft");
+    }
+    
+    public void removeListener(){
+        app.getInputManager().removeListener(settingManager);
     }
 }

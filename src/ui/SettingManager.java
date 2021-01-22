@@ -28,7 +28,7 @@ public class SettingManager implements ActionListener{
     
     private void setKeys(){
         app.getInputManager().addMapping("mouseLeft", new MouseButtonTrigger(0));
-        app.getInputManager().addListener(this, "mouseLeft");
+//        app.getInputManager().addListener(this, "mouseLeft");
         
     }
     

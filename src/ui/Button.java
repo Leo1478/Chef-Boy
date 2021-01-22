@@ -41,6 +41,7 @@ public class Button {
         picture.setWidth(hitBox.width);
         picture.setHeight(hitBox.height);
         picture.setPosition(hitBox.x, hitBox.y);
+        picture.setLocalTranslation(hitBox.x, hitBox.y, 2);
 
         app.getGuiNode().attachChild(picture);
         picture.setQueueBucket(RenderQueue.Bucket.Gui);
