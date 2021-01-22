@@ -39,6 +39,9 @@ import mygame.gameobject.Volcano;
 import mygame.gameobject.Crystal;
 import ui.GameStateManager;
 import ui.HeadsUpDisplay;
+import com.jme3.util.SkyFactory;
+import mygame.gameobject.IslandTwo;
+import com.jme3.texture.Texture;
 
 /**
  * state for in game init all game objects update all game objects
@@ -166,8 +169,14 @@ public class GameState extends State {
      * set sky color to light blue
      */
     private void initSky() {
-        
-        app.getViewPort().setBackgroundColor(new ColorRGBA(1f, 0.7f, 0.5f, 1f));
+        Texture westTex = app.getAssetManager().loadTexture("Textures/Sky/yellowcloud_right.jpg");
+        Texture eastTex = app.getAssetManager().loadTexture("Textures/Sky/yellowcloud_left.jpg");
+        Texture northTex = app.getAssetManager().loadTexture("Textures/Sky/yellowcloud_front.jpg");
+        Texture southTex = app.getAssetManager().loadTexture("Textures/Sky/yellowcloud_back.jpg");
+        Texture upTex = app.getAssetManager().loadTexture("Textures/Sky/yellowcloud_up.jpg");
+        Texture downTex = app.getAssetManager().loadTexture("Textures/Sky/yellowcloud_down.jpg");
+        app.getRootNode().attachChild(SkyFactory.createSky(app.getAssetManager(), westTex,eastTex,northTex,southTex,upTex,downTex,new Vector3f(-1, 1, 1)));
+        //app.getViewPort().setBackgroundColor(new ColorRGBA(1f, 0.7f, 0.5f, 1f));
     }
 
     /**
@@ -188,31 +197,31 @@ public class GameState extends State {
         props.add(hut);
         
         Prop tree0 = new Tree(app, bulletAppState, new Vector3f(260, -10, 193), "tree0");
-        Prop tree1 = new Tree(app, bulletAppState, new Vector3f(205, -13, 223), "tree1");
+        Prop tree1 = new TreeTwo(app, bulletAppState, new Vector3f(205, -13, 223), "tree1");
         Prop tree2 = new Tree(app, bulletAppState, new Vector3f(105, 4, 154), "tree2");
-        Prop tree3 = new Tree(app, bulletAppState, new Vector3f(41, -6, 164), "tree3");
+        Prop tree3 = new TreeTwo(app, bulletAppState, new Vector3f(41, -6, 164), "tree3");
         Prop tree4 = new Tree(app, bulletAppState, new Vector3f(-40, 7, 221), "tree4");
         Prop tree5 = new Tree(app, bulletAppState, new Vector3f(-112, -7, 191), "tree4");
-        Prop tree6 = new Tree(app, bulletAppState, new Vector3f(-251, 15, 212), "tree4");
+        Prop tree6 = new TreeTwo(app, bulletAppState, new Vector3f(-251, 15, 212), "tree4");
         Prop tree7 = new Tree(app, bulletAppState, new Vector3f(-304, 2, 162), "tree4");
-        Prop tree8 = new Tree(app, bulletAppState, new Vector3f(-214, 2, 146), "tree4");
-        Prop tree9 = new Tree(app, bulletAppState, new Vector3f(-112, -6, 153), "tree4");
+        Prop tree8 = new TreeTwo(app, bulletAppState, new Vector3f(-214, 2, 146), "tree4");
+        Prop tree9 = new TreeTwo(app, bulletAppState, new Vector3f(-112, -6, 153), "tree4");
         Prop tree10 = new Tree(app, bulletAppState, new Vector3f(99, -4, 122), "tree4");
         Prop tree11 = new Tree(app, bulletAppState, new Vector3f(204, -15, 104), "tree4");
-        Prop tree12 = new Tree(app, bulletAppState, new Vector3f(260, 10, 11), "tree4");
+        Prop tree12 = new TreeTwo(app, bulletAppState, new Vector3f(260, 10, 11), "tree4");
         Prop tree13 = new Tree(app, bulletAppState, new Vector3f(192, -6, -49), "tree4");
         Prop tree14 = new TreeTwo(app, bulletAppState, new Vector3f(108, 5, -42), "tree4");
-        Prop tree15 = new TreeTwo(app, bulletAppState, new Vector3f(38, -4, -21), "tree4");
+        Prop tree15 = new Tree(app, bulletAppState, new Vector3f(38, -4, -21), "tree4");
         Prop tree16 = new TreeTwo(app, bulletAppState, new Vector3f(-78, -9, -16), "tree4");
-        Prop tree17 = new TreeTwo(app, bulletAppState, new Vector3f(-236, 10, 35), "tree4");
-        Prop tree18 = new TreeTwo(app, bulletAppState, new Vector3f(-279, 14, -82), "tree4");
+        Prop tree17 = new Tree(app, bulletAppState, new Vector3f(-236, 10, 35), "tree4");
+        Prop tree18 = new Tree(app, bulletAppState, new Vector3f(-279, 14, -82), "tree4");
         Prop tree19 = new TreeTwo(app, bulletAppState, new Vector3f(-119, -7, -161), "tree4");
-        Prop tree20 = new TreeTwo(app, bulletAppState, new Vector3f(53, 6, -152), "tree4");
-        Prop tree21 = new TreeTwo(app, bulletAppState, new Vector3f(252, -17, -184), "tree4");
+        Prop tree20 = new Tree(app, bulletAppState, new Vector3f(53, 6, -152), "tree4");
+        Prop tree21 = new Tree(app, bulletAppState, new Vector3f(252, -17, -184), "tree4");
         Prop tree22 = new TreeTwo(app, bulletAppState, new Vector3f(295, -12, -345), "tree4");
-        Prop tree23 = new TreeTwo(app, bulletAppState, new Vector3f(201, -9, -366), "tree4");
+        Prop tree23 = new Tree(app, bulletAppState, new Vector3f(201, -9, -366), "tree4");
         Prop tree24 = new TreeTwo(app, bulletAppState, new Vector3f(33, -6, -363), "tree4");
-        Prop tree25 = new TreeTwo(app, bulletAppState, new Vector3f(-185, 18, -318), "tree4");
+        Prop tree25 = new Tree(app, bulletAppState, new Vector3f(-185, 18, -318), "tree4");
 
         props.add(tree0);
         props.add(tree1);
@@ -248,6 +257,9 @@ public class GameState extends State {
         
         Prop crystal0 = new Crystal(app, bulletAppState, new Vector3f(-210, 20, 200), "crystal0");
         props.add(volcano0);
+        
+        Prop island0 = new IslandTwo(app, bulletAppState, new Vector3f(150, 160, 600), "island0");
+        props.add(island0);
     }
     
     private void initChefBoy(){
@@ -380,7 +392,15 @@ public class GameState extends State {
         
         updateHUD();
         
+<<<<<<< Updated upstream
         System.out.println(chefBoy.getPosition());
+=======
+
+        System.out.println(chefBoy.getPosition()); //-6 to y
+
+        System.out.println(chefBoy.getPosition());
+
+>>>>>>> Stashed changes
     }
 
     
