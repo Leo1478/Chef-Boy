@@ -54,7 +54,7 @@ public class Inventory {
        initItemPicture();
        
        sortButton = new Button(app, new Rectangle(300, 50, 320, 100), "UI/sort.png");
-       gameButton = new Button(app, new Rectangle(850, 50, 320, 100), "UI/return to game black.png");
+       gameButton = new Button(app, new Rectangle(880, 50, 320, 100), "UI/return to game black.png");
     }
     
     /**
