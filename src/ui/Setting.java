@@ -55,10 +55,10 @@ public class Setting {
         
         menuButton = new Button(app, new Rectangle(50, 650, 320, 100), "UI/return to menu.png" );
         gameButton = new Button(app, new Rectangle(50, 500, 320, 100), "UI/return to game.png");
-        changeButton = new Button(app, new Rectangle(50, 350, 320, 100), "UI/return to game.png");
-        thirtyButton = new Button(app, new Rectangle(400, 350, 320, 100), "UI/return to game.png");
-        sixtyButton = new Button(app, new Rectangle(750, 350, 320, 100), "UI/return to game.png");
-        unlimitedButton = new Button(app, new Rectangle(1100, 350, 320, 100), "UI/return to game.png");
+        changeButton = new Button(app, new Rectangle(50, 350, 320, 100), "UI/frame rate.png");
+        thirtyButton = new Button(app, new Rectangle(400, 350, 320, 100), "UI/30.png");
+        sixtyButton = new Button(app, new Rectangle(750, 350, 320, 100), "UI/60.png");
+        unlimitedButton = new Button(app, new Rectangle(1100, 350, 320, 100), "UI/unlimited.png");
         
     }
     
