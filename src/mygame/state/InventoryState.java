@@ -54,6 +54,7 @@ public class InventoryState extends State{
     @Override
     public void cleanUp() {
         app.getGuiNode().detachChildNamed("inventoryBackground");
+        app.getGuiNode().detachChildNamed("grid");
         app.getGuiNode().detachChildNamed("button");
         app.getGuiNode().detachChildNamed("button");
         for(int i = 0; i < inventory.getSize(); i++){

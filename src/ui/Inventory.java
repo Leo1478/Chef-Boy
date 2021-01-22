@@ -53,8 +53,8 @@ public class Inventory {
        initBackground();
        initItemPicture();
        
-       sortButton = new Button(app, new Rectangle(50, 650, 320, 100), "UI/sort.png");
-       gameButton = new Button(app, new Rectangle(50, 500, 320, 100), "UI/return to game.png");
+       sortButton = new Button(app, new Rectangle(300, 50, 320, 100), "UI/sort.png");
+       gameButton = new Button(app, new Rectangle(850, 50, 320, 100), "UI/return to game black.png");
     }
     
     /**
@@ -70,9 +70,19 @@ public class Inventory {
         inventoryBackground.setHeight(SCREENHEIGHT);
         inventoryBackground.setPosition(0, 0);
         inventoryBackground.setLocalTranslation(0, 0, 1); // z = 1 makes inventory in front of everything else 
-
+        
         app.getGuiNode().attachChild(inventoryBackground);
         inventoryBackground.setQueueBucket(RenderQueue.Bucket.Gui);
+        
+        Picture grid = new Picture("grid");
+        grid.setImage(app.getAssetManager(), "UI/grid.png", true);
+        grid.setWidth(1180);
+        grid.setHeight(580);
+        grid.setPosition(160, 200);
+        grid.setLocalTranslation(160, 200, 1); // z = 1 makes inventory in front of everything else 
+
+        app.getGuiNode().attachChild(grid);
+        grid.setQueueBucket(RenderQueue.Bucket.Gui);
         
     }
     
@@ -93,8 +103,8 @@ public class Inventory {
     
     private void setPicturePosition(){
         
-        int x = 200; // starting position of first itemPic
-        int y = 500;
+        int x = 160; // starting position of first itemPic
+        int y = 680;
         
         for(int i = 0; i < size; i++){
             
@@ -105,7 +115,7 @@ public class Inventory {
             x += 120;
             if(i % 10 == 9){ // next row 
                 y -= 120;
-                x = 200;
+                x = 160;
             }
         }
     }
@@ -140,7 +150,9 @@ public class Inventory {
         display();
         setPicturePosition();
         
-        System.out.println(size);
+        
+        
+        System.out.println(app.getInputManager().getCursorPosition());
     }
     
     public void add(Item item){
@@ -155,7 +167,8 @@ public class Inventory {
     }
     
     public void sort(){
-        Arrays.sort(itemArray, 0, size);
+        itemArray = bubbleSort(itemArray);
+        //Arrays.sort(itemArray, 0, size);
     }
     
     private void selectItem(Vector2f mousePosition){
@@ -198,5 +211,21 @@ public class Inventory {
         return size;
     }
     
-    
+    private Item[] bubbleSort(Item[] itemArray) {
+        boolean changed;
+        Item temp;
+        do{
+            changed = false;
+            for(int i = 0 ; i < size-1 ; i ++){
+                if(itemArray[i].compareTo(itemArray[i + 1]) >= 1){
+                    temp = itemArray[i];
+                    itemArray[i] = itemArray[i + 1];
+                    itemArray[i + 1] = temp;
+                    changed = true;
+                }
+            }
+        }while(changed);
+        return itemArray;
+    }
+
 }

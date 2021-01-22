@@ -42,7 +42,7 @@ public class Jelly extends Item{
         
         app.getRootNode().attachChild(getModel());
         
-        setItemPic(new ItemPic(app, "Models/jelly/jelly.png"));
+        setItemPic(new ItemPic(app, "Models/jelly/jelly pic.png"));
         
     }
 

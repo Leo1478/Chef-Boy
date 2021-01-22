@@ -42,7 +42,7 @@ public class Fillet extends Item{
         
         app.getRootNode().attachChild(getModel());
         
-        setItemPic(new ItemPic(app, "Models/ham/ham.png"));
+        setItemPic(new ItemPic(app, "Models/fillet/fillet pic.png"));
         
     }
   
