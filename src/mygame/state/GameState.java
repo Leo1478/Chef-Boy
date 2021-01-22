@@ -392,15 +392,14 @@ public class GameState extends State {
         
         updateHUD();
         
-<<<<<<< Updated upstream
+
         System.out.println(chefBoy.getPosition());
-=======
+
 
         System.out.println(chefBoy.getPosition()); //-6 to y
 
         System.out.println(chefBoy.getPosition());
 
->>>>>>> Stashed changes
     }
 
     
