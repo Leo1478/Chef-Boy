@@ -15,6 +15,7 @@ import com.jme3.ui.Picture;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Arrays;
 import mygame.gameobject.Item;
 import mygame.gameobject.ItemPic;
 import mygame.state.GameState;
@@ -116,7 +117,8 @@ public class Inventory {
         Point point = new Point((int)mousePosition.x, (int)mousePosition.y);
         
         if(sortButton.getHitBox().contains(point)){ // sort button
-             
+             sort();
+             update();
         }
         
         if(gameButton.getHitBox().contains(point)){ // return to game button
@@ -153,7 +155,7 @@ public class Inventory {
     }
     
     public void sort(){
-        
+        Arrays.sort(itemArray, 0, size);
     }
     
     private void selectItem(Vector2f mousePosition){
@@ -195,5 +197,6 @@ public class Inventory {
     public int getSize(){
         return size;
     }
+    
     
 }

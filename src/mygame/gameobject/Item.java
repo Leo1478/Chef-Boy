@@ -15,7 +15,7 @@ import mygame.state.Main;
  * all items that can be picked up 
  * @author leoze
  */
-public abstract class Item extends GameObject{
+public abstract class Item extends GameObject implements Comparable{
     
     private boolean pickedUp = false;
     private float pickUpRadius;
@@ -49,6 +49,19 @@ public abstract class Item extends GameObject{
         pickedUp = true;
         
         deleteModel();
+    }
+    
+    @Override
+    public int compareTo(Object o){
+        Item item = (Item) o;
+        
+        if(this.getClass().toString().compareTo(item.getClass().toString()) < 0){
+            return -1;
+        }
+        else if(this.getClass().toString().compareTo(item.getClass().toString()) > 0){
+            return 1;
+        }
+        return 0;
     }
     
     /**
