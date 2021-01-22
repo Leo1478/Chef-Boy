@@ -56,6 +56,9 @@ public class InventoryState extends State{
         app.getGuiNode().detachChildNamed("inventoryBackground");
         app.getGuiNode().detachChildNamed("button");
         app.getGuiNode().detachChildNamed("button");
+        for(int i = 0; i < inventory.getSize(); i++){
+            app.getGuiNode().detachChildNamed("item pic");
+        }
         app.getInputManager().removeListener(inventoryManager);
         
         inventory = null;

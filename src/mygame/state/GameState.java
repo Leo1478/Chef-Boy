@@ -395,7 +395,6 @@ public class GameState extends State {
 
         System.out.println(chefBoy.getPosition());
 
-
         System.out.println(chefBoy.getPosition()); //-6 to y
 
         System.out.println(chefBoy.getPosition());
@@ -478,6 +477,7 @@ public class GameState extends State {
                 
                 items.remove(current); // remove from list 
                 inventory.add(current); // add to inventory
+                
             }
         }
         

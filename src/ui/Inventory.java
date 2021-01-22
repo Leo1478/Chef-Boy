@@ -79,13 +79,14 @@ public class Inventory {
      * init each item picture in inventory
      */
     private void initItemPicture(){
-        if(size > 0){
-            for(Item i : itemArray){
-                ItemPic current = i.getItemPic(); // get picture 
+
+            for(int i = 0; i < size; i++){
+                Item item = itemArray[i];
+                ItemPic current = item.getItemPic(); // get picture 
                 app.getGuiNode().attachChild(current.getPicture()); // attatch to GuiNide
                 current.getPicture().setQueueBucket(RenderQueue.Bucket.Gui);
             }            
-        }
+
 
     }
     
@@ -101,8 +102,8 @@ public class Inventory {
             current.getPicture().setPosition(x, y); // set position of picture
 
             x += 120;
-            if(i % 10 == 0){ // next row 
-                y += 120;
+            if(i % 10 == 9){ // next row 
+                y -= 120;
                 x = 200;
             }
         }
@@ -136,6 +137,8 @@ public class Inventory {
     public void update(){
         display();
         setPicturePosition();
+        
+        System.out.println(size);
     }
     
     public void add(Item item){
@@ -187,6 +190,10 @@ public class Inventory {
     
     private void displaySelected(Item item, Vector2f mousePosition){
         // display selected item and it's changed position 
+    }
+    
+    public int getSize(){
+        return size;
     }
     
 }

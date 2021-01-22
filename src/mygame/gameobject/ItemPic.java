@@ -35,7 +35,7 @@ public class ItemPic {
     
     private void init(String path){
         
-        picture = new Picture("Item");
+        picture = new Picture("item pic");
         getPicture().setImage(app.getAssetManager(), path, true);
         getPicture().setWidth(PICTUREWIDTH);
         getPicture().setHeight(PICTURELENGTH);
