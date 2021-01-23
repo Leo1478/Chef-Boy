@@ -53,6 +53,9 @@ public abstract class Enemy extends Character{
                 charge(tpf, chefBoy);
                 break;
             case ATTACKING:
+                if(canAttack()){ // if ready to attack
+                    attack(chefBoy);
+                }
                 break;
             default:
                 break;
@@ -123,18 +126,16 @@ public abstract class Enemy extends Character{
         change.x -= xDiff * getSpeed();
         change.z -= zDiff * getSpeed();
         
+        move(change);
+        
         // rotate enemy 
         float radian = (float) Math.atan2(zDiff, xDiff); // find out radian between player and enemy 
-        Quaternion roatation = new Quaternion();
-        roatation.fromAngles(0, radian*-1, 0); // y rotation
+        Quaternion rotation = new Quaternion();
+        rotation.fromAngles(0, radian*-1, 0); // y rotation
         
-        setRotation(roatation);
-        getModel().setLocalRotation(roatation); // change model rotation 
+        setRotation(rotation);
+        getModel().setLocalRotation(rotation); // change model rotation 
         
-        float[] angles = new float[3];
-            
-        move(change);
-            
     }
     
     /**

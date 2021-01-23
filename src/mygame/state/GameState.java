@@ -11,7 +11,9 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
+import com.jme3.light.PointLight;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import java.util.ArrayList;
@@ -42,6 +44,8 @@ import ui.HeadsUpDisplay;
 import com.jme3.util.SkyFactory;
 import mygame.gameobject.IslandTwo;
 import com.jme3.texture.Texture;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  * state for in game init all game objects update all game objects
@@ -72,6 +76,8 @@ public class GameState extends State {
                                     // SimpleApplication contains things like rootNode, camera, assetManager, etc
     private DirectionalLight sun;
     private AmbientLight al;
+    private PointLight pl;
+    private PointLight pl1;
     private DirectionalLightShadowRenderer dlsr;
     
     private boolean init = false; // if gameState has been inited yet
@@ -122,6 +128,8 @@ public class GameState extends State {
             initInventory();
 
             initHud();
+            
+            bulletAppState.setDebugEnabled(true);
 
             gameStateManager = new GameStateManager(app, stateManager, inventory);
             
@@ -148,6 +156,21 @@ public class GameState extends State {
         al.setColor(new ColorRGBA(1f, 0.5f, 0.5f, 1f).mult(0.2f));
         al.setEnabled(true);
         app.getRootNode().addLight(al);
+        
+        pl = new PointLight();
+        pl.setPosition(new Vector3f(-205, 30, 208));
+        pl.setRadius(50);
+        pl.setEnabled(true);
+        pl.setColor(ColorRGBA.White.mult(0.2f));
+        app.getRootNode().addLight(pl);
+        
+        pl1 = new PointLight();
+        pl1.setPosition(new Vector3f(300, -5, 250));
+        pl1.setRadius(50);
+        pl1.setEnabled(true);
+        pl1.setColor(ColorRGBA.White.mult(0.2f));
+        app.getRootNode().addLight(pl1);
+        
 
         final int SHADOWMAP_SIZE=512;
         dlsr = new DirectionalLightShadowRenderer(app.getAssetManager(), SHADOWMAP_SIZE, 1);
@@ -193,8 +216,13 @@ public class GameState extends State {
      */
     private void initProp() {
         
-        Prop hut = new Hut(app, bulletAppState, new Vector3f(-205, 20, 208), "hut");
-        props.add(hut);
+
+        Prop hut0 = new Hut(app, bulletAppState, new Vector3f(-205, 20, 208), "hut1");
+        props.add(hut0);
+        
+        Prop hut1 = new Hut(app, bulletAppState, new Vector3f(300, -15, 250), "hut1");
+        props.add(hut1);
+        
         
         Prop tree0 = new Tree(app, bulletAppState, new Vector3f(260, -10, 193), "tree0");
         Prop tree1 = new TreeTwo(app, bulletAppState, new Vector3f(205, -13, 223), "tree1");
@@ -390,6 +418,13 @@ public class GameState extends State {
         
         spawnEnemy(tpf);
         
+        if(checkWin()){
+            
+        }
+        if(! chefBoy.getAlive()){
+            System.out.println("dead");
+        }
+        
         updateHUD();
         
 
@@ -433,9 +468,7 @@ public class GameState extends State {
             
             current.behaviour(tpf, chefBoy);
             
-            if(current.canAttack()){ // if ready to attack
-                current.attack(chefBoy);
-            }
+
             
             if(! current.getAlive()){ // if current enemy dies 
                 
@@ -498,6 +531,27 @@ public class GameState extends State {
         if(spawnRate > 0){
             spawnRate -= tpf;
         }
+    }
+    
+    /**
+     * check if winning conditions are met
+     */
+    private boolean checkWin(){
+        
+        Rectangle winHut = new Rectangle(285, 235, 20, 20); // second hut position 
+        
+        Point chefBoyPos = new Point((int)chefBoy.getPosition().x, (int)chefBoy.getPosition().z);
+       
+        if(winHut.contains(chefBoyPos)){ // if chefboy enters second hut 
+            System.out.println("in hut");
+            System.out.println(inventory.getSize());
+            if(inventory.getSize() > 30){ // if more than 30 items are collected 
+                System.out.println("win");
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     private void updateHUD(){
