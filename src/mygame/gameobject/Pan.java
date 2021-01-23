@@ -7,6 +7,8 @@ package mygame.gameobject;
 
 import com.jme3.anim.AnimComposer;
 import com.jme3.app.SimpleApplication;
+import com.jme3.audio.AudioData;
+import com.jme3.audio.AudioNode;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;

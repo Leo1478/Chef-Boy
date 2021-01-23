@@ -31,7 +31,7 @@ public class Fish extends Enemy {
 
         setAlive(true);
         setHealth(20);
-        setDamage(10);
+        setDamage(5);
         setSpeed(0.6);
         setRange(10);
         setDetectionRange(50);

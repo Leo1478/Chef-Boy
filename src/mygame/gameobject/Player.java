@@ -7,6 +7,8 @@ package mygame.gameobject;
 
 
 import com.jme3.app.Application;
+import com.jme3.audio.AudioData;
+import com.jme3.audio.AudioNode;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
@@ -39,6 +41,8 @@ public class Player implements ActionListener{
     private Application app;
     
     private ChefBoy chefBoy;
+    
+    private AudioNode panSound;
     
     public Player(Application app, ChefBoy chefBoy){
         
@@ -162,8 +166,10 @@ public class Player implements ActionListener{
                     chefBoy.attack(e); // attack enemy 
                 }
                 chefBoy.setCoolDown(chefBoy.getAttackSpeed()); // reset cooldown 
+                playSoundEffect();
             }
         }
+        
     }
     
     /**
@@ -180,6 +186,14 @@ public class Player implements ActionListener{
         
         position = chefBoy.getPosition();
         app.getCamera().setLocation(position); // update camera position to player position
+    }
+    
+    public void playSoundEffect(){
+        panSound = new AudioNode(app.getAssetManager(), "Sounds/Frying Pan.ogg",AudioData.DataType.Buffer);
+        panSound.setDirectional(false);
+        panSound.setPositional(false);
+        panSound.play();
+        
     }
 
 }

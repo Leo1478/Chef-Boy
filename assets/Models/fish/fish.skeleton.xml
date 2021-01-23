@@ -44,7 +44,75 @@
         <boneparent bone="Bone.007" parent="Bone.006" />
     </bonehierarchy>
     <animations>
-        <animation name="Attacking" length="1.66667">
+        <animation name="ArmatureAction" length="0.041667">
+            <tracks>
+                <track bone="Bone.004">
+                    <keyframes>
+                        <keyframe time="0">
+                            <translate x="0" y="0" z="0" />
+                            <rotate angle="0.0348228">
+                                <axis x="-0.0607549" y="-0.00110289" z="0.998152" />
+                            </rotate>
+                        </keyframe>
+                        <keyframe time="0.041667">
+                            <translate x="0" y="0" z="0" />
+                            <rotate angle="0.0348228">
+                                <axis x="-0.0607549" y="-0.00110289" z="0.998152" />
+                            </rotate>
+                        </keyframe>
+                    </keyframes>
+                </track>
+                <track bone="Bone.005">
+                    <keyframes>
+                        <keyframe time="0">
+                            <translate x="0" y="0" z="0" />
+                            <rotate angle="0.0128818">
+                                <axis x="-0.999396" y="0.0347508" z="-0.000440137" />
+                            </rotate>
+                        </keyframe>
+                        <keyframe time="0.041667">
+                            <translate x="0" y="0" z="0" />
+                            <rotate angle="0.0128818">
+                                <axis x="-0.999396" y="0.0347508" z="-0.000440137" />
+                            </rotate>
+                        </keyframe>
+                    </keyframes>
+                </track>
+                <track bone="Bone.006">
+                    <keyframes>
+                        <keyframe time="0">
+                            <translate x="0" y="0" z="0" />
+                            <rotate angle="0.0251549">
+                                <axis x="0.999396" y="-0.0347546" z="-8.19968e-005" />
+                            </rotate>
+                        </keyframe>
+                        <keyframe time="0.041667">
+                            <translate x="0" y="0" z="0" />
+                            <rotate angle="0.0251549">
+                                <axis x="0.999396" y="-0.0347546" z="-8.19968e-005" />
+                            </rotate>
+                        </keyframe>
+                    </keyframes>
+                </track>
+                <track bone="Bone.007">
+                    <keyframes>
+                        <keyframe time="0">
+                            <translate x="0" y="0" z="0" />
+                            <rotate angle="0.00690534">
+                                <axis x="-0.999396" y="0.0347491" z="-0.000528029" />
+                            </rotate>
+                        </keyframe>
+                        <keyframe time="0.041667">
+                            <translate x="0" y="0" z="0" />
+                            <rotate angle="0.00690534">
+                                <axis x="-0.999396" y="0.0347491" z="-0.000528029" />
+                            </rotate>
+                        </keyframe>
+                    </keyframes>
+                </track>
+            </tracks>
+        </animation>
+        <animation name="Attacking" length="5">
             <tracks>
                 <track bone="Bone.002">
                     <keyframes>
@@ -269,13 +337,13 @@
                                 <axis x="1" y="0" z="0" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.625">
+                        <keyframe time="4.95833">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0">
                                 <axis x="1" y="0" z="0" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.66667">
+                        <keyframe time="5">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0">
                                 <axis x="1" y="0" z="0" />
@@ -297,13 +365,13 @@
                                 <axis x="-0.0607549" y="-0.00110289" z="0.998152" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.625">
+                        <keyframe time="4.95833">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0.0348228">
                                 <axis x="-0.0607549" y="-0.00110289" z="0.998152" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.66667">
+                        <keyframe time="5">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0.0348228">
                                 <axis x="-0.0607549" y="-0.00110289" z="0.998152" />
@@ -325,13 +393,13 @@
                                 <axis x="-0.999396" y="0.0347508" z="-0.000440137" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.625">
+                        <keyframe time="4.95833">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0.0128818">
                                 <axis x="-0.999396" y="0.0347508" z="-0.000440137" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.66667">
+                        <keyframe time="5">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0.0128818">
                                 <axis x="-0.999396" y="0.0347508" z="-0.000440137" />
@@ -353,13 +421,13 @@
                                 <axis x="0.999396" y="-0.0347546" z="-8.19968e-005" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.625">
+                        <keyframe time="4.95833">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0.0251549">
                                 <axis x="0.999396" y="-0.0347546" z="-8.19968e-005" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.66667">
+                        <keyframe time="5">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0.0251549">
                                 <axis x="0.999396" y="-0.0347546" z="-8.19968e-005" />
@@ -381,13 +449,13 @@
                                 <axis x="-0.999396" y="0.0347491" z="-0.000528029" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.625">
+                        <keyframe time="4.95833">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0.00690534">
                                 <axis x="-0.999396" y="0.0347491" z="-0.000528029" />
                             </rotate>
                         </keyframe>
-                        <keyframe time="1.66667">
+                        <keyframe time="5">
                             <translate x="0" y="0" z="0" />
                             <rotate angle="0.00690534">
                                 <axis x="-0.999396" y="0.0347491" z="-0.000528029" />

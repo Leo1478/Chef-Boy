@@ -66,7 +66,7 @@ public class SettingState extends State {
 
     @Override
     public void update(float tpf) {
-        System.out.println("in SettingState");
+        //System.out.println("in SettingState");
     }
     
         

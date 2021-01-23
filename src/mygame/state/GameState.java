@@ -44,8 +44,12 @@ import ui.HeadsUpDisplay;
 import com.jme3.util.SkyFactory;
 import mygame.gameobject.IslandTwo;
 import com.jme3.texture.Texture;
+<<<<<<< Updated upstream
 import java.awt.Point;
 import java.awt.Rectangle;
+=======
+import mygame.gameobject.Wolf;
+>>>>>>> Stashed changes
 
 /**
  * state for in game init all game objects update all game objects
@@ -389,6 +393,9 @@ public class GameState extends State {
         Enemy fish8 = new Fish(app, bulletAppState, new Vector3f(-50, 40, -90), "fish0", 10);
         enemyQueue.add(fish8);
         
+        Enemy wolf0 = new Wolf(app, bulletAppState, new Vector3f(0, 3, 0), "wolf0", 10);
+        enemyQueue.add(wolf0);
+        
         for(int i = 0; i < enemyQueue.size(); ){ // spawn all enemies for testing 
             Enemy enemy = enemyQueue.poll(); // remove from queue 
             enemy.spawn(); // spawn, make model visible 
@@ -427,12 +434,7 @@ public class GameState extends State {
         
         updateHUD();
         
-
-        System.out.println(chefBoy.getPosition());
-
-        System.out.println(chefBoy.getPosition()); //-6 to y
-
-        System.out.println(chefBoy.getPosition());
+        //System.out.println(chefBoy.getPosition()); //-6 to y
 
     }
 

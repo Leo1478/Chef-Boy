@@ -23,6 +23,7 @@ public abstract class Enemy extends Character{
     
     private double distanceToChef;
     
+     
     public Enemy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         super(app, bulletAppState, position, name, health);
         
@@ -44,13 +45,14 @@ public abstract class Enemy extends Character{
         determinState();
 
         move(new Vector3f(0, 0, 0)); // calling move with 0 change will make sure gravity works as intended 
-        
+              
         switch (getState()) {
             case IDLE:
                 idle();
                 break;
             case MOVING:
                 charge(tpf, chefBoy);
+                
                 break;
             case ATTACKING:
                 if(canAttack()){ // if ready to attack
@@ -62,7 +64,7 @@ public abstract class Enemy extends Character{
         }
 
         setModelPosition();
-        
+
     }
     
     /**
@@ -101,8 +103,8 @@ public abstract class Enemy extends Character{
      * idle mode for enemy 
      */
     private void idle(){
-        
         //System.out.println("chilling");
+        //getRigidBody().setKinematic(false);
     }
     
     /**
@@ -111,6 +113,7 @@ public abstract class Enemy extends Character{
      * @param chefBoy 
      */
     private void charge(float tpf, ChefBoy chefBoy){
+        //getRigidBody().setKinematic(true);
         
         Vector3f change = new Vector3f(); // change in position 
         
@@ -125,6 +128,7 @@ public abstract class Enemy extends Character{
         
         change.x -= xDiff * getSpeed();
         change.z -= zDiff * getSpeed();
+        change.y = 1;
         
         move(change);
         
@@ -136,6 +140,16 @@ public abstract class Enemy extends Character{
         setRotation(rotation);
         getModel().setLocalRotation(rotation); // change model rotation 
         
+<<<<<<< Updated upstream
+=======
+        float[] angles = new float[3];
+            
+        move(change);
+        
+        //System.out.println(getRigidBody().getPhysicsLocation());
+        
+        
+>>>>>>> Stashed changes
     }
     
     /**
@@ -143,7 +157,6 @@ public abstract class Enemy extends Character{
      * add model to rootNode
      */
     public void spawn(){
-        
         app.getRootNode().attachChild(getModel());
     }
     
@@ -161,5 +174,6 @@ public abstract class Enemy extends Character{
     public void setDetectionRange(double detectionRange) {
         this.detectionRange = detectionRange;
     }
+    
     
 }

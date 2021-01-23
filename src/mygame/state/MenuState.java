@@ -12,6 +12,8 @@ import com.jme3.input.controls.MouseButtonTrigger;
 import ui.Button;
 import ui.Menu;
 import ui.MenuManager;
+import com.jme3.audio.AudioNode;
+import com.jme3.audio.AudioData;
 
 /**
  *
@@ -25,6 +27,7 @@ public class MenuState extends State {
     
     private MenuManager menuManager;
     private Menu menu;
+    private AudioNode bgm;
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
@@ -33,7 +36,7 @@ public class MenuState extends State {
 
         app.getInputManager().setCursorVisible(true);
         
-        System.out.println("initialize menuState");
+        //System.out.println("initialize menuState");
     }
     
     @Override
@@ -44,6 +47,7 @@ public class MenuState extends State {
 
         menu = new Menu(app, stateManager);
         menuManager = new MenuManager(app, menu);
+        playBackgroundMusic();
     }
     
     /**
@@ -62,12 +66,13 @@ public class MenuState extends State {
         
         menu = null;
         menuManager = null;
+        bgm.stop();
         
     }
 
     @Override
     public void update(float tpf) {
-        System.out.println("in MenuState");
+        //System.out.println("in MenuState");
     }
     
     public void addListener(){
@@ -76,5 +81,14 @@ public class MenuState extends State {
     
     public void removeListener(){
         app.getInputManager().removeListener(menuManager);
+    }
+    
+    public void playBackgroundMusic(){
+        bgm = new AudioNode(app.getAssetManager(), "Sounds/MenuBGM.ogg",AudioData.DataType.Buffer);
+        bgm.setDirectional(false);
+        bgm.setPositional(false);
+        bgm.play();
+        bgm.setLooping(true);
+        
     }
 }

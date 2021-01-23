@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- exporter: blender2ogre 0.8.0 -->
-<!-- export_time: Wed, 20 Jan 2021 04:41:02 +0000 -->
-<!-- previous_export_time: Wed, 20 Jan 2021 04:24:59 +0000 -->
-<scene author="leoze" formatVersion="1.1" >
+<!-- export_time: Fri, 22 Jan 2021 21:55:54 +0000 -->
+<!-- previous_export_time: Wed, 20 Jan 2021 04:41:02 +0000 -->
+<scene author="ningy" formatVersion="1.1" >
   <nodes >
     <node name="Armature" >
       <position x="0.000000" y="0.000000" z="-0.000000" />
@@ -18,11 +18,7 @@
       </node>
     </node>
   </nodes>
-  <externals >
-    <item type="material" >
-      <file name="fish.material" />
-    </item>
-  </externals>
+  <externals />
   <environment >
     <colourBackground b="0.05087608844041824" g="0.05087608844041824" r="0.05087608844041824" />
   </environment>
