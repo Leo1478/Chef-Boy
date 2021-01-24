@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
 import com.jme3.anim.AnimComposer;
-import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.BulletAppState;
@@ -15,25 +9,17 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.BetterCharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.bullet.collision.shapes.CompoundCollisionShape;
 import com.jme3.math.Vector3f;
-import java.util.Arrays;
-import mygame.state.Main;
-import com.jme3.scene.Mesh;
-import com.jme3.scene.shape.Sphere;
-import com.jme3.scene.shape.Box;
-import com.jme3.scene.Geometry;
-import com.jme3.bullet.objects.PhysicsRigidBody;
 
 /**
+ * character.java
  * characters that can move and attack 
- * @author leoze
+ * @author William Zhao
+ * 2021/1/07
  */
 public abstract class Character extends GameObject implements Action, ChangeHealth, Collidable{
 
-
-    private boolean alive;
+    private boolean alive; // if character is alive 
     private int health;
     private CharacterState state;
     private CharacterState previousState;
@@ -43,11 +29,9 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     private float attackSpeed; // interval between each attack
     private float coolDown; // time remaining on interval
     
-    private Item itemDrop; // item the enemy will drop after death 
-    
     private AnimComposer animComposer; // animation 
     
-    private CharacterControl characterControl;
+    private CharacterControl characterControl; 
     private BetterCharacterControl betterCharacterControl;
     
     protected BulletAppState bulletAppState; 
@@ -474,18 +458,5 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         this.alive = alive;
     }
 
-    /**
-     * @return the itemDrop
-     */
-    public Item getItemDrop() {
-        return itemDrop;
-    }
-
-    /**
-     * @param itemDrop the itemDrop to set
-     */
-    public void setItemDrop(Item itemDrop) {
-        this.itemDrop = itemDrop;
-    }
 
 }

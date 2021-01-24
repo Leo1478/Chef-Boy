@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
 import com.jme3.app.Application;
@@ -15,18 +10,24 @@ import com.jme3.shadow.DirectionalLightShadowRenderer;
 import mygame.state.Main;
 
 /**
- *
+ * 
  * @author leoze
+ * @deprecated light is created entirely in GameState instead
+ * 2020/12/25
  */
 public class GameLight {
     
     private SimpleApplication app;
     
+    /**
+     * GameLight
+     * constructor 
+     * @param app application 
+     */
     public GameLight(SimpleApplication app){
         this.app = app;
         init();
     }
-    
     
     /**
      * init light
@@ -44,9 +45,6 @@ public class GameLight {
         */
         
         
-
-
-        
         // NOTE: use either renderer or filter, rednerer can change cast/receive setting 
         /*
         DirectionalLightShadowFilter dlsf = new DirectionalLightShadowFilter(main.getAssetManager(), SHADOWMAP_SIZE, 1);
@@ -57,10 +55,7 @@ public class GameLight {
         main.getViewPort().addProcessor(fpp);
         */
         
-        
-        
         // ambient light requires material to work 
 
-    }
-        
+    }   
 }

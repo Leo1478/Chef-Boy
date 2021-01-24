@@ -1,19 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
 /**
- * character states 
- * @author leoze
+ * CharacterState.java
+ * states a character can be in
+ * @author Leo Zeng
+ * 2021/01/02
  */
 public enum CharacterState {
     
     IDLE,
     MOVING,
-    ATTACKING,
-    DYING,
-    
+    ATTACKING, 
 }

@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
-import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
@@ -13,14 +7,13 @@ import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
-import java.util.ArrayList;
-import mygame.state.Main;
-import ui.Inventory;
 
 /**
+ * ChefBoy.java
  * chef boy character
- *
- * @author leoze
+ * character the player controls
+ * @author Leo Zeng
+ * 2020/12/30
  */
 public class ChefBoy extends Character {
 
@@ -28,8 +21,17 @@ public class ChefBoy extends Character {
 
     private boolean block; // if chefboy is blocking hits 
 
-    private Pan pan;
+    private Pan pan; // pan chefBoy holds 
 
+    /**
+     * ChefBoy
+     * constructor set all values 
+     * @param app application 
+     * @param bulletAppState bulletAppState for physics 
+     * @param position current position 
+     * @param name name
+     * @param health current health
+     */
     public ChefBoy(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health) {
 
         super(app, bulletAppState, position, name, health);
@@ -50,14 +52,16 @@ public class ChefBoy extends Character {
 
     }
 
+    /**
+     * init 
+     * initialise model and physics 
+     */
     @Override
     public void init() {
 
         // since chef boy has no model, just use a cube as place holder
         setModel(app.getAssetManager().loadModel("Models/cube/Cube.mesh.j3o"));
-
         getModel().setShadowMode(RenderQueue.ShadowMode.Off);
-
         app.getRootNode().attachChild(getModel());
 
         initCollision();
@@ -65,11 +69,16 @@ public class ChefBoy extends Character {
         initPan();
     }
 
+    /**
+     * initPan
+     * initialise pan object 
+     */
     private void initPan() {
         pan = new Pan(app, new Vector3f(getPosition()), "pan");
     }
 
     /**
+     * initCollision
      * create collision hit box add gravity and physics to player
      */
     @Override
@@ -83,14 +92,15 @@ public class ChefBoy extends Character {
         bulletAppState.getPhysicsSpace().add(getCharacterControl());
 
         getCharacterControl().setGravity(new Vector3f(0, -60f, 0));
-
     }
 
     /**
+     * behaviour
      * rest of chefboy's behaviour
      *
-     * @param tpf
+     * @param tpf time per frame
      */
+    @Override
     public void behaviour(float tpf) {
 
         super.behaviour(tpf);
@@ -99,11 +109,15 @@ public class ChefBoy extends Character {
         setPanPosition();
 
         setAnimation();
-
     }
-    
-    private void setPanPosition(){
-        getPan().setPosition(this.getPosition());
+
+    /**
+     * setPanPosition
+     * set pan position to chefBoy position
+     */
+    private void setPanPosition() {
+        
+        getPan().setPosition(this.getPosition()); // set pan position to chefBoy position
 
         Quaternion rotation = new Quaternion();
 
@@ -115,24 +129,25 @@ public class ChefBoy extends Character {
 
         float[] angles = new float[3];
 
-        Quaternion roatation = new Quaternion();
-        roatation.fromAngles(0, rotation.toAngles(angles)[1] * -1, 0); // y rotation
+        Quaternion rotation1 = new Quaternion();
+        rotation1.fromAngles(0, rotation1.toAngles(angles)[1] * -1, 0); // y rotation
 
-        setRotation(roatation);
+        setRotation(rotation1);
     }
 
+    /**
+     * setAnimation
+     * set pan animation based on chefBoy 
+     */
     private void setAnimation() {
-        
-        if(block){
+
+        if (block) {
             pan.setAnimationBlock();
-        }
-        else if (getState() == CharacterState.ATTACKING && getCoolDown() <= 0) {
+        } else if (getState() == CharacterState.ATTACKING && getCoolDown() <= 0) {
             pan.setAnimationAttack();
-        } 
-        else if (getCoolDown() <= 0) {
+        } else if (getCoolDown() <= 0) {
             pan.setAnimationIdle();
         }
-        
 
     }
 
@@ -141,12 +156,11 @@ public class ChefBoy extends Character {
      */
     private void setPhysicsPosition() {
         getCharacterControl().setPhysicsLocation(getPosition());
-
     }
 
     /**
-     * check if chef boy can pick up an item if item is in range, it will be
-     * picked up
+     * pickUpItem
+     * check if chef boy can pick up an item if item is in range, it will be picked up
      *
      * @param item item to pick up
      */
@@ -175,24 +189,31 @@ public class ChefBoy extends Character {
         }
     }
 
+    /**
+     * setBlock
+     * @param block if chefBoy is blocking 
+     */
     public void setBlock(boolean block) {
         this.block = block;
     }
 
+    /**
+     * takeDamage
+     * check if chefBoy should take damage
+     * @param amount amount to decrease 
+     */
     @Override
     public void takeDamage(int amount) {
-        if (!block) {
-            super.takeDamage(amount);
-        } else {
-            // block = false;
+        if (!block) { // if not blocking
+            super.takeDamage(amount); // take damage
         }
     }
 
     /**
-     * @return the pan
+     * getPan
+     * @return pan
      */
     public Pan getPan() {
         return pan;
     }
-
 }

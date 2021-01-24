@@ -1,19 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
 /**
- *
- * @author leoze
+ * Collidable.java
+ * object that can have collision 
+ * @author Leo Zeng
+ * 2020/12/31
  */
 public interface Collidable {
     
+    /**
+     * initCollision
+     * init collision for character
+     */
     public void initCollision();
     
+    /**
+     * updateCollision
+     * update collision mesh
+     */
     public void updateCollision();
     
+    /**
+     * deleteCollision
+     * delete collision mesh 
+     */
     public void deleteCollision();
 }
