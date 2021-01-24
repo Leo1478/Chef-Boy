@@ -25,11 +25,11 @@ public class Wolf extends Enemy{
         super(app, bulletAppState, position, name, health);
         
         setAlive(true);
-        setHealth(20);
-        setDamage(10);
-        setSpeed(0.5);
+        setHealth(100);
+        setDamage(20);
+        setSpeed(1);
         setRange(10);
-        setDetectionRange(100);
+        setDetectionRange(150);
         setAttackSpeed(2);
         setCoolDown(2);
         
@@ -48,9 +48,18 @@ public class Wolf extends Enemy{
     void init() {
         
 
+<<<<<<< Updated upstream
         setMat(app.getAssetManager().loadMaterial("Materials/slime.j3m"));
         setModel(app.getAssetManager().loadModel("Models/Wolf/Wolf.mesh.j3o"));
 
+=======
+<<<<<<< HEAD
+=======
+        setMat(app.getAssetManager().loadMaterial("Materials/slime.j3m"));
+        setModel(app.getAssetManager().loadModel("Models/Wolf/Wolf.mesh.j3o"));
+
+>>>>>>> 5babeb0f7c19629a84e346f919a987bcc0f03310
+>>>>>>> Stashed changes
         // this is still pigs stuff 
         
         setMat(app.getAssetManager().loadMaterial("Materials/Wolf Material.j3m"));
@@ -58,7 +67,15 @@ public class Wolf extends Enemy{
         // change to xml file with animation later 
         // using pigs animation as a place holder change later
         setModel(app.getAssetManager().loadModel("Models/Wolf/Wolf.mesh.j3o"));
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< HEAD
+        
+=======
+
+>>>>>>> 5babeb0f7c19629a84e346f919a987bcc0f03310
+>>>>>>> Stashed changes
         getModel().setMaterial(getMat());
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
     }

@@ -37,6 +37,14 @@ public class Volcano extends Prop{
     void init() {
         
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        setMat(app.getAssetManager().loadMaterial("Materials/Volcano Material.j3m"));
+        
+        setModel(app.getAssetManager().loadModel("Models/volcano/Volcano 2/volcano 2.j3o"));
+=======
+>>>>>>> Stashed changes
         setMat(app.getAssetManager().loadMaterial("Materials/volcano.j3m"));
         setModel(app.getAssetManager().loadModel("Models/volcano/volcano.j3o"));
 
@@ -44,6 +52,10 @@ public class Volcano extends Prop{
         
         setModel(app.getAssetManager().loadModel("Models/volcano/Volcano 2/volcano 2.j3o"));
         
+<<<<<<< Updated upstream
+=======
+>>>>>>> 5babeb0f7c19629a84e346f919a987bcc0f03310
+>>>>>>> Stashed changes
 
         getModel().setMaterial(getMat());
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);

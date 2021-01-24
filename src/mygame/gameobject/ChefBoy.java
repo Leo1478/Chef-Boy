@@ -204,7 +204,9 @@ public class ChefBoy extends Character {
      */
     @Override
     public void takeDamage(int amount) {
-        if (!block) { // if not blocking
+        if (block) { // if blocking
+            super.takeDamage(amount/2);
+        }else{ //not blocking
             super.takeDamage(amount); // take damage
         }
     }

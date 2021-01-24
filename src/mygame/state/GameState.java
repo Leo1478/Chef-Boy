@@ -39,25 +39,31 @@ import ui.HeadsUpDisplay;
 import com.jme3.util.SkyFactory;
 import mygame.gameobject.IslandTwo;
 import com.jme3.texture.Texture;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.gameobject.Bone;
 import mygame.gameobject.Wolf;
 import utility.Queue;
+<<<<<<< Updated upstream
+=======
+>>>>>>> 5babeb0f7c19629a84e346f919a987bcc0f03310
+>>>>>>> Stashed changes
 import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.gameobject.Wolf;
 import utility.Queue;
 import com.jme3.math.FastMath;
 import mygame.gameobject.Bone;
-
 import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.gameobject.Wolf;
-
 import java.awt.Point;
 import java.awt.Rectangle;
-
 import mygame.gameobject.Wolf;
 
 
@@ -256,7 +262,7 @@ public class GameState extends State {
         Prop tree6 = new TreeTwo(app, bulletAppState, new Vector3f(-251, 15, 212), "tree4");
         Prop tree7 = new Tree(app, bulletAppState, new Vector3f(-304, 2, 162), "tree4");
         Prop tree8 = new TreeTwo(app, bulletAppState, new Vector3f(-214, 2, 146), "tree4");
-        Prop tree9 = new TreeTwo(app, bulletAppState, new Vector3f(-112, -6, 153), "tree4");
+        Prop tree9 = new TreeTwo(app, bulletAppState, new Vector3f(-50, -6, 180), "tree4");
         Prop tree10 = new Tree(app, bulletAppState, new Vector3f(99, -4, 122), "tree4");
         Prop tree11 = new Tree(app, bulletAppState, new Vector3f(204, -15, 104), "tree4");
         Prop tree12 = new TreeTwo(app, bulletAppState, new Vector3f(260, 10, 11), "tree4");
@@ -265,8 +271,8 @@ public class GameState extends State {
         Prop tree15 = new Tree(app, bulletAppState, new Vector3f(38, -4, -21), "tree4");
         Prop tree16 = new TreeTwo(app, bulletAppState, new Vector3f(-78, -9, -16), "tree4");
         Prop tree17 = new Tree(app, bulletAppState, new Vector3f(-236, 10, 35), "tree4");
-        Prop tree18 = new Tree(app, bulletAppState, new Vector3f(-279, 14, -82), "tree4");
-        Prop tree19 = new TreeTwo(app, bulletAppState, new Vector3f(-119, -7, -161), "tree4");
+        Prop tree18 = new Tree(app, bulletAppState, new Vector3f(-259, 14, -62), "tree4");
+        Prop tree19 = new TreeTwo(app, bulletAppState, new Vector3f(-50, -7, -151), "tree4");
         Prop tree20 = new Tree(app, bulletAppState, new Vector3f(53, 6, -152), "tree4");
         Prop tree21 = new Tree(app, bulletAppState, new Vector3f(252, -17, -184), "tree4");
         Prop tree22 = new TreeTwo(app, bulletAppState, new Vector3f(295, -12, -345), "tree4");
@@ -281,7 +287,8 @@ public class GameState extends State {
         Prop tree30 = new TreeThree(app, bulletAppState, new Vector3f(-27, -10, -158), "tree4");
 
 
-        Prop volcano1 = new Volcano(app, bulletAppState, new Vector3f(-250, -12, -200), "volcano1");
+        Prop volcano0 = new Volcano(app, bulletAppState, new Vector3f(-250, -12, -200), "volcano0");
+        Prop island0 = new IslandTwo(app, bulletAppState, new Vector3f(600, 5, 200), "island0");
 
         
     }
@@ -326,40 +333,40 @@ public class GameState extends State {
         enemyQueue.enqueue(pig5);
         Enemy pig6 = new Pig(app, bulletAppState, new Vector3f(250, 20, 190), "pig6", 20);
         enemyQueue.enqueue(pig6);
-        Enemy pig7 = new Pig(app, bulletAppState, new Vector3f(-210, 20, -250), "pig7", 20);
+        Enemy pig7 = new Pig(app, bulletAppState, new Vector3f(66, 20, 119), "pig7", 20);
         enemyQueue.enqueue(pig7);
-        Enemy pig8 = new Pig(app, bulletAppState, new Vector3f(-260, 20, -250), "pig8", 20);
+        Enemy pig8 = new Pig(app, bulletAppState, new Vector3f(39, 20, 72), "pig8", 20);
         enemyQueue.enqueue(pig8);
-        Enemy pig9 = new Pig(app, bulletAppState, new Vector3f(-180, 20, -170), "pig9", 20);
+        Enemy pig9 = new Pig(app, bulletAppState, new Vector3f(70, 20, 140), "pig9", 20);
         enemyQueue.enqueue(pig9);
-        Enemy pig10 = new Pig(app, bulletAppState, new Vector3f(-220, 20, -190), "pig10", 20);
+        Enemy pig10 = new Pig(app, bulletAppState, new Vector3f(85, 20, 154), "pig10", 20);
         enemyQueue.enqueue(pig10);
         
         //Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(100, 10, 100), "slime0", 20);
         //slime0.spawn();
         //enemies.add(slime0);
         
-        Enemy slime0 = new Slime(app, bulletAppState, new Vector3f(210, 20, -200), "slime0", 10);
+        Enemy slime0 = new Slime(app, bulletAppState, new Vector3f(-122, 20, 70), "slime0", 10);
         enemyQueue.enqueue(slime0);
-        Enemy slime1 = new Slime(app, bulletAppState, new Vector3f(200, 20, -150), "slime0", 10);
+        Enemy slime1 = new Slime(app, bulletAppState, new Vector3f(-130, 20, 63), "slime0", 10);
         enemyQueue.enqueue(slime1);
-        Enemy slime2 = new Slime(app, bulletAppState, new Vector3f(250, 20, -180), "slime0", 10);
+        Enemy slime2 = new Slime(app, bulletAppState, new Vector3f(-60, 20, 142), "slime0", 10);
         enemyQueue.enqueue(slime2);
-        Enemy slime3 = new Slime(app, bulletAppState, new Vector3f(220, 20, -190), "slime0", 10);
+        Enemy slime3 = new Slime(app, bulletAppState, new Vector3f(-74, 20, 102), "slime0", 10);
         enemyQueue.enqueue(slime3);
-        Enemy slime4 = new Slime(app, bulletAppState, new Vector3f(210, 20, -220), "slime0", 10);
+        Enemy slime4 = new Slime(app, bulletAppState, new Vector3f(-96, 20, 50), "slime0", 10);
         enemyQueue.enqueue(slime4);
-        Enemy slime5 = new Slime(app, bulletAppState, new Vector3f(280, 20, -240), "slime0", 10);
+        Enemy slime5 = new Slime(app, bulletAppState, new Vector3f(-104, 20, 40), "slime0", 10);
         enemyQueue.enqueue(slime5);
-        Enemy slime6 = new Slime(app, bulletAppState, new Vector3f(240, 20, -230), "slime0", 10);
+        Enemy slime6 = new Slime(app, bulletAppState, new Vector3f(-104, 20, 72), "slime0", 10);
         enemyQueue.enqueue(slime6);
-        Enemy slime7 = new Slime(app, bulletAppState, new Vector3f(230, 20, -180), "slime0", 10);
+        Enemy slime7 = new Slime(app, bulletAppState, new Vector3f(-69, 20, 154), "slime0", 10);
         enemyQueue.enqueue(slime7);
-        Enemy slime8 = new Slime(app, bulletAppState, new Vector3f(220, 20, -150), "slime0", 10);
+        Enemy slime8 = new Slime(app, bulletAppState, new Vector3f(-124, 20, 42), "slime0", 10);
         enemyQueue.enqueue(slime8);
-        Enemy slime9 = new Slime(app, bulletAppState, new Vector3f(180, 20, -190), "slime0", 10);
+        Enemy slime9 = new Slime(app, bulletAppState, new Vector3f(-106, 20, 124), "slime0", 10);
         enemyQueue.enqueue(slime9);
-        Enemy slime10 = new Slime(app, bulletAppState, new Vector3f(190, 20, -160), "slime0", 10);
+        Enemy slime10 = new Slime(app, bulletAppState, new Vector3f(-99, 20, 140), "slime0", 10);
         enemyQueue.enqueue(slime10);
         
         
@@ -385,7 +392,7 @@ public class GameState extends State {
         Enemy fish8 = new Fish(app, bulletAppState, new Vector3f(-50, 40, -90), "fish0", 10);
         enemyQueue.enqueue(fish8);
         
-        Enemy wolf0 = new Wolf(app, bulletAppState, new Vector3f(0, 3, 0), "wolf0", 10);
+        Enemy wolf0 = new Wolf(app, bulletAppState, new Vector3f(273, 20, -336), "wolf0", 10);
         enemyQueue.enqueue(wolf0);
         
         for(int i = 0; i < enemyQueue.size(); ){ // spawn all enemies for testing 

@@ -150,7 +150,14 @@ public abstract class Enemy extends Character{
         float[] angles = new float[3];
 
             
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5babeb0f7c19629a84e346f919a987bcc0f03310
+>>>>>>> Stashed changes
         move(change);
         
         //System.out.println(getRigidBody().getPhysicsLocation());
