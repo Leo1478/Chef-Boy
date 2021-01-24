@@ -3,11 +3,14 @@ package mygame.state;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.audio.AudioData;
+import com.jme3.audio.AudioNode;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.PointLight;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ import mygame.gameobject.Slime;
 import mygame.gameobject.Terrain;
 import mygame.gameobject.Tree;
 import mygame.gameobject.TreeTwo;
+import mygame.gameobject.TreeThree;
 import mygame.gameobject.Volcano;
 import mygame.gameobject.Crystal;
 import ui.GameStateManager;
@@ -35,10 +39,30 @@ import ui.HeadsUpDisplay;
 import com.jme3.util.SkyFactory;
 import mygame.gameobject.IslandTwo;
 import com.jme3.texture.Texture;
+<<<<<<< Updated upstream
 import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.gameobject.Wolf;
 import utility.Queue;
+=======
+import com.jme3.math.FastMath;
+import mygame.gameobject.Bone;
+
+import java.awt.Point;
+import java.awt.Rectangle;
+import mygame.gameobject.Wolf;
+
+import java.awt.Point;
+import java.awt.Rectangle;
+
+import mygame.gameobject.Wolf;
+
+
+import java.awt.Point;
+import java.awt.Rectangle;
+import mygame.gameobject.Wolf;
+
+>>>>>>> Stashed changes
 
 /**
  * state for in game init all game objects update all game objects
@@ -70,6 +94,8 @@ public class GameState extends State {
     private PointLight pl;
     private PointLight pl1;
     private DirectionalLightShadowRenderer dlsr;
+    
+    private AudioNode bgm;
     
     private boolean init = false; // if gameState has been inited yet
     
@@ -119,7 +145,7 @@ public class GameState extends State {
 
             initHud();
             
-            bulletAppState.setDebugEnabled(true);
+            //bulletAppState.setDebugEnabled(true);
 
             gameStateManager = new GameStateManager(app, stateManager, inventory);
             
@@ -245,44 +271,17 @@ public class GameState extends State {
         Prop tree23 = new Tree(app, bulletAppState, new Vector3f(201, -9, -366), "tree4");
         Prop tree24 = new TreeTwo(app, bulletAppState, new Vector3f(33, -6, -363), "tree4");
         Prop tree25 = new Tree(app, bulletAppState, new Vector3f(-185, 18, -318), "tree4");
-
-        props.add(tree0);
-        props.add(tree1);
-        props.add(tree2);
-        props.add(tree3);
-        props.add(tree4);
-        props.add(tree5);
-        props.add(tree6);
-        props.add(tree7);
-        props.add(tree8);
-        props.add(tree9);
-        props.add(tree10);
-        props.add(tree11);
-        props.add(tree12);
-        props.add(tree13);
-        props.add(tree14);
-        props.add(tree15);
-        props.add(tree16);
-        props.add(tree17);
-        props.add(tree18);
-        props.add(tree19);
-        props.add(tree20);
-        props.add(tree21);
-        props.add(tree22);
-        props.add(tree23);
-        props.add(tree24);
-        props.add(tree25); 
-
-        Prop volcano0 = new Volcano(app, bulletAppState, new Vector3f(150, 0, 0), "volcano0");
-        props.add(volcano0);
-        Prop volcano1 = new Volcano(app, bulletAppState, new Vector3f(-250, 5, -200), "volcano1");
-        props.add(volcano1);
         
-        Prop crystal0 = new Crystal(app, bulletAppState, new Vector3f(-210, 20, 200), "crystal0");
-        props.add(volcano0);
+        Prop tree26 = new TreeThree(app, bulletAppState, new Vector3f(-183, -3, 101), "tree4");
+        Prop tree27 = new TreeThree(app, bulletAppState, new Vector3f(-201, 2, 63), "tree4");
+        Prop tree28 = new TreeThree(app, bulletAppState, new Vector3f(-164, -11, 51), "tree4");
+        Prop tree29 = new TreeThree(app, bulletAppState, new Vector3f(-153, -3, -202), "tree4");
+        Prop tree30 = new TreeThree(app, bulletAppState, new Vector3f(-27, -10, -158), "tree4");
+
+
+        Prop volcano1 = new Volcano(app, bulletAppState, new Vector3f(-250, -12, -200), "volcano1");
+
         
-        Prop island0 = new IslandTwo(app, bulletAppState, new Vector3f(150, 160, 600), "island0");
-        props.add(island0);
     }
     
     private void initChefBoy(){
@@ -425,7 +424,7 @@ public class GameState extends State {
         
         updateHUD();
         
-        //System.out.println(chefBoy.getPosition()); //-6 to y
+        System.out.println(chefBoy.getPosition()); //-6 to y
 
     }
 
@@ -480,6 +479,11 @@ public class GameState extends State {
                 else if(current instanceof Fish){
                     
                     Item item = new Fillet(app, current.getPosition(), "fillet"); // spawn cooresponding item 
+                    items.add(item);
+                }
+                else if(current instanceof Wolf){
+                    
+                    Item item = new Bone(app, current.getPosition(), "bone"); // spawn cooresponding item 
                     items.add(item);
                 }
 
@@ -634,5 +638,17 @@ public class GameState extends State {
         stateManager.getState(GameState.class).removeListener();
         stateManager.getState(GameState.class).exitState();
     }
+    
+//    private void playBackgroundMusic(){
+//        bgm = new AudioNode(app.getAssetManager(), "Sounds/GameBGM.ogg",AudioData.DataType.Buffer);
+//        bgm.setDirectional(false);
+//        bgm.setPositional(false);
+//        bgm.play();
+//        bgm.setLooping(true);
+//        
+//    }
+//    public void stopBGM(){ //BGM not stopping when switched to setting state then Menu state
+//        bgm.stop();
+//    }
             
 }

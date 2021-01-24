@@ -30,8 +30,8 @@ public class Pig extends Enemy {
         setSpeed(0.3);
         setRange(10);
         setDetectionRange(30);
-        setAttackSpeed(10);
-        setCoolDown(10);
+        setAttackSpeed(7);
+        setCoolDown(7);
         
         init();
         initCollision();

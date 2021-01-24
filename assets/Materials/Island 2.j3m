@@ -1,6 +1,6 @@
 Material My Material : Common/MatDefs/Light/Lighting.j3md {
      MaterialParameters {
-        DiffuseMap : "Materials/Island 2.png"
+        DiffuseMap : "Materials/Island 2 Texture.png"
      }
     AdditionalRenderState {
     }

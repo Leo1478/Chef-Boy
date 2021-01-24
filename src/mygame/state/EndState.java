@@ -91,6 +91,7 @@ public class EndState extends State{
     public void cleanUp() {
         app.getGuiNode().detachChildNamed("win");
         app.getGuiNode().detachChildNamed("lose");
+        
     }
 
     /**

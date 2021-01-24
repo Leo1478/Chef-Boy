@@ -26,7 +26,7 @@ public class Wolf extends Enemy{
         
         setAlive(true);
         setHealth(20);
-        setDamage(3);
+        setDamage(10);
         setSpeed(0.5);
         setRange(10);
         setDetectionRange(100);
@@ -47,8 +47,19 @@ public class Wolf extends Enemy{
     @Override
     void init() {
         
+<<<<<<< Updated upstream
         setMat(app.getAssetManager().loadMaterial("Materials/slime.j3m"));
         setModel(app.getAssetManager().loadModel("Models/Wolf/Wolf.mesh.j3o"));
+=======
+        // this is still pigs stuff 
+        
+        setMat(app.getAssetManager().loadMaterial("Materials/Wolf Material.j3m"));
+        
+        // change to xml file with animation later 
+        // using pigs animation as a place holder change later
+        setModel(app.getAssetManager().loadModel("Models/Wolf/Wolf.mesh.j3o"));
+        
+>>>>>>> Stashed changes
         getModel().setMaterial(getMat());
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
     }

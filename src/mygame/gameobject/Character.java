@@ -97,7 +97,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
 //        bulletAppState.getPhysicsSpace().add(getRigidBody());
 //        getRigidBody().setEnabled(true);
 
-        bulletAppState.setDebugEnabled(true);
+        //bulletAppState.setDebugEnabled(true);
     }
     
     public void initAnimation(){

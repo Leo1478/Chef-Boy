@@ -190,7 +190,7 @@ public class Player implements ActionListener{
     }
     
     public void playSoundEffect(){
-        panSound = new AudioNode(app.getAssetManager(), "Sounds/Frying Pan.ogg",AudioData.DataType.Buffer);
+        panSound = new AudioNode(app.getAssetManager(), "Sounds/Frying Pan 2.ogg",AudioData.DataType.Buffer);
         panSound.setDirectional(false);
         panSound.setPositional(false);
         panSound.play();

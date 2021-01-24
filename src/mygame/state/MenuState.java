@@ -69,7 +69,7 @@ public class MenuState extends State {
 
         menu = null;
         menuManager = null;
-        bgm.stop();
+        //stopBGM();
         
     }
 

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Action.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Wolf.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Jelly.java</file>
@@ -34,6 +35,16 @@
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/utility/Queue.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/Collidable.java</file>
             <file>file:/D:/java%20stuff/grade%2012%20final%20project/Grade12Project/src/mygame/gameobject/IslandTwo.java</file>
+=======
+            <file>file:/C:/Users/ningy/Documents/GitHub/Grade12Project/src/mygame/gameobject/Volcano.java</file>
+            <file>file:/C:/Users/ningy/Documents/GitHub/Grade12Project/src/mygame/state/EndState.java</file>
+            <file>file:/C:/Users/ningy/Documents/GitHub/Grade12Project/src/mygame/gameobject/Character.java</file>
+            <file>file:/C:/Users/ningy/Documents/GitHub/Grade12Project/src/mygame/gameobject/Wolf.java</file>
+            <file>file:/C:/Users/ningy/Documents/GitHub/Grade12Project/src/mygame/gameobject/Fillet.java</file>
+            <file>file:/C:/Users/ningy/Documents/GitHub/Grade12Project/src/mygame/state/MenuState.java</file>
+            <file>file:/C:/Users/ningy/Documents/GitHub/Grade12Project/src/mygame/state/GameState.java</file>
+            <file>file:/C:/Users/ningy/Documents/GitHub/Grade12Project/src/mygame/gameobject/Bone.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
