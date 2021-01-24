@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
 import com.jme3.app.SimpleApplication;
@@ -14,8 +9,9 @@ import com.jme3.math.Vector3f;
 
 
 /**
+ * Map.java
  * map objects 
- * @author leoze
+ * @author Leo Zeng
  */
 public abstract class Map extends GameObject implements Collidable{
     
@@ -23,11 +19,23 @@ public abstract class Map extends GameObject implements Collidable{
     private RigidBodyControl rigidBody; // rigidbody to simulate physical object 
     private BulletAppState bulletAppState; // controls physics 
     
+    /**
+     * Map
+     * constructor
+     * @param app application 
+     * @param bulletAppState physics 
+     * @param position current position 
+     * @param name object name
+     */
     public Map(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
         super(app, position, name);
         this.bulletAppState = bulletAppState;
     }
     
+    /**
+     * initCollision
+     * create collisionMesh
+     */
     @Override
     public void initCollision() {
         //Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
@@ -39,11 +47,17 @@ public abstract class Map extends GameObject implements Collidable{
         getModel().addControl(getRigidBody());
     }
     
+    /**
+     * updateCollision
+     */
     @Override
     public void updateCollision(){
         
     }
     
+    /**
+     * deleteCollision
+     */
     @Override
     public void deleteCollision(){
         
@@ -58,6 +72,7 @@ public abstract class Map extends GameObject implements Collidable{
     }
     
     /**
+     * getCollisionMesh
      * @return the collisionMesh
      */
     public CollisionShape getCollisionMesh() {
@@ -65,6 +80,7 @@ public abstract class Map extends GameObject implements Collidable{
     }
 
     /**
+     * setCollisionMesh
      * @param collisionMesh the collisionMesh to set
      */
     public void setCollisionMesh(CollisionShape collisionMesh) {
@@ -72,6 +88,7 @@ public abstract class Map extends GameObject implements Collidable{
     }
 
     /**
+     * setRigidBody
      * @param rigidBody the rigidBody to set
      */
     public void setRigidBody(RigidBodyControl rigidBody) {
@@ -79,6 +96,7 @@ public abstract class Map extends GameObject implements Collidable{
     }
 
     /**
+     * getRigidBody
      * @return the rigidBody
      */
     public RigidBodyControl getRigidBody() {

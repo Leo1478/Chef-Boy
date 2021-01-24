@@ -1,24 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
-import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
-import mygame.state.Main;
 
 /**
+ * Prop.java
  * prop objects 
- * @author leoze
+ * @author Leo Zeng
+ * 2020/12/25
  */
 public abstract class Prop extends Map{
     
-
+    /**
+     * Prop
+     * @param app appication
+     * @param bulletAppState physics 
+     * @param position current position 
+     * @param name object name 
+     */
     public Prop(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
         super(app, bulletAppState, position, name);
     }

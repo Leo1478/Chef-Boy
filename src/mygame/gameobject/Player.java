@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
 
@@ -14,23 +9,23 @@ import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
-import mygame.state.Main;
 import com.jme3.input.controls.MouseButtonTrigger;
 import java.util.ArrayList;
 
 /**
- *
- * @author leoze
+ * Player.java
+ * player inputs and player camera 
+ * @author Leo Zeng
+ * 2020/12/25
  */
 public class Player implements ActionListener{
     
-    
-    private boolean left = false;
+    private boolean left = false; // movement input
     private boolean right = false;
     private boolean forward = false;
     private boolean back = false;
     private boolean jump = false;
-    private boolean mouseLeft = false;
+    private boolean mouseLeft = false; // mouse input
     private boolean mouseRight = false;
     
     private Vector3f camDir = new Vector3f(); // camera direction
@@ -39,22 +34,27 @@ public class Player implements ActionListener{
     private Vector3f position = new Vector3f(); // current player position 
     
     private Application app;
-    
     private ChefBoy chefBoy;
     
     private AudioNode panSound;
     
+    /**
+     * Player
+     * constructor
+     * @param app application 
+     * @param chefBoy chefBoy to control 
+     */
     public Player(Application app, ChefBoy chefBoy){
         
         this.app = app;
         this.chefBoy = chefBoy;
         
         init();
-        
     }
     
     /**
-     * init model, collision, position
+     * init 
+     * initialise 
      */
     private void init() {
         
@@ -63,11 +63,15 @@ public class Player implements ActionListener{
     }
     
     /**
+     * setKeys
      * set up binding for movement keys 
      * W = up
      * A = left 
      * S = down 
      * D = right 
+     * space = jump
+     * mouseLeft = attack
+     * mouseRight = block
      */
     private void setKeys(){
         app.getInputManager().addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
@@ -75,24 +79,18 @@ public class Player implements ActionListener{
         app.getInputManager().addMapping("Forward", new KeyTrigger(KeyInput.KEY_W));
         app.getInputManager().addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
         app.getInputManager().addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
-//        app.getInputManager().addListener(this, "Left");
-//        app.getInputManager().addListener(this, "Right");
-//        app.getInputManager().addListener(this, "Forward");
-//        app.getInputManager().addListener(this, "Back");
-//        app.getInputManager().addListener(this, "Jump");
         
         app.getInputManager().addMapping("MouseLeft", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         app.getInputManager().addMapping("MouseRight", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
-//        app.getInputManager().addListener(this, "MouseLeft");
-//        app.getInputManager().addListener(this, "MouseRight");
     }
 
     /**
+     * onAction
      * method from ActionListener 
      * if key is pressed, change to true
-     * @param binding
-     * @param isPressed
-     * @param tpf 
+     * @param binding key binding 
+     * @param isPressed if key is pressed 
+     * @param tpf time per frame
      */
     @Override
     public void onAction(String binding, boolean isPressed, float tpf) {
@@ -118,7 +116,8 @@ public class Player implements ActionListener{
     }
     
     /**
-     * update movement of player
+     * move
+     * get inputs and call chefBoy's move 
      */
     public void move(){
         
@@ -127,7 +126,7 @@ public class Player implements ActionListener{
         
         Vector3f change = new Vector3f(0, 0, 0); // change in position
         
-        if (left) {
+        if (left) { // update change variable based on input
             change.x += camLeft.x;
             change.z += camLeft.z;
         }
@@ -149,13 +148,13 @@ public class Player implements ActionListener{
         if (jump) {
             chefBoy.jump();
         }
-        
         jump = false;
         
-        setCamPosition();
+        setCamPosition(); // update camera position 
     }
     /**
      * attack
+     * attack enemies 
      * @param enemies list of enemies to attack 
      */
     public void attack(ArrayList<Enemy> enemies){
@@ -173,6 +172,7 @@ public class Player implements ActionListener{
     }
     
     /**
+     * block
      * set chefboy's blocking based on mouseRight
      */
     public void block(){
@@ -180,6 +180,7 @@ public class Player implements ActionListener{
     }
     
     /**
+     * setCamPosition
      * set camera position based on chefBoy's position 
      */
     private void setCamPosition(){

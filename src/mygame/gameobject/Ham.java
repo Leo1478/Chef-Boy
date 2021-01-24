@@ -1,24 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
-import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
-import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
-import mygame.state.Main;
 
 /**
- * ham 
- * pig will drop after dying 
- * @author leoze
+ * Ham.java
+ * item pig will drop after dying 
+ * @author Ariana Hou
+ * 2020/12/25
  */
 public class Ham extends Item{
     
+    /**
+     * Ham
+     * constructor 
+     * @param app application 
+     * @param position current posiiton 
+     * @param name object name
+     */
     public Ham(SimpleApplication app, Vector3f position, String name){
         
         super(app, position, name);
@@ -26,26 +26,21 @@ public class Ham extends Item{
         init();
     }
 
-
+    /**
+     * init
+     * initialise model
+     */
     @Override
     void init() {
         
         setMat(app.getAssetManager().loadMaterial("Materials/ham.j3m"));
-        
-        setModel(app.getAssetManager().loadModel("Models/ham/ham.j3o"));
-        
-        getModel().setMaterial(getMat());
-        
-        getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
-        
-        setModelPosition(); // set position needs to be before creating collision mesh for some reason
-        
+        setModel(app.getAssetManager().loadModel("Models/ham/ham.j3o"));   
+        getModel().setMaterial(getMat());     
+        getModel().setShadowMode(RenderQueue.ShadowMode.Cast);   
+        setModelPosition(); 
         app.getRootNode().attachChild(getModel());
         
         setItemPic(new ItemPic(app, "Models/ham/ham pic.png"));
-        
+       
     }
-
-
-     
 }

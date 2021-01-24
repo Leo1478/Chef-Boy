@@ -1,28 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
-import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
-import mygame.state.Main;
 
 
 /**
- *
- * @author leoze
+ * Tree.java
+ * tree prop
+ * @author Leo Zeng
+ * 2020/12/25
  */
 public class Tree extends Prop{
     
-    
+    /**
+     * Tree
+     * @param app application 
+     * @param bulletAppState physics 
+     * @param position current position 
+     * @param name object name
+     */
     public Tree(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name){
         super(app, bulletAppState, position, name);
         init();
@@ -39,15 +37,10 @@ public class Tree extends Prop{
     void init() {
         
         setMat(app.getAssetManager().loadMaterial("Materials/tree.j3m"));
-        
         setModel(app.getAssetManager().loadModel("Models/trees/Tree 1/tree.j3o"));
-        
         getModel().setMaterial(getMat());
-        
         getModel().setShadowMode(ShadowMode.Cast);
-        
-        setModelPosition(); // set position needs to be before creating collision mesh for some reason
-        
+        setModelPosition();
         app.getRootNode().attachChild(getModel());
         
         initCollision();

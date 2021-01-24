@@ -516,7 +516,7 @@ public class GameState extends State {
             
             Item current = items.get(i);
             
-            current.behaviour(chefBoy, tpf);
+            current.behaviour(tpf);
             
             if(current.getPickedUp()){ // if current is picked up 
                 

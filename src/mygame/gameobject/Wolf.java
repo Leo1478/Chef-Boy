@@ -1,25 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.shapes.BoxCollisionShape;
-import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 
 /**
- *
- * @author leoze
+ * Wolf.java
+ * wolf enemy
+ * @author William Zhao
  */
 public class Wolf extends Enemy{
     
-    
+    /**
+     * Wolf
+     * constructor
+     * @param app application 
+     * @param bulletAppState physics 
+     * @param position current position 
+     * @param name object name 
+     * @param health current health
+     */
     public Wolf(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         super(app, bulletAppState, position, name, health);
         
@@ -39,21 +40,16 @@ public class Wolf extends Enemy{
 
     }
     
+    /**
+     * init
+     * initialise model
+     */
     @Override
     void init() {
         
-        // this is still pigs stuff 
-        
         setMat(app.getAssetManager().loadMaterial("Materials/slime.j3m"));
-        
-        // change to xml file with animation later 
-        // using pigs animation as a place holder change later
         setModel(app.getAssetManager().loadModel("Models/Wolf/Wolf.mesh.j3o"));
-        
-        System.out.println("loaded wolf");
-        
         getModel().setMaterial(getMat());
-        
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
     }
 }

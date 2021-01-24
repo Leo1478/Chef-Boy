@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
 import com.jme3.app.SimpleApplication;
@@ -11,11 +6,21 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 
 /**
- *
- * @author leoze
+ * Pig.java
+ * pig enemy
+ * @author Ariana Hou
  */
 public class Pig extends Enemy {
 
+    /**
+     * Pig 
+     * constructor set all values 
+     * @param app application 
+     * @param bulletAppState physics 
+     * @param position current position 
+     * @param name obejct name 
+     * @param health pig health 
+     */
     public Pig(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health) {
         super(app, bulletAppState, position, name, health);
 
@@ -35,20 +40,17 @@ public class Pig extends Enemy {
 
     }
 
+    /**
+     * init
+     * initialise model
+     */
     @Override
     void init() {
 
         setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
-
-        // change to xml file with animation later 
         setModel(app.getAssetManager().loadModel("Models/pig/Plane.mesh.j3o"));
-
         getModel().setMaterial(getMat());
-
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);
 
-
-
     }
-    
 }

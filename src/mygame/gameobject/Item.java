@@ -1,56 +1,75 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.gameobject;
 
-import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
-import mygame.state.Main;
 
 /**
+ * Item.java
  * all items that can be picked up 
- * @author leoze
+ * @author Ariana Hou
  */
 public abstract class Item extends GameObject implements Comparable{
     
-    private boolean pickedUp = false;
+    private boolean pickedUp = false; // if the item has been picked up
     private float pickUpRadius;
     
     private float rotation = 0;
     
-    private ItemPic itemPic;
+    private ItemPic itemPic; // picture 
     
+    /**
+     * Item 
+     * constructor 
+     * @param app application 
+     * @param position current position 
+     * @param name object name
+     */
     public Item(SimpleApplication app, Vector3f position, String name){
         super(app, position, name);
     }
     
-    public void behaviour(ChefBoy chefBoy, float tpf){
+    /**
+     * behaviour
+     * all item behaviour
+     * @param tpf time per frame
+     */
+    public void behaviour(float tpf){
         
         rotate(tpf);
-        
     }
     
-    
+    /**
+     * rotate 
+     * rotate item slowly
+     * @param tpf time per frame 
+     */
     private void rotate(float tpf){
         
         rotation += 1 * tpf;
         
         Quaternion roatation = new Quaternion();
-        roatation.fromAngles(0, rotation , 0); // y rotation,  reverse number
+        roatation.fromAngles(0, rotation , 0); // y rotation
 
         getModel().setLocalRotation(roatation); // change model rotation 
     }
     
+    /**
+     * pickedUp
+     * set pickedUp to true, delete model
+     */
     public void pickedUp(){
         pickedUp = true;
         
         deleteModel();
     }
     
+    /**
+     * compareTo
+     * compare 2 item objects's class name 
+     * @param o object to compare 
+     * @return difference (-1, 0, or 1)
+     */
     @Override
     public int compareTo(Object o){
         Item item = (Item) o;
@@ -65,6 +84,7 @@ public abstract class Item extends GameObject implements Comparable{
     }
     
     /**
+     * getPickedUp
      * @return the pickedUp
      */
     public boolean getPickedUp() {
@@ -73,6 +93,7 @@ public abstract class Item extends GameObject implements Comparable{
     
 
     /**
+     * getPickUpRadius
      * @return the pickUpRadius
      */
     public float getPickUpRadius() {
@@ -80,6 +101,7 @@ public abstract class Item extends GameObject implements Comparable{
     }
 
     /**
+     * setPickUpRadius
      * @param pickUpRadius the pickUpRadius to set
      */
     public void setPickUpRadius(float pickUpRadius) {
@@ -87,6 +109,7 @@ public abstract class Item extends GameObject implements Comparable{
     }
 
     /**
+     * getItemPic
      * @return the itemPic
      */
     public ItemPic getItemPic() {
@@ -94,10 +117,10 @@ public abstract class Item extends GameObject implements Comparable{
     }
 
     /**
+     * setItemPic
      * @param itemPic the itemPic to set
      */
     public void setItemPic(ItemPic itemPic) {
         this.itemPic = itemPic;
-    }
-   
+    } 
 }
