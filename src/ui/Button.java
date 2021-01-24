@@ -1,28 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.queue.RenderQueue;
-import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.awt.Rectangle;
 
 /**
- *
- * @author leoze
+ * Button.java
+ * buttons for menu and setting 
+ * @author Leo Zeng
+ * 2021/01/03
  */
 public class Button {
     
-    private Rectangle hitBox;
-    private Picture picture;
+    private Rectangle hitBox; // rectangle size of button
+    private Picture picture; // picture of button
     private String path;
-    private boolean clicked;
+    private boolean clicked; // if button is clicked
     private SimpleApplication app;
     
+    /**
+     * Button
+     * constructor, init button 
+     * @param app application 
+     * @param hitBox rectangle size 
+     * @param path path in folder 
+     */
     public Button(SimpleApplication app, Rectangle hitBox, String path){
         this.hitBox = hitBox;
         this.path = path;
@@ -31,11 +34,12 @@ public class Button {
         init();
     }
     
+    /**
+     * init
+     * initialise picture 
+     */
     private void init(){
-       
-        
-        AppSettings settings = new AppSettings(true);
-     
+
         Picture picture = new Picture("button");
         picture.setImage(app.getAssetManager(), path, true);
         picture.setWidth(hitBox.width);
@@ -49,6 +53,7 @@ public class Button {
     }
 
     /**
+     * getHitBox
      * @return the hitBox
      */
     public Rectangle getHitBox() {
@@ -56,6 +61,7 @@ public class Button {
     }
 
     /**
+     * setHitBox
      * @param hitBox the hitBox to set
      */
     public void setHitBox(Rectangle hitBox) {
@@ -63,6 +69,7 @@ public class Button {
     }
 
     /**
+     * getPicture
      * @return the picture
      */
     public Picture getPicture() {
@@ -70,6 +77,7 @@ public class Button {
     }
 
     /**
+     * setPicture
      * @param picture the picture to set
      */
     public void setPicture(Picture picture) {
@@ -77,6 +85,7 @@ public class Button {
     }
 
     /**
+     * isClicked
      * @return the clicked
      */
     public boolean isClicked() {
@@ -84,10 +93,10 @@ public class Button {
     }
 
     /**
+     * setClicked
      * @param clicked the clicked to set
      */
     public void setClicked(boolean clicked) {
         this.clicked = clicked;
     }
-    
 }

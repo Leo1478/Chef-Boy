@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import com.jme3.app.SimpleApplication;
@@ -17,19 +12,25 @@ import static mygame.state.Main.SCREENHEIGHT;
 import static mygame.state.Main.SCREENWIDTH;
 
 /**
- *
- * @author leoze
+ * HeadsUpDisplay
+ * hud for health bar
+ * @author Leo Zeng 
+ * 2021/01/15
  */
 public class HeadsUpDisplay {
     
     private SimpleApplication app;
     private Picture healthBar;
     private Picture healthBarRed;
-    private Picture crossHair; 
     private ChefBoy chefBoy;
     private BitmapFont guiFont;
     private BitmapText healthText;
     
+    /**
+     * HeadsUpDisplay
+     * @param app application 
+     * @param chefBoy chefBoy object 
+     */
     public HeadsUpDisplay(SimpleApplication app, ChefBoy chefBoy){
         
         this.app = app;
@@ -38,12 +39,11 @@ public class HeadsUpDisplay {
     }
     
     /**
+     * init
      * init health bar and health text 
      */
     private void init(){
 
-        AppSettings settings = new AppSettings(true);
-        
         healthBarRed = new Picture("health bar red"); // red part of health bar 
         healthBarRed.setImage(app.getAssetManager(), "UI/health bar red.png", true);
         healthBarRed.setWidth(400);
@@ -71,11 +71,11 @@ public class HeadsUpDisplay {
     }
     
     /**
+     * update 
      * update to chefboy's heath 
      */
     public void update(){
         healthText.setText("Health : " + chefBoy.getHealth());
         healthBarRed.setWidth(chefBoy.getHealth() * 400 / 100 );
     }
-    
 }

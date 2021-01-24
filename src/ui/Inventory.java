@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
-import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.math.Vector2f;
@@ -14,32 +8,35 @@ import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.Arrays;
 import mygame.gameobject.Item;
 import mygame.gameobject.ItemPic;
 import mygame.state.GameState;
 import mygame.state.InventoryState;
 import static mygame.state.Main.SCREENHEIGHT;
 import static mygame.state.Main.SCREENWIDTH;
-import mygame.state.MenuState;
-import mygame.state.SettingState;
 
 /**
- *
- * @author leoze
+ * Inventory.java
+ * inventory to store and display items 
+ * @author Ariana Hou
+ * 2021/01/02
  */
 public class Inventory {
     
     private SimpleApplication app;
     
-    private Item[] itemArray;
-    private int pictureSize; // size of all itemPics in pixels
-    private int size;
+    private Item[] itemArray; // array of items 
+    private int size; // number of items 
     private Button sortButton;
     private Button gameButton;
     private AppStateManager stateManager;
 
+    /**
+     * Inventory 
+     * constructor set array size 
+     * @param app application 
+     * @param stateManager controls states 
+     */
     public Inventory(SimpleApplication app, AppStateManager stateManager){
         this.app = app;
         this.stateManager = stateManager;
@@ -48,6 +45,10 @@ public class Inventory {
 
     }
     
+    /**
+     * init
+     * initialise pictures and buttons
+     */
     public void init(){
         
        initBackground();
@@ -58,6 +59,7 @@ public class Inventory {
     }
     
     /**
+     * initBackground
      * init background of inventory 
      */
     private void initBackground(){
@@ -87,20 +89,24 @@ public class Inventory {
     }
     
     /**
+     * initItemPicture
      * init each item picture in inventory
      */
     private void initItemPicture(){
 
-            for(int i = 0; i < size; i++){
-                Item item = itemArray[i];
-                ItemPic current = item.getItemPic(); // get picture 
-                app.getGuiNode().attachChild(current.getPicture()); // attatch to GuiNide
-                current.getPicture().setQueueBucket(RenderQueue.Bucket.Gui);
-            }            
-
-
+        for(int i = 0; i < size; i++){
+            Item item = itemArray[i];
+            ItemPic current = item.getItemPic(); // get picture 
+            app.getGuiNode().attachChild(current.getPicture()); // attatch to GuiNide
+            current.getPicture().setQueueBucket(RenderQueue.Bucket.Gui);
+        }            
     }
     
+    /**
+     * setItemPosition
+     * set item position in a grid 
+     * 5 * 10 grid 
+     */
     private void setPicturePosition(){
         
         int x = 160; // starting position of first itemPic
@@ -120,10 +126,14 @@ public class Inventory {
         }
     }
     
+    /**
+     * clickButton
+     * check if button is clicked 
+     * sort or return to game 
+     * @param mousePosition position of mouse 
+     */
     public void clickButton(Vector2f mousePosition){
-        
-        System.out.println("clickButton in inventory");
-        
+
         Point point = new Point((int)mousePosition.x, (int)mousePosition.y);
         
         if(sortButton.getHitBox().contains(point)){ // sort button
@@ -137,7 +147,6 @@ public class Inventory {
             stateManager.getState(InventoryState.class).exitState();
             stateManager.getState(InventoryState.class).removeListener();
             stateManager.getState(InventoryState.class).cleanUp();
-            
             stateManager.getState(GameState.class).enterState();
             stateManager.getState(GameState.class).addListener();
             app.getInputManager().setCursorVisible(false);
@@ -145,16 +154,19 @@ public class Inventory {
         }
     }
     
-    
+    /**
+     * update 
+     * update pucture position 
+     */
     public void update(){
-        display();
         setPicturePosition();
-        
-        
-        
-        System.out.println(app.getInputManager().getCursorPosition());
     }
     
+    /**
+     * add
+     * add item to array 
+     * @param item item to add 
+     */
     public void add(Item item){
         if(size < 50){
             itemArray[size] = item;
@@ -162,70 +174,54 @@ public class Inventory {
         }
     }
     
+    /**
+     * remove 
+     * remove item from array
+     * @param index index to remove 
+     */
     public void remove(int index){
         itemArray[index] = null;
     }
     
+    /**
+     * sort
+     * call bubbleSort to sort items 
+     */
     public void sort(){
         itemArray = bubbleSort(itemArray);
         //Arrays.sort(itemArray, 0, size);
     }
     
-    private void selectItem(Vector2f mousePosition){
-        // selected = item at mouse location 
-    }
-    
     /**
-     * drag item from position with mouse 
-     * @param item 
-     * @param mousePosition 
+     * getSize 
+     * @return the size
      */
-    public void drag(Item item, Vector2f mousePosition){
-        if(item != null){
-            // make item follow mouse position 
-        }
-    }
-    
-    /**
-     * set item down with mouse 
-     * @param item 
-     * @param mousePosition 
-     */
-    public void place(Item item, Vector2f mousePosition){
-        // called with mouse lets go
-        // place item at empty spot
-        // if spot is not empty, return item to original location 
-        
-    }
-    
-    private void display(){
-        // loop through each itemPic 
-        // display each 
-    }
-    
-    private void displaySelected(Item item, Vector2f mousePosition){
-        // display selected item and it's changed position 
-    }
-    
     public int getSize(){
         return size;
     }
     
+    /**
+     * bubbleSort
+     * bubble sort to compare adjcent items 
+     * sort by class name 
+     * @param itemArray array to sort
+     * @return sorted array 
+     */
     private Item[] bubbleSort(Item[] itemArray) {
-        boolean changed;
+        boolean changed; // if change has been made 
         Item temp;
         do{
             changed = false;
-            for(int i = 0 ; i < size-1 ; i ++){
-                if(itemArray[i].compareTo(itemArray[i + 1]) >= 1){
-                    temp = itemArray[i];
+            for(int i = 0 ; i < size-1 ; i ++){ // loop through array 
+                if(itemArray[i].compareTo(itemArray[i + 1]) >= 1){ // if i or i+1 should be swaped 
+                    temp = itemArray[i]; // swap items 
                     itemArray[i] = itemArray[i + 1];
                     itemArray[i + 1] = temp;
                     changed = true;
                 }
             }
         }while(changed);
+        
         return itemArray;
     }
-
 }

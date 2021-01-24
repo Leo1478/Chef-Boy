@@ -32,6 +32,14 @@ public class SettingManager implements ActionListener{
         
     }
     
+    /**
+     * onAction
+     * method from ActionListener 
+     * if key is pressed, change to true
+     * @param binding key binding 
+     * @param isPressed if key is pressed 
+     * @param tpf time per frame
+     */    
     @Override
     public void onAction(String binding, boolean isPressed, float tpf) {
         if (binding.equals("mouseLeft") && isPressed) {
