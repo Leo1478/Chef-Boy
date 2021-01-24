@@ -138,8 +138,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     
     @Override
     public void deleteCollision(){
-        System.out.println("deleteing collision!!!!!");
-        bulletAppState.getPhysicsSpace().removeCollisionObject(getRigidBody());
+        bulletAppState.getPhysicsSpace().remove(characterControl);
     }
     
     /**
@@ -188,6 +187,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         if(health <= 0){
             alive = false;
             deleteModel();
+            deleteCollision();
         }
     }
     

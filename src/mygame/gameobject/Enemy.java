@@ -140,12 +140,27 @@ public abstract class Enemy extends Character{
         setRotation(rotation);
         getModel().setLocalRotation(rotation); // change model rotation 
         
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+        float[] angles = new float[3];
+=======
+>>>>>>> 1cfb6c40ecab2876c58587db74521558d9908710
+>>>>>>> Stashed changes
             
         move(change);
         
         //System.out.println(getRigidBody().getPhysicsLocation());
         
+<<<<<<< HEAD
+
+=======
         
+<<<<<<< Updated upstream
+=======
+>>>>>>> 1cfb6c40ecab2876c58587db74521558d9908710
+>>>>>>> Stashed changes
     }
     
     /**

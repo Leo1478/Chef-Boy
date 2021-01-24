@@ -43,9 +43,24 @@ import ui.HeadsUpDisplay;
 import com.jme3.util.SkyFactory;
 import mygame.gameobject.IslandTwo;
 import com.jme3.texture.Texture;
+<<<<<<< Updated upstream
 import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.gameobject.Wolf;
+=======
+<<<<<<< HEAD
+
+import java.awt.Point;
+import java.awt.Rectangle;
+
+import mygame.gameobject.Wolf;
+
+=======
+import java.awt.Point;
+import java.awt.Rectangle;
+import mygame.gameobject.Wolf;
+>>>>>>> 1cfb6c40ecab2876c58587db74521558d9908710
+>>>>>>> Stashed changes
 
 /**
  * state for in game init all game objects update all game objects
