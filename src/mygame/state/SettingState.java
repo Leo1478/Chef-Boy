@@ -1,22 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.state;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppStateManager;
-import ui.Button;
-import ui.Menu;
-import ui.MenuManager;
 import ui.Setting;
 import ui.SettingManager;
 
 /**
- *
- * @author leoze
+ * SettingState.java
+ * state for in setting screen
+ * @author Leo Zeng
+ * 2021/01/12
  */
 public class SettingState extends State {
     
@@ -27,6 +21,12 @@ public class SettingState extends State {
     private SettingManager settingManager;
     private Setting setting;
     
+    /**
+     * initialize 
+     * called when state is attatched to StateManager
+     * @param stateManager engine StateManager, controls states 
+     * @param app application 
+     */    
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         this.app = (SimpleApplication) app;
@@ -34,6 +34,10 @@ public class SettingState extends State {
         
     }
     
+    /**
+     * init
+     * initialise setting and setting manager
+     */
     @Override
     public void init(){
         
@@ -44,7 +48,9 @@ public class SettingState extends State {
     }
     
     /**
-     *  remove all menu elements from guiNode
+     * cleanUp
+     * remove all graphics when finished 
+     * remove listener 
      */
     @Override
     public void cleanUp(){
@@ -63,17 +69,19 @@ public class SettingState extends State {
         setting = null;
         
     }
-
-    @Override
-    public void update(float tpf) {
-        //System.out.println("in SettingState");
-    }
-    
-        
+ 
+    /**
+     * addListener
+     * add mouseLeft input
+     */
     public void addListener(){
         app.getInputManager().addListener(settingManager, "mouseLeft");
     }
     
+    /**
+     * removeListener
+     * remove listener when finished
+     */
     public void removeListener(){
         app.getInputManager().removeListener(settingManager);
     }

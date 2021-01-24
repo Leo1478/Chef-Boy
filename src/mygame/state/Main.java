@@ -4,18 +4,18 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppState;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- * This is the Main Class of your Game. You should only do initialization here.
- * Move your Logic into AppStates or Controls
- * @author leoze
+ * Main.java
+ * main class to start program 
+ * creates all states, then enters MenuState
+ * @author Leo Zeng
+ * 2020/12/20
  */
 public class Main extends SimpleApplication {
     
     
-    private GameState gameState;
+    private GameState gameState; // states 
     private MenuState menuState;
     private InventoryState inventoryState;
     private SettingState settingState;
@@ -29,7 +29,7 @@ public class Main extends SimpleApplication {
      * main method 
      * start program 
      * disable jmonkey start screen 
-     * @param args 
+     * @param args arguements 
      */
     public static void main(String[] args) {
         
@@ -45,12 +45,12 @@ public class Main extends SimpleApplication {
     }
 
     /**
-     * create states 
+     * simpleInitApp
+     * create states, add to StateManager 
      */
     @Override
     public void simpleInitApp() {
 
-        
         getInputManager().deleteMapping( SimpleApplication.INPUT_MAPPING_EXIT ); // unbind esc to exit 
         getInputManager().setCursorVisible(true); // make cursor visible to start
         
@@ -85,6 +85,12 @@ public class Main extends SimpleApplication {
     }
 
     boolean menu = false;
+    /**
+     * simpleUpdate
+     * update program 
+     * enter MenuState
+     * @param tpf time per frame
+     */
     @Override
     public void simpleUpdate(float tpf) {
         if(! menu){
@@ -100,6 +106,10 @@ public class Main extends SimpleApplication {
         }
     }
 
+    /**
+     * SimpleRender
+     * @param rm render manager
+     */
     @Override
     public void simpleRender(RenderManager rm) {
         

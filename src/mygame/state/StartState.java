@@ -1,36 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.state;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
-import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector2f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.ui.Picture;
-import java.awt.Point;
-import java.awt.Rectangle;
 import static mygame.state.Main.SCREENHEIGHT;
 import static mygame.state.Main.SCREENWIDTH;
-import ui.Button;
 
 /**
- * shows starting animation / story 
- * @author leoze
+ * StartState.java
+ * shows starting cut scene
+ * @author LeoZeng
+ * 2020/01/12
  */
 public class StartState extends State{
     
     private SimpleApplication app;
     private AppStateManager stateManager;
     
-    private float timer;
-    private boolean inited = false;
+    private float timer; // length of scene 
+    private boolean inited = false; // only need to show scene once 
     
+    /**
+     * initialize 
+     * called when state is attatched to StateManager
+     * @param stateManager engine StateManager, controls states 
+     * @param app application 
+     */    
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         
@@ -40,7 +37,11 @@ public class StartState extends State{
         
     }
 
-
+    /**
+     * update 
+     * update timer and start game
+     * @param tpf time per frame
+     */
     @Override
     public void update(float tpf) {
 
@@ -49,10 +50,13 @@ public class StartState extends State{
         if(timer <= 0){
             startGame();
         }
-        
     }
 
 
+    /**
+     * startGame
+     * exit from startState and enter gameState 
+     */
     void startGame(){
         stateManager.getState(StartState.class).exitState(); // exit startState
         stateManager.getState(StartState.class).cleanUp();
@@ -62,11 +66,19 @@ public class StartState extends State{
         app.getInputManager().setCursorVisible(false);
     }
 
+    /**
+     * cleanUp
+     * remove graphics from node when done 
+     */
     @Override
     public void cleanUp() {
         app.getGuiNode().detachChildNamed("start");
     }
 
+    /**
+     * init
+     * initialise start cut scene picture 
+     */
     @Override
     public void init() {
         
@@ -86,6 +98,4 @@ public class StartState extends State{
             inited = true;
         }
     }
-    
-
 }

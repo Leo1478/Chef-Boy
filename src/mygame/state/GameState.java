@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.state;
 
 import com.jme3.app.Application;
@@ -16,12 +11,10 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import mygame.gameobject.ChefBoy;
 import mygame.gameobject.Enemy;
 import mygame.gameobject.Fillet;
 import mygame.gameobject.Fish;
-import mygame.gameobject.GameLight;
 import mygame.gameobject.GameObject;
 import mygame.gameobject.Ham;
 import mygame.gameobject.Hut;
@@ -45,20 +38,6 @@ import com.jme3.texture.Texture;
 import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.gameobject.Wolf;
-
-import java.awt.Point;
-import java.awt.Rectangle;
-import mygame.gameobject.Wolf;
-
-import java.awt.Point;
-import java.awt.Rectangle;
-
-import mygame.gameobject.Wolf;
-
-
-import java.awt.Point;
-import java.awt.Rectangle;
-import mygame.gameobject.Wolf;
 import utility.Queue;
 
 /**
@@ -76,8 +55,6 @@ public class GameState extends State {
     private HeadsUpDisplay hud;
     
     private float spawnRate = 10; // 10 seconds between each spawn 
-    
-    private GameLight gameLight; // lighting
 
     private Player player; // player object 
     private ChefBoy chefBoy;
@@ -97,11 +74,10 @@ public class GameState extends State {
     private boolean init = false; // if gameState has been inited yet
     
     /**
-     * initialize
-     * add enable state 
-     *
-     * @param stateManager
-     * @param app
+     * initialize 
+     * called when state is attatched to StateManager
+     * @param stateManager engine StateManager, controls states 
+     * @param app application 
      */
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
@@ -111,11 +87,11 @@ public class GameState extends State {
 
     }
     /**
-     * init all models, lighting, camera, physics, objects, and add them to game
-     * world
+     * init all models, lighting, camera, physics, objects, and add them to game world
      */
     @Override
     public void init(){
+        
         if(!init){
             
             init = true;
@@ -151,13 +127,18 @@ public class GameState extends State {
         }
     }
     
+    /**
+     * initHud
+     * init heads up display with health bar
+     */
     private void initHud(){
         hud = new HeadsUpDisplay(app, chefBoy);
     }
 
     /**
+     * initLight
      * init lighting for game
-     *
+     * directional light for sun
      */
     private void initLight() {
 
@@ -600,7 +581,6 @@ public class GameState extends State {
         items = null;
         enemies = null;
         props = null;  
-        gameLight = null;
         player = null;
         chefBoy = null;
         gameStateManager = null;

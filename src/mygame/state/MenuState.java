@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.state;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.input.controls.MouseButtonTrigger;
-import ui.Button;
 import ui.Menu;
 import ui.MenuManager;
 import com.jme3.audio.AudioNode;
 import com.jme3.audio.AudioData;
 
 /**
- *
- * @author leoze
+ * MenuState.java
+ * state for in menu
+ * @author Leo Zeng
+ * 2020/01/12
  */
 public class MenuState extends State {
     
@@ -29,6 +24,12 @@ public class MenuState extends State {
     private Menu menu;
     private AudioNode bgm;
     
+    /**
+     * initialize 
+     * called when state is attatched to StateManager
+     * @param stateManager engine StateManager, controls states 
+     * @param app application 
+     */
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         this.app = (SimpleApplication) app;
@@ -36,22 +37,25 @@ public class MenuState extends State {
 
         app.getInputManager().setCursorVisible(true);
         
-        //System.out.println("initialize menuState");
     }
     
+    /**
+     * init
+     * initialise menu and menuManager
+     */
     @Override
     public void init(){
         
         app.getInputManager().setCursorVisible(true);
-        //app.getViewPort().setBackgroundColor(ColorRGBA.Red);
-
         menu = new Menu(app, stateManager);
         menuManager = new MenuManager(app, menu);
         playBackgroundMusic();
     }
     
     /**
-     *  remove all menu elements from guiNode
+     * cleanUp
+     * remove all menu elements from guiNode when finished 
+     * remove listener 
      */
     @Override
     public void cleanUp(){
@@ -63,26 +67,41 @@ public class MenuState extends State {
         
         app.getInputManager().removeListener(menuManager);
 
-        
         menu = null;
         menuManager = null;
         bgm.stop();
         
     }
 
+    /**
+     * update
+     * @param tpf time per frame
+     */
     @Override
     public void update(float tpf) {
-        //System.out.println("in MenuState");
+        
     }
     
+    /**
+     * addListener
+     * add mouseLeft input
+     */
     public void addListener(){
         app.getInputManager().addListener(menuManager, "mouseLeft");
     }
     
+    /**
+     * removeListener
+     * remove listener when finished 
+     */ 
     public void removeListener(){
         app.getInputManager().removeListener(menuManager);
     }
     
+    /**
+     * playBackgroundMusic
+     * play music 
+     */
     public void playBackgroundMusic(){
         bgm = new AudioNode(app.getAssetManager(), "Sounds/MenuBGM.ogg",AudioData.DataType.Buffer);
         bgm.setDirectional(false);

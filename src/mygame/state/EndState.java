@@ -1,30 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.state;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
-import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.ui.Picture;
-import java.awt.Rectangle;
 import static mygame.state.Main.SCREENHEIGHT;
 import static mygame.state.Main.SCREENWIDTH;
-import ui.Button;
 
 /**
- * game over state 
- * @author leoze
+ * EndState.java
+ * game over state
+ * shows end cut scene
+ * @author Leo Zeng
+ * 2021/01/21
  */
 public class EndState extends State{
     
     private SimpleApplication app;
-    private float timer;
+    private float timer; // length of cut scene 
     
+    /**
+     * initialize 
+     * called when state is attatched to StateManager
+     * @param stateManager engine StateManager, controls states 
+     * @param app application 
+     */
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         
@@ -32,6 +33,11 @@ public class EndState extends State{
 
     }
     
+    /**
+     * init
+     * init win / lose pictures based on condition 
+     * @param win whether player win or lose
+     */
     public void init(boolean win){
         
         timer = 5;
@@ -61,6 +67,11 @@ public class EndState extends State{
     }
 
 
+    /**
+     * update 
+     * update timer 
+     * @param tpf time per frame
+     */
     @Override
     public void update(float tpf) {
         
@@ -72,12 +83,19 @@ public class EndState extends State{
     }
 
 
+    /**
+     * cleanUp
+     * clean up all graphics
+     */
     @Override
     public void cleanUp() {
         app.getGuiNode().detachChildNamed("win");
         app.getGuiNode().detachChildNamed("lose");
     }
 
+    /**
+     * init
+     */
     @Override
     public void init() {
         

@@ -1,35 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame.state;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
-import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import java.awt.Rectangle;
 import ui.Button;
 import ui.Inventory;
 import ui.InventoryManager;
 
 /**
- *
- * @author leoze
+ * InventoryState.java
+ * state for in inventory 
+ * @author Ariana Hou
+ * 2021/01/14
  */
 public class InventoryState extends State{
     
     private SimpleApplication app;
+    private AppStateManager stateManager;
     private Inventory inventory;
     private InventoryManager inventoryManager;
     
-    private Button gameButton;
-    
-    public InventoryState(){
-
-    }
-    
+    /**
+     * initialize 
+     * called when state is attatched to StateManager
+     * @param stateManager engine StateManager, controls states 
+     * @param app application 
+     */
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         this.app = (SimpleApplication) app;
@@ -37,6 +33,11 @@ public class InventoryState extends State{
 
     }
 
+    /**
+     * init
+     * initialise inventory and manager
+     * @param inventory inventory from GameState
+     */
     public void init(Inventory inventory){
         app.getInputManager().setCursorVisible(true);
         this.inventory = inventory;
@@ -45,12 +46,20 @@ public class InventoryState extends State{
         
     }
     
+    /**
+     * update 
+     * update inventory state 
+     * @param tpf time per frame
+     */
     @Override
     public void update(float tpf){
         inventory.update();
-        System.out.println("in inventoryState");
     }
 
+    /**
+     * cleanUp
+     * remove all graphucs and listener when finished 
+     */
     @Override
     public void cleanUp() {
         app.getGuiNode().detachChildNamed("inventoryBackground");
@@ -66,16 +75,27 @@ public class InventoryState extends State{
         inventoryManager = null;
     }
 
+    /**
+     * init
+     */
     @Override
     public void init() {
         
     }
     
+    /**
+     * addListener 
+     * add mouse and esc input to inventory 
+     */
     public void addListener(){
         app.getInputManager().addListener(inventoryManager, "mouseLeft");
         app.getInputManager().addListener(inventoryManager, "Setting");
     }
     
+    /**
+     * removeListener
+     * remove listener when finished 
+     */
     public void removeListener(){
         app.getInputManager().removeListener(inventoryManager);
     }
