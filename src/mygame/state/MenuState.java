@@ -106,6 +106,7 @@ public class MenuState extends State {
         bgm = new AudioNode(app.getAssetManager(), "Sounds/MenuBGM.ogg",AudioData.DataType.Buffer);
         bgm.setDirectional(false);
         bgm.setPositional(false);
+        bgm.setVolume(0.5f);
         bgm.play();
         bgm.setLooping(true);
         

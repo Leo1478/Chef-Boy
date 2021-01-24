@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import com.jme3.app.SimpleApplication;
@@ -20,8 +15,10 @@ import mygame.state.MenuState;
 import mygame.state.SettingState;
 
 /**
- *
- * @author leoze
+ * Setting.java
+ * setting screen of game
+ * @author Leo Zeng
+ * 2021/01/09
  */
 public class Setting {
     
@@ -36,12 +33,23 @@ public class Setting {
     private Button sixtyButton;
     private Button unlimitedButton;
     
+    /**
+     * Setting 
+     * constructor 
+     * @param app application 
+     * @param stateManager controls states 
+     */
     public Setting(SimpleApplication app, AppStateManager stateManager){
         this.app = app;
         this.stateManager = stateManager;
         init();
     }
     
+    /**
+     * init
+     * initialise background 
+     * all buttons 
+     */
     private void init(){
         
         Picture settingBackground = new Picture("settingBackground");
@@ -61,11 +69,12 @@ public class Setting {
         unlimitedButton = new Button(app, new Rectangle(1100, 350, 320, 100), "UI/unlimited.png");
         
     }
-    
-    private void display(){
-        
-    }
-    
+
+    /**
+     * clickButton
+     * check if buttons are clicked 
+     * @param mousePosition current mouse position
+     */
     public void clickButton(Vector2f mousePosition){
         
         Point point = new Point((int)mousePosition.x, (int)mousePosition.y);
@@ -79,9 +88,8 @@ public class Setting {
             appSettings.put("Title", "ChefBoy");  
             app.setSettings(appSettings);   
             app.restart();
-        }
-        
-        else if(sixtyButton.getHitBox().contains(point)){
+            
+        } else if(sixtyButton.getHitBox().contains(point)){
             
             AppSettings appSettings = new AppSettings(true);   
             appSettings.setFrameRate(60);
@@ -90,8 +98,8 @@ public class Setting {
             appSettings.put("Title", "ChefBoy");  
             app.setSettings(appSettings);   
             app.restart();
-        }
-        else if(unlimitedButton.getHitBox().contains(point)){
+            
+        } else if(unlimitedButton.getHitBox().contains(point)){
             
             AppSettings appSettings = new AppSettings(true);   
             appSettings.setFrameRate(-1);
@@ -100,8 +108,8 @@ public class Setting {
             appSettings.put("Title", "ChefBoy");  
             app.setSettings(appSettings);   
             app.restart();
-        }
-        else if(menuButton.getHitBox().contains(point)){ // return to menu button
+            
+        } else if(menuButton.getHitBox().contains(point)){ // return to menu button
             
             stateManager.getState(SettingState.class).exitState(); // exit settingState
             stateManager.getState(SettingState.class).cleanUp();
@@ -110,9 +118,8 @@ public class Setting {
             stateManager.getState(MenuState.class).init(); 
             stateManager.getState(MenuState.class).addListener(); 
             
-        }
-        
-        else if(gameButton.getHitBox().contains(point)){ // return to game button 
+        } else if(gameButton.getHitBox().contains(point)){ // return to game button 
+            
             stateManager.getState(SettingState.class).exitState(); // exit settingState
             stateManager.getState(SettingState.class).cleanUp();
             stateManager.getState(SettingState.class).removeListener();
@@ -123,11 +130,6 @@ public class Setting {
             }
             app.getInputManager().setCursorVisible(false);
         }
-        
-        
-    }
-    
-    public void update(){
         
     }
 }

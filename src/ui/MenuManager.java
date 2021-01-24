@@ -1,34 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import com.jme3.app.Application;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
-import java.awt.Point;
 
 /**
- *
- * @author leoze
+ * MenuManager.java
+ * get inputs for menu
+ * @author Leo Zeng
+ * 202101/04
  */
 public class MenuManager implements ActionListener{
 
     private Application app;
     private Menu menu;
     
+    /**
+     * MenuManager
+     * constructor init menu, set keys
+     * @param app application
+     * @param menu menu screen 
+     */
     public MenuManager(Application app, Menu menu){
         this.app = app;
         this.menu = menu;
         setKeys();
     }
     
+    /**
+     * setKeys 
+     * mouseLeft input 
+     */
     private void setKeys(){
         app.getInputManager().addMapping("mouseLeft", new MouseButtonTrigger(0));
-//        app.getInputManager().addListener(this, "mouseLeft");
     }
     
     /**
@@ -48,6 +53,10 @@ public class MenuManager implements ActionListener{
         }
     }
     
+    /**
+     * getMousePosition
+     * @return current ousePosition
+     */
     private Vector2f getMousePosition(){
         return app.getInputManager().getCursorPosition();
     }

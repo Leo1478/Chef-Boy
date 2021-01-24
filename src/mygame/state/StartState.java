@@ -47,6 +47,10 @@ public class StartState extends State{
 
         timer -= tpf;
         
+        if(timer <= 10){
+            app.getGuiNode().detachChildNamed("start");
+        }
+        
         if(timer <= 0){
             startGame();
         }
@@ -73,6 +77,7 @@ public class StartState extends State{
     @Override
     public void cleanUp() {
         app.getGuiNode().detachChildNamed("start");
+        app.getGuiNode().detachChildNamed("instruction");
     }
 
     /**
@@ -84,8 +89,17 @@ public class StartState extends State{
         
         if(! inited){
             
-            timer = 5;
-        
+            timer = 15;
+
+            Picture instruction = new Picture("instruction");
+            instruction.setImage(app.getAssetManager(), "UI/instruction.png", true);
+            instruction.setWidth(SCREENWIDTH);
+            instruction.setHeight(SCREENHEIGHT);
+            instruction.setPosition(0, 0);
+
+            app.getGuiNode().attachChild(instruction);
+            instruction.setQueueBucket(RenderQueue.Bucket.Gui);
+            
             Picture start = new Picture("start");
             start.setImage(app.getAssetManager(), "UI/start.png", true);
             start.setWidth(SCREENWIDTH);
@@ -94,6 +108,7 @@ public class StartState extends State{
 
             app.getGuiNode().attachChild(start);
             start.setQueueBucket(RenderQueue.Bucket.Gui);
+            
             
             inited = true;
         }

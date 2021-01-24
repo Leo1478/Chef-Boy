@@ -39,12 +39,15 @@ import ui.HeadsUpDisplay;
 import com.jme3.util.SkyFactory;
 import mygame.gameobject.IslandTwo;
 import com.jme3.texture.Texture;
-<<<<<<< Updated upstream
+import java.awt.Point;
+import java.awt.Rectangle;
+import mygame.gameobject.Bone;
+import mygame.gameobject.Wolf;
+import utility.Queue;
 import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.gameobject.Wolf;
 import utility.Queue;
-=======
 import com.jme3.math.FastMath;
 import mygame.gameobject.Bone;
 
@@ -62,7 +65,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import mygame.gameobject.Wolf;
 
->>>>>>> Stashed changes
 
 /**
  * state for in game init all game objects update all game objects

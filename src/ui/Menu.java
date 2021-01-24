@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.math.Vector2f;
 import com.jme3.renderer.queue.RenderQueue;
-import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.awt.Point;
 import java.awt.Rectangle;
-import mygame.state.GameState;
 import static mygame.state.Main.SCREENHEIGHT;
 import static mygame.state.Main.SCREENWIDTH;
 import mygame.state.MenuState;
@@ -21,8 +14,10 @@ import mygame.state.SettingState;
 import mygame.state.StartState;
 
 /**
- *
- * @author leoze
+ * Menu.java
+ * menu screen of game 
+ * contains play, setting, exit button
+ * @author Leo Zeng
  */
 public class Menu {
     
@@ -33,12 +28,22 @@ public class Menu {
     private Button settingButton;
     private Button exitButton;
     
+    /**
+     * Menu
+     * constructor
+     * @param app application 
+     * @param stateManager controls states 
+     */
     public Menu(SimpleApplication app, AppStateManager stateManager){
         this.app = app;
         this.stateManager = stateManager;
         init();
     }
     
+    /**
+     * init
+     * initialise background and buttons 
+     */
     private void init(){
         
         Picture menuBackground = new Picture("menuBackground");
@@ -56,21 +61,20 @@ public class Menu {
         
     }
     
-    private void display(){
-        
-    }
-    
+    /**
+     * clickButton
+     * check if buttons are clicked 
+     * @param mousePosition current mouse position 
+     */
     public void clickButton(Vector2f mousePosition){
         
         Point point = new Point((int)mousePosition.x, (int)mousePosition.y);
 
-        
         if(playButton.getHitBox().contains(point)){ // play button
             
             stateManager.getState(MenuState.class).exitState(); // exit menuState
             stateManager.getState(MenuState.class).cleanUp();
             stateManager.getState(MenuState.class).removeListener();
-            
             stateManager.getState(StartState.class).enterState(); // enter startState
             stateManager.getState(StartState.class).init();
 
@@ -79,7 +83,7 @@ public class Menu {
             stateManager.getState(MenuState.class).exitState(); // exit menuState
             stateManager.getState(MenuState.class).cleanUp();
             stateManager.getState(MenuState.class).removeListener();
-            stateManager.getState(SettingState.class).enterState(); // enter gameState
+            stateManager.getState(SettingState.class).enterState(); // enter settingState
             stateManager.getState(SettingState.class).init();
             stateManager.getState(SettingState.class).addListener();
         }
@@ -87,9 +91,5 @@ public class Menu {
         if(exitButton.getHitBox().contains(point)){ // exit button 
             app.stop(); // exit program 
         }
-    }
-    
-    public void update(){
-        
     }
 }
