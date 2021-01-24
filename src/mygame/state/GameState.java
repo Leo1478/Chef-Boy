@@ -13,7 +13,6 @@ import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.PointLight;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import java.util.ArrayList;
@@ -44,12 +43,9 @@ import ui.HeadsUpDisplay;
 import com.jme3.util.SkyFactory;
 import mygame.gameobject.IslandTwo;
 import com.jme3.texture.Texture;
-<<<<<<< Updated upstream
 import java.awt.Point;
 import java.awt.Rectangle;
-=======
 import mygame.gameobject.Wolf;
->>>>>>> Stashed changes
 
 /**
  * state for in game init all game objects update all game objects
@@ -426,10 +422,10 @@ public class GameState extends State {
         spawnEnemy(tpf);
         
         if(checkWin()){
-            
+            endGame(true);
         }
         if(! chefBoy.getAlive()){
-            System.out.println("dead");
+            endGame(false);
         }
         
         updateHUD();
@@ -621,6 +617,28 @@ public class GameState extends State {
         
         app.getInputManager().removeListener(player);
         app.getInputManager().removeListener(gameStateManager);
+    }
+    
+    public void openInventory(){
+        stateManager.getState(InventoryState.class).enterState();
+        stateManager.getState(InventoryState.class).init(inventory);
+        stateManager.getState(InventoryState.class).addListener();
+        stateManager.getState(GameState.class).removeListener();
+        stateManager.getState(GameState.class).exitState();
+    }
+    public void openSetting(){
+        stateManager.getState(SettingState.class).enterState();
+        stateManager.getState(SettingState.class).init();
+        stateManager.getState(SettingState.class).addListener();
+        stateManager.getState(GameState.class).removeListener();
+        stateManager.getState(GameState.class).exitState();
+    }
+    
+    private void endGame(boolean win){
+        stateManager.getState(EndState.class).enterState();
+        stateManager.getState(EndState.class).init(win);
+        stateManager.getState(GameState.class).removeListener();
+        stateManager.getState(GameState.class).exitState();
     }
             
 }

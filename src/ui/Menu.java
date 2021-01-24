@@ -18,6 +18,7 @@ import static mygame.state.Main.SCREENHEIGHT;
 import static mygame.state.Main.SCREENWIDTH;
 import mygame.state.MenuState;
 import mygame.state.SettingState;
+import mygame.state.StartState;
 
 /**
  *
@@ -69,10 +70,10 @@ public class Menu {
             stateManager.getState(MenuState.class).exitState(); // exit menuState
             stateManager.getState(MenuState.class).cleanUp();
             stateManager.getState(MenuState.class).removeListener();
-            stateManager.getState(GameState.class).enterState(); // enter gameState
-            stateManager.getState(GameState.class).init();
-            stateManager.getState(GameState.class).addListener();
-            app.getInputManager().setCursorVisible(false);
+            
+            stateManager.getState(StartState.class).enterState(); // enter startState
+            stateManager.getState(StartState.class).init();
+
         }
         if(settingButton.getHitBox().contains(point)){ // setting button
             stateManager.getState(MenuState.class).exitState(); // exit menuState

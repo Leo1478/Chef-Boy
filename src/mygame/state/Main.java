@@ -19,6 +19,8 @@ public class Main extends SimpleApplication {
     private MenuState menuState;
     private InventoryState inventoryState;
     private SettingState settingState;
+    private StartState startState;
+    private EndState endState;
     
     public static final int SCREENWIDTH = 1500;
     public static final int SCREENHEIGHT = 800;
@@ -67,10 +69,18 @@ public class Main extends SimpleApplication {
         settingState = new SettingState();
         stateManager.attach((AppState) settingState);
         
+        startState = new StartState();
+        stateManager.attach((AppState) startState);
+        
+        endState = new EndState();
+        stateManager.attach((AppState) endState);
+        
         menuState.setEnabled(false); // start all of the states on disabled 
         gameState.setEnabled(false);    
         inventoryState.setEnabled(false);
         settingState.setEnabled(false);
+        startState.setEnabled(false);
+        endState.setEnabled(false);
         
     }
 

@@ -46,19 +46,11 @@ public class GameStateManager implements ActionListener{
     @Override
     public void onAction(String binding, boolean isPressed, float tpf) {
         if (binding.equals("Inventory") && isPressed) {
-            stateManager.getState(InventoryState.class).enterState();
-            stateManager.getState(InventoryState.class).init(inventory);
-            stateManager.getState(InventoryState.class).addListener();
-            stateManager.getState(GameState.class).removeListener();
-            stateManager.getState(GameState.class).exitState();
+            stateManager.getState(GameState.class).openInventory();
             
         }
         if (binding.equals("Setting") && isPressed) {
-            stateManager.getState(SettingState.class).enterState();
-            stateManager.getState(SettingState.class).init();
-             stateManager.getState(SettingState.class).addListener();
-            stateManager.getState(GameState.class).removeListener();
-            stateManager.getState(GameState.class).exitState();
+            stateManager.getState(GameState.class).openSetting();
         }
     }
     
