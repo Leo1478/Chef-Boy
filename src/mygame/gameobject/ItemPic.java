@@ -5,6 +5,7 @@ import com.jme3.ui.Picture;
 
 /**
  * ItemPic.java
+ * 2d picture of item
  * @author Leo Zeng
  * 2021/01/15
  */

@@ -26,7 +26,7 @@ public class Fish extends Enemy {
         super(app, bulletAppState, position, name, health);
 
         setAlive(true);
-        setHealth(20);
+        setHealth(health);
         setDamage(5);
         setSpeed(0.6);
         setRange(10);

@@ -25,7 +25,7 @@ public class Pig extends Enemy {
         super(app, bulletAppState, position, name, health);
 
         setAlive(true);
-        setHealth(30);
+        setHealth(health);
         setDamage(10);
         setSpeed(0.3);
         setRange(10);

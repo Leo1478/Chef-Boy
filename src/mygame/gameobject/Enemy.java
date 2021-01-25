@@ -107,7 +107,6 @@ public abstract class Enemy extends Character{
      */
     private void idle(){
         //System.out.println("chilling");
-        //getRigidBody().setKinematic(false);
     }
     
     /**
@@ -117,7 +116,6 @@ public abstract class Enemy extends Character{
      * @param chefBoy chefBoy to interact with
      */
     private void charge(float tpf, ChefBoy chefBoy){
-        //getRigidBody().setKinematic(true);
         
         Vector3f change = new Vector3f(); // change in position 
         

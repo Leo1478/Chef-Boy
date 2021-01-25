@@ -25,7 +25,7 @@ public class Wolf extends Enemy{
         super(app, bulletAppState, position, name, health);
         
         setAlive(true);
-        setHealth(100);
+        setHealth(health);
         setDamage(20);
         setSpeed(0.8);
         setRange(10);
