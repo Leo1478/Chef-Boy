@@ -207,7 +207,7 @@ public class Inventory {
      * @param itemArray array to sort
      * @return sorted array 
      */
-    private Item[] bubbleSort(Item[] itemArray) {
+    private Item[] bubbleSort(Item[] itemArray) { //bubble sort is used because the enemies are grouped together by type, so when chef boy picks up items, it's already "almost" sorted due to the items being close to each other
         boolean changed; // if change has been made/new item detected
         Item temp;
         do{
