@@ -40,6 +40,15 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     
     private Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
     
+    /**
+     * Character
+     * constructor init health, state
+     * @param app application 
+     * @param bulletAppState controls physics 
+     * @param position current position
+     * @param name object name
+     * @param health current health
+     */
     public Character(SimpleApplication app, BulletAppState bulletAppState, Vector3f position, String name, int health){
         
         super(app, position, name);
@@ -51,7 +60,10 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
     
 
-    
+    /**
+     * initCollision
+     * initialise collision of character 
+     */
     @Override
     public void initCollision() {
 
@@ -101,6 +113,11 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         //bulletAppState.setDebugEnabled(true);
     }
     
+    /**
+     * initAnimation
+     * initialise animation 
+     * set to idle to start
+     */
     public void initAnimation(){
         
         animComposer = getModel().getControl(AnimComposer.class);
@@ -108,10 +125,18 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
     }
     
+    /**
+     * updatePosition
+     * update position based on physics location
+     */
     public void updatePosition(){
         setPosition(characterControl.getPhysicsLocation());
     }
     
+    /**
+     * updateCollision
+     * update collision mesh 
+     */
     @Override
     public void updateCollision(){
         setRigidBody(new RigidBodyControl(getCollisionMesh(), 0f));
@@ -121,6 +146,10 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         System.out.println("updating collision!!!!!");
     }
     
+    /**
+     * deleteCollision
+     * remove from bulletAppState
+     */
     @Override
     public void deleteCollision(){
         bulletAppState.getPhysicsSpace().remove(characterControl);
@@ -150,8 +179,9 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
     
     /**
+     * behaviour
      * all behaviour for character 
-     * @param tpf 
+     * @param tpf time per frame 
      */
     public void behaviour(float tpf){
         
@@ -165,6 +195,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
     
     /**
+     * checkDie
      * check if character should be dead 
      */
     public void checkDie(){
@@ -177,6 +208,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
     
     /**
+     * setAnimation
      * change animation when state changes 
      */
     private void setAnimation(){
@@ -202,6 +234,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
     
     /**
+     * canAttack
      * check if character can attack 
      * if in attacking state and no cooldown 
      * @return if character can attack
@@ -225,8 +258,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     @Override
     public void attack(Character character) {
         
-        
-        
         double x = this.getPosition().x; // get position of both character 
         double x1 = character.getPosition().x;
         double z = this.getPosition().z;
@@ -235,87 +266,57 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         double distance = Math.abs(Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2))); // find distance to character 
 
         if(distance < getRange()){ // if character is within range 
-            
-            
-            character.takeDamage(damage);
-            
-            /*
-            // calculate if self is facing character
-            float[] angles = new float[3];
-            //System.out.println(Math.atan2(z-z1, x-x1));
-            //System.out.println((getRotation().toAngles(angles))[1]*-1);
-            
-            float angleCharacter = (float) Math.atan2(z-z1, x-x1); // angle of character
-            float angleSelf = (getRotation().toAngles(angles))[1]*-1; // angle of this object 
-
-            float angleDifference;// difference in angle 
-            
-            if(angleCharacter >= angleSelf){
-                angleDifference = angleCharacter - angleSelf; // difference in angle 
-            }
-            else{
-                angleDifference = angleSelf - angleCharacter; 
-            }
-              
-            float angleAttack = (10 * (float) Math.PI) / 180; // cone of attack (10 degrees) (in radians)
-
-            if(angleDifference < angleAttack){ // if within angleAttack
-                character.removeHealth(damage);
-            }
-            
-            if(this instanceof ChefBoy){
-                System.out.println(angleCharacter);
-                System.out.println(angleSelf);
-                System.out.println(angleDifference);
-                
-                float[] angles2 = new float[3];
-                System.out.println((app.getCamera().getRotation().toAngles(angles2))[1]);
-                System.out.println();
-                
-            }
-            
-            
-            
-            if(this instanceof Pig){
-//                System.out.println(angleCharacter);
-//                System.out.println(angleSelf);
-//                System.out.println(angleDifference);
-//                System.out.println();
-            }
-            
-            */
-            
-             
-        }
-        
-        
+                       
+            character.takeDamage(damage);   
+        }  
     }
     
+    /**
+     * addHealth 
+     * @param amount amount to add 
+     */
     @Override
     public void addHealth(int amount) {
         health += amount;
     }
 
+    /**
+     * remove health 
+     * @param amount amount to remove 
+     */
     @Override
     public void removeHealth(int amount) {
         health -= amount;
     }
     
+    /**
+     * takeDamage 
+     * @param amount amount of damage
+     */
     @Override
     public void takeDamage(int amount){
         health -= amount;
     }
     
+    /**
+     * getCharacterControl
+     * @return characterControl
+     */
     public CharacterControl getCharacterControl(){
         return characterControl;
     }
     
+    /**
+     * setCharacterControl
+     * @param characterControl characterControl to set
+     */
     public void setCharacterControl(CharacterControl characterControl){
         this.characterControl = characterControl;
     }
     
 
     /**
+     * getHealth
      * @return the health
      */
     public int getHealth() {
@@ -323,6 +324,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setHealth
      * @param health the health to set
      */
     public void setHealth(int health) {
@@ -330,6 +332,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * getState
      * @return the state
      */
     public CharacterState getState() {
@@ -337,6 +340,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setState
      * @param state the state to set
      */
     public void setState(CharacterState state) {
@@ -344,6 +348,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
     
     /**
+     * setPreviousState
      * @param previousState
      */
     public void setPreviousState(CharacterState previousState) {
@@ -351,6 +356,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
     
     /**
+     * getDamage
      * @return the damage
      */
     public int getDamage() {
@@ -358,6 +364,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setDamage
      * @param damage the damage to set
      */
     public void setDamage(int damage) {
@@ -365,6 +372,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * getSpeed
      * @return the speed
      */
     public double getSpeed() {
@@ -372,6 +380,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setSpeed
      * @param speed the speed to set
      */
     public void setSpeed(double speed) {
@@ -379,6 +388,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * getRange
      * @return the range
      */
     public double getRange() {
@@ -386,13 +396,15 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setRange
      * @param range the range to set
      */
     public void setRange(double range) {
         this.range = range;
     }
 
-        /**
+    /**
+     * getCollisionMesh
      * @return the collisionMesh
      */
     public CollisionShape getCollisionMesh() {
@@ -400,6 +412,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setCollisionMesh
      * @param collisionMesh the collisionMesh to set
      */
     public void setCollisionMesh(CollisionShape collisionMesh) {
@@ -407,6 +420,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setRigidBody
      * @param rigidBody the rigidBody to set
      */
     public void setRigidBody(RigidBodyControl rigidBody) {
@@ -414,6 +428,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * getRigidBody
      * @return the rigidBody
      */
     public RigidBodyControl getRigidBody() {
@@ -421,6 +436,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setAttackSpeed
      * @param attackSpeed the attackSpeed to set
      */
     public void setAttackSpeed(int attackSpeed) {
@@ -428,6 +444,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setAttackSpeed
      * @param coolDown the coolDown to set
      */
     public void setCoolDown(float coolDown) {
@@ -435,17 +452,23 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * getCoolDown
      * @return the coolDown
      */
     public float getCoolDown() {
         return coolDown;
     }
 
+    /**
+     * getAttackSpeed
+     * @return the attackSpeed
+     */
     public float getAttackSpeed() {
         return attackSpeed;
     }
 
     /**
+     * getAlive
      * @return the alive
      */
     public boolean getAlive() {
@@ -453,11 +476,10 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     }
 
     /**
+     * setAlive
      * @param alive the alive to set
      */
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
-
-
 }
