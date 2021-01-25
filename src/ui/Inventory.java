@@ -207,8 +207,8 @@ public class Inventory {
      * @param itemArray array to sort
      * @return sorted array 
      */
-    private Item[] bubbleSort(Item[] itemArray) {
-        boolean changed; // if change has been made 
+    private Item[] bubbleSort(Item[] itemArray) { //bubble sort is used because the enemies are grouped together by type, so when chef boy picks up items, it's already "almost" sorted due to the items being close to each other
+        boolean changed; // if change has been made/new item detected
         Item temp;
         do{
             changed = false;
@@ -216,7 +216,7 @@ public class Inventory {
                 if(itemArray[i].compareTo(itemArray[i + 1]) >= 1){ // if i or i+1 should be swaped 
                     temp = itemArray[i]; // swap items 
                     itemArray[i] = itemArray[i + 1];
-                    itemArray[i + 1] = temp;
+                    itemArray[i + 1] = temp; 
                     changed = true;
                 }
             }
