@@ -101,9 +101,5 @@ public abstract class Map extends GameObject implements Collidable{
      */
     public RigidBodyControl getRigidBody() {
         return rigidBody;
-    }
-    
-    
-
-    
+    }  
 }

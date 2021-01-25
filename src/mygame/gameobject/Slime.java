@@ -26,7 +26,7 @@ public class Slime extends Enemy{
         super(app, bulletAppState, position, name, health);
         
         setAlive(true);
-        setHealth(20);
+        setHealth(10);
         setDamage(3);
         setSpeed(0.5);
         setRange(10);

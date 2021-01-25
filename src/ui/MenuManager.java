@@ -49,7 +49,6 @@ public class MenuManager implements ActionListener{
         
         if (binding.equals("mouseLeft") && isPressed) {
             menu.clickButton(getMousePosition());
-            System.out.println("thing from MenuManger");
         }
     }
     

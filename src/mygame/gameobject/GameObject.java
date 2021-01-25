@@ -9,8 +9,7 @@ import com.jme3.scene.Spatial;
 /**
  * GameObject.java
  * all game objects that exist
- *
- * @author Leo Zeng
+ * @author Leo Zeng, Ariana Hou
  * 2020/12/20
  */
 public abstract class GameObject {

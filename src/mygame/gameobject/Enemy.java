@@ -8,7 +8,7 @@ import com.jme3.math.Vector3f;
 /**
  * Enemy.java 
  * enemy that exist in game 
- * @author Leo Zeng
+ * @author Leo Zeng, WIlliam Zhao
  * 2020/12/30
  */
 public abstract class Enemy extends Character{
@@ -144,19 +144,6 @@ public abstract class Enemy extends Character{
         setRotation(rotation);
         getModel().setLocalRotation(rotation); // change model rotation 
         
-<<<<<<< Updated upstream
-=======
-
-
-        float[] angles = new float[3];
-
-            
-
->>>>>>> Stashed changes
-        move(change);
-        
-        
-
     }
     
     /**

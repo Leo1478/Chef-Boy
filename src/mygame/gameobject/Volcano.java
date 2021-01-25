@@ -35,7 +35,6 @@ public class Volcano extends Prop{
      */
     @Override
     void init() {
-<<<<<<< Updated upstream
         
 
 
@@ -45,17 +44,11 @@ public class Volcano extends Prop{
 
         setMat(app.getAssetManager().loadMaterial("Materials/volcano.j3m"));
         setModel(app.getAssetManager().loadModel("Models/volcano/volcano.j3o"));
-=======
->>>>>>> Stashed changes
 
         setMat(app.getAssetManager().loadMaterial("Materials/Volcano Material.j3m"));
         
         setModel(app.getAssetManager().loadModel("Models/volcano/Volcano 2/volcano 2.j3o"));
         
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
         getModel().setMaterial(getMat());
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);

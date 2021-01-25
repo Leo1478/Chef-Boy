@@ -14,7 +14,7 @@ import com.jme3.math.Vector3f;
 /**
  * character.java
  * characters that can move and attack 
- * @author William Zhao
+ * @author William Zhao, Leo Zeng
  * 2021/1/07
  */
 public abstract class Character extends GameObject implements Action, ChangeHealth, Collidable{
@@ -217,7 +217,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
             
             switch (state) {
                 case IDLE:
-                    System.out.println("animation");
                     animComposer.setCurrentAction("Idle"); 
                     break;
                 case MOVING:

@@ -4,6 +4,8 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppState;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
+import static java.util.logging.Level.SEVERE;
+import java.util.logging.Logger;
 
 /**
  * Main.java
@@ -36,8 +38,8 @@ public class Main extends SimpleApplication {
         Main app = new Main();
         app.showSettings = false;            
         AppSettings appSettings = new AppSettings(true);   
-        appSettings.put("Width",SCREENWIDTH);      //1920
-        appSettings.put("Height",SCREENHEIGHT);    //1080   
+        appSettings.put("Width",SCREENWIDTH);
+        appSettings.put("Height",SCREENHEIGHT);
         appSettings.put("Title", "ChefBoy");  
         app.setSettings(appSettings);   
         app.start();  
@@ -50,6 +52,9 @@ public class Main extends SimpleApplication {
      */
     @Override
     public void simpleInitApp() {
+        
+        Logger.getLogger("com.jme3").setLevel(SEVERE);
+
 
         getInputManager().deleteMapping( SimpleApplication.INPUT_MAPPING_EXIT ); // unbind esc to exit 
         getInputManager().setCursorVisible(true); // make cursor visible to start
