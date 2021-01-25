@@ -189,6 +189,10 @@ public class Player implements ActionListener{
         app.getCamera().setLocation(position); // update camera position to player position
     }
     
+    /**
+     * playSoundEffect
+     * play pan effect 
+     */
     public void playSoundEffect(){
         panSound = new AudioNode(app.getAssetManager(), "Sounds/Frying Pan 2.ogg",AudioData.DataType.Buffer);
         panSound.setDirectional(false);

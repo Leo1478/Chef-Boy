@@ -47,9 +47,12 @@ import ui.HeadsUpDisplay;
 
 
 /**
- * state for in game init all game objects update all game objects
- *
- * @author leoze
+ * GameState.java
+ * state for in game 
+ * init all game objects 
+ * update all game objects
+ * @author Leo Zeng, Ariana Hou, William Zhao
+ * 2020/12/20
  */
 public class GameState extends State {
 
@@ -94,7 +97,9 @@ public class GameState extends State {
         this.stateManager = stateManager;
 
     }
+    
     /**
+     * init 
      * init all models, lighting, camera, physics, objects, and add them to game world
      */
     @Override
@@ -182,6 +187,7 @@ public class GameState extends State {
     }
 
     /**
+     * initCamera
      * change fly cam speed
      * camera is attached to player's head, so this doesn't matter for now
      * flycam still works if camera is not based on player position 
@@ -192,7 +198,8 @@ public class GameState extends State {
     }
 
     /**
-     * set sky color to light blue
+     * initSky
+     * set sky to image
      */
     private void initSky() {
         Texture westTex = app.getAssetManager().loadTexture("Textures/Sky/yellowcloud_right.jpg");
@@ -206,8 +213,8 @@ public class GameState extends State {
     }
 
     /**
-     * init ground terrain a flat square for now TODO change terrain to
-     * different model
+     * initTerrain
+     * init ground terrain
      */
     private void initTerrain() {
 
@@ -215,17 +222,14 @@ public class GameState extends State {
     }
 
     /**
+     * initProp
      * init all props eg. trees
      */
     private void initProp() {
         
 
-        Prop hut0 = new Hut(app, bulletAppState, new Vector3f(-205, 20, 208), "hut1");
-        props.add(hut0);
-        
+        Prop hut0 = new Hut(app, bulletAppState, new Vector3f(-205, 20, 208), "hut0");
         Prop hut1 = new Hut(app, bulletAppState, new Vector3f(300, -15, 250), "hut1");
-        props.add(hut1);
-        
         
         Prop tree0 = new Tree(app, bulletAppState, new Vector3f(260, -10, 193), "tree0");
         Prop tree1 = new TreeTwo(app, bulletAppState, new Vector3f(205, -13, 223), "tree1");
@@ -264,15 +268,19 @@ public class GameState extends State {
         Prop volcano0 = new Volcano(app, bulletAppState, new Vector3f(-250, -12, -200), "volcano0");
         Prop island0 = new IslandTwo(app, bulletAppState, new Vector3f(600, 5, 200), "island0");
 
-        
     }
     
+    /**
+     * initChefBoy
+     * init chefBoy object
+     */
     private void initChefBoy(){
         chefBoy = new ChefBoy(app, bulletAppState, new Vector3f(-205, 30, 208), "chefBoy", 100);
     }
 
     /**
-     * init chefBoy object
+     * initPlayer
+     * init player object
      */
     private void initPlayer() {
 
@@ -281,103 +289,142 @@ public class GameState extends State {
     }
     
     /**
+     * initItem
      * init all item objects
      */
     private void initItem() {
-        Item ham0 = new Ham( app, new Vector3f(5, 0, 5), "ham0");
+        
+        // this is for demonstration purpose 
+        Item ham0 = new Ham( app, new Vector3f(260, -10, 210), "ham0");
         items.add(ham0);
+        Item fillet0 = new Fillet( app, new Vector3f(260, -10, 220), "ham0");
+        items.add(fillet0);
+        Item jelly0 = new Jelly( app, new Vector3f(260, -10, 230), "ham0");
+        items.add(jelly0);
+        Item bone0 = new Bone( app, new Vector3f(260, -10, 240), "ham0");
+        items.add(bone0);
+        Item ham1 = new Ham( app, new Vector3f(260, -10, 250), "ham0");
+        items.add(ham1);
+        Item fillet1 = new Fillet( app, new Vector3f(250, -10, 210), "ham0");
+        items.add(fillet1);
+        Item jelly1 = new Jelly( app, new Vector3f(250, -10, 220), "ham0");
+        items.add(jelly1);
+        Item bone1 = new Bone( app, new Vector3f(250, -10, 230), "ham0");
+        items.add(bone1);
+        Item ham2 = new Ham( app, new Vector3f(250, -10, 240), "ham0");
+        items.add(ham2);
+        Item fillet2 = new Fillet( app, new Vector3f(250, -10, 250), "ham0");
+        items.add(fillet2);
+        Item jelly2 = new Jelly( app, new Vector3f(240, -10, 210), "ham0");
+        items.add(jelly2);
+        Item bone2 = new Bone( app, new Vector3f(240, -10, 220), "ham0");
+        items.add(bone2);
+        Item ham3 = new Ham( app, new Vector3f(240, -10, 230), "ham0");
+        items.add(ham3);
+        Item fillet3 = new Fillet( app, new Vector3f(240, -10, 240), "ham0");
+        items.add(fillet3);
+        Item jelly3 = new Jelly( app, new Vector3f(240, -10, 250), "ham0");
+        items.add(jelly3);
+        Item bone3 = new Bone( app, new Vector3f(230, -10, 210), "ham0");
+        items.add(bone3);
+        Item ham4 = new Ham( app, new Vector3f(230, -10, 220), "ham0");
+        items.add(ham4);
+        Item fillet4 = new Fillet( app, new Vector3f(230, -10, 230), "ham0");
+        items.add(fillet4);
+        Item jelly4 = new Jelly( app, new Vector3f(230, -10, 240), "ham0");
+        items.add(jelly4);
+        Item bone4 = new Bone( app, new Vector3f(230, -10, 250), "ham0");
+        items.add(bone4);
     }
 
     /**
+     * initEnemy
      * init all enemy objects
+     * add enemies to queue
      */
     private void initEnemy() {
         
         Enemy pig0 = new Pig(app, bulletAppState, new Vector3f(100, 20, 100), "pig0", 20);
-        enemyQueue.enqueue(pig0);
+        enemyQueue.enqueue(pig0, 0);
         Enemy pig1 = new Pig(app, bulletAppState, new Vector3f(90, 20, 80), "pig1", 20);
-        enemyQueue.enqueue(pig1);
+        enemyQueue.enqueue(pig1, 1);
         Enemy pig2 = new Pig(app, bulletAppState, new Vector3f(90, 20, 120), "pig2", 20);
-        enemyQueue.enqueue(pig2);
+        enemyQueue.enqueue(pig2, 2);
         Enemy pig3 = new Pig(app, bulletAppState, new Vector3f(130, 20, 110), "pig3", 20);
-        enemyQueue.enqueue(pig3);
+        enemyQueue.enqueue(pig3, 3);
         Enemy pig4 = new Pig(app, bulletAppState, new Vector3f(80, 20, 100), "pig4", 20);
-        enemyQueue.enqueue(pig4);
+        enemyQueue.enqueue(pig4, 4);
         Enemy pig5 = new Pig(app, bulletAppState, new Vector3f(30, 20, 20), "pig5", 20);
-        enemyQueue.enqueue(pig5);
+        enemyQueue.enqueue(pig5, 5);
         Enemy pig6 = new Pig(app, bulletAppState, new Vector3f(250, 20, 190), "pig6", 20);
-        enemyQueue.enqueue(pig6);
+        enemyQueue.enqueue(pig6, 6);
         Enemy pig7 = new Pig(app, bulletAppState, new Vector3f(66, 20, 119), "pig7", 20);
-        enemyQueue.enqueue(pig7);
+        enemyQueue.enqueue(pig7, 7);
         Enemy pig8 = new Pig(app, bulletAppState, new Vector3f(39, 20, 72), "pig8", 20);
-        enemyQueue.enqueue(pig8);
+        enemyQueue.enqueue(pig8, 8);
         Enemy pig9 = new Pig(app, bulletAppState, new Vector3f(70, 20, 140), "pig9", 20);
-        enemyQueue.enqueue(pig9);
+        enemyQueue.enqueue(pig9, 9);
         Enemy pig10 = new Pig(app, bulletAppState, new Vector3f(85, 20, 154), "pig10", 20);
-        enemyQueue.enqueue(pig10);
+        enemyQueue.enqueue(pig10, 10);
         
-        //Enemy slime0 = new Slime( app, bulletAppState, new Vector3f(100, 10, 100), "slime0", 20);
-        //slime0.spawn();
-        //enemies.add(slime0);
         
         Enemy slime0 = new Slime(app, bulletAppState, new Vector3f(-122, 20, 70), "slime0", 10);
-        enemyQueue.enqueue(slime0);
+        enemyQueue.enqueue(slime0, 0);
         Enemy slime1 = new Slime(app, bulletAppState, new Vector3f(-130, 20, 63), "slime0", 10);
-        enemyQueue.enqueue(slime1);
+        enemyQueue.enqueue(slime1, 1);
         Enemy slime2 = new Slime(app, bulletAppState, new Vector3f(-60, 20, 142), "slime0", 10);
-        enemyQueue.enqueue(slime2);
+        enemyQueue.enqueue(slime2, 2);
         Enemy slime3 = new Slime(app, bulletAppState, new Vector3f(-74, 20, 102), "slime0", 10);
-        enemyQueue.enqueue(slime3);
+        enemyQueue.enqueue(slime3, 3);
         Enemy slime4 = new Slime(app, bulletAppState, new Vector3f(-96, 20, 50), "slime0", 10);
-        enemyQueue.enqueue(slime4);
+        enemyQueue.enqueue(slime4, 4);
         Enemy slime5 = new Slime(app, bulletAppState, new Vector3f(-104, 20, 40), "slime0", 10);
-        enemyQueue.enqueue(slime5);
+        enemyQueue.enqueue(slime5, 5);
         Enemy slime6 = new Slime(app, bulletAppState, new Vector3f(-104, 20, 72), "slime0", 10);
-        enemyQueue.enqueue(slime6);
+        enemyQueue.enqueue(slime6, 6);
         Enemy slime7 = new Slime(app, bulletAppState, new Vector3f(-69, 20, 154), "slime0", 10);
-        enemyQueue.enqueue(slime7);
+        enemyQueue.enqueue(slime7, 7);
         Enemy slime8 = new Slime(app, bulletAppState, new Vector3f(-124, 20, 42), "slime0", 10);
-        enemyQueue.enqueue(slime8);
+        enemyQueue.enqueue(slime8, 8);
         Enemy slime9 = new Slime(app, bulletAppState, new Vector3f(-106, 20, 124), "slime0", 10);
-        enemyQueue.enqueue(slime9);
+        enemyQueue.enqueue(slime9, 9);
         Enemy slime10 = new Slime(app, bulletAppState, new Vector3f(-99, 20, 140), "slime0", 10);
-        enemyQueue.enqueue(slime10);
+        enemyQueue.enqueue(slime10, 10);
         
-        
-        Enemy slime11 = new Slime(app, bulletAppState, new Vector3f(-200, 40, 200), "slime0", 10); // right beside chefBoy spawn 
-        enemyQueue.enqueue(slime11);
+        Enemy slime11 = new Slime(app, bulletAppState, new Vector3f(-260, 20, -50), "slime0", 10); // right beside chefBoy spawn 
+        enemyQueue.enqueue(slime11, 10);
         
         Enemy fish0 = new Fish(app, bulletAppState, new Vector3f(0, 20, -100), "fish0", 10);
-        enemyQueue.enqueue(fish0);
+        enemyQueue.enqueue(fish0, 0);
         Enemy fish1 = new Fish(app, bulletAppState, new Vector3f(20, 40, -120), "fish0", 10);
-        enemyQueue.enqueue(fish1);
+        enemyQueue.enqueue(fish1, 1);
         Enemy fish2 = new Fish(app, bulletAppState, new Vector3f(-10, 40, -80), "fish0", 10);
-        enemyQueue.enqueue(fish2);
+        enemyQueue.enqueue(fish2, 2);
         Enemy fish3 = new Fish(app, bulletAppState, new Vector3f(40, 40, -130), "fish0", 10);
-        enemyQueue.enqueue(fish3);
+        enemyQueue.enqueue(fish3, 3);
         Enemy fish4 = new Fish(app, bulletAppState, new Vector3f(30, 40, -70), "fish0", 10);
-        enemyQueue.enqueue(fish4);
+        enemyQueue.enqueue(fish4, 4);
         Enemy fish5 = new Fish(app, bulletAppState, new Vector3f(-30, 40, -60), "fish0", 10);
-        enemyQueue.enqueue(fish5);
+        enemyQueue.enqueue(fish5, 5);
         Enemy fish6 = new Fish(app, bulletAppState, new Vector3f(-10, 40, -110), "fish0", 10);
-        enemyQueue.enqueue(fish6);
+        enemyQueue.enqueue(fish6, 6);
         Enemy fish7 = new Fish(app, bulletAppState, new Vector3f(50, 40, -140), "fish0", 10);
-        enemyQueue.enqueue(fish7);
+        enemyQueue.enqueue(fish7, 7);
         Enemy fish8 = new Fish(app, bulletAppState, new Vector3f(-50, 40, -90), "fish0", 10);
-        enemyQueue.enqueue(fish8);
+        enemyQueue.enqueue(fish8, 8);
         
         Enemy wolf0 = new Wolf(app, bulletAppState, new Vector3f(273, 20, -336), "wolf0", 10);
-        enemyQueue.enqueue(wolf0);
+        enemyQueue.enqueue(wolf0, 10);
         
-        for(int i = 0; i < enemyQueue.size(); ){ // spawn all enemies for testing 
+        for(int i = 0; i < 15; i++){ // spawn all enemies for testing 
             Enemy enemy = enemyQueue.dequeue(); // remove from queue 
             enemy.spawn(); // spawn, make model visible 
             enemies.add(enemy); // add to enemy list 
         }
-        System.out.println(enemies.size());
     }
     
     /**
+     * initInventory
      * init inventory 
      */
     private void initInventory(){
@@ -385,9 +432,10 @@ public class GameState extends State {
     }
     
     /**
+     * update
      * game updates update enemy behaviour, enemy position, chef boy etc
      * main update loop for gameState 
-     * @param tpf delta time
+     * @param tpf time per frame
      */
     @Override
     public void update(float tpf) {
@@ -398,10 +446,10 @@ public class GameState extends State {
         
         spawnEnemy(tpf);
         
-        if(checkWin()){
+        if(checkWin()){ // if win game
             endGame(true);
         }
-        if(! chefBoy.getAlive()){
+        if(! chefBoy.getAlive()){ // if chefBoy is dead
             endGame(false);
         }
         
@@ -413,8 +461,9 @@ public class GameState extends State {
 
     
     /**
+     * playerBehaviour
      * behaviour for player & chefboy 
-     * @param tpf 
+     * @param tpf time per frame
      */
     private void playerBehaviour(float tpf){
         
@@ -432,8 +481,9 @@ public class GameState extends State {
     }
     
     /**
+     * enemyBehaviour
      * behaviour for all enemy in enemies list 
-     * @param tpf 
+     * @param tpf time per frame
      */
     private void enemyBehaviour(float tpf){
         
@@ -442,7 +492,6 @@ public class GameState extends State {
             Enemy current = enemies.get(i);
             
             current.behaviour(tpf, chefBoy);
-            
 
             
             if(! current.getAlive()){ // if current enemy dies 
@@ -453,30 +502,27 @@ public class GameState extends State {
                     
                     Item item = new Ham(app, current.getPosition(), "ham"); // spawn cooresponding item 
                     items.add(item);
-                }
-                else if(current instanceof Slime){
+                } else if(current instanceof Slime){
                     
                     Item item = new Jelly(app, current.getPosition(), "jelly"); // spawn cooresponding item 
                     items.add(item);
-                }
-                else if(current instanceof Fish){
+                } else if(current instanceof Fish){
                     
                     Item item = new Fillet(app, current.getPosition(), "fillet"); // spawn cooresponding item 
                     items.add(item);
-                }
-                else if(current instanceof Wolf){
+                } else if(current instanceof Wolf){
                     
                     Item item = new Bone(app, current.getPosition(), "bone"); // spawn cooresponding item 
                     items.add(item);
                 }
-
             }
         }
     }
     
     /**
+     * itemBehaviour
      * behaviour of all items in list 
-     * @param tpf 
+     * @param tpf time per frame
      */
     private void itemBehaviour(float tpf){
         
@@ -493,12 +539,16 @@ public class GameState extends State {
                 
             }
         }
-        
     }
     
+    /**
+     * spawnEnemy
+     * spawn enemies slowly throughout the game
+     * @param tpf time per frame
+     */
     private void spawnEnemy(float tpf){
         if(spawnRate <= 0){
-            if(enemies.size() <= 30){ // if less than 30 enemies on map
+            if(enemies.size() <= 15){ // if less than 15 enemies on map
                 if(enemyQueue.size() > 0){
                     Enemy enemy = enemyQueue.dequeue(); // remove from queue 
                     enemy.spawn(); // spawn, make model visible 
@@ -514,6 +564,7 @@ public class GameState extends State {
     }
     
     /**
+     * checkWin
      * check if winning conditions are met
      */
     private boolean checkWin(){
@@ -523,10 +574,8 @@ public class GameState extends State {
         Point chefBoyPos = new Point((int)chefBoy.getPosition().x, (int)chefBoy.getPosition().z);
        
         if(winHut.contains(chefBoyPos)){ // if chefboy enters second hut 
-            System.out.println("in hut");
-            System.out.println(inventory.getSize());
+            
             if(inventory.getSize() > 30){ // if more than 30 items are collected 
-                System.out.println("win");
                 return true;
             }
         }
@@ -534,6 +583,10 @@ public class GameState extends State {
         return false;
     }
     
+    /**
+     * updateHUD
+     * update hud (health bar)
+     */
     private void updateHUD(){
         hud.update();
     }
@@ -541,17 +594,28 @@ public class GameState extends State {
     
     
     /**
+     * getInventory
      * @return the inventory
      */
     public Inventory getInventory() {
         return inventory;
     }
     
+    /**
+     * getInit 
+     * @return init
+     */
     public boolean getInit(){
         return init;
     }
     
     
+    /**
+     * cleanUp
+     * clean up every game object when finished 
+     * remove from root node 
+     * delete queues & lists
+     */
     @Override
     public void cleanUp(){
         
@@ -578,6 +642,11 @@ public class GameState extends State {
         
     }
     
+    /**
+     * addListener 
+     * add listener for inputs 
+     * wasd, jump, mouse, esc, inventory
+     */
     public void addListener(){
         
         app.getInputManager().addListener(player, "Left");
@@ -594,12 +663,20 @@ public class GameState extends State {
         
     }
     
+    /**
+     * removeListener
+     * remove listener when finished 
+     */
     public void removeListener(){
         
         app.getInputManager().removeListener(player);
         app.getInputManager().removeListener(gameStateManager);
     }
     
+    /**
+     * openInventory
+     * pause GameState, open InventoryState
+     */
     public void openInventory(){
         stateManager.getState(InventoryState.class).enterState();
         stateManager.getState(InventoryState.class).init(inventory);
@@ -607,6 +684,11 @@ public class GameState extends State {
         stateManager.getState(GameState.class).removeListener();
         stateManager.getState(GameState.class).exitState();
     }
+    
+    /**
+     * openSetting
+     * pause GameState, open SettingState
+     */
     public void openSetting(){
         stateManager.getState(SettingState.class).enterState();
         stateManager.getState(SettingState.class).init();
@@ -615,6 +697,11 @@ public class GameState extends State {
         stateManager.getState(GameState.class).exitState();
     }
     
+    /**
+     * endGame
+     * end game when win / lose 
+     * @param win if player win 
+     */
     private void endGame(boolean win){
         stateManager.getState(EndState.class).enterState();
         stateManager.getState(EndState.class).init(win);
