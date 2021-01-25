@@ -23,6 +23,7 @@ public class MenuState extends State {
     private MenuManager menuManager;
     private Menu menu;
     private AudioNode bgm;
+    private boolean musicOn;
     
     /**
      * initialize 
@@ -36,6 +37,7 @@ public class MenuState extends State {
         this.stateManager = stateManager;
 
         app.getInputManager().setCursorVisible(true);
+        musicOn = false;
         
     }
     
@@ -49,7 +51,10 @@ public class MenuState extends State {
         app.getInputManager().setCursorVisible(true);
         menu = new Menu(app, stateManager);
         menuManager = new MenuManager(app, menu);
-        playBackgroundMusic();
+        if (!musicOn){
+         playBackgroundMusic();   
+        }
+        musicOn = true;
     }
     
     /**
@@ -69,7 +74,6 @@ public class MenuState extends State {
 
         menu = null;
         menuManager = null;
-        //stopBGM();
         
     }
 
@@ -108,7 +112,7 @@ public class MenuState extends State {
         bgm.setPositional(false);
         bgm.setVolume(0.5f);
         bgm.play();
-        bgm.setLooping(true);
+        bgm.setLooping(true);  
         
     }
 }

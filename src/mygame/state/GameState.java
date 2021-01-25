@@ -33,6 +33,19 @@ import mygame.gameobject.TreeTwo;
 import mygame.gameobject.TreeThree;
 import mygame.gameobject.Volcano;
 import mygame.gameobject.IslandTwo;
+<<<<<<< Updated upstream
+=======
+import com.jme3.texture.Texture;
+
+import java.awt.Point;
+import java.awt.Rectangle;
+import mygame.gameobject.Bone;
+import mygame.gameobject.Wolf;
+import utility.Queue;
+
+import java.awt.Point;
+import java.awt.Rectangle;
+>>>>>>> Stashed changes
 import mygame.gameobject.Wolf;
 import mygame.gameobject.Bone;
 
@@ -455,7 +468,7 @@ public class GameState extends State {
         
         updateHUD();
         
-        System.out.println(chefBoy.getPosition()); //-6 to y
+        //System.out.println(chefBoy.getPosition()); //-6 to y
 
     }
 
