@@ -42,7 +42,7 @@ public class Bone extends Item{
         
         app.getRootNode().attachChild(getModel());
         
-        setItemPic(new ItemPic(app, "Models/fillet/fillet pic.png"));
+        setItemPic(new ItemPic(app, "Models/Bone/bone pic.png"));
         
     }
   

@@ -575,7 +575,7 @@ public class GameState extends State {
        
         if(winHut.contains(chefBoyPos)){ // if chefboy enters second hut 
             
-            if(inventory.getSize() > 30){ // if more than 30 items are collected 
+            if(inventory.getSize() >= 30){ // if more than 30 items are collected 
                 return true;
             }
         }

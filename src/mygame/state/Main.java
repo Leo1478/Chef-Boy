@@ -54,8 +54,8 @@ public class Main extends SimpleApplication {
         getInputManager().deleteMapping( SimpleApplication.INPUT_MAPPING_EXIT ); // unbind esc to exit 
         getInputManager().setCursorVisible(true); // make cursor visible to start
         
-        setDisplayStatView(true); 
-        setDisplayFps(true);
+        setDisplayStatView(false); 
+        setDisplayFps(false);
         
         menuState = new MenuState(); // create each state 
         stateManager.attach((AppState) menuState);
