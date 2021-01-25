@@ -67,6 +67,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         bulletAppState.getPhysicsSpace().add(characterControl);
         //bulletAppState.getPhysicsSpace().add(betterCharacterControl);
         characterControl.setGravity(new Vector3f(0, -60f, 0));
+        getCharacterControl().setFallSpeed(60);
         //betterCharacterControl.setGravity(new Vector3f(0, -60f, 0));
 
         characterControl.setPhysicsLocation(getPosition());

@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utility;
 
 /**
- *
- * @author leoze
+ * Queue.java
+ * queue with priority 
+ * @author Leo Zeng
+ * 2021/01/13
  */
 public class Queue<E>{
 
@@ -15,12 +12,21 @@ public class Queue<E>{
     private PriorityNode<E> tail;
     private int size;
 
+    /**
+     * Queue
+     * constructor
+     */
     public Queue(){
         head = null;
         tail = null;
         size = 0;
     }
 
+    /**
+     * enqueue
+     * add object to queue
+     * @param item item to add
+     */
     public void enqueue(E item){
         PriorityNode<E> temp = new PriorityNode<E>(item);
 
@@ -39,9 +45,10 @@ public class Queue<E>{
     }
 
     /**
+     * enqueue
      * enqueue with priority
-     * @param item
-     * @param priority
+     * @param item item to add
+     * @param priority priority number
      */
     public void enqueue(E item, int priority){
         PriorityNode<E> temp = new PriorityNode<E>(item, priority);
@@ -80,6 +87,11 @@ public class Queue<E>{
         size ++;
     }
 
+    /**
+     * dequeue
+     * remove item from queue
+     * @return item 
+     */
     public E dequeue(){
         PriorityNode<E> temp = head; // remove from head
         head = head.getNext();
@@ -88,6 +100,10 @@ public class Queue<E>{
         
     }
     
+    /**
+     * size of queue
+     * @return size
+     */
     public int size(){
         return size;
     }

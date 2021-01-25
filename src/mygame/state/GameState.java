@@ -3,17 +3,17 @@ package mygame.state;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.audio.AudioData;
 import com.jme3.audio.AudioNode;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.PointLight;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
-import java.util.ArrayList;
+import com.jme3.util.SkyFactory;
+import com.jme3.texture.Texture;
+
 import mygame.gameobject.ChefBoy;
 import mygame.gameobject.Enemy;
 import mygame.gameobject.Fillet;
@@ -21,7 +21,6 @@ import mygame.gameobject.Fish;
 import mygame.gameobject.GameObject;
 import mygame.gameobject.Ham;
 import mygame.gameobject.Hut;
-import ui.Inventory;
 import mygame.gameobject.Item;
 import mygame.gameobject.Jelly;
 import mygame.gameobject.Pig;
@@ -33,43 +32,18 @@ import mygame.gameobject.Tree;
 import mygame.gameobject.TreeTwo;
 import mygame.gameobject.TreeThree;
 import mygame.gameobject.Volcano;
-import mygame.gameobject.Crystal;
+import mygame.gameobject.IslandTwo;
+import mygame.gameobject.Wolf;
+import mygame.gameobject.Bone;
+
+import java.util.ArrayList;
+import java.awt.Point;
+import java.awt.Rectangle;
+import utility.Queue;
+import ui.Inventory;
 import ui.GameStateManager;
 import ui.HeadsUpDisplay;
-import com.jme3.util.SkyFactory;
-import mygame.gameobject.IslandTwo;
-import com.jme3.texture.Texture;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-import java.awt.Point;
-import java.awt.Rectangle;
-import mygame.gameobject.Bone;
-import mygame.gameobject.Wolf;
-import utility.Queue;
-<<<<<<< Updated upstream
-=======
->>>>>>> 5babeb0f7c19629a84e346f919a987bcc0f03310
->>>>>>> Stashed changes
-import java.awt.Point;
-import java.awt.Rectangle;
-import mygame.gameobject.Wolf;
-import utility.Queue;
-import com.jme3.math.FastMath;
-import mygame.gameobject.Bone;
-import java.awt.Point;
-import java.awt.Rectangle;
-import mygame.gameobject.Wolf;
-import java.awt.Point;
-import java.awt.Rectangle;
-import mygame.gameobject.Wolf;
 
-
-import java.awt.Point;
-import java.awt.Rectangle;
-import mygame.gameobject.Wolf;
 
 
 /**

@@ -58,7 +58,6 @@ public class InventoryManager implements ActionListener {
     public void onAction(String binding, boolean isPressed, float tpf) {
         if (binding.equals("mouseLeft") && isPressed) {
             inventory.clickButton(getMousePosition());
-            System.out.println("hi");
         }
         if (binding.equals("Setting") && isPressed) {
             stateManager.getState(SettingState.class).enterState();
