@@ -34,8 +34,7 @@ public class Queue<E>{
             head = tail = temp;
             head.setPrev(null);
             tail.setNext(null);
-        }
-        else {
+        } else {
             tail.setNext(temp);//add newNode to the end of list. tail->next set to newNode
             temp.setPrev(tail);
             tail = temp;
@@ -57,15 +56,13 @@ public class Queue<E>{
             head = tail = temp;
             head.setPrev(null);
             tail.setNext(null);
-        }
-        else {
+        } else {
             if(temp.getPriority() > head.getPriority()){ // if priority is greater than head
                 head.setPrev(temp); // replace head with current node
                 temp.setNext(head);
                 head = temp;
 
-            }
-            else{ // if priority is less than head
+            } else { // if priority is less than head
                 PriorityNode<E> current = tail;
 
                 while(current.getPrev() != null && current.getPriority() < temp.getPriority()){
@@ -75,8 +72,7 @@ public class Queue<E>{
                 if(current.equals(tail)){ // current is at tail
                     tail = temp; // replace tail
                     tail.setNext(null);
-                }
-                else{ // if current and temp is between head and tail
+                } else { // if current and temp is between head and tail
                     current.getNext().setPrev(temp);
                     temp.setNext(current.getNext());
                 }

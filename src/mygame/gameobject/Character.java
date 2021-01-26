@@ -62,6 +62,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
      * initCollision
      * initialise collision of character 
      */
+    @Override
     public void initCollision() {
 
         Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());

@@ -36,7 +36,7 @@ public abstract class Map extends GameObject implements Collidable{
      * initCollision
      * create collisionMesh
      */
-
+    @Override
     public void initCollision() {
         
         setCollisionMesh(CollisionShapeFactory.createMeshShape(getModel()));

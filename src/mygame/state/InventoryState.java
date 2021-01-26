@@ -3,7 +3,6 @@ package mygame.state;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppStateManager;
-import ui.Button;
 import ui.Inventory;
 import ui.InventoryManager;
 

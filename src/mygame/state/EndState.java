@@ -52,8 +52,8 @@ public class EndState extends State{
 
             app.getGuiNode().attachChild(winPicture);
             winPicture.setQueueBucket(RenderQueue.Bucket.Gui);
-        }
-        else{
+            
+        } else{
             
             Picture losePicture = new Picture("lose");
             losePicture.setImage(app.getAssetManager(), "UI/lose.png", true);

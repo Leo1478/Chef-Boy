@@ -106,8 +106,6 @@ public class Main extends SimpleApplication {
             menuState.init();
             menuState.addListener();
             menu = true;
-            
-            
         }
     }
 
