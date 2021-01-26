@@ -141,7 +141,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         
         checkDie(); // check if character should be dead 
         
-        
     }
     
     /**
@@ -196,8 +195,8 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
                return true;
            } 
         }
+        
         return false;
-
     }
     
     /**
@@ -262,7 +261,6 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     public void setCharacterControl(CharacterControl characterControl){
         this.characterControl = characterControl;
     }
-    
 
     /**
      * getHealth

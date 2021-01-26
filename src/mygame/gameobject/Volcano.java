@@ -35,20 +35,9 @@ public class Volcano extends Prop{
      */
     @Override
     void init() {
-        
-
 
         setMat(app.getAssetManager().loadMaterial("Materials/Volcano Material.j3m"));
-        
-        setModel(app.getAssetManager().loadModel("Models/volcano/Volcano 2/volcano 2.j3o"));
-
-        setMat(app.getAssetManager().loadMaterial("Materials/volcano.j3m"));
-        setModel(app.getAssetManager().loadModel("Models/volcano/volcano.j3o"));
-
-        setMat(app.getAssetManager().loadMaterial("Materials/Volcano Material.j3m"));
-        
-        setModel(app.getAssetManager().loadModel("Models/volcano/Volcano 2/volcano 2.j3o"));
-        
+        setModel(app.getAssetManager().loadModel("Models/Volcano/Volcano 2/volcano 2.j3o"));
 
         getModel().setMaterial(getMat());
         getModel().setShadowMode(RenderQueue.ShadowMode.Cast);

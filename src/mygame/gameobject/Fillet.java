@@ -7,7 +7,6 @@ import com.jme3.renderer.queue.RenderQueue;
 /**
  * ham.java 
  * item pig will drop after dying
- *
  * @author Ariana Hou
  * 2021/01/03
  */

@@ -93,7 +93,7 @@ public abstract class Enemy extends Character{
         
         if(distanceToChef < getRange()){
             setState(CharacterState.ATTACKING);
-        } else if(distanceToChef < getDetectionRange()){
+        }else if(distanceToChef < getDetectionRange()){
             setState(CharacterState.MOVING); 
         }else {
             setState(CharacterState.IDLE);         

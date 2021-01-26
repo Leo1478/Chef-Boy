@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.awt.Point;
 import java.awt.Rectangle;
 import utility.Queue;
+
 import ui.Inventory;
 import ui.GameStateManager;
 import ui.HeadsUpDisplay;
@@ -128,10 +129,7 @@ public class GameState extends State {
             initPlayer();
             initEnemy();
             initInventory();
-
             initHud();
-            
-            //bulletAppState.setDebugEnabled(true);
 
             gameStateManager = new GameStateManager(app, stateManager, inventory);
             
@@ -188,12 +186,10 @@ public class GameState extends State {
     /**
      * initCamera
      * change fly cam speed
-     * camera is attached to player's head, so this doesn't matter for now
-     * flycam still works if camera is not based on player position 
      */
     private void initCamera() {
-
-        ((SimpleApplication)app).getFlyByCamera().setMoveSpeed(30); // not needed since camera is tied to player
+        ((SimpleApplication)app).getFlyByCamera().setMoveSpeed(30); 
+        
     }
 
     /**
@@ -208,7 +204,6 @@ public class GameState extends State {
         Texture upTex = app.getAssetManager().loadTexture("Textures/Sky/yellowcloud_up.jpg");
         Texture downTex = app.getAssetManager().loadTexture("Textures/Sky/yellowcloud_down.jpg");
         app.getRootNode().attachChild(SkyFactory.createSky(app.getAssetManager(), westTex,eastTex,northTex,southTex,upTex,downTex,new Vector3f(-1, 1, 1)));
-        //app.getViewPort().setBackgroundColor(new ColorRGBA(1f, 0.7f, 0.5f, 1f));
     }
 
     /**
