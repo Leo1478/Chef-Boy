@@ -454,8 +454,6 @@ public class GameState extends State {
         }
         
         updateHUD();
-        
-        //System.out.println(chefBoy.getPosition()); //-6 to y
 
     }
 
@@ -708,17 +706,5 @@ public class GameState extends State {
         stateManager.getState(GameState.class).removeListener();
         stateManager.getState(GameState.class).exitState();
     }
-    
-//    private void playBackgroundMusic(){
-//        bgm = new AudioNode(app.getAssetManager(), "Sounds/GameBGM.ogg",AudioData.DataType.Buffer);
-//        bgm.setDirectional(false);
-//        bgm.setPositional(false);
-//        bgm.play();
-//        bgm.setLooping(true);
-//        
-//    }
-//    public void stopBGM(){ //BGM not stopping when switched to setting state then Menu state
-//        bgm.stop();
-//    }
             
 }

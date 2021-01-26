@@ -66,6 +66,7 @@ public abstract class Enemy extends Character{
      * determineDistance 
      * determine distance to chefBoy
      * @param chefBoy chefBoy to interact with 
+     * @return distance between enemy and chefBoy
      */
     private double determineDistance(ChefBoy chefBoy){
 
@@ -74,7 +75,7 @@ public abstract class Enemy extends Character{
         double z = this.getPosition().z;
         double z1 = chefBoy.getPosition().z;
         
-        return Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2)); // pythagorean theorm
+        return (Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2))); // pythagorean theorm
     }
     
     /**
@@ -83,17 +84,16 @@ public abstract class Enemy extends Character{
      * if in detectionRange, set state to charge 
      * if in attackRange, set state to attack 
      * otherwise set state to idle 
+     * @param chefBoy chefBoy to interact with 
      */
     private void determinState(ChefBoy chefBoy){
         
         double distanceToChef = determineDistance(chefBoy); // find distance to chefBoy
         if(distanceToChef < getRange()){
             setState(CharacterState.ATTACKING);
-        }
-        else if(distanceToChef < getDetectionRange()){
+        } else if(distanceToChef < getDetectionRange()){
             setState(CharacterState.MOVING); 
-        }
-        else {
+        } else {
             setState(CharacterState.IDLE);         
         }
     }
@@ -116,17 +116,17 @@ public abstract class Enemy extends Character{
         
         Vector3f change = new Vector3f(); // change in position 
         
-        double xDiff = this.getPosition().x - chefBoy.getPosition().x; // find difference in position 
-        double zDiff = this.getPosition().z - chefBoy.getPosition().z; 
+        double xDiff = (this.getPosition().x - chefBoy.getPosition().x); // find difference in position 
+        double zDiff = (this.getPosition().z - chefBoy.getPosition().z); 
 
         // normalizeNumber adjust speed to be constant 
-        double normalizeNumber = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2));
+        double normalizeNumber = (Math.sqrt(Math.pow(xDiff, 2) + Math.pow(zDiff, 2)));
 
         xDiff = xDiff / normalizeNumber;
         zDiff = zDiff / normalizeNumber;
         
-        change.x -= xDiff * getSpeed();
-        change.z -= zDiff * getSpeed();
+        change.x -= (xDiff * getSpeed());
+        change.z -= (zDiff * getSpeed());
         change.y = 1;
         
         move(change); // move enemy 
