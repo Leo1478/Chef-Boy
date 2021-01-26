@@ -126,7 +126,6 @@ public class GameState extends State {
             initSky();
             initChefBoy();
             initPlayer();
-            initItem();
             initEnemy();
             initInventory();
 
@@ -236,36 +235,36 @@ public class GameState extends State {
         Prop tree2 = new Tree(app, bulletAppState, new Vector3f(105, 4, 154), "tree2");
         Prop tree3 = new TreeTwo(app, bulletAppState, new Vector3f(41, -6, 164), "tree3");
         Prop tree4 = new Tree(app, bulletAppState, new Vector3f(-40, 7, 221), "tree4");
-        Prop tree5 = new Tree(app, bulletAppState, new Vector3f(-112, -7, 191), "tree4");
-        Prop tree6 = new TreeTwo(app, bulletAppState, new Vector3f(-251, 15, 212), "tree4");
-        Prop tree7 = new Tree(app, bulletAppState, new Vector3f(-304, 2, 162), "tree4");
-        Prop tree8 = new TreeTwo(app, bulletAppState, new Vector3f(-214, 2, 146), "tree4");
-        Prop tree9 = new TreeTwo(app, bulletAppState, new Vector3f(-50, -6, 180), "tree4");
-        Prop tree10 = new Tree(app, bulletAppState, new Vector3f(99, -4, 122), "tree4");
-        Prop tree11 = new Tree(app, bulletAppState, new Vector3f(204, -15, 104), "tree4");
-        Prop tree12 = new TreeTwo(app, bulletAppState, new Vector3f(260, 10, 11), "tree4");
-        Prop tree13 = new Tree(app, bulletAppState, new Vector3f(192, -6, -49), "tree4");
-        Prop tree14 = new TreeTwo(app, bulletAppState, new Vector3f(108, 5, -42), "tree4");
-        Prop tree15 = new Tree(app, bulletAppState, new Vector3f(38, -4, -21), "tree4");
-        Prop tree16 = new TreeTwo(app, bulletAppState, new Vector3f(-78, -9, -16), "tree4");
-        Prop tree17 = new Tree(app, bulletAppState, new Vector3f(-236, 10, 35), "tree4");
-        Prop tree18 = new Tree(app, bulletAppState, new Vector3f(-259, 14, -62), "tree4");
-        Prop tree19 = new TreeTwo(app, bulletAppState, new Vector3f(-50, -7, -151), "tree4");
-        Prop tree20 = new Tree(app, bulletAppState, new Vector3f(53, 6, -152), "tree4");
-        Prop tree21 = new Tree(app, bulletAppState, new Vector3f(252, -17, -184), "tree4");
-        Prop tree22 = new TreeTwo(app, bulletAppState, new Vector3f(295, -12, -345), "tree4");
-        Prop tree23 = new Tree(app, bulletAppState, new Vector3f(201, -9, -366), "tree4");
-        Prop tree24 = new TreeTwo(app, bulletAppState, new Vector3f(33, -6, -363), "tree4");
-        Prop tree25 = new Tree(app, bulletAppState, new Vector3f(-185, 18, -318), "tree4");
-        
-        Prop tree26 = new TreeThree(app, bulletAppState, new Vector3f(-183, -3, 101), "tree4");
-        Prop tree27 = new TreeThree(app, bulletAppState, new Vector3f(-201, 2, 63), "tree4");
-        Prop tree28 = new TreeThree(app, bulletAppState, new Vector3f(-164, -11, 51), "tree4");
-        Prop tree29 = new TreeThree(app, bulletAppState, new Vector3f(-153, -3, -202), "tree4");
-        Prop tree30 = new TreeThree(app, bulletAppState, new Vector3f(-27, -10, -158), "tree4");
+        Prop tree5 = new Tree(app, bulletAppState, new Vector3f(-112, -7, 191), "tree5");
+        Prop tree6 = new TreeTwo(app, bulletAppState, new Vector3f(-251, 15, 212), "tree6");
+        Prop tree7 = new Tree(app, bulletAppState, new Vector3f(-304, 2, 162), "tree7");
+        Prop tree8 = new TreeTwo(app, bulletAppState, new Vector3f(-214, 2, 146), "tree8");
+        Prop tree9 = new TreeTwo(app, bulletAppState, new Vector3f(-50, -6, 180), "tree9");
+        Prop tree10 = new Tree(app, bulletAppState, new Vector3f(99, -4, 122), "tree10");
+        Prop tree11 = new Tree(app, bulletAppState, new Vector3f(204, -15, 104), "tree11");
+        Prop tree12 = new TreeTwo(app, bulletAppState, new Vector3f(260, 10, 11), "tree12");
+        Prop tree13 = new Tree(app, bulletAppState, new Vector3f(192, -6, -49), "tree13");
+        Prop tree14 = new TreeTwo(app, bulletAppState, new Vector3f(108, 5, -42), "tree14");
+        Prop tree15 = new Tree(app, bulletAppState, new Vector3f(38, -4, -21), "tree15");
+        Prop tree16 = new TreeTwo(app, bulletAppState, new Vector3f(-78, -9, -16), "tree16");
+        Prop tree17 = new Tree(app, bulletAppState, new Vector3f(-236, 10, 35), "tree17");
+        Prop tree18 = new Tree(app, bulletAppState, new Vector3f(-259, 14, -62), "tree18");
+        Prop tree19 = new TreeTwo(app, bulletAppState, new Vector3f(-50, -7, -151), "tree19");
+        Prop tree20 = new Tree(app, bulletAppState, new Vector3f(53, 6, -152), "tree20");
+        Prop tree21 = new Tree(app, bulletAppState, new Vector3f(252, -17, -184), "tree21");
+        Prop tree22 = new TreeTwo(app, bulletAppState, new Vector3f(295, -12, -345), "tree22");
+        Prop tree23 = new Tree(app, bulletAppState, new Vector3f(201, -9, -366), "tree23");
+        Prop tree24 = new TreeTwo(app, bulletAppState, new Vector3f(33, -6, -363), "tree24");
+        Prop tree25 = new Tree(app, bulletAppState, new Vector3f(-185, 18, -318), "tree25");
+        Prop tree26 = new TreeThree(app, bulletAppState, new Vector3f(-183, -3, 101), "tree26");
+        Prop tree27 = new TreeThree(app, bulletAppState, new Vector3f(-201, 2, 63), "tree27");
+        Prop tree28 = new TreeThree(app, bulletAppState, new Vector3f(-164, -11, 51), "tree28");
+        Prop tree29 = new TreeThree(app, bulletAppState, new Vector3f(-153, -3, -202), "tree29");
+        Prop tree30 = new TreeThree(app, bulletAppState, new Vector3f(-27, -10, -158), "tree30");
 
 
         Prop volcano0 = new Volcano(app, bulletAppState, new Vector3f(-250, -12, -200), "volcano0");
+        
         Prop island0 = new IslandTwo(app, bulletAppState, new Vector3f(600, 5, 200), "island0");
 
     }
@@ -286,55 +285,6 @@ public class GameState extends State {
 
         player = new Player(app, chefBoy);
         
-    }
-    
-    /**
-     * initItem
-     * init all item objects
-     */
-    private void initItem() {
-        
-        // this is for demonstration purpose 
-        Item ham0 = new Ham( app, new Vector3f(260, -10, 210), "ham0");
-        items.add(ham0);
-        Item fillet0 = new Fillet( app, new Vector3f(260, -10, 220), "ham0");
-        items.add(fillet0);
-        Item jelly0 = new Jelly( app, new Vector3f(260, -10, 230), "ham0");
-        items.add(jelly0);
-        Item bone0 = new Bone( app, new Vector3f(260, -10, 240), "ham0");
-        items.add(bone0);
-        Item ham1 = new Ham( app, new Vector3f(260, -10, 250), "ham0");
-        items.add(ham1);
-        Item fillet1 = new Fillet( app, new Vector3f(250, -10, 210), "ham0");
-        items.add(fillet1);
-        Item jelly1 = new Jelly( app, new Vector3f(250, -10, 220), "ham0");
-        items.add(jelly1);
-        Item bone1 = new Bone( app, new Vector3f(250, -10, 230), "ham0");
-        items.add(bone1);
-        Item ham2 = new Ham( app, new Vector3f(250, -10, 240), "ham0");
-        items.add(ham2);
-        Item fillet2 = new Fillet( app, new Vector3f(250, -10, 250), "ham0");
-        items.add(fillet2);
-        Item jelly2 = new Jelly( app, new Vector3f(240, -10, 210), "ham0");
-        items.add(jelly2);
-        Item bone2 = new Bone( app, new Vector3f(240, -10, 220), "ham0");
-        items.add(bone2);
-        Item ham3 = new Ham( app, new Vector3f(240, -10, 230), "ham0");
-        items.add(ham3);
-        Item fillet3 = new Fillet( app, new Vector3f(240, -10, 240), "ham0");
-        items.add(fillet3);
-        Item jelly3 = new Jelly( app, new Vector3f(240, -10, 250), "ham0");
-        items.add(jelly3);
-        Item bone3 = new Bone( app, new Vector3f(230, -10, 210), "ham0");
-        items.add(bone3);
-        Item ham4 = new Ham( app, new Vector3f(230, -10, 220), "ham0");
-        items.add(ham4);
-        Item fillet4 = new Fillet( app, new Vector3f(230, -10, 230), "ham0");
-        items.add(fillet4);
-        Item jelly4 = new Jelly( app, new Vector3f(230, -10, 240), "ham0");
-        items.add(jelly4);
-        Item bone4 = new Bone( app, new Vector3f(230, -10, 250), "ham0");
-        items.add(bone4);
     }
 
     /**
@@ -366,52 +316,83 @@ public class GameState extends State {
         enemyQueue.enqueue(pig9, 9);
         Enemy pig10 = new Pig(app, bulletAppState, new Vector3f(85, 20, 154), "pig10", 30);
         enemyQueue.enqueue(pig10, 10);
+        Enemy pig11 = new Pig(app, bulletAppState, new Vector3f(60, 20, 124), "pig11", 30);
+        enemyQueue.enqueue(pig11, 11);
+        Enemy pig12 = new Pig(app, bulletAppState, new Vector3f(50, 20, 174), "pig12", 30);
+        enemyQueue.enqueue(pig12, 12);
+        Enemy pig13 = new Pig(app, bulletAppState, new Vector3f(90, 20, 114), "pig13", 30);
+        enemyQueue.enqueue(pig13, 13);
+        Enemy pig14 = new Pig(app, bulletAppState, new Vector3f(100, 20, 104), "pig14", 30);
+        enemyQueue.enqueue(pig14, 14);
+        Enemy pig15 = new Pig(app, bulletAppState, new Vector3f(77, 20, 169), "pig15", 30);
+        enemyQueue.enqueue(pig15, 15);
         
         
         Enemy slime0 = new Slime(app, bulletAppState, new Vector3f(-122, 20, 70), "slime0", 10);
         enemyQueue.enqueue(slime0, 0);
-        Enemy slime1 = new Slime(app, bulletAppState, new Vector3f(-130, 20, 63), "slime0", 10);
+        Enemy slime1 = new Slime(app, bulletAppState, new Vector3f(-130, 20, 63), "slime1", 10);
         enemyQueue.enqueue(slime1, 1);
-        Enemy slime2 = new Slime(app, bulletAppState, new Vector3f(-60, 20, 142), "slime0", 10);
+        Enemy slime2 = new Slime(app, bulletAppState, new Vector3f(-60, 20, 142), "slime2", 10);
         enemyQueue.enqueue(slime2, 2);
-        Enemy slime3 = new Slime(app, bulletAppState, new Vector3f(-74, 20, 102), "slime0", 10);
+        Enemy slime3 = new Slime(app, bulletAppState, new Vector3f(-74, 20, 102), "slime3", 10);
         enemyQueue.enqueue(slime3, 3);
-        Enemy slime4 = new Slime(app, bulletAppState, new Vector3f(-96, 20, 50), "slime0", 10);
+        Enemy slime4 = new Slime(app, bulletAppState, new Vector3f(-96, 20, 50), "slime4", 10);
         enemyQueue.enqueue(slime4, 4);
-        Enemy slime5 = new Slime(app, bulletAppState, new Vector3f(-104, 20, 40), "slime0", 10);
+        Enemy slime5 = new Slime(app, bulletAppState, new Vector3f(-104, 20, 40), "slime5", 10);
         enemyQueue.enqueue(slime5, 5);
-        Enemy slime6 = new Slime(app, bulletAppState, new Vector3f(-104, 20, 72), "slime0", 10);
+        Enemy slime6 = new Slime(app, bulletAppState, new Vector3f(-104, 20, 72), "slime6", 10);
         enemyQueue.enqueue(slime6, 6);
-        Enemy slime7 = new Slime(app, bulletAppState, new Vector3f(-69, 20, 154), "slime0", 10);
+        Enemy slime7 = new Slime(app, bulletAppState, new Vector3f(-69, 20, 154), "slime7", 10);
         enemyQueue.enqueue(slime7, 7);
-        Enemy slime8 = new Slime(app, bulletAppState, new Vector3f(-124, 20, 42), "slime0", 10);
+        Enemy slime8 = new Slime(app, bulletAppState, new Vector3f(-124, 20, 42), "slime8", 10);
         enemyQueue.enqueue(slime8, 8);
-        Enemy slime9 = new Slime(app, bulletAppState, new Vector3f(-106, 20, 124), "slime0", 10);
+        Enemy slime9 = new Slime(app, bulletAppState, new Vector3f(-106, 20, 124), "slime9", 10);
         enemyQueue.enqueue(slime9, 9);
-        Enemy slime10 = new Slime(app, bulletAppState, new Vector3f(-99, 20, 140), "slime0", 10);
+        Enemy slime10 = new Slime(app, bulletAppState, new Vector3f(-99, 20, 140), "slime10", 10);
         enemyQueue.enqueue(slime10, 10);
-        
-        Enemy slime11 = new Slime(app, bulletAppState, new Vector3f(-260, 20, -50), "slime0", 10); // right beside chefBoy spawn 
-        enemyQueue.enqueue(slime11, 10);
+        Enemy slime11 = new Slime(app, bulletAppState, new Vector3f(-260, 20, -50), "slime11", 10); 
+        enemyQueue.enqueue(slime11, 11);
+        Enemy slime12 = new Slime(app, bulletAppState, new Vector3f(-265, 20, -30), "slime12", 10); 
+        enemyQueue.enqueue(slime12, 11);
+        Enemy slime13 = new Slime(app, bulletAppState, new Vector3f(-280, 20, -50), "slime13", 10); 
+        enemyQueue.enqueue(slime13, 11);
+        Enemy slime14 = new Slime(app, bulletAppState, new Vector3f(-290, 20, -64), "slime14", 10); 
+        enemyQueue.enqueue(slime14, 11);
+        Enemy slime15 = new Slime(app, bulletAppState, new Vector3f(-276, 20, -27), "slime15", 10); 
+        enemyQueue.enqueue(slime15, 11);
         
         Enemy fish0 = new Fish(app, bulletAppState, new Vector3f(0, 20, -100), "fish0", 20);
         enemyQueue.enqueue(fish0, 0);
-        Enemy fish1 = new Fish(app, bulletAppState, new Vector3f(20, 40, -120), "fish0", 20);
+        Enemy fish1 = new Fish(app, bulletAppState, new Vector3f(20, 40, -120), "fish1", 20);
         enemyQueue.enqueue(fish1, 1);
-        Enemy fish2 = new Fish(app, bulletAppState, new Vector3f(-10, 40, -80), "fish0", 20);
+        Enemy fish2 = new Fish(app, bulletAppState, new Vector3f(-10, 40, -80), "fish2", 20);
         enemyQueue.enqueue(fish2, 2);
-        Enemy fish3 = new Fish(app, bulletAppState, new Vector3f(40, 40, -130), "fish0", 20);
+        Enemy fish3 = new Fish(app, bulletAppState, new Vector3f(40, 40, -130), "fish3", 20);
         enemyQueue.enqueue(fish3, 3);
-        Enemy fish4 = new Fish(app, bulletAppState, new Vector3f(30, 40, -70), "fish0", 20);
+        Enemy fish4 = new Fish(app, bulletAppState, new Vector3f(30, 40, -70), "fish4", 20);
         enemyQueue.enqueue(fish4, 4);
-        Enemy fish5 = new Fish(app, bulletAppState, new Vector3f(-30, 40, -60), "fish0", 20);
+        Enemy fish5 = new Fish(app, bulletAppState, new Vector3f(-30, 40, -60), "fish5", 20);
         enemyQueue.enqueue(fish5, 5);
-        Enemy fish6 = new Fish(app, bulletAppState, new Vector3f(-10, 40, -110), "fish0", 20);
+        Enemy fish6 = new Fish(app, bulletAppState, new Vector3f(-10, 40, -110), "fish6", 20);
         enemyQueue.enqueue(fish6, 6);
-        Enemy fish7 = new Fish(app, bulletAppState, new Vector3f(50, 40, -140), "fish0", 20);
+        Enemy fish7 = new Fish(app, bulletAppState, new Vector3f(50, 40, -140), "fish7", 20);
         enemyQueue.enqueue(fish7, 7);
-        Enemy fish8 = new Fish(app, bulletAppState, new Vector3f(-50, 40, -90), "fish0", 20);
+        Enemy fish8 = new Fish(app, bulletAppState, new Vector3f(-50, 40, -90), "fish8", 20);
         enemyQueue.enqueue(fish8, 8);
+        Enemy fish9 = new Fish(app, bulletAppState, new Vector3f(-75, 40, -85), "fish9", 20);
+        enemyQueue.enqueue(fish9, 9);
+        Enemy fish10 = new Fish(app, bulletAppState, new Vector3f(-90, 40, -60), "fish10", 20);
+        enemyQueue.enqueue(fish10, 10);
+        Enemy fish11 = new Fish(app, bulletAppState, new Vector3f(-78, 40, -97), "fish11", 20);
+        enemyQueue.enqueue(fish11, 11);
+        Enemy fish12 = new Fish(app, bulletAppState, new Vector3f(-30, 40, -50), "fish12", 20);
+        enemyQueue.enqueue(fish12, 12);
+        Enemy fish13 = new Fish(app, bulletAppState, new Vector3f(-10, 40, -80), "fish13", 20);
+        enemyQueue.enqueue(fish13, 13);
+        Enemy fish14 = new Fish(app, bulletAppState, new Vector3f(-35, 40, -99), "fish14", 20);
+        enemyQueue.enqueue(fish14, 14);
+        Enemy fish15 = new Fish(app, bulletAppState, new Vector3f(-10, 40, -50), "fish15", 20);
+        enemyQueue.enqueue(fish15, 15);
         
         Enemy wolf0 = new Wolf(app, bulletAppState, new Vector3f(273, 20, -336), "wolf0", 50);
         enemyQueue.enqueue(wolf0, 10);

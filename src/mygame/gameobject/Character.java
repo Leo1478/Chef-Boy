@@ -62,53 +62,17 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
      * initCollision
      * initialise collision of character 
      */
-    @Override
     public void initCollision() {
 
         Vector3f extent = ((BoundingBox) getModel().getWorldBound()).getExtent(new Vector3f());
         BoxCollisionShape collisionShape = new BoxCollisionShape(extent);
         characterControl = new CharacterControl(collisionShape, 0.05f);
-        
-        
-        //betterCharacterControl = new BetterCharacterControl(1.5f, 6f, 1f);
         characterControl.setFallSpeed(10);
-
-        
         bulletAppState.getPhysicsSpace().add(characterControl);
-        //bulletAppState.getPhysicsSpace().add(betterCharacterControl);
         characterControl.setGravity(new Vector3f(0, -60f, 0));
         getCharacterControl().setFallSpeed(60);
-        //betterCharacterControl.setGravity(new Vector3f(0, -60f, 0));
-
         characterControl.setPhysicsLocation(getPosition());
 
-        
-//        setCollisionMesh(collisionShape);
-
-//        RigidBodyControl dynaRbc = new RigidBodyControl(1);
-//        setRigidBody(dynaRbc);
-//        getModel().addControl(getRigidBody());
-//        getRigidBody().setKinematic(true);
-//        bulletAppState.getPhysicsSpace().addCollisionObject(getRigidBody());
-//        bulletAppState.getPhysicsSpace().add(getRigidBody());
-//        getRigidBody().setPhysicsLocation(characterControl.getPhysicsLocation());
-//        Mesh ballMesh = new Sphere(16, 32, 1f);
-//        Geometry dyna = new Geometry("dyna", ballMesh);
-//        setMat(app.getAssetManager().loadMaterial("Materials/orange.j3m"));
-//        dyna.setMaterial(getMat());
-//        app.getRootNode().attachChild(dyna);
-//        RigidBodyControl dynaRbc = new RigidBodyControl(2f);
-//        dyna.addControl(dynaRbc);
-//        bulletAppState.getPhysicsSpace().add(dynaRbc);
-//        dynaRbc.setPhysicsLocation(new Vector3f(-205, 30, 208));
-        
-       
-//        getModel().addControl(getRigidBody());
-//        getModel().getControl(RigidBodyControl.class).setPhysicsLocation(characterControl.getPhysicsLocation());
-//        bulletAppState.getPhysicsSpace().add(getRigidBody());
-//        getRigidBody().setEnabled(true);
-
-        //bulletAppState.setDebugEnabled(true);
     }
     
     /**
@@ -131,25 +95,12 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         setPosition(characterControl.getPhysicsLocation());
     }
     
-    /**
-     * updateCollision
-     * update collision mesh 
-     */
-    @Override
-    public void updateCollision(){
-        setRigidBody(new RigidBodyControl(getCollisionMesh(), 0f));
-        getModel().addControl(getRigidBody());
-        getModel().getControl(RigidBodyControl.class).setPhysicsLocation(characterControl.getPhysicsLocation());
-        bulletAppState.getPhysicsSpace().add(getRigidBody());
-        System.out.println("updating collision!!!!!");
-    }
     
     /**
      * deleteCollision
      * remove from bulletAppState
      */
-    @Override
-    public void deleteCollision(){
+    public void deleteCharactercontrol(){
         bulletAppState.getPhysicsSpace().remove(characterControl);
     }
     
@@ -201,7 +152,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         if(health <= 0){
             alive = false;
             deleteModel();
-            deleteCollision();
+            deleteCharactercontrol();
         }
     }
     

@@ -8,7 +8,7 @@ import com.jme3.math.Vector3f;
 /**
  * Enemy.java 
  * enemy that exist in game 
- * @author Leo Zeng, WIlliam Zhao
+ * @author Leo Zeng, William Zhao
  * 2020/12/30
  */
 public abstract class Enemy extends Character{
@@ -74,6 +74,7 @@ public abstract class Enemy extends Character{
         double x1 = chefBoy.getPosition().x;
         double z = this.getPosition().z;
         double z1 = chefBoy.getPosition().z;
+
         
         return (Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2))); // pythagorean theorm
     }
@@ -89,13 +90,15 @@ public abstract class Enemy extends Character{
     private void determinState(ChefBoy chefBoy){
         
         double distanceToChef = determineDistance(chefBoy); // find distance to chefBoy
+        
         if(distanceToChef < getRange()){
             setState(CharacterState.ATTACKING);
         } else if(distanceToChef < getDetectionRange()){
             setState(CharacterState.MOVING); 
-        } else {
+        }else {
             setState(CharacterState.IDLE);         
         }
+        
     }
     
     /**
@@ -103,7 +106,7 @@ public abstract class Enemy extends Character{
      * idle mode for enemy 
      */
     private void idle(){
-        //System.out.println("chilling");
+        //System.out.println("chilling"); //for testing
     }
     
     /**

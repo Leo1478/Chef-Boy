@@ -1,5 +1,4 @@
 package mygame.gameobject;
-
 /**
  * Collidable.java
  * object that can have collision 
@@ -14,15 +13,4 @@ public interface Collidable {
      */
     public void initCollision();
     
-    /**
-     * updateCollision
-     * update collision mesh
-     */
-    public void updateCollision();
-    
-    /**
-     * deleteCollision
-     * delete collision mesh 
-     */
-    public void deleteCollision();
 }
