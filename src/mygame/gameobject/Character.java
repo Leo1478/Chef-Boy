@@ -7,7 +7,6 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
-import com.jme3.bullet.control.BetterCharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 
@@ -32,13 +31,12 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
     private AnimComposer animComposer; // animation 
     
     private CharacterControl characterControl; 
-    private BetterCharacterControl betterCharacterControl;
     
     protected BulletAppState bulletAppState; 
     private CollisionShape collisionMesh; // mesh to map collision 
     private RigidBodyControl rigidBody; // rigidbody to simulate physical object 
     
-    private Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
+    private Vector3f walkDirection; // direction of walking (change in position, not current position)
     
     /**
      * Character
@@ -56,7 +54,7 @@ public abstract class Character extends GameObject implements Action, ChangeHeal
         this.state = CharacterState.IDLE;
         this.previousState = CharacterState.IDLE;
         this.bulletAppState = bulletAppState;
-        
+        walkDirection = new Vector3f();
     }
     
 

@@ -15,8 +15,6 @@ public abstract class Enemy extends Character{
     
     private double detectionRange; // range to detect player 
     
-    private double distanceToChef;
-    
     /**
      * Enemy 
      * constructor
@@ -42,9 +40,7 @@ public abstract class Enemy extends Character{
         
         super.behaviour(tpf);
         
-        determineDistance(chefBoy); // find distance to chefBoy
-        
-        determinState();
+        determinState(chefBoy);
 
         move(new Vector3f(0, 0, 0)); // calling move with 0 change will make sure gravity works as intended 
               
@@ -71,30 +67,31 @@ public abstract class Enemy extends Character{
      * determine distance to chefBoy
      * @param chefBoy chefBoy to interact with 
      */
-    private void determineDistance(ChefBoy chefBoy){
+    private double determineDistance(ChefBoy chefBoy){
 
         double x = this.getPosition().x;
         double x1 = chefBoy.getPosition().x;
         double z = this.getPosition().z;
         double z1 = chefBoy.getPosition().z;
         
-        distanceToChef = Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2)); // pythagorean theorm
+        return Math.sqrt(Math.pow(x1-x, 2) + Math.pow(z1-z, 2)); // pythagorean theorm
     }
     
     /**
-     * determinstate
+     * determinState
      * determin state based on distance to chefBoy
      * if in detectionRange, set state to charge 
      * if in attackRange, set state to attack 
      * otherwise set state to idle 
      */
-    private void determinState(){
+    private void determinState(ChefBoy chefBoy){
         
-        if(distanceToChef < getDetectionRange()){
+        double distanceToChef = determineDistance(chefBoy); // find distance to chefBoy
+        if(distanceToChef < getRange()){
+            setState(CharacterState.ATTACKING);
+        }
+        else if(distanceToChef < getDetectionRange()){
             setState(CharacterState.MOVING); 
-            if(distanceToChef < getRange()){
-                setState(CharacterState.ATTACKING);
-            }
         }
         else {
             setState(CharacterState.IDLE);         

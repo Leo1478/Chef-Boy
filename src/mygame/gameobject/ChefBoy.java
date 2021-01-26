@@ -17,7 +17,6 @@ import com.jme3.renderer.queue.RenderQueue;
  */
 public class ChefBoy extends Character {
 
-    private Vector3f walkDirection = new Vector3f(); // direction of walking (change in position, not current position)
 
     private boolean block; // if chefboy is blocking hits 
 
