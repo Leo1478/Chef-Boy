@@ -17,7 +17,7 @@ import mygame.state.SettingState;
 /**
  * Setting.java
  * setting screen of game
- * @author Leo Zeng
+ * @author Leo Zeng, Ariana Hou, William Zhao
  * 2021/01/09
  */
 public class Setting {

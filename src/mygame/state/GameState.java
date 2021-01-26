@@ -221,7 +221,6 @@ public class GameState extends State {
      */
     private void initProp() {
         
-
         Prop hut0 = new Hut(app, bulletAppState, new Vector3f(-205, 20, 208), "hut0");
         Prop hut1 = new Hut(app, bulletAppState, new Vector3f(300, -15, 250), "hut1");
         

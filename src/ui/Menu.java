@@ -17,7 +17,7 @@ import mygame.state.StartState;
  * Menu.java
  * menu screen of game 
  * contains play, setting, exit button
- * @author Leo Zeng
+ * @author Leo Zeng, Ariana Hou, William Zhao
  */
 public class Menu {
     

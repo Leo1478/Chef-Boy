@@ -7,7 +7,7 @@ import com.jme3.math.Vector3f;
 /**
  * Item.java
  * all items that can be picked up 
- * @author Ariana Hou
+ * @author Ariana Hou, William Zhao
  */
 public abstract class Item extends GameObject implements Comparable{
     

@@ -8,7 +8,7 @@ import com.jme3.renderer.queue.RenderQueue;
 /**
  * Slime.java
  * slime enemy 
- * @author Ariana Hou
+ * @author Ariana Hou, William Zhao
  * 2020/12/30
  */
 public class Slime extends Enemy{

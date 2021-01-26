@@ -8,7 +8,7 @@ import com.jme3.renderer.queue.RenderQueue;
 /**
  * Pig.java
  * pig enemy
- * @author Ariana Hou
+ * @author Ariana Hou, William Zhao
  */
 public class Pig extends Enemy {
 

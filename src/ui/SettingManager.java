@@ -8,7 +8,7 @@ import com.jme3.math.Vector2f;
 /**
  * SettingManager
  * inputs for setting screen 
- * @author Leo Zeng
+ * @author Leo Zeng, Ariana Hou, William Zhao
  * 2021/01/16
  */
 public class SettingManager implements ActionListener{

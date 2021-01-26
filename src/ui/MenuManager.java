@@ -8,7 +8,7 @@ import com.jme3.math.Vector2f;
 /**
  * MenuManager.java
  * get inputs for menu
- * @author Leo Zeng
+ * @author Leo Zeng, Ariana Hou, William Zhao
  * 202101/04
  */
 public class MenuManager implements ActionListener{

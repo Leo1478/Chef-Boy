@@ -8,7 +8,7 @@ import com.jme3.renderer.queue.RenderQueue;
 /**
  * Fish.java
  * fish enemy
- * @author Ariana Hou
+ * @author Ariana Hou, William Zhao
  * 2021/01/10
  */
 public class Fish extends Enemy {

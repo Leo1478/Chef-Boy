@@ -12,7 +12,7 @@ import com.jme3.renderer.queue.RenderQueue;
  * ChefBoy.java
  * chef boy character
  * character the player controls
- * @author Leo Zeng
+ * @author Leo Zeng, Ariana Hou, William Zhao
  * 2020/12/30
  */
 public class ChefBoy extends Character {
