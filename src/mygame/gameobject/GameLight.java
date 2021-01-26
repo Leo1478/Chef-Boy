@@ -10,9 +10,10 @@ import com.jme3.shadow.DirectionalLightShadowRenderer;
 import mygame.state.Main;
 
 /**
- * 
- * @author leoze
+ * GameLight
+ * lighting 
  * @deprecated light is created entirely in GameState instead
+ * @author Leo Zeng
  * 2020/12/25
  */
 public class GameLight {
